@@ -1,0 +1,8 @@
+#[user]
+#	name = asakunotomohiro
+#	email = asakunotomohiro
+[core]
+	excludesfile = /Users/asakunotomohiro/.gitignore_global
+	quotepath = false
+[alias]
+	lol = log --graph --decorate --pretty=oneline --all --abbrev-commit
