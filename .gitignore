@@ -1,3 +1,9 @@
+### 一太郎 ###
+*.$td
+*.$tt
+*.$tdc
+*.$ttc
+
 ### Compressed ###
 *.7z
 *.deb
@@ -11,6 +17,21 @@
 *.zip
 *.zipx
 *.tgz
+*.bz2
+*.F
+*.lz
+*.lzma
+*.lzo
+*.rz
+*.sfark
+*.sz
+*.?Q?
+*.?Z?
+*.xz
+*.z
+*.Z
+*.infl
+*.??_
 
 ### Java ###
 # Compiled class file
@@ -52,6 +73,7 @@ target/
 # Session
 Session.vim
 Sessionx.vim
+*.vimSession
 
 # Temporary
 .netrwhist
@@ -60,12 +82,21 @@ Sessionx.vim
 .[tT]ags
 [._]*.un~
 
+### Linux ###
+*~
+.Trash-*
+
 ### Windows ###
 # Windows thumbnail cache files
 Thumbs.db
 Thumbs.db:encryptable
 ehthumbs.db
 ehthumbs_vista.db
+
+### Mac ###
+.DS_Store
+.AppleDouble
+.LSOverride
 
 # Dump file
 *.stackdump
@@ -85,3 +116,12 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+
+# eBook build output
+*.epub
+*.mobi
+*.pdf
+
+### Go ###
+*.exe~
+*.test
