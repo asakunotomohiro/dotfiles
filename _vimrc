@@ -6,6 +6,8 @@ if ( has('win32') || has('win64') )
 endif
 
 packadd minpac
+"if exists('*minpac#init')
+  " minpac がロードされている場合
 call minpac#init()
 
 call minpac#add('k-takata/minpac', {'type': 'opt'})
@@ -19,7 +21,7 @@ call minpac#add('mattn/vim-lsp-settings')
 
 "	オートコンプリートポップアップメニュー表示
 call minpac#add('prabirshrestha/asyncomplete.vim')
-"	オートコンプリートソース
+"		オートコンプリートソース
 call minpac#add('prabirshrestha/asyncomplete-lsp.vim')
 
 " Go言語用プラグイン
@@ -56,7 +58,7 @@ let g:asyncomplete_remove_duplicates = 1
 
 "	ーーーここまでがパッケージ管理ーーー
 if (has('win32') || has('win64') )
-	let g:previm_open_cmd = 'C:\/\/Program Files\ (x86)\/Mozilla\ Firefox\/firefox.exe'	" open-browser.vim
+	let g:previm_open_cmd = 'C:\/Program\ Files\/Mozilla\ Firefox\/firefox.exe'	" open-browser.vim
 elseif has('xfontset')
 endif
 
@@ -64,6 +66,8 @@ autocmd BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=markdown
 let g:vim_markdown_folding_disabled=1
 nnoremap <silent> <C-p> :PrevimOpen<CR>
 
+
+"endif
 "	ーーーパッケージ管理下での設定ここまでーーー
 
 
@@ -110,6 +114,7 @@ nnoremap ZZ <Nop>
 
 "---------------------------------------------------------------------------
 " 日本語入力に関する設定:
+"
 if has('multi_byte_ime') || has('xim') || has('gui_macvim')
 	" IME ON時のカーソルの色を設定
 	highlight CursorIM guibg=Purple guifg=LightRed
@@ -206,6 +211,7 @@ set fileencodings=utf-8,euc-jp,sjis,ucs-bom,eucjp-ms,euc-jisx0213,cp932,iso-2022
 set encoding=UTF-8
 
 " 改行コードの自動認識
+"	改行コードを指定して開き直す場合　:e ++ff=mac
 set fileformats=unix,dos,mac
 
 " ステータスラインに文字コードを表示させる。
@@ -220,9 +226,10 @@ set ttymouse=xterm2
 
 "---------------------------------------------------------------------------
 "	エクスプローラー
-nnoremap <Leader>E :Explore<CR>
-nnoremap <Leader>S :Sexplore<CR>	" ←通常:Seで水平分割上で開く.\Sで開くようになる.
-nnoremap <Leader>V :Vexplore<CR>	" ←通常:Vexで水平分割上で開く.\Vで開くようになる.
+"nnoremap <Leader>E :Explore<CR>
+"nnoremap <Leader>S :Sexplore<CR>
+"nnoremap <Leader>V :Vexplore<CR>
+"	新規タブページで開く場合は:Teを使う必要がある.
 
 "---------------------------------------------------------------------------
 " MacVim-KaoriYa固有の設定
@@ -241,9 +248,10 @@ endif
 
 "---------------------------------------------------------------------------
 nnoremap <Leader>ev :e ~\.vimrc<CR>
+nnoremap <Leader>eg :e ~\.gvimrc<CR>
+
 if ( has('win32') || has('win64') )
 	nnoremap <Leader>eh :e ++enc=sjis C:\/Users\/asakunotomohiro\/AutoHotkey.ahk<CR>
-	"	いずれは、編集後に読み込み直すような設定をしたい。
 endif
 
 " 以上。

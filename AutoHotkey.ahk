@@ -36,16 +36,51 @@ return
 return
 hidemaru := ""
 #h::
-	hidemaru = "C:\Program Files (x86)\Hidemaru\Hidemaru.exe"
-	Run, %hidemaru%, , , varHidemaruPID
+	hidemaru := "C:\Program Files (x86)\Hidemaru\Hidemaru.exe"
+	IfExist, %hidemaru%
+	{
+		Run, %hidemaru%, , , varHidemaruPID
+	}
+	else
+	{
+		hidemaru := "C:\Program Files\Hidemaru\Hidemaru.exe"
+		IfExist, %hidemaru%
+		{
+			Run, %hidemaru%, , , varHidemaruPID
+		}
+		else
+		{
+			TrayTip, %hidemaru%, Pathが正しくないか、インストールされていない。, 3, 0
+		}
+	}
 	sleep 100
 	WinActivate, ahk_exe %hidemaru%
 return
+;	sakura = "C:\Program Files (x86)\sakura\sakura.exe"
+;	Run, %sakura%, , , varSakuraPID
+;	sleep 100
+;	WinActivate
+;return
 #v::
-	gvimEditor := "C:\Program Files (x86)\vim82-kaoriya-win64\gvim.exe"
-	Run, %gvimEditor%, , , varGvimPID
+	gvimEditor := "C:\Program Files\vim81-kaoriya-win64\gvim.exe"
+	IfExist, %gvimEditor%
+	{
+		Run, %gvimEditor%, , , varGvimPID
+	}
+	else
+	{
+		gvimEditor := "C:\Program Files (x86)\vim82-kaoriya-win64\gvim.exe"
+		IfExist, %gvimEditor%
+		{
+			Run, %gvimEditor%, , , varGvimPID
+		}
+		else
+		{
+			TrayTip, %gvimEditor%, Pathが正しくないか、インストールされていない。, 3, 0
+		}
+	}
 	sleep 550
-	WinActivate, ahk_exe %gvimEditor%
+	WinActivate, ahk_pid %varGvimPID%
 return
 #p::
 	Run, %windir%\system32\mspaint.exe, , , varPaintPID
@@ -55,33 +90,87 @@ return
 return
 #f::
 	firefoxBrowser := "C:\Program Files\Mozilla Firefox\firefox.exe"
-	Run, %firefoxBrowser%, , , varFireFoxPID
+	IfExist, %firefoxBrowser%
+	{
+		Run, %firefoxBrowser%, , , varFireFoxPID
+	}
+	else
+	{
+		firefoxBrowser := "C:\Program Files (x86)\Mozilla Firefox\firefox.exe"
+		IfExist, %firefoxBrowser%
+		{
+			Run, %firefoxBrowser%, , , varFireFoxPID
+		}
+		else
+		{
+			TrayTip, %firefoxBrowser%, Pathが正しくないか、インストールされていない。, 3, 0
+		}
+	}
 	sleep 800
 	WinActivate, Mozilla Firefox
 return
 #c::
-	googleChorme := "C:\Program Files\Google\Chrome\Application\chrome.exe"
-	Run, %googleChorme%, , , varChormePID
+	googleChorme := "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe"
+	IfExist, %googleChorme%
+	{
+		Run, %googleChorme%, , , varChormePID
+	}
+	else
+	{
+		googleChorme := "C:\Program Files\Google\Chrome\Application\chrome.exe"
+		IfExist, %googleChorme%
+		{
+			Run, %googleChorme%, , , varChormePID
+		}
+		else
+		{
+			TrayTip, %googleChorme%, Pathが正しくないか、インストールされていない。, 3, 0
+		}
+	}
 	sleep 150
 	WinActivate, ahk_pid %varChormePID%
 return
-#g::
-	Sourcetree = "C:\Users\asakuno\AppData\Local\SourceTree\SourceTree.exe"
-	Run, %Sourcetree%, , , varSourcetreePID
-	sleep 150
-	WinActivate, ahk_pid %varSourcetreePID%
-return
-#!e::
-	eclipse = "C:\dev\pleiades\eclipse\eclipse.exe"
+#!i::
+	eclipse := "C:\dev\pleiades\eclipse\eclipse.exe"
 	Run, %eclipse%, , , varEclipsePID
 	sleep 150
-	WinActivate, ahk_pid %varEclipsePID%
+	WinActivate, ahk_exe %eclipse%
 return
 #!j::
-	jaspersoft = "C:\Program Files\TIBCO\Jaspersoft Studio-6.16.0\Jaspersoft Studio.exe"
+	jaspersoft := "C:\Program Files\TIBCO\Jaspersoft Studio-6.16.0\Jaspersoft Studio.exe"
 	Run, %jaspersoft%, , , varJaspersoftPID
 	sleep 150
-	WinActivate, ahk_pid %varJaspersoftPID%
+	WinActivate, ahk_exe %jaspersoft%
+return
+;#!s::
+#g::
+	Sourcetree := "C:\Users\asakunotomohiro\AppData\Local\SourceTree\SourceTree.exe"
+	IfExist, %Sourcetree%
+	{
+		Run, %Sourcetree%, , , varSourcetreePID
+	}
+	else
+	{
+		Sourcetree := "C:\Program Files (x86)\SourceTree\SourceTree.exe"
+		IfExist, %Sourcetree%
+		{
+			Run, %Sourcetree%, , , varSourcetreePID
+		}
+		else
+		{
+			Sourcetree := "C:\Program Files\SourceTree\SourceTree.exe"
+			IfExist, %Sourcetree%
+			{
+				Run, %Sourcetree%, , , varSourcetreePID
+			}
+			else
+			{
+				TrayTip, %Sourcetree%, Pathが正しくないか、インストールされていない。, 3, 0
+			}
+		}
+	}
+	sleep 150
+	WinActivate, ahk_pid %varSourcetreePID%
 return
 ~^w::
 	WinGetTitle, titleControlWName, A
@@ -101,7 +190,4 @@ return
 		Send, !fc
 	}
 return
-#IfWinActive ahk_exe gvim.exe
-^s::Send, {Esc 2}^{[}:w{Enter}	// Ctrl+sで保存
-#IfWinActive
 ;	以上。ここまで。

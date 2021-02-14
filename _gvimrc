@@ -14,22 +14,28 @@ if ( has('win32') || has('win64') )
 endif
 
 "---------------------------------------------------------------------------
-let g:loaded_gzip				= 1
-let g:loaded_tar				= 1
-let g:loaded_tarPlugin			= 1
-let g:loaded_zip				= 1
-let g:loaded_zipPlugin			= 1
-let g:loaded_rrhelper			= 1
-let g:loaded_2html_plugin		= 1
-let g:loaded_vimball			= 1
-let g:loaded_vimballPlugin		= 1
-let g:loaded_getscript			= 1
-let g:loaded_getscriptPlugin	= 1
-let g:loaded_netrwPlugin		= 1
-let g:loaded_netrwSettings		= 1
-let g:loaded_netrwFileHandlers	= 1
+let g:loaded_gzip              = 1
+let g:loaded_tar               = 1
+let g:loaded_tarPlugin         = 1
+let g:loaded_zip               = 1
+let g:loaded_zipPlugin         = 1
+let g:loaded_rrhelper          = 1
+let g:loaded_2html_plugin      = 1
+let g:loaded_vimball           = 1
+let g:loaded_vimballPlugin     = 1
+let g:loaded_getscript         = 1
+let g:loaded_getscriptPlugin   = 1
+let g:loaded_netrwPlugin       = 1
+let g:loaded_netrwSettings     = 1
+let g:loaded_netrwFileHandlers = 1
+"let g:loaded_netrw             = 1
 
 "---------------------------------------------------------------------------
+
+" fコマンド時、IMEを自動でOFFに設定。
+"　全然機能しない（CUI・GUI）
+"nnoremap <silent> f :set iminsert=0<CR>f
+"nnoremap <silent> F :set iminsert=0<CR>F
 
 " ESCでIMEを確実にOFF
 inoremap <silent> <ESC> <ESC>:set iminsert=0<CR>
@@ -75,6 +81,7 @@ endfunction
 if has('syntax')
 	augroup ZenkakuSpace
 	autocmd!
+	" 全角スペースのハイライト指定
 	autocmd VimEnter,WinEnter * match ZenkakuSpace /　/
 	augroup END
 	call ZenkakuSpace()
@@ -101,7 +108,15 @@ endif
 
 "---------------------------------------------------------------------------
 if ( has('win32') || has('win64') )
-	nnoremap <Leader>eg :e ~\.gvimrc<CR>
+	" コピペはできないが、ヤンクなどをWindowsのクリップボードに保存する処理。
+	set clipboard=unnamed,autoselect
+
+"	source $VIMRUNTIME/mswin.vim
+	" ノーマルモードでは元のキーマッピングを利用する
+	"nnoremap <C-x> <C-x>
+	"nnoremap <C-v> <C-v>
+	"nnoremap <C-a> <C-a>
+	"nnoremap <C-c> <C-c>
 endif
 
 " ここまで
