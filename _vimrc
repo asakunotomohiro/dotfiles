@@ -156,7 +156,12 @@ set formatexpr=autofmt#japanese#formatexpr()
 " GUI固有ではない画面表示の設定:
 
 set number
+
+"	下記は、行番号をカレント行から相対的に表示
+"set relativenumber
 set norelativenumber
+"		状況によっては動作が遅くなる。
+
 set ruler
 set list
 set listchars=tab:>-,extends:<,trail:-,eol:<
@@ -180,8 +185,11 @@ inoremap <C-g><C-v> <F2><C-r>"<F2>
 set backup
 set undofile
 
+"set noundofile
 if ( has('win32') || has('win64') )
 	let s:backup_dir = 'C:/vim_backup'
+	"	本来は%TEMP%ディレクトリが望ましいだろう。
+
 	" undofileが勝手に作られるが、無効化ではなく、作る場所を一カ所にまとめることにした。
 	set undodir=backup_dir
 	"	※これは、kaoriya版のVer.7.4.277からの仕様らしい。
@@ -207,7 +215,7 @@ augroup END
 
 "---------------------------------------------------------------------------
 " 文字コードの設定
-set fileencodings=utf-8,euc-jp,sjis,ucs-bom,eucjp-ms,euc-jisx0213,cp932,iso-2022-jp-3,iso-2022-jp
+set fileencodings=utf-8,euc-jp,sjis,ucs-bom,eucjp-ms,euc-jisx0213,utf-16,utf-16le,cp932,iso-2022-jp-3,iso-2022-jp
 set encoding=UTF-8
 
 " 改行コードの自動認識
@@ -251,7 +259,8 @@ nnoremap <Leader>ev :e ~\.vimrc<CR>
 nnoremap <Leader>eg :e ~\.gvimrc<CR>
 
 if ( has('win32') || has('win64') )
-	nnoremap <Leader>eh :e ++enc=sjis C:\/Users\/asakunotomohiro\/AutoHotkey.ahk<CR>
+	nnoremap <Leader>eh :e ++enc=sjis $HOME/Documents/AutoHotkey.ahk<CR>
 endif
+
 
 " 以上。

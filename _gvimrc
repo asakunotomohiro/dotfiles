@@ -1,8 +1,10 @@
 " torteは、WindowsOS専用の色にすべきかもしれない。Macintoshだと、薄すぎる。
 colorscheme torte
+"hi clear CursorLine	" 色削除
 hi CursorLine gui=underline guifg=NONE guibg=NONE
 
 " .gvimrc カラー設定
+"カラー設定した後にCursorIMを定義する方法
 if has('multi_byte_ime') || has('xim')
 	highlight CursorIM guibg=Purple guifg=LightRed
 endif
@@ -109,7 +111,7 @@ endif
 "---------------------------------------------------------------------------
 if ( has('win32') || has('win64') )
 	" コピペはできないが、ヤンクなどをWindowsのクリップボードに保存する処理。
-	set clipboard=unnamed,autoselect
+"	set clipboard=unnamed,autoselect
 
 "	source $VIMRUNTIME/mswin.vim
 	" ノーマルモードでは元のキーマッピングを利用する
