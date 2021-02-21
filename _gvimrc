@@ -83,6 +83,8 @@ endfunction
 if has('syntax')
 	augroup ZenkakuSpace
 	autocmd!
+	" ZenkakuSpaceをカラーファイルで設定するなら次の行は削除
+"	autocmd ColorScheme       * call ZenkakuSpace()
 	" 全角スペースのハイライト指定
 	autocmd VimEnter,WinEnter * match ZenkakuSpace /　/
 	augroup END

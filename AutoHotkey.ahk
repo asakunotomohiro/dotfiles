@@ -22,7 +22,6 @@ return
 	}
 	If ( varFoundRegReload > 0 )
 	{
-		FileCreateShortcut, %A_ScriptFullPath%, %A_MyDocuments%\%A_ScriptName%.lnk, , , , , Ctrl+Alt+s,
 		FileCreateShortcut, %A_ScriptFullPath%, %A_Startup%\%A_ScriptName%.lnk, , , , , Ctrl+Alt+s,
 		Reload
 		#NoTrayIcon
@@ -37,16 +36,35 @@ return
 hidemaru := ""
 #h::
 	hidemaru := "C:\Program Files (x86)\Hidemaru\Hidemaru.exe"
+;	ディクテーションなるものが動くようだ。しかし、日本語運用時は動かないようだ。
 	IfExist, %hidemaru%
 	{
-		Run, %hidemaru%, , , varHidemaruPID
+		UniqueID := WinExist("ahk_exe Hidemaru.exe")
+		if % StrLen(UniqueID) == 3
+		{
+			Run, %hidemaru%, , , varHidemaruPID
+		}
+		else
+		{
+			WinActivate, ahk_exe %hidemaru%
+			return
+		}
 	}
 	else
 	{
 		hidemaru := "C:\Program Files\Hidemaru\Hidemaru.exe"
 		IfExist, %hidemaru%
 		{
-			Run, %hidemaru%, , , varHidemaruPID
+			UniqueID := WinExist("ahk_exe Hidemaru.exe")
+			if % StrLen(UniqueID) == 3
+			{
+				Run, %hidemaru%, , , varHidemaruPID
+			}
+			else
+			{
+				WinActivate, ahk_exe %hidemaru%
+				return
+			}
 		}
 		else
 		{
@@ -56,13 +74,32 @@ hidemaru := ""
 	sleep 100
 	WinActivate, ahk_exe %hidemaru%
 return
-;	sakura = "C:\Program Files (x86)\sakura\sakura.exe"
-;	Run, %sakura%, , , varSakuraPID
-;	sleep 100
-;	WinActivate
-;return
+;#s::
+#^s::
+	sakura := "C:\Program Files\sakura\sakura.exe"
+;	音声認識のセットアップ画面が起動する。
+	IfExist, %sakura%
+	{
+		Run, %sakura%, , , varSakuraPID
+	}
+	else
+	{
+		sakura := "C:\Program Files (x86)\sakura\sakura.exe"
+		IfExist, %sakura%
+		{
+			Run, %sakura%, , , varSakuraPID
+		}
+		else
+		{
+			TrayTip, %sakura%, Pathが正しくないか、インストールされていない。, 3, 0
+		}
+	}
+	sleep 100
+	WinActivate
+return
 #v::
 	gvimEditor := "C:\Program Files\vim81-kaoriya-win64\gvim.exe"
+;	クリップボード履歴が潰れる。
 	IfExist, %gvimEditor%
 	{
 		Run, %gvimEditor%, , , varGvimPID
@@ -84,12 +121,14 @@ return
 return
 #p::
 	Run, %windir%\system32\mspaint.exe, , , varPaintPID
+;	デュアルディスプレイ用のショートカット？
 	sleep 200
 	SetTitleMatchMode,2
 	WinActivate ,ペイント
 return
 #f::
 	firefoxBrowser := "C:\Program Files\Mozilla Firefox\firefox.exe"
+;	フィードバックHubウィンドウが起動する(普通は使わないよね)。
 	IfExist, %firefoxBrowser%
 	{
 		Run, %firefoxBrowser%, , , varFireFoxPID
@@ -109,8 +148,10 @@ return
 	sleep 800
 	WinActivate, Mozilla Firefox
 return
+;#!c::
 #c::
 	googleChorme := "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe"
+;	Windows標準のCortana起動のショートカットを潰す。
 	IfExist, %googleChorme%
 	{
 		Run, %googleChorme%, , , varChormePID
@@ -132,19 +173,35 @@ return
 return
 #!i::
 	eclipse := "C:\dev\pleiades\eclipse\eclipse.exe"
-	Run, %eclipse%, , , varEclipsePID
+	Run, open %eclipse%, ,  UseErrorLevel, varEclipsePID
 	sleep 150
 	WinActivate, ahk_exe %eclipse%
 return
 #!j::
 	jaspersoft := "C:\Program Files\TIBCO\Jaspersoft Studio-6.16.0\Jaspersoft Studio.exe"
-	Run, %jaspersoft%, , , varJaspersoftPID
+	IfExist, %jaspersoft%
+	{
+		Run, %jaspersoft%, , , varJaspersoftPID
+	}
+	else
+	{
+		jaspersoft := "C:\Program Files (x86)\TIBCO\Jaspersoft Studio-6.16.0\Jaspersoft Studio.exe"
+		IfExist, %jaspersoft%
+		{
+			Run, %jaspersoft%, , , varJaspersoftPID
+		}
+		else
+		{
+			TrayTip, %jaspersoft%, Pathが正しくないか、インストールされていない。, 3, 0
+		}
+	}
 	sleep 150
 	WinActivate, ahk_exe %jaspersoft%
 return
 ;#!s::
 #g::
-	Sourcetree := "C:\Users\asakunotomohiro\AppData\Local\SourceTree\SourceTree.exe"
+	StringTrimRight, appdataRoaming, A_AppData, 7
+	Sourcetree := appdataRoaming . "Local\SourceTree\SourceTree.exe"
 	IfExist, %Sourcetree%
 	{
 		Run, %Sourcetree%, , , varSourcetreePID
@@ -169,8 +226,8 @@ return
 			}
 		}
 	}
-	sleep 150
-	WinActivate, ahk_pid %varSourcetreePID%
+	sleep 250
+	WinActivate, ahk_exe %Sourcetree%
 return
 ~^w::
 	WinGetTitle, titleControlWName, A
@@ -190,4 +247,10 @@ return
 		Send, !fc
 	}
 return
+#IfWinActive ahk_exe Hidemaru.exe
+^g::Send, !sg
+^j::Send, ^g
+#IfWinActive
+;■市販品のキーボード対応
+; ■CapslockをCtrlキーに入れ替える.
 ;	以上。ここまで。

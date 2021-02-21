@@ -27,6 +27,9 @@ call minpac#add('prabirshrestha/asyncomplete-lsp.vim')
 " Go言語用プラグイン
 "call minpac#add('https://github.com/fatih/vim-go')
 
+"	以下のコマンドを打つことにより、プログラムファイルに応じたファイルがインストールされる。
+"	LspInstallServer
+
 " すべてのプラグインを起動時に読み込むのであれば、以下を実行。
 packloadall
 
@@ -39,6 +42,7 @@ augroup MyTermDebug
 	au FileType c packadd termdebug
 augroup END
 
+" ■IDEのように補完してくれる
 " ファイルの変更に伴いリアルタイムにエラー表示する機能 
 let g:lsp_diagnostics_enabled = 1
 let g:lsp_diagnostics_echo_cursor = 1
@@ -58,7 +62,7 @@ let g:asyncomplete_remove_duplicates = 1
 
 "	ーーーここまでがパッケージ管理ーーー
 if (has('win32') || has('win64') )
-	let g:previm_open_cmd = 'C:\/Program\ Files\/Mozilla\ Firefox\/firefox.exe'	" open-browser.vim
+	let g:previm_open_cmd = 'C:\/Program\ Files\ (x86)\/Mozilla\ Firefox\/firefox.exe'	" open-browser.vim
 elseif has('xfontset')
 endif
 
@@ -155,6 +159,7 @@ set formatexpr=autofmt#japanese#formatexpr()
 "---------------------------------------------------------------------------
 " GUI固有ではない画面表示の設定:
 
+" 行番号を表示 (nonumber:表示しない)
 set number
 
 "	下記は、行番号をカレント行から相対的に表示
