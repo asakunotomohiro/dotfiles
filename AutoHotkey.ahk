@@ -1,6 +1,26 @@
 #UseHook
 ^h::Send {Backspace}
 #q::WinClose, A
+
+;キーの指定方法のメモ
+;　Windowsロゴキー #
+;　無変換キー vk1Dsc07B
+;　SHIFT +
+;　Ctrl ^
+;　Alt !
+;　;(セミコロン)vkBBsc027
+;　:(コロン) vkBAsc028
+;　,(カンマ) vkBCsc033
+;　.(ピリオド) vkBEsc034
+;　Space vk20sc039
+;　その他はAutoHotKey Wikiのキーリスト参照
+
+;	修飾シンボル
+;		例）<+a
+
+;	コンビネーションキー
+;		例）LShift & a
+
 GroupAdd, ime2NotActiveTitle, ahk_exe Explorer.exe
 return
 #IfWinNotActive, ahk_group ime2NotActiveTitle
@@ -11,6 +31,14 @@ return
 	Capslock::return	; キャップスロックキー無効
 	return
 #IfWinNotActive
+
+;	■以下,ホットキー
+;		Winキー＋標準キー
+;		Winキー + Ctrlキー + 標準キー
+;		Winキー + Altキー + 標準キー
+
+;	AHKリロード
+#NoTrayIcon
 #!r::
 	WinGetClass, className, A
 	WinGetTitle, titleReloadName, A
@@ -36,7 +64,8 @@ return
 hidemaru := ""
 #h::
 	hidemaru := "C:\Program Files (x86)\Hidemaru\Hidemaru.exe"
-;	ディクテーションなるものが動くようだ。しかし、日本語運用時は動かないようだ。
+;	※WindowOS標準のショートカットキーを上書きすることになるため、気をつけること。
+;		ディクテーションなるものが動くようだ。しかし、日本語運用時は動かないようだ。
 	IfExist, %hidemaru%
 	{
 		UniqueID := WinExist("ahk_exe Hidemaru.exe")
@@ -44,15 +73,13 @@ hidemaru := ""
 		{
 			Run, %hidemaru%, , , varHidemaruPID
 		}
-		else
-		{
-			WinActivate, ahk_exe %hidemaru%
-			return
-		}
 	}
 	else
 	{
 		hidemaru := "C:\Program Files\Hidemaru\Hidemaru.exe"
+		strSplitArray := StrSplit(hidemaru, "\" )
+		ii := strSplitArray.MaxIndex()
+		exename := strSplitArray[ii]
 		IfExist, %hidemaru%
 		{
 			UniqueID := WinExist("ahk_exe Hidemaru.exe")
@@ -60,24 +87,25 @@ hidemaru := ""
 			{
 				Run, %hidemaru%, , , varHidemaruPID
 			}
-			else
-			{
-				WinActivate, ahk_exe %hidemaru%
-				return
-			}
 		}
 		else
 		{
-			TrayTip, %hidemaru%, Pathが正しくないか、インストールされていない。, 3, 0
+			Menu, TRAY, Icon
+			TrayTip, %exename%, Pathが正しくないか、インストールされていない。, 3, 0
+			Menu, TRAY, NoIcon
 		}
 	}
 	sleep 100
-	WinActivate, ahk_exe %hidemaru%
+	strSplitArray := StrSplit(hidemaru, "\" )
+	ii := strSplitArray.MaxIndex()
+	exename := strSplitArray[ii]
+	WinActivate, ahk_exe %exename%
 return
 ;#s::
 #^s::
 	sakura := "C:\Program Files\sakura\sakura.exe"
-;	音声認識のセットアップ画面が起動する。
+;	※WindowOS標準のショートカットキーを上書きすることになるため、気をつけること。
+;		音声認識のセットアップ画面が起動する。
 	IfExist, %sakura%
 	{
 		Run, %sakura%, , , varSakuraPID
@@ -99,7 +127,8 @@ return
 return
 #v::
 	gvimEditor := "C:\Program Files\vim81-kaoriya-win64\gvim.exe"
-;	クリップボード履歴が潰れる。
+;	※WindowOS標準のショートカットキーを上書きすることになるため、気をつけること。
+;		クリップボード履歴が潰れる。
 	IfExist, %gvimEditor%
 	{
 		Run, %gvimEditor%, , , varGvimPID
@@ -107,28 +136,38 @@ return
 	else
 	{
 		gvimEditor := "C:\Program Files (x86)\vim82-kaoriya-win64\gvim.exe"
+		strSplitArray := StrSplit(gvimEditor, "\" )
+		ii := strSplitArray.MaxIndex()
+		exename := strSplitArray[ii]
 		IfExist, %gvimEditor%
 		{
 			Run, %gvimEditor%, , , varGvimPID
 		}
 		else
 		{
-			TrayTip, %gvimEditor%, Pathが正しくないか、インストールされていない。, 3, 0
+			Menu, TRAY, Icon
+			TrayTip, %exename%, Pathが正しくないか、インストールされていない。, 3, 0
+			Menu, TRAY, NoIcon
 		}
 	}
 	sleep 550
-	WinActivate, ahk_pid %varGvimPID%
+	strSplitArray := StrSplit(gvimEditor, "\" )
+	ii := strSplitArray.MaxIndex()
+	exename := strSplitArray[ii]
+	WinActivate, ahk_exe %exename%
 return
 #p::
 	Run, %windir%\system32\mspaint.exe, , , varPaintPID
-;	デュアルディスプレイ用のショートカット？
+;	※WindowOS標準のショートカットキーを上書きすることになるため、気をつけること。
+;		デュアルディスプレイ用のショートカット？
 	sleep 200
 	SetTitleMatchMode,2
 	WinActivate ,ペイント
 return
 #f::
 	firefoxBrowser := "C:\Program Files\Mozilla Firefox\firefox.exe"
-;	フィードバックHubウィンドウが起動する(普通は使わないよね)。
+;	※WindowOS標準のショートカットキーを上書きすることになるため、気をつけること。
+;		フィードバックHubウィンドウが起動する(普通は使わないよね)。
 	IfExist, %firefoxBrowser%
 	{
 		Run, %firefoxBrowser%, , , varFireFoxPID
@@ -151,7 +190,8 @@ return
 ;#!c::
 #c::
 	googleChorme := "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe"
-;	Windows標準のCortana起動のショートカットを潰す。
+;	※WindowOS標準のショートカットキーを上書きすることになるため、気をつけること。
+	;	Windows標準のCortana起動のショートカットを潰す。
 	IfExist, %googleChorme%
 	{
 		Run, %googleChorme%, , , varChormePID
@@ -173,22 +213,71 @@ return
 return
 #!i::
 	eclipse := "C:\dev\pleiades\eclipse\eclipse.exe"
-	Run, open %eclipse%, ,  UseErrorLevel, varEclipsePID
-	sleep 150
-	WinActivate, ahk_exe %eclipse%
+	UniqueID := WinExist("ahk_exe eclipse.exe")
+	IfExist, %eclipse%
+	{
+		if % StrLen(UniqueID) == 3
+		{
+			Run, open %eclipse%, ,  UseErrorLevel, varEclipsePID
+		}
+	}
+	else
+	{
+		eclipse := "C:\Program Files (x86)\eclipse-pleiades\eclipse.exe"
+		IfExist, %eclipse%
+		{
+			UniqueID := WinExist("ahk_exe eclipse.exe")
+			if % StrLen(UniqueID) == 3
+			{
+				Run, open %eclipse%, ,  UseErrorLevel, varEclipsePID
+			}
+		}
+		else
+		{
+			eclipse := "C:\Program Files\eclipse-pleiades\eclipse.exe"
+			IfExist, %eclipse%
+			{
+				UniqueID := WinExist("ahk_exe eclipse.exe")
+				if % StrLen(UniqueID) == 3
+				{
+					Run, open %eclipse%, ,  UseErrorLevel, varEclipsePID
+				}
+			}
+		}
+	}
+	sleep 250
+	WinActivate, ahk_exe eclipse.exe
 return
 #!j::
 	jaspersoft := "C:\Program Files\TIBCO\Jaspersoft Studio-6.16.0\Jaspersoft Studio.exe"
 	IfExist, %jaspersoft%
 	{
-		Run, %jaspersoft%, , , varJaspersoftPID
+		UniqueID := WinExist("ahk_exe Jaspersoft Studio.exe")
+		if % StrLen(UniqueID) == 3
+		{
+			Run, %jaspersoft%, , , varJaspersoftPID
+		}
+		else
+		{
+			WinActivate, ahk_exe %jaspersoft%
+			return
+		}
 	}
 	else
 	{
 		jaspersoft := "C:\Program Files (x86)\TIBCO\Jaspersoft Studio-6.16.0\Jaspersoft Studio.exe"
 		IfExist, %jaspersoft%
 		{
-			Run, %jaspersoft%, , , varJaspersoftPID
+			UniqueID := WinExist("ahk_exe %jaspersoft%")
+			if % StrLen(UniqueID) == 3
+			{
+				Run, %jaspersoft%, , , varJaspersoftPID
+			}
+			else
+			{
+				WinActivate, ahk_exe %jaspersoft%
+				return
+			}
 		}
 		else
 		{
@@ -202,23 +291,36 @@ return
 #g::
 	StringTrimRight, appdataRoaming, A_AppData, 7
 	Sourcetree := appdataRoaming . "Local\SourceTree\SourceTree.exe"
+;	※WindowOS標準のショートカットキーを上書きすることになるため、気をつけること。
 	IfExist, %Sourcetree%
 	{
-		Run, %Sourcetree%, , , varSourcetreePID
+		UniqueID := WinExist("ahk_exe SourceTree.exe")
+		if % StrLen(UniqueID) == 3
+		{
+			Run, %Sourcetree%, , , varSourcetreePID
+		}
 	}
 	else
 	{
 		Sourcetree := "C:\Program Files (x86)\SourceTree\SourceTree.exe"
 		IfExist, %Sourcetree%
 		{
-			Run, %Sourcetree%, , , varSourcetreePID
+			UniqueID := WinExist("ahk_exe SourceTree.exe")
+			if % StrLen(UniqueID) == 3
+			{
+				Run, %Sourcetree%, , , varSourcetreePID
+			}
 		}
 		else
 		{
 			Sourcetree := "C:\Program Files\SourceTree\SourceTree.exe"
 			IfExist, %Sourcetree%
 			{
-				Run, %Sourcetree%, , , varSourcetreePID
+				UniqueID := WinExist("ahk_exe SourceTree.exe")
+				if % StrLen(UniqueID) == 3
+				{
+					Run, %Sourcetree%, , , varSourcetreePID
+				}
 			}
 			else
 			{
@@ -227,7 +329,75 @@ return
 		}
 	}
 	sleep 250
-	WinActivate, ahk_exe %Sourcetree%
+	WinActivate, ahk_exe Sourcetree.exe
+return
+#!s::
+	steamGame :="C:\Program Files (x86)\Steam\Steam.exe"
+	IfExist, %steamGame%
+	{
+		Run, %steamGame%, , , varSteamPID
+	}
+	else
+	{
+		steamGame :="C:\Program Files\Steam\Steam.exe"
+		IfExist, %Sourcetree%
+		{
+			Run, %steamGame%, , , varSteamPID
+		}
+	}
+	sleep 150
+	WinActivate
+return
+#!m::
+	MinecraftGame := "C:\Program Files (x86)\Minecraft\MinecraftLauncher.exe"
+	IfExist, %MinecraftGame%
+	{
+		Run, %MinecraftGame%, , , varMinecraftPID
+	}
+	else
+	{
+		MinecraftGame := "C:\Program Files\Minecraft\MinecraftLauncher.exe"
+		IfExist, %MinecraftGame%
+		{
+			Run, %MinecraftGame%, , , varMinecraftPID
+		}
+	}
+	sleep 500
+	WinActivate
+return
+#!e::
+	evernote := "C:\Program Files (x86)\Evernote\Evernote\Evernote.exe"
+	IfExist, %evernote%
+	{
+		Run, %evernote%, , , varEvernotePID
+	}
+	else
+	{
+		evernote := "C:\Program Files\Evernote\Evernote\Evernote.exe"
+		IfExist, %evernote%
+		{
+			Run, %evernote%, , , varEvernotePID
+		}
+	}
+	sleep 150
+	WinActivate, ahk_exe %evernote%
+return
+#!x::
+	dropbox := "C:\Program Files (x86)\Dropbox\Client\Dropbox.exe"
+	IfExist, %dropbox%
+	{
+		Run, %dropbox%, , , varDropboxPID
+	}
+	else
+	{
+		dropbox := "C:\Program Files\Dropbox\Client\Dropbox.exe"
+		IfExist, %dropbox%
+		{
+			Run, %dropbox%, , , varDropboxPID
+		}
+	}
+	sleep 150
+	WinActivate, ahk_exe %dropbox%
 return
 ~^w::
 	WinGetTitle, titleControlWName, A
