@@ -21,6 +21,7 @@
 ;	コンビネーションキー
 ;		例）LShift & a
 
+; ■IME変換（日本語・英語切り替え）
 GroupAdd, ime2NotActiveTitle, ahk_exe Explorer.exe
 return
 #IfWinNotActive, ahk_group ime2NotActiveTitle
@@ -34,10 +35,26 @@ return
 
 ;	■以下,ホットキー
 ;		Winキー＋標準キー
+;				f	Firefoxブラウザ(※)
+;				h	秀丸エディタ(※)
+;				p	ペイント(※)
+;				v	Gvimエディタ(※)
+;				c	googleChromeブラウザ(※)
+;				g	Sourcetree(※)
 ;		Winキー + Ctrlキー + 標準キー
+;				s	サクラエディタ(※)
 ;		Winキー + Altキー + 標準キー
+;				r
+;				e	予約済み
+;				i	IDE(Eclipse)
+;				j	Jasper soft
+;				s	予約済み
+;				x	予約済み
+;		※WindowOS標準のショートカットキーを上書きすることになるため、気をつけること。
 
-;	AHKリロード
+;Win+Alt+r
+;		AHKリロード
+;		XboxGameBar関連が優先されるようで、リロードされない。
 #NoTrayIcon
 #!r::
 	WinGetClass, className, A
@@ -61,11 +78,18 @@ return
 	sleep 3000
 	Menu, TRAY, NoIcon
 return
+;;; 端末固有のプログラムを変数に設定
+;	秀丸エディタ
 hidemaru := ""
+
+;;;秀丸の起動 win + h
 #h::
 	hidemaru := "C:\Program Files (x86)\Hidemaru\Hidemaru.exe"
 ;	※WindowOS標準のショートカットキーを上書きすることになるため、気をつけること。
 ;		ディクテーションなるものが動くようだ。しかし、日本語運用時は動かないようだ。
+	strSplitArray := StrSplit(hidemaru, "\" )
+	ii := strSplitArray.MaxIndex()
+	exename := strSplitArray[ii]
 	IfExist, %hidemaru%
 	{
 		UniqueID := WinExist("ahk_exe Hidemaru.exe")
@@ -100,8 +124,15 @@ hidemaru := ""
 	ii := strSplitArray.MaxIndex()
 	exename := strSplitArray[ii]
 	WinActivate, ahk_exe %exename%
+	WinGetTitle, hidemaruTitle, ahk_exe %exename%
+	regFoundpos := RegExMatch(hidemaruTitle, ".*\(無題\).*秀丸$")
+	if % StrLen(UniqueID) > 3  && regFoundpos == 0 
+	{
+		Send, ^n
+	}
 return
-;#s::
+
+;;;サクラエディタの起動 win + Ctrl + s
 #^s::
 	sakura := "C:\Program Files\sakura\sakura.exe"
 ;	※WindowOS標準のショートカットキーを上書きすることになるため、気をつけること。
@@ -125,6 +156,8 @@ return
 	sleep 100
 	WinActivate
 return
+
+;;; Gvimの起動 win + v
 #v::
 	gvimEditor := "C:\Program Files\vim81-kaoriya-win64\gvim.exe"
 ;	※WindowOS標準のショートカットキーを上書きすることになるため、気をつけること。
@@ -151,11 +184,14 @@ return
 		}
 	}
 	sleep 550
+;	WinActivate, ahk_pid %varGvimPID%
 	strSplitArray := StrSplit(gvimEditor, "\" )
 	ii := strSplitArray.MaxIndex()
 	exename := strSplitArray[ii]
 	WinActivate, ahk_exe %exename%
 return
+
+;;; WindowsOS標準のペイント起動　Win＋p
 #p::
 	Run, %windir%\system32\mspaint.exe, , , varPaintPID
 ;	※WindowOS標準のショートカットキーを上書きすることになるため、気をつけること。
@@ -164,6 +200,8 @@ return
 	SetTitleMatchMode,2
 	WinActivate ,ペイント
 return
+
+;;; Firefoxブラウザの起動 win + f
 #f::
 	firefoxBrowser := "C:\Program Files\Mozilla Firefox\firefox.exe"
 ;	※WindowOS標準のショートカットキーを上書きすることになるため、気をつけること。
@@ -187,6 +225,8 @@ return
 	sleep 800
 	WinActivate, Mozilla Firefox
 return
+
+;;; Chromeの起動 win + c
 ;#!c::
 #c::
 	googleChorme := "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe"
@@ -211,6 +251,8 @@ return
 	sleep 150
 	WinActivate, ahk_pid %varChormePID%
 return
+
+;;; Eclipseの起動 win + Alt + i
 #!i::
 	eclipse := "C:\dev\pleiades\eclipse\eclipse.exe"
 	UniqueID := WinExist("ahk_exe eclipse.exe")
@@ -223,7 +265,7 @@ return
 	}
 	else
 	{
-		eclipse := "C:\Program Files (x86)\eclipse-pleiades\eclipse.exe"
+		eclipse := "C:\Program Files (x86)\eclipse-pleiades\eclipse\eclipse.exe"
 		IfExist, %eclipse%
 		{
 			UniqueID := WinExist("ahk_exe eclipse.exe")
@@ -234,7 +276,7 @@ return
 		}
 		else
 		{
-			eclipse := "C:\Program Files\eclipse-pleiades\eclipse.exe"
+			eclipse := "C:\Program Files\eclipse-pleiades\eclipse\eclipse.exe"
 			IfExist, %eclipse%
 			{
 				UniqueID := WinExist("ahk_exe eclipse.exe")
@@ -248,6 +290,8 @@ return
 	sleep 250
 	WinActivate, ahk_exe eclipse.exe
 return
+
+;;; Jaspersoftの起動 win + Alt + j
 #!j::
 	jaspersoft := "C:\Program Files\TIBCO\Jaspersoft Studio-6.16.0\Jaspersoft Studio.exe"
 	IfExist, %jaspersoft%
@@ -287,11 +331,13 @@ return
 	sleep 150
 	WinActivate, ahk_exe %jaspersoft%
 return
-;#!s::
+
+;;; Sourcetreeの起動 win + g
 #g::
 	StringTrimRight, appdataRoaming, A_AppData, 7
 	Sourcetree := appdataRoaming . "Local\SourceTree\SourceTree.exe"
 ;	※WindowOS標準のショートカットキーを上書きすることになるため、気をつけること。
+;		Windows標準のXboxゲーム記録用プログラムの起動を潰す(潰しきれないのだが、ショートカットを無効化した)。
 	IfExist, %Sourcetree%
 	{
 		UniqueID := WinExist("ahk_exe SourceTree.exe")
@@ -331,6 +377,8 @@ return
 	sleep 250
 	WinActivate, ahk_exe Sourcetree.exe
 return
+
+;;; Steamの起動 win + Alt + s
 #!s::
 	steamGame :="C:\Program Files (x86)\Steam\Steam.exe"
 	IfExist, %steamGame%
@@ -348,6 +396,8 @@ return
 	sleep 150
 	WinActivate
 return
+
+;;; Minecraftの起動 win + Alt + m
 #!m::
 	MinecraftGame := "C:\Program Files (x86)\Minecraft\MinecraftLauncher.exe"
 	IfExist, %MinecraftGame%
@@ -365,6 +415,8 @@ return
 	sleep 500
 	WinActivate
 return
+
+;;; Evernoteの起動 win + Alt + e
 #!e::
 	evernote := "C:\Program Files (x86)\Evernote\Evernote\Evernote.exe"
 	IfExist, %evernote%
@@ -382,6 +434,8 @@ return
 	sleep 150
 	WinActivate, ahk_exe %evernote%
 return
+
+;	Dropboxの起動 win + Alt + x
 #!x::
 	dropbox := "C:\Program Files (x86)\Dropbox\Client\Dropbox.exe"
 	IfExist, %dropbox%
@@ -399,6 +453,8 @@ return
 	sleep 150
 	WinActivate, ahk_exe %dropbox%
 return
+
+;	■Control+wキーの組み合わせでウィンドウを閉じたい.
 ~^w::
 	WinGetTitle, titleControlWName, A
 	varFoundRegControlWHidemaru := RegExMatch(titleControlWName, ".*(秀丸)$", varControlW)
@@ -417,10 +473,20 @@ return
 		Send, !fc
 	}
 return
+
+;■Gvim用の設定
+#IfWinActive ahk_exe gvim.exe
+#t::Send, {Esc 2}^{[}:tabnew{Enter}
+#w::Send, {Esc 2}^{[}:tabclose{Enter}
+#IfWinActive
+
+;■秀丸エディタの設定
 #IfWinActive ahk_exe Hidemaru.exe
 ^g::Send, !sg
 ^j::Send, ^g
 #IfWinActive
+
 ;■市販品のキーボード対応
 ; ■CapslockをCtrlキーに入れ替える.
+
 ;	以上。ここまで。

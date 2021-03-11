@@ -11,11 +11,12 @@ packadd minpac
 call minpac#init()
 
 call minpac#add('k-takata/minpac', {'type': 'opt'})
-call minpac#add('previm/previm')
+
+call minpac#add('previm/previm')	" プレビュー用
 call minpac#add('tyru/open-browser.vim')	" ブラウザを起動し、上記のprevimを表示させる。
 
 " IDE用の設定プラグイン？
-call minpac#add('prabirshrestha/vim-lsp')
+call minpac#add('prabirshrestha/vim-lsp')	" 挙動不審？
 call minpac#add('mattn/vim-lsp-settings')
 "call minpac#add('mattn/vim-goimports')	" Go言語用？
 
@@ -27,12 +28,32 @@ call minpac#add('prabirshrestha/asyncomplete-lsp.vim')
 " Go言語用プラグイン
 "call minpac#add('https://github.com/fatih/vim-go')
 
+" コンパイル
+call minpac#add('thinca/vim-quickrun')
+" Git
+"let g:gitgutter_sign_removed_first_line = "^_"
+"call minpac#add('airblade/vim-gitgutter')
+"		define_signs[8]
+"			<SNR>24_define_sign_text
+"		⇒ハイライトと思われるエラーになる。
+"			そのため、その部分のコメントアウトが必要。
+call minpac#add('tpope/vim-fugitive')
+
+" マーク表示
+call minpac#add('jacquesbh/vim-showmarks')
+" タブ補完
+"call minpac#add('ervandew/supertab')
+"	普通のTabキー入力が打てなくなる(Ctrl+TabでTab入力)。
+
 "	以下のコマンドを打つことにより、プログラムファイルに応じたファイルがインストールされる。
 "	LspInstallServer
 
 " すべてのプラグインを起動時に読み込むのであれば、以下を実行。
 packloadall
 
+" 疑問点
+"	vim-lsp
+"	このプラグインを読み込むことで、Vim起動時に再描画が発生してしまう。
 "	ーーーここまでがパッケージ管理ーーー
 
 " Vimから使えるデバッガUI
@@ -62,13 +83,13 @@ let g:asyncomplete_remove_duplicates = 1
 
 "	ーーーここまでがパッケージ管理ーーー
 if (has('win32') || has('win64') )
-	let g:previm_open_cmd = 'C:\/Program\ Files\ (x86)\/Mozilla\ Firefox\/firefox.exe'	" open-browser.vim
+	let g:previm_open_cmd = 'C:\/Program\ Files\/Mozilla\ Firefox\/firefox.exe'	" open-browser.vim
 elseif has('xfontset')
 endif
 
 autocmd BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=markdown
 let g:vim_markdown_folding_disabled=1
-nnoremap <silent> <C-p> :PrevimOpen<CR>
+nnoremap <silent> <C-p> :PrevimOpen<CR> " Ctrl-pでプレビュー
 
 
 "endif
@@ -89,6 +110,7 @@ endif
 
 "---------------------------------------------------------------------------
 " フォント設定:
+"
 if (has('win32') || has('win64') )
 	" Windows用
 	" 行間隔の設定
@@ -127,6 +149,10 @@ if has('multi_byte_ime') || has('xim') || has('gui_macvim')
 endif
 
 "	インサートモードでバックスペース機能を有効にする。
+	"BSで削除できるものを指定する
+	" indent  : 行頭の空白
+	" eol     : 改行
+	" start   : 挿入モード開始位置より手前の文字
 set backspace=indent,eol,start
 
 "	インクリメンタルサーチをしない。
@@ -134,7 +160,9 @@ set noincsearch
 
 "	マッチ箇所をハイライト
 set hlsearch
+"		ハイライト解除の場合はExコマンド上で"noh"を打てば消える(再度検索すればハイライトになる)。
 nnoremap <C-l> :nohlsearch<CR><C-l>
+"		Ctrl+l	の組み合わせでハイライト解除にした。
 
 "	ファイル端に達した場合、一周して検索を続行する。
 set wrapscan
@@ -167,23 +195,49 @@ set number
 set norelativenumber
 "		状況によっては動作が遅くなる。
 
+" ルーラーを表示 (noruler:非表示)
+"	右下に表示される。
 set ruler
+
+" タブや改行を表示 (nolist:表示しない)
 set list
+
+" どの文字でタブや改行を表示するかを設定
 set listchars=tab:>-,extends:<,trail:-,eol:<
+
+" 常にステータス行を表示 (詳細は:he laststatus)
+"	EXコマンドラインとの境目を付けるために必要だろう。
 set laststatus=2
+
+" コマンドラインの高さ (Windows用gvim使用時はgvimrcを編集すること)
+"	EXコマンドラインのため、2ぐらいが適当？（1との違いが不明）。
 set cmdheight=2
+
+" タイプ中のコマンドを表示
 set showcmd
+
+" カーソルハイライト
 set cursorline
+"		アンダーライン付き。
 hi CursorLine cterm=underline guifg=NONE guibg=NONE
 
 " カーソルの移動として画面幅いっぱいまで移動させる設定。
 set scrolloff=0
 
 " 編集に関する設定:
+
+" タブの画面上での幅
 set tabstop=4
+
+" シフト量の幅（"<<" または ">>"）
 set shiftwidth=4
+
+" 挿入モードの時にプットする場合、自動インデント機能を無効にする。
 set pastetoggle=<F2>
 inoremap <C-g><C-v> <F2><C-r>"<F2>
+"		Ctrl+g→Ctrl+v	→　いわゆるコピペのGvim版
+"		挿入モードの時に、<C-r>"<Esc>で改行付きの複数行が貼り付けられる。
+"		F2キー押下で設定を有効・無効に切り替える必要がある。
 
 "---------------------------------------------------------------------------
 " バックアップファイル・スワップファイル
@@ -194,7 +248,7 @@ set undofile
 if ( has('win32') || has('win64') )
 	let s:backup_dir = 'C:/vim_backup'
 	"	本来は%TEMP%ディレクトリが望ましいだろう。
-
+	"
 	" undofileが勝手に作られるが、無効化ではなく、作る場所を一カ所にまとめることにした。
 	set undodir=backup_dir
 	"	※これは、kaoriya版のVer.7.4.277からの仕様らしい。
@@ -220,8 +274,12 @@ augroup END
 
 "---------------------------------------------------------------------------
 " 文字コードの設定
-set fileencodings=utf-8,euc-jp,sjis,ucs-bom,eucjp-ms,euc-jisx0213,utf-16,utf-16le,cp932,iso-2022-jp-3,iso-2022-jp
-set encoding=UTF-8
+"	ファイルの文字コードがlatin1の場合は、選別ミスのようだ。
+set fileencodings=iso-2022-jp,iso-2022-jp-1,iso-2022-jp-2,iso-2022-jp-3,ISO-2022-JP-2004,cp932,sjis,utf-7,utf-8,euc-jp,ucs-bom,eucjp-ms,euc-jisx0213,utf-16,utf-16le
+"	iso-2022-jp：日本語Jisのこと(しかし、適用されずにcp932で開かれる)。
+"	utf-7は適用されず、utf-8で開かれる。
+"	JIS・UTF7は開けず、文字化けする。
+
 
 " 改行コードの自動認識
 "	改行コードを指定して開き直す場合　:e ++ff=mac
@@ -230,26 +288,53 @@ set fileformats=unix,dos,mac
 " ステータスラインに文字コードを表示させる。
 set statusline=%<%f\ %m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}%=%l,%c%V%8P
 
+" 日本語対応のための設定(Gvim初期起動時の設定にも関与する)
+" ファイルを読込む時にトライする文字エンコードの順序を確定する。漢字コード自動判別機能を利用する場合には別途iconv.dllが必要。iconv.dllについてはREADME_w32j.txtを参照。ユーティリティスクリプトを読み込むことで設定される。
+"source $VIMRUNTIME/encode_japan.vim
+set encoding=UTF-8
+"set fileencoding=japan
+
 "---------------------------------------------------------------------------
 " マウスに関する設定:
+"
+" どのモードでもマウスを使えるようにする
 set mouse=a
+" マウスの移動でフォーカスを自動的に切替えない (mousefocus:切替る)
 set nomousefocus
+" 入力時にマウスポインタを隠す (nomousehide:隠さない)
 set mousehide
+" ビジュアル選択(D&D他)を自動的にクリップボードへ (:help guioptions_a)
+"set guioptions+=a
+
+" ターミナルでマウスを使用。
 set ttymouse=xterm2
 
 "---------------------------------------------------------------------------
 "	エクスプローラー
-"nnoremap <Leader>E :Explore<CR>
-"nnoremap <Leader>S :Sexplore<CR>
-"nnoremap <Leader>V :Vexplore<CR>
+nnoremap <Leader>E :Explore<CR>
+nnoremap <Leader>S :Sexplore<CR>	" ←通常:Seで水平分割上で開く.\Sで開くようになる.
+nnoremap <Leader>V :Vexplore<CR>	" ←通常:Vexで水平分割上で開く.\Vで開くようになる.
 "	新規タブページで開く場合は:Teを使う必要がある.
+
+" 折りたたみ
+set foldmethod=indent
+set foldcolumn=1	" 折りたたみの可視化
+autocmd BufRead * normal zR	" 折りたたみの開き
+"	za：トグル
+"	zo：折りたたみが開く
+"	zc：折りたたむ
+"	zR：すべての折りたたみを開く
+"	zM：すべての折りたたみを閉じる。
 
 "---------------------------------------------------------------------------
 " MacVim-KaoriYa固有の設定
 
 if ( has('win32') || has('win64') )
 else
+	" migemo:
 	let $PATH = simplify($VIM . '/../../MacOS') . ':' . $PATH
+	"set migemodict=$VIMRUNTIME/dict/migemo-dict
+	"set migemo
 
 	" 印刷に関する設定:
 	set printmbfont=r:HiraMinProN-W3,b:HiraMinProN-W6
@@ -265,6 +350,9 @@ nnoremap <Leader>eg :e ~\.gvimrc<CR>
 
 if ( has('win32') || has('win64') )
 	nnoremap <Leader>eh :e ++enc=sjis $HOME/Documents/AutoHotkey.ahk<CR>
+	"		いずれは、編集後に読み込み直すような設定をしたい。
+	" ※ディレクトリ名に日本語などが含まれている場合、文字化けする。
+	"		その場合は、"set encoding=UTF-8"にする必要がある。
 endif
 
 

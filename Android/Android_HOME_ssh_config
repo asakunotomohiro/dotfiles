@@ -1,0 +1,10 @@
+#	Android用
+Host [Key-Name]
+	HostName bitbucket.org
+	User git
+	PreferredAuthentications publickey
+	IdentityFile ~/.ssh/[Key-Name]
+	IdentitiesOnly yes
+	AddKeysToAgent yes
+	TCPKeepAlive no
+#	UseKeychain yes
