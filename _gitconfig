@@ -1,8 +1,31 @@
-#[user]
-#	name = asakunotomohiro
-#	email = asakunotomohiro
+# globalファイルとして扱う。
+[user]
+	user = 
+	name = 
+	email = 
+
 [core]
-	excludesfile = /Users/asakunotomohiro/.gitignore_global
+	autocrlf = false
 	quotepath = false
+	editor = vim
+
+[difftool "sourcetree"]
+	path = 
+
+[mergetool "sourcetree"]
+	trustExitCode = true
+
+[status]
+	showUntrackedFiles = all
+
 [alias]
 	lol = log --graph --decorate --pretty=oneline --all --abbrev-commit
+
+
+
+# 以下、端末固有の設定を記述する(ディレクトリごとに分岐も可能なようだ)。
+#	https://git-scm.com/docs/git-config#_conditional_includes
+[include]
+	path = ~/.gitconfig.private-local
+
+# 以上。

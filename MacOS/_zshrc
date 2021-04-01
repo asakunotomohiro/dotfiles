@@ -1,0 +1,103 @@
+COMMON_ALIAS_FILE=$HOME/.profile_common_Alias
+COMMON_ENVIRONMENTFILE=$HOME/.profile_common_EnvironmentVariable
+if [ -e $COMMON_ALIAS_FILE ]
+then 
+	source $COMMON_ALIAS_FILE
+	source $COMMON_ENVIRONMENTFILE
+fi
+
+
+# -----------------------------------
+#	zsh特有。
+# -----------------------------------
+
+alias h='history'
+
+# 履歴に残さない
+setopt HIST_IGNORE_DUPS
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_IGNORE_SPACE
+setopt HIST_FIND_NO_DUPS
+setopt HIST_REDUCE_BLANKS
+setopt HIST_NO_STORE
+
+# ヒストリを呼び出してから実行する間に一旦編集可能
+setopt hist_verify
+
+# メモリに保存される履歴の件数
+#export HISTSIZE=1000
+
+# 履歴ファイルに保存される履歴の件数
+#export SAVEHIST=100000
+
+# 開始と終了を記録
+setopt EXTENDED_HISTORY
+
+# 登録しているコマンドを履歴に残さない
+zshaddhistory() {
+	local line=${1%%$'\n'}
+	local cmd=${line%% *}
+
+	[[ #	${#line} -ge 5 &&
+		${cmd} != (l[sl])
+		&& ${cmd} != (h)
+#		&& ${cmd} != (cd)
+		&& ${cmd} != (man)
+		&& ${cmd} != (less)
+#		&& ${cmd} != (ping)
+		&& ${cmd} != (whois)
+		&& ${cmd} != (which)
+		&& ${cmd} != (exit)
+	]]
+}
+
+# 履歴ファイルの保存先
+export HISTFILE=${HOME}/.zsh_history
+# 打ち間違いのコマンドを履歴に残さないつもりだが、ミスがあるようだ。
+__record_command() {
+	typeset -g _LASTCMD=${1%%$'\n'}
+	return 1
+}
+#zshaddhistory_functions+=(__record_command)
+__update_history() {
+	local last_status="$?"
+
+	local HISTFILE=~/.zsh_history
+	fc -W
+	if [[ ${last_status} -ne 0 ]]; then
+		ed -s ${HISTFILE} <<EOF >/dev/null
+d
+w
+q
+EOF
+	fi
+}
+precmd_functions+=(__update_history)
+
+
+# コマンドのスペルミス指摘。
+setopt correct
+
+# コマンド補完(Tab)
+autoload -Uz compinit && compinit
+
+# コメント付きコマンド実行可能
+setopt interactivecomments
+
+# コマンド履歴検索(Ctrl+p・Ctrl+n)
+bindkey '^P' history-beginning-search-backward
+bindkey '^N' history-beginning-search-forward
+
+
+# 自動的にpushd
+setopt AUTO_PUSHD
+setopt PUSHD_SILENT
+
+# vi操作
+bindkey -v
+
+# プロンプト表記変更
+# "[ユーザ名@ホスト名 現在のディレクトリ] $"
+export PS1="[%F{yellow}%n%f%F{red}@%f%m %F{blue}%1~%f] $ "
+
+# 以上。

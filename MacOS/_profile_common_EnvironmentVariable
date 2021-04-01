@@ -1,0 +1,25 @@
+#	このファイルは、bash及びzshで利用する共通ファイル。
+#		利用記載内容は、環境変数周りになる。
+
+# ■環境変数。
+VIM=/Applications/MacVim.app/Contents/MacOS/
+PATH=$PATH:${VIM}
+
+# pyenvさんに自動補完機能を提供してもらう
+#if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
+PATH="/usr/local/opt/tcl-tk/bin:$PATH"
+PATH="/Users/asakunotomohiro/.python-version:$PATH"
+export LDFLAGS="-L/usr/local/opt/tcl-tk/lib"
+export CPPFLAGS="-I/usr/local/opt/tcl-tk/include"
+export PKG_CONFIG_PATH="/usr/local/opt/tcl-tk/lib/pkgconfig"
+export PYTHON_CONFIGURE_OPTS="--with-tcltk-includes='-I/usr/local/opt/tcl-tk/include' --with-tcltk-libs='-L/usr/local/opt/tcl-tk/lib -ltcl8.6 -ltk8.6'"
+
+# Golang
+export GOPATH="/Users/asakunotomohiro/go"
+PATH=$PATH:${GOPATH}/bin
+export PATH
+
+# viエディタに関する設定（ターミナル用）
+export EDITOR=/Applications/MacVim.app/Contents/MacOS/Vim
+
+# 以上。

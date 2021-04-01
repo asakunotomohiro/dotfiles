@@ -1,5 +1,7 @@
-" torteは、WindowsOS専用の色にすべきかもしれない。Macintoshだと、薄すぎる。
-colorscheme torte
+if ( has('win32') || has('win64') )
+" torteは、WindowsOS専用の色にすべきかもしれない。Macintoshでは薄い。
+"	Macでは、以下のカラースキームをvimrcで読み込めるが、windowsの場合はgvimrcでなければ反映されない。
+	colorscheme torte
 "hi clear CursorLine	" 色削除
 hi CursorLine gui=underline guifg=NONE guibg=NONE
 
@@ -9,13 +11,32 @@ if has('multi_byte_ime') || has('xim')
 	highlight CursorIM guibg=Purple guifg=LightRed
 endif
 
+" 以下、プラグイン導入済みが前提だが、Windowsのみカラースキームを読み込み直しているため、ここで設定し直している。
+highlight SignColumn guibg=NONE ctermbg=NONE
+highlight GitGutterAdd ctermfg=blue ctermbg=NONE
+highlight GitGutterChange ctermfg=yellow "ctermbg=NONE
+highlight GitGutterDelete ctermfg=red "ctermbg=NONE
+highlight GitGutterChangeDelete ctermfg=green "ctermbg=NONE
+endif
+
 "---------------------------------------------------------------------------
 if ( has('win32') || has('win64') )
 	set lines=50
 	set columns=140
 endif
 
+if has('gui_macvim')
+	" GUI設定は、gvimrcに設定しなければ反映されない。
+	set guifont=Osaka-Mono:h16
+	set lines=50
+	set columns=140
+elseif has('mac')
+	set guifont=Osaka－等幅:h34
+endif
+
 "---------------------------------------------------------------------------
+" GUI固有の設定
+" 不要なデフォルトプラグインを止める
 let g:loaded_gzip              = 1
 let g:loaded_tar               = 1
 let g:loaded_tarPlugin         = 1
@@ -34,48 +55,30 @@ let g:loaded_netrwFileHandlers = 1
 
 "---------------------------------------------------------------------------
 
-" fコマンド時、IMEを自動でOFFに設定。
-"　全然機能しない（CUI・GUI）
-"nnoremap <silent> f :set iminsert=0<CR>f
-"nnoremap <silent> F :set iminsert=0<CR>F
-
-" ESCでIMEを確実にOFF
-inoremap <silent> <ESC> <ESC>:set iminsert=0<CR>
-inoremap <silent> <C-[> <C-[>:set iminsert=0<CR>
-
 if ( has('win32') || has('win64') )
+	" ctrl+s で保存
 	nnoremap <C-s> :w<CR>
 	inoremap <C-s> <ESC>:w<CR>
 endif
 
-"---------------------------------------------------------------------------
-let g:hi_insert = 'highlight StatusLine guifg=darkblue guibg=darkyellow gui=none ctermfg=blue ctermbg=yellow cterm=none'
-if has('syntax')
-	augroup InsertHook
-	autocmd!
-	autocmd InsertEnter * call s:StatusLine('Enter')
-	autocmd InsertLeave * call s:StatusLine('Leave')
-	augroup END
-endif
-let s:slhlcmd = ''
-function! s:StatusLine(mode)
-	if a:mode == 'Enter'
-		silent! let s:slhlcmd = 'highlight ' . s:GetHighlight('StatusLine')
-		silent exec g:hi_insert
-	else
-		highlight clear StatusLine
-		silent exec s:slhlcmd
-	endif
-endfunction
-function! s:GetHighlight(hi)
-	redir => hl
-	exec 'highlight '.a:hi
-	redir END
-	let hl = substitute(hl, '[\r\n]', '', 'g')
-	let hl = substitute(hl, 'xxx', '', '')
-	return hl
-endfunction
 
+"---------------------------------------------------------------------------
+
+" タブ操作
+nnoremap <C-Tab> gt
+nnoremap <S-C-Tab> gT
+nnoremap <silent> <S-t> :tabnew<CR>
+
+"---------------------------------------------------------------------------
+
+
+" 全角スペースを表示
+"　コメント以外で全角スペースを指定しているので scriptencodingと、
+"　このファイルのエンコードが一致するよう注意　！
+"　全角スペースが強調表示されない場合、ここでscriptencodingを指定すると良い。
+"scriptencoding cp932
+
+" デフォルトのZenkakuSpaceを定義
 function! ZenkakuSpace()
 	highlight ZenkakuSpace term=underline cterm=underline ctermfg=darkgrey gui=underline guifg=darkgrey
 endfunction
@@ -91,24 +94,51 @@ if has('syntax')
 	call ZenkakuSpace()
 endif
 
-"---------------------------------------------------------------------------
-" メニューに関する設定:
-if &guioptions =~# 'M'
-  let &guioptions = substitute(&guioptions, '[mT]', '', 'g')
-endif
 
 "---------------------------------------------------------------------------
+
+
 " MacVim-KaoriYa固有の設定
-if (has('win32') || has('win64') )
-elseif has('gui_macvim')
-	let $SSH_ASKPASS = simplify($VIM . '/../../MacOS') . '/macvim-askpass'
-	set noimdisable
-elseif has('mac')
-elseif has('xfontset')
+"
+"if (has('win32') || has('win64') )
+"elseif has('gui_macvim')
+"	let $SSH_ASKPASS = simplify($VIM . '/../../MacOS') . '/macvim-askpass'
+"elseif has('mac')
+"elseif has('xfontset')
+"endif
+"	結局これは何？
+
+if exists('+imdisableactivate')
+	"このオプションは、WindowsOS版の香り屋Vimで未知のオプションとしてエラーになった。
+	set imdisableactivate
+	"	しかし、if文で待避させておけば問題だろう。
 endif
 
-" このオプションはWindowsOS版の香り屋Vimで未知のオプションとしてエラーになった。
-"set imdisableactivate
+" ESCでIMEを確実にOFF
+if isdirectory(expand(minpackSTART . "delimitMate"))  || isdirectory(expand(minpackOPT . "delimitMate"))
+	" 括弧対応のプラグイン導入時は、以下の設定をOFFにする必要がある。
+	" OFFにした結果、Escキー押下時に、日本語入力をOFFにしてくれない弊害が出てくる。
+	" しかもそれを解決することが出来ない。
+elseif isdirectory(expand(minpackSTART . "auto-pairs"))  || isdirectory(expand(minpackOPT . "auto-pairs"))
+	" 以下、同文。
+elseif isdirectory(expand(minpackSTART . "lexima.vim"))  || isdirectory(expand(minpackOPT . "lexima.vim"))
+	" 以下、同文。
+else
+	"	以下は、Escキー押下で日本語入力Offになる。
+	set noimdisable
+	"	挿入モードで、Ctrl+^の操作により、日本語入力切り替えが行われる。
+	"		https://vim-jp.org/vimdoc-ja/options.html#'iminsert'
+endif
+
+"ESCでIMEを確実にOFF
+"　全然機能しない（CUI・GUI）
+inoremap <silent> <ESC> <ESC>:set iminsert=0<CR>
+inoremap <silent> <C-[> <C-[>:set iminsert=0<CR>
+
+" fコマンド時,IMEを自動でOFFに設定。
+"　全然機能しない（CUI・GUI）
+"nnoremap <silent> f :set iminsert=0<CR>f
+"nnoremap <silent> F :set iminsert=0<CR>F
 
 "---------------------------------------------------------------------------
 if ( has('win32') || has('win64') )
@@ -117,10 +147,24 @@ if ( has('win32') || has('win64') )
 
 "	source $VIMRUNTIME/mswin.vim
 	" ノーマルモードでは元のキーマッピングを利用する
-	"nnoremap <C-x> <C-x>
-	"nnoremap <C-v> <C-v>
-	"nnoremap <C-a> <C-a>
-	"nnoremap <C-c> <C-c>
+"	nnoremap <C-a> <C-a>
+"	nnoremap <C-x> <C-x>
+"	nnoremap <C-v> <C-v>
+"	nnoremap <C-c> <C-c>
+"	nnoremap <C-f> <C-f>
+"	cnoremap <C-f> <C-f>
+"	nnoremap <C-y> <C-y>
+"	noremap <C-S>		:update<CR><Esc>
+"	vnoremap <C-S>		<C-C>:update<CR><Esc>
+"	inoremap <C-S>		<Esc>:update<CR>gi<Esc>
+"	inoremap <C-S>		:update<CR><C-o>zz
+"	nnoremap <C-S>		:update<CR>zz
+"	vnoremap <C-S>		<C-C>:update<CR><C-o>zz
+"	inoremap <C-S>		<Esc>:update<CR>gi<C-o>zz
+	nnoremap <C-S>		:update<CR>
+	vnoremap <C-S>		<C-C>:update<CR>
+	inoremap <C-S>		<Esc>:update<CR>gi
 endif
+
 
 " ここまで

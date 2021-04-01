@@ -1,0 +1,52 @@
+# 本ファイルにAndroid環境設定を仕込む。
+#	1つのファイルにまとめなければ使い勝手が悪くなる(小さい画面でちまちま操作できない)。
+#	WindowsOSのホームディレクトリにも配置することにした(gitcmd.exeのため)。
+
+COMMON_ALIAS_FILE="$HOME/.profile_common_Alias"
+COMMON_ENVIRONMENTFILE="$HOME/.profile_common_EnvironmentVariable"
+
+if [ -e $COMMON_ALIAS_FILE ] 
+then 
+	source $COMMON_ALIAS_FILE
+#	source $COMMON_ENVIRONMENTFILE
+fi
+
+set -o vi 
+export HISTCONTROL=ignoreboth
+export HISTCONTROL=erasedups
+export HISTIGNORE=clear:fg:ll:ls:h:history:'git lol':'git mv':pwd:dirs:date:exit
+set -o ignoreeof
+
+# プロンプト用色づけ
+COLOR_DEFAULT='\[\e[0m\]'
+COLOR_BLACK='\[\e[30m\]'
+COLOR_RED='\[\e[31m\]'
+COLOR_GREEN='\[\e[32m\]'
+COLOR_YELLOW='\[\e[33m\]'
+COLOR_BLUE='\[\e[34m\]'
+
+export EDITOR=vim
+#alias vi='env LANG=ja_JP.UTF-8 vim "$@"'
+#alias vim='env LANG=ja_JP.UTF-8 vim "$@"'
+
+# 履歴編集コマンド
+#export FCEDIT=${EDITOR}
+
+# 表示内容のTab幅を半角スペース4桁で表示.
+#tabs -4
+#	別途インストールが必要なようだ。
+
+# 個人的な設定
+alias h='history 25'
+alias tree='tree -N'
+
+
+#	以下、共通設定記載済み。
+
+# 端末固有設定ファイル読み込み。
+if [ -e ~/.bashrc_sub ] 
+then 
+	source ~/.bashrc_sub
+fi
+
+# 以上。
