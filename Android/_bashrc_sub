@@ -1,0 +1,24 @@
+#	ここは、端末独自の環境を設定したい(コピーして使うファイル)。
+
+# "[ユーザ名@ホスト名 現在のディレクトリ] $"
+PS1="[${COLOR_BLUE}\W${COLOR_DEFAULT}] $ "
+
+# termuxにログインした時点で表示される、ディレクトリ。
+
+#cd "/storage/emulated/0/"
+cd "/storage/emulated/0/asakunotomohiro/tmp"
+
+
+export MY="/storage/emulated/0/asakunotomohiro"
+alias cdmy='cd ${MY}'
+
+export MYTMP="/storage/emulated/0/asakunotomohiro/tmp"
+alias cdtmp='cd ${MYTMP}'
+
+export TOP="/storage/emulated/0/"
+alias cdzero='cd ${TOP}'
+
+export DOTFILE="/storage/emulated/0/dotfiles/"
+alias cddot='cd ${DOTFILE}'
+
+# 以上。

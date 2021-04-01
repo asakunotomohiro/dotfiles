@@ -1,0 +1,23 @@
+#	このファイルは、bash及びzshで利用する共通ファイル。
+#		利用記載内容は、エイリアス周りになる。
+
+# ☆Windows・Androidでも利用する☆
+
+# ■エイリアス。
+alias ll='ls -GFlt'
+alias visudo='sudo visudo'
+alias df='df -Hi'
+
+#	☆Pathの書き換え必須☆
+alias python='/Users/asakunotomohiro/.pyenv/shims/python'
+
+# tarファイルの閲覧
+alias tarview="tar tvf "
+
+# dirsの一覧表示
+alias dirs='dirs -l -v'
+
+# telnet 先のOSに日本語入力するための設定
+alias telnet='telnet -L'
+
+# 以上。

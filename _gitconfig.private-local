@@ -1,0 +1,42 @@
+# privateファイルとして扱う。
+
+#[user]
+#	name = asakunotomohiro
+#	user = asakunotomohiro
+#	email = asakunotomohiro@users.noreply.github.com
+
+#	■Windows用
+[core]
+	excludesfile = C:\\Users\\asakunotomohiro\\Documents\\gitignore_global.txt
+[difftool "sourcetree"]
+	cmd = 'C:/Program Files/WinMerge/WinMergeU.exe' \"$LOCAL\" \"$REMOTE\"
+[mergetool "sourcetree"]
+	cmd = 'C:/Program Files/WinMerge/WinMergeU.exe' \"$LOCAL\" \"$REMOTE\"
+
+
+# 以下、Windowsで設定されていた内容だが、Macでも有効？
+[filter "lfs"]
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+[color]
+	ui = auto
+
+#	■Mac用
+[core]
+	excludesfile = /Users/asakunotomohiro/.gitignore_global
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+[mergetool "sourcetree"]
+	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+
+# 以下、Macで設定されていた内容だが、Windowsでも有効？
+[commit]
+	template = /Users/asakunotomohiro/.stCommitMsg
+
+# Windows用メモ
+#	・Git bash
+#		文字化け防止コマンド：SETX LANG ja_JP.UTF-8
+
+# 以上。

@@ -1,0 +1,6 @@
+#	ここは、Windowsのbash環境を設定したい。
+
+# プロンプト表記変更
+PS1="[${COLOR_YELLOW}\u${COLOR_DEFAULT}@\h ${COLOR_BLUE}\W${COLOR_DEFAULT}] $ "
+
+# 以上。

@@ -1,0 +1,14 @@
+#	このファイルは、ターミナル(プロンプト)をviとして、利用することを前提としたファイルである。
+#set editing-mode vi
+#set keyseq-timeout 5
+
+set keymap vi-command
+"\C-p": history-search-backward
+"\C-n": history-search-forward
+
+set keymap vi-insert
+"\C-l": clear-screen
+"\C-p": history-search-backward
+"\C-n": history-search-forward
+
+# 以上。
