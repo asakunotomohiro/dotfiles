@@ -14,6 +14,9 @@
 ;　Space vk20sc039
 ;　その他はAutoHotKey Wikiのキーリスト参照
 
+;	※1千ミリ秒が1秒。
+
+
 ;	修飾シンボル
 ;		例）<+a
 
@@ -55,13 +58,16 @@ return
 ;		Winキー + Altキー + Ctrlキー + 標準キー
 ;				i	IDE(VSCode)
 ;				x	Explorerをすべてアクティブにする(dropbox以外)。
-;		Winキー + Altキー + Shiftキー + 標準キー
-;				x	Explorerをすべてアクティブにする(dropbox限定)。
-;		Winキー + Shiftキー + 標準キー
+;		Winキー + Altキー + Shiftキー + xキー
+;				x	Explorerを順次アクティブにする(dropbox限定)。
+;		Winキー + Shiftキー + Altキー + xキー
 ;				x	Explorerをすべてアクティブにする。
-;		Winキー + Ctrlキー + 標準キー
+;		Winキー + Ctrlキー + Altキー + xキー
 ;				x	Explorerをすべて最小化する(例外なし)。
 ;		※WindowOS標準のショートカットキーを上書きすることになるため、気をつけること。
+
+;						↑
+;					エクスプローラの起動は、もう一度検証が必要。本来の記述と齟齬がある20210416
 
 #+!e::
 	evernote := "C:\Program Files (x86)\Evernote\Evernote\Evernote.exe"
@@ -1027,6 +1033,12 @@ return
 return
 
 #e::
+	Run Explorer %UserProfile%
+	sleep 1200
+	Send, !d%A_UserName%{Enter}
+return
+
+#F13::
 	Run Explorer %A_Desktop%
 return
 
