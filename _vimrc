@@ -364,10 +364,18 @@ let g:lsp_settings['gopls'] = {
 endif
 
 
+" クイックラン
+if isdirectory(expand(minpackSTART . "vim-quickrun"))  || isdirectory(expand(minpackOPT . "vim-quickrun"))
+	" Ver.0.9.0にて、デフォルトキーマッピングが削除されたため、ここで定義し直す。
+	nnoremap <Leader>r :QuickRun<CR>
+endif
+
 " Goインポートプラグイン
 if isdirectory(expand(minpackSTART . "vim-goimports"))  || isdirectory(expand(minpackOPT . "vim-goimports"))
 "let g:goimports = 1
 "let g:goimports_simplify = 1
+"	使うのであれば、1を設定する。
+"		https://github.com/mattn/vim-goimports#requirements
 unlet! g:goimports_simplify
 endif
 
@@ -414,12 +422,12 @@ endif
 
 if isdirectory(expand(minpackSTART . "nerdtree"))  || isdirectory(expand(minpackOPT . "nerdtree"))
 nnoremap <Leader>er :noswapfile NERDTreeToggle<CR>
-nnoremap <silent><F13> :NERDTreeToggle<CR>
-	if g:isDroid || g:isTermux
-		nnoremap <Leader>e :noswapfile NERDTreeToggle<CR>
-	else
-		nnoremap <silent><F13> :noswapfile NERDTreeToggle<CR>
-	endif
+nnoremap <silent><C-F13> :NERDTreeToggle<CR>
+"	if g:isDroid || g:isTermux
+"		nnoremap <Leader>e :noswapfile NERDTreeToggle<CR>
+"	else
+"		nnoremap <silent><C-F13> :noswapfile NERDTreeToggle<CR>
+"	endif
 	" ●ファイル操作系
 "		o(enter)	ファイルを開く
 "		go	ファイルを開き、カーソルはツリーに保持する
@@ -675,10 +683,15 @@ endif
 "	ーーーここまでがパッケージ設定ーーー
 
 if (has('win32') || has('win64') )
-	let g:previm_open_cmd = 'C:\/\/Program\ Files\/Mozilla\ Firefox\/firefox.exe'	" open-browser.vim
+"	IEでは表示されない。
+"	let g:previm_open_cmd = 'C:\\Program\ Files\\Internet\ Explorer\\iexplore.exe'
+"	let g:previm_open_cmd = 'C:\\Program\ Files\ \(x86\)\\Google\\Chrome\\Application\\chrome.exe'
+"	let g:previm_open_cmd = 'C:\\Program\ Files\ \(x86\)\\Microsoft\\Edge\\Application\\msedge.exe'
+	let g:previm_open_cmd = 'C:\/\/Program\ Files\/Mozilla\ Firefox\/firefox.exe'
 elseif (has('gui_macvim') || has('mac') )
-	"let g:previm_open_cmd = 'open -a Safari'	" open-browser.vim
-	let g:previm_open_cmd = 'open -a Firefox'	" Safari動かなかったため。
+"	let g:previm_open_cmd = 'open -a "Google Chrome"'
+	let g:previm_open_cmd = 'open -a Firefox'
+"	let g:previm_open_cmd = 'open -a Safari'
 elseif has('xfontset')
 endif
 
@@ -1029,6 +1042,21 @@ let &backupdir = s:backup_dir
 let &undodir=&backupdir . "/undofile"
 "set noundofile " アンドゥファイルを生成しない。
 "set noswapfile "スワップファイルを生成しない。
+"	以下、Vim終了時に、アンドゥファイルを削除する。
+augroup quitcmd
+	autocmd!
+	autocmd VimLeave * call s:CleanupStuff()
+	" どのような終了方法を指す？
+augroup END
+function! s:CleanupStuff()
+"	let s:undo_fileName=&undodir . "/" . expand('%:t')
+	let l:undoFileName=expand('%:p')
+	let l:undo_fileName = substitute(l:undoFileName, '\/', "%", "g")
+	let l:deleteUndoFile=&undodir . "/" . l:undo_fileName
+	echo "call delete(" . l:deleteUndoFile . ")"
+	call delete(l:deleteUndoFile)
+endfunction
+"
 "	以下、何？
 set switchbuf=useopen
 
@@ -1111,10 +1139,11 @@ set ttymouse=xterm2
 
 "---------------------------------------------------------------------------
 "	エクスプローラー
+
 nnoremap <Leader>E :Explore<CR>
-" 通常:Seで水平分割上で開く.\Sで開くようになる.
+	" ↓通常:Seで水平分割上で開くのを変更。
 nnoremap <Leader>S :Sexplore<CR>
-" 通常:Vexで水平分割上で開く.\Vで開くようになる.
+	" ↓通常:Vexで水平分割上で開くのを変更変更
 nnoremap <Leader>V :Vexplore<CR>
 "	新規タブページで開く場合は:Teを使う必要がある.
 
@@ -1220,7 +1249,7 @@ if ( has('win32') || has('win64') )
 	nnoremap <Leader>a ggVG
 
 
-	nnoremap <Leader>eh :e ++enc=sjis $HOME/Documents/AutoHotkey.ahk<CR>
+	nnoremap <Leader>eh :e ++enc=utf-8 $HOME/Documents/AutoHotkey.ahk<CR>
 	"		いずれは、編集後に読み込み直すような設定をしたい。
 	" ※ディレクトリ名に日本語などが含まれている場合、文字化けする。
 	"		その場合は、"set encoding=UTF-8"にする必要がある。

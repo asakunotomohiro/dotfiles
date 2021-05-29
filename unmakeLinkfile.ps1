@@ -2,6 +2,7 @@
 #	リンクファイルの削除シェル
 
 $vimdir = "~\.vim"
+$vimdir = "~\vimfiles"
 $vimbackdir = "~\.vim_backup"
 if (Test-Path $vimdir) {
 	Remove-Item $vimdir -Recurse -Force

@@ -79,6 +79,15 @@ Thumbs.db:encryptable
 ehthumbs.db
 ehthumbs_vista.db
 
+### MicrosoftOffice ###
+*.tmp
+~$*.doc*
+Backup of *.doc*
+~$*.xls*
+*.xlk
+~$*.ppt*
+*.~vsd*
+
 # Dump file
 *.stackdump
 
