@@ -2,8 +2,8 @@
 $vimdir = "~\.vim\pack\minpac\opt"
 $vimdirAfter = "~\.vim\after\ftplugin"
 $vimbackdir = "~\.vim_backup"
-#$vimsessiondir = "~\.vim_backup\sessions"
-#$vimundodir = "~\.vim_backup\undofile"
+$vimsessiondir = "~\.vim_backup\sessions"
+$vimundodir = "~\.vim_backup\undofile"
 $gitIgnoredir = "%XDG_CONFIG_HOME%/git/ignore"	# OS依存のGit用無視ファイル
 $gitconfig = "~/.config/git/ignore"	# OS依存のGit用無視ファイル
 
@@ -27,8 +27,8 @@ if (Test-Path $vimdir) {
     echo $vimdir ない。
     New-Item -Path $vimdir -ItemType Directory
     New-Item -Path $vimbackdir -ItemType Directory
-#    New-Item -Path $vimsessiondir -ItemType Directory
-#    New-Item -Path $vimundodir -ItemType Directory
+    New-Item -Path $vimsessiondir -ItemType Directory
+    New-Item -Path $vimundodir -ItemType Directory
     New-Item -Path $vimdirAfter -ItemType Directory
 
     New-Item -Path $vimdirColors -ItemType Directory

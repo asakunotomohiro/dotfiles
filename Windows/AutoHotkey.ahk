@@ -1,295 +1,399 @@
-#UseHook
-^h::Send {Backspace}
+ï»¿#UseHook
 
-;ƒL[‚Ìw’è•û–@‚Ìƒƒ‚
-;@WindowsƒƒSƒL[ #
-;@–³•ÏŠ·ƒL[ vk1Dsc07B
-;@SHIFT +
-;@Ctrl ^
-;@Alt !
-;@;(ƒZƒ~ƒRƒƒ“)vkBBsc027
-;@:(ƒRƒƒ“) vkBAsc028
-;@,(ƒJƒ“ƒ}) vkBCsc033
-;@.(ƒsƒŠƒIƒh) vkBEsc034
-;@Space vk20sc039
-;@‚»‚Ì‘¼‚ÍAutoHotKey Wiki‚ÌƒL[ƒŠƒXƒgQÆ
+;ã‚­ãƒ¼ã®æŒ‡å®šæ–¹æ³•ã®ãƒ¡ãƒ¢
+;ã€€Windowsãƒ­ã‚´ã‚­ãƒ¼ #
+;ã€€ç„¡å¤‰æ›ã‚­ãƒ¼ vk1Dsc07B
+;ã€€SHIFT +
+;ã€€Ctrl ^
+;ã€€Alt !
+;ã€€;(ã‚»ãƒŸã‚³ãƒ­ãƒ³)vkBBsc027
+;ã€€:(ã‚³ãƒ­ãƒ³) vkBAsc028
+;ã€€,(ã‚«ãƒ³ãƒ) vkBCsc033
+;ã€€.(ãƒ”ãƒªã‚ªãƒ‰) vkBEsc034
+;ã€€Space vk20sc039
+;ã€€ãã®ä»–ã¯AutoHotKey Wikiã®ã‚­ãƒ¼ãƒªã‚¹ãƒˆå‚ç…§
 
-;	¦1çƒ~ƒŠ•b‚ª1•bB
+;	ä¿®é£¾ã‚·ãƒ³ãƒœãƒ«
+;		ä¾‹ï¼‰<+a
 
+;	ã‚³ãƒ³ãƒ“ãƒãƒ¼ã‚·ãƒ§ãƒ³ã‚­ãƒ¼
+;		ä¾‹ï¼‰LShift & a
 
-;	CüƒVƒ“ƒ{ƒ‹
-;		—áj<+a
-
-;	ƒRƒ“ƒrƒl[ƒVƒ‡ƒ“ƒL[
-;		—ájLShift & a
-
-; ¡IME•ÏŠ·i“ú–{ŒêE‰pŒêØ‚è‘Ö‚¦j
+GroupAdd, DIRANDVIMGROUP, ahk_exe explorer.exe
+GroupAdd, DIRANDVIMGROUP, ahk_exe gvim.exe
+return
 GroupAdd, ime2NotActiveTitle, ahk_exe Explorer.exe
 return
-#IfWinNotActive, ahk_group ime2NotActiveTitle
-	Insert::return		; ƒCƒ“ƒT[ƒgƒL[–³Œø
-	Pause::return		; ƒ|[ƒYƒL[–³Œø
-	ScrollLock::return	; ƒXƒNƒ[ƒ‹ƒƒbƒNƒL[–³Œø
-	NumLock::return		; ƒiƒ€ƒƒbƒNƒL[–³Œø
-	Capslock::return	; ƒLƒƒƒbƒvƒXƒƒbƒNƒL[–³Œø
-	return
-#IfWinNotActive
+exit
 
-;	¡ˆÈ‰º,ƒzƒbƒgƒL[
-;		WinƒL[{•W€ƒL[
-;				c	googleChromeƒuƒ‰ƒEƒU(¦)
-;				f	Firefoxƒuƒ‰ƒEƒU(¦)
-;				g	Sourcetree(¦)
-;				h	GŠÛƒGƒfƒBƒ^(¦)
-;				p	ƒyƒCƒ“ƒg(¦)
-;				v	GvimƒGƒfƒBƒ^(¦)
-;		WinƒL[ + CtrlƒL[ + •W€ƒL[
-;				s	ƒTƒNƒ‰ƒGƒfƒBƒ^(¦)
-;		WinƒL[ + AltƒL[ + •W€ƒL[
-;				r
-;				e	—\–ñÏ‚İ
-;				i	IDE(Eclipse)	"C:\pleiades\eclipse\eclipse.exe"
+; â– IMEå¤‰æ›ï¼ˆæ—¥æœ¬èªãƒ»è‹±èªåˆ‡ã‚Šæ›¿ãˆï¼‰
+;#IfWinNotActive, ahk_group ime2NotActiveTitle
+	Insert::return		; ã‚¤ãƒ³ã‚µãƒ¼ãƒˆã‚­ãƒ¼ç„¡åŠ¹
+	Pause::return		; ãƒãƒ¼ã‚ºã‚­ãƒ¼ç„¡åŠ¹
+	ScrollLock::return	; ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒ­ãƒƒã‚¯ã‚­ãƒ¼ç„¡åŠ¹
+	NumLock::return		; ãƒŠãƒ ãƒ­ãƒƒã‚¯ã‚­ãƒ¼ç„¡åŠ¹
+	Capslock::return	; ã‚­ãƒ£ãƒƒãƒ—ã‚¹ãƒ­ãƒƒã‚¯ã‚­ãƒ¼ç„¡åŠ¹
+;	return
+;#IfWinNotActive
+
+;	â– ä»¥ä¸‹,ãƒ›ãƒƒãƒˆã‚­ãƒ¼
+;		Winã‚­ãƒ¼ï¼‹æ¨™æº–ã‚­ãƒ¼
+;				c	googleChromeãƒ–ãƒ©ã‚¦ã‚¶(â€»)
+;				f	Firefoxãƒ–ãƒ©ã‚¦ã‚¶(â€»)
+;				g	Git(Sourcetree)(â€»)
+;				h	ç§€ä¸¸ã‚¨ãƒ‡ã‚£ã‚¿(â€»)
+;				p	ãƒšã‚¤ãƒ³ãƒˆ(â€»)
+;				v	Gvimã‚¨ãƒ‡ã‚£ã‚¿(â€»)
+;		Winã‚­ãƒ¼ + Ctrlã‚­ãƒ¼ + æ¨™æº–ã‚­ãƒ¼
 ;				j	Jasper soft
+;				s	ã‚µã‚¯ãƒ©ã‚¨ãƒ‡ã‚£ã‚¿(â€»)
+;		Winã‚­ãƒ¼ + Altã‚­ãƒ¼ + æ¨™æº–ã‚­ãƒ¼
+;				r
+;				c	CAD
+;				e	Evernote
+;				g	Godot
+;				i	IDE(Eclipse)
+;				j	JW_cad
 ;				k	Kindle
-;				m	—\–ñÏ‚İ
-;				o	—\–ñÏ‚İ
-;				s	—\–ñÏ‚İ
-;				x	—\–ñÏ‚İ
-;		WinƒL[ + AltƒL[ + CtrlƒL[ + •W€ƒL[
-;				i	IDE(VSCode)
-;				x	Explorer‚ğ‚·‚×‚ÄƒAƒNƒeƒBƒu‚É‚·‚é(dropboxˆÈŠO)B
-;		WinƒL[ + AltƒL[ + ShiftƒL[ + xƒL[
-;				x	Explorer‚ğ‡ŸƒAƒNƒeƒBƒu‚É‚·‚é(dropboxŒÀ’è)B
-;		WinƒL[ + ShiftƒL[ + AltƒL[ + xƒL[
-;				x	Explorer‚ğ‚·‚×‚ÄƒAƒNƒeƒBƒu‚É‚·‚éB
-;		WinƒL[ + CtrlƒL[ + AltƒL[ + xƒL[
-;				x	Explorer‚ğ‚·‚×‚ÄÅ¬‰»‚·‚é(—áŠO‚È‚µ)B
-;		¦WindowOS•W€‚ÌƒVƒ‡[ƒgƒJƒbƒgƒL[‚ğã‘‚«‚·‚é‚±‚Æ‚É‚È‚é‚½‚ßA‹C‚ğ‚Â‚¯‚é‚±‚ÆB
+;				m	minecraft
+;				o	Origin Game
+;				s	Steam Game
+;				x	Dropbox
+;		Winã‚­ãƒ¼ + Altã‚­ãƒ¼ + Shift + æ¨™æº–ã‚­ãƒ¼
+;				i	ä¸€å¤ªéƒ(2018ç‰ˆ)
+;		Winã‚­ãƒ¼ + Altã‚­ãƒ¼ + Ctrlã‚­ãƒ¼ + æ¨™æº–ã‚­ãƒ¼
+;				i	IDE(Visual Studio)
+;	ã‚¨ã‚¯ã‚¹ãƒ—ãƒ­ãƒ¼ãƒ©
+;		Winã‚­ãƒ¼ + Altã‚­ãƒ¼ + Ctrlã‚­ãƒ¼ + æ¨™æº–ã‚­ãƒ¼
+;				x	Explorerã‚’ã™ã¹ã¦ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã«ã™ã‚‹(dropboxé™å®š)ã€‚
+;		Winã‚­ãƒ¼ + Altã‚­ãƒ¼ + Shiftã‚­ãƒ¼ + æ¨™æº–ã‚­ãƒ¼
+;				x	Explorerã‚’é †æ¬¡ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã«ã™ã‚‹(dropboxä»¥å¤–)ã€‚
+;		Winã‚­ãƒ¼ + Shiftã‚­ãƒ¼ + æ¨™æº–ã‚­ãƒ¼
+;				e	Explorerã‚’ã™ã¹ã¦æœ€å°åŒ–ã™ã‚‹(ä¾‹å¤–ãªã—)ã€‚
+;		Winã‚­ãƒ¼ + Ctrlã‚­ãƒ¼ + æ¨™æº–ã‚­ãƒ¼
+;				e	Explorerã‚’ã™ã¹ã¦ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã«ã™ã‚‹(ä¾‹å¤–ãªã—)ã€‚
+;	ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã‚­ãƒ¼ã¨ã®çµ„ã¿åˆã‚ã›
+;		AppsKey + æ¨™æº–ã‚­ãƒ¼
+;				a	Access
+;				b	Blend
+;				d	OneDrive
+;				d	Delve(è¨­å®šç„¡ã—)
+;				e	Excel
+;				f	Forms(è¨­å®šç„¡ã—)
+;				g	Groove
+;				i	InfoPath
+;				k	ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰
+;				k	Kaizala(è¨­å®šç„¡ã—)
+;				l	Microsoft Lists(è¨­å®šç„¡ã—)
+;				m	Outlook
+;				n	OneNote
+;				p	PowerPoint
+;				p	Planner(è¨­å®šç„¡ã—)
+;				p	Project(è¨­å®šç„¡ã—)
+;				h	Publisher("ç‰ˆå…ƒ"ã®é ­æ–‡å­—)
+;				s	PowerShell
+;				s	SharePoint(è¨­å®šç„¡ã—)
+;				s	Skype(è¨­å®šç„¡ã—)
+;				s	Stream(è¨­å®šç„¡ã—)
+;				s	Sway(è¨­å®šç„¡ã—)
+;				t	ã‚¿ã‚¹ã‚¯ãƒãƒãƒ¼ã‚¸ãƒ£
+;				t	Microsoft Teams(è¨­å®šç„¡ã—)
+;				t	To-Do(è¨­å®šç„¡ã—)
+;				u	é›»å“
+;				v	VisualStudioCode
+;				v	Visio(è¨­å®šç„¡ã—)
+;				w	Word
+;				w	Whiteboard(è¨­å®šç„¡ã—)
+;				y	Yammer(è¨­å®šç„¡ã—)
+;		â€»WindowOSæ¨™æº–ã®ã‚·ãƒ§ãƒ¼ãƒˆã‚«ãƒƒãƒˆã‚­ãƒ¼ã‚’ä¸Šæ›¸ãã™ã‚‹ã“ã¨ã«ãªã‚‹ãŸã‚ã€æ°—ã‚’ã¤ã‘ã‚‹ã“ã¨ã€‚
 
-;						ª
-;					ƒGƒNƒXƒvƒ[ƒ‰‚Ì‹N“®‚ÍA‚à‚¤ˆê“xŒŸØ‚ª•K—vB–{—ˆ‚Ì‹Lq‚Æê’ê—‚ª‚ ‚é20210416
+TrayTip, "æ³¨æ„", ä¸‹è¨˜å¤‰æ›´ãŒã§ããªã„å ´åˆã€æœ¬ãƒ•ã‚¡ã‚¤ãƒ«ã®æ–‡å­—ã‚³ãƒ¼ãƒ‰ã‚’SJIS(CRLF)ã«ã™ã‚‹ã“ã¨ã€‚, 3, 0
+Menu, tray, Add
+Menu, tray, Add, Text, testRun
+Return
+testRun:
+	Gui, Add, Text, , ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«å…ˆã®AutoHotkeyU64.exeã‚’AutoHotkey.exeã«åå‰å¤‰æ›´ã—ã¦ä½¿ã†ã“ã¨ã€‚`nã¾ãŸã€æœ¬ãƒ•ã‚¡ã‚¤ãƒ«ã®æ–‡å­—ã‚³ãƒ¼ãƒ‰ã‚’UTF-8ã®BOMã‚ã‚Š(CRLF)ã«ã™ã‚‹ã“ã¨ã€‚`n`nãã—ã¦ã€ãã‚Œã‚‰ã®è¨­å®šã‚’çµ‚ãˆãŸå ´åˆã€æœ¬è¡Œã‚’åŸºæº–ã«ä¸Šè¨˜TrayTipè¡Œã‹ã‚‰ä¸‹è¨˜Reternè¡Œã¾ã§ã®18è¡Œåˆ†ã»ã©ã‚’å‰Šé™¤ã™ã‚‹ã“ã¨ã€‚
+	Gui, Show
+Return
+GuiClose:
+	Gui, Destroy
+Return
+a::
+i::
+u::
+e::
+o::
+	Goto, testRun
+Return
 
-#+!e::
-	evernote := "C:\Program Files (x86)\Evernote\Evernote\Evernote.exe"
-	IfNotExist, %evernote%
+; å˜ç´”èµ·å‹•ã€‚
+softRunGoGo(Array, ByRef varSoftwarePID, originally)
+{
+	varSoftwarePID :=
+
+	For index, element in Array
 	{
-		evernote := "C:\Program Files\Evernote\Evernote\Evernote.exe"
-		IfNotExist, %evernote%
+		IF FileExist( element )
 		{
-			Send, #!e
+			Run, open %element%, , , varSoftwarePID
+			sleep 450
+			WinActivate, ahk_pid %varSoftwarePID%
+			break
+		}
+		Else If % index == Array.MaxIndex()-1
+		{
+			Send, %originally%
 		}
 	}
-	IfExist, %evernote%
+
+	return %element%
+}
+officeRunGoGo(Array, ByRef varSoftwarePID, activOffice, originally)
+{
+	varSoftwarePID :=
+
+	For index, element in Array
 	{
-		WinGet, OutputVar, List, ahk_exe %evernote%
-		WinGet, activeWinID, IDLast, ahk_exe %evernote%
-		Loop, %OutputVar%
+		IF FileExist( element )
 		{
-			WinGetClass, OutputVar, ahk_id A_LoopField
-			evernoteID := % OutputVar%A_Index%
-			if ( evernoteID == activeWinID )
+			WinGet, OutputList, List, ahk_class %activOffice%
+			if OutputList > 0 
 			{
-				WinActivate, ahk_id %evernoteID%
+;				msgbox, èµ·å‹•æ¸ˆã¿ã€‚
+				WinGet, activeID, ID, A
+				WinGet, serch_ID, ID, ahk_class %activOffice%
+				WinGet, activeWinID, IDLast, ahk_class %activOffice%
+
+				if ( activeID == serch_ID )
+				{
+					WinActivate, ahk_id %activeWinID%
+					varSoftwarePID = %activeWinID%
+				}
+				else
+				{
+					WinActivate, ahk_id %serch_ID%
+					varSoftwarePID = %serch_ID%
+				}
 			}
 			else
 			{
-				WinActivate, ahk_id %activeWinID%
-				break
+				; èµ·å‹•
+				Run, %element%, , , varSoftwarePID
+				varSoftwarePID = %element%
 			}
+			break
+		}
+		Else If % index == Array.MaxIndex()-1
+		{
+			Send, %originally%
 		}
 	}
-return
 
-#+c::
-	googleChrome := "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe"
-	IfNotExist, %googleChrome%
+	return %varSoftwarePID%
+}
+officeExeRunGoGo(Array, ByRef varSoftwarePID, activOffice, originally)
+{
+	varSoftwarePID :=
+
+	For index, element in Array
 	{
-		googleChrome := "C:\Program Files\Google\Chrome\Application\chrome.exe"
-		IfNotExist, %googleChrome%
+		strSplitArray := StrSplit(element, "\" )
+		ii := strSplitArray.MaxIndex()
+		exename := strSplitArray[ii]
+
+		IF FileExist( element )
 		{
-			Send, #c
-		}
-	}
-	IfExist, %googleChrome%
-	{
-		WinGet, OutputVar, List, ahk_exe %googleChrome%
-		WinGet, activeWinID, IDLast, ahk_exe %googleChrome%
-		Loop, %OutputVar%
-		{
-			WinGetClass, OutputVar, ahk_id A_LoopField
-			chromeID := % OutputVar%A_Index%
-			if ( chromeID == activeWinID )
+			WinGet, OutputList, List, ahk_exe %activOffice%
+			if OutputList > 1 
 			{
-				WinActivate, ahk_id %chromeID%
+				WinGet, activeID, ID, A
+				WinGet, serch_ID, ID, ahk_exe %activOffice%
+				WinGet, activeWinID, IDLast, ahk_exe %activOffice%
+
+;				sleep 100
+				;	ãƒã‚°ãŒã‚ã‚Šã€æ—¨ãåˆ‡ã‚Šæ›¿ãˆã¦ãã‚Œãªã„ã€‚
+				if ( activeID == serch_ID )
+				{
+					sleep 130
+					; å¼•ã£ã‹ã‹ã‚Šã‚’æ„Ÿã˜ã‚‹(å¾…æ©Ÿæ™‚é–“ã®å•é¡Œã§ã¯ãªã„)ã€‚
+					WinActivate, ahk_id %activeWinID%
+					varSoftwarePID = %activeWinID%
+				}
+				else
+				{
+					WinActivate, ahk_id %serch_ID%
+					varSoftwarePID = %serch_ID%
+				}
+
+			}
+			else if OutputList > 0 
+			{
+;				msgbox, èµ·å‹•æ¸ˆã¿ã€‚
+				WinGet, activeWinID, ID, ahk_exe %activOffice%
+				WinActivate, ahk_id %activeWinID%
+				varSoftwarePID = %activeWinID%
 			}
 			else
 			{
-				WinActivate, ahk_id %activeWinID%
-				break
+				Run, open %element%, , , varSoftwarePID
+				oneSoftware = %element%
+				varSoftwarePID = %element%
 			}
+			break
+		}
+		Else If % index == Array.MaxIndex()-1
+		{
+			Send, %originally%
 		}
 	}
-return
 
-#+f::
-	firefoxBrowser := "C:\Program Files\Mozilla Firefox\firefox.exe"
-	IfNotExist, %firefoxBrowser%
+	return %varSoftwarePID%
+}
+moveBackToFront(Array, originally)
+{
+	varSoftwarePID :=
+
+	For index, element in Array
 	{
-		firefoxBrowser := "C:\Program Files (x86)\Mozilla Firefox\firefox.exe"
-		IfNotExist, %firefoxBrowser%
+		strSplitArray := StrSplit(element, "\" )
+		ii := strSplitArray.MaxIndex()
+		exename := strSplitArray[ii]
+		SplitPath, element, OutFileName, OutDir, OutExtension, OutNameNoExt, OutDrive
+
+		IfExist, %element%
 		{
-			Send, #f
-		}
-	}
-	IfExist, %firefoxBrowser%
-	{
-		WinGet, OutputVar, List, ahk_exe %firefoxBrowser%
-		WinGet, activeWinID, IDLast, ahk_exe %firefoxBrowser%
-		Loop, %OutputVar%
-		{
-			WinGetClass, OutputVar, ahk_id A_LoopField
-			firefoxID := % OutputVar%A_Index%
-			if ( firefoxID == activeWinID )
+			WinGet, activeID, ID, A
+			if (OutExtension == "lnk")
 			{
-				WinActivate, ahk_id %firefoxID%
+				exename = %OutNameNoExt%.exe
+			}
+			WinGet, serch_ID, ID, ahk_exe %exename%
+			WinGet, activeWinID, IDLast, ahk_exe %exename%
+
+			if ( activeID == serch_ID )
+			{
+				; ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦äºˆå®šã¨å®Ÿéš›ã®ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãŒåŒã˜ã§ã‚ã‚Œã°æœ€èƒŒé¢ã®ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã«ã™ã‚‹ã€‚
+				WinActivate, ahk_id %activeWinID%
+				varSoftwarePID = %activeWinID%
 			}
 			else
 			{
-				WinActivate, ahk_id %activeWinID%
-				break
+				; ã‚¢ã‚¯ãƒ†ã‚£ãƒ–äºˆå®šã®ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã«ã—ãŸã„å ´åˆã€å‰é¢ã ã£ãŸã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã«ã™ã‚‹ã€‚
+				WinActivate, ahk_id %serch_ID%
+				varSoftwarePID = %serch_ID%
 			}
-		}
-	}
-return
 
-#+p::
-	paint := systemroot . "\system32\mspaint.exe"
-	WinGet, OutputVar, List, ahk_exe %paint%
-	WinGet, activeWinID, IDLast, ahk_exe %paint%
-	Loop, %OutputVar%
-	{
-		WinGetClass, OutputVar, ahk_id A_LoopField
-		paintID := % OutputVar%A_Index%
-		if ( paintID == activeWinID )
-		{
-			WinActivate, ahk_id %paintID%
+			break
 		}
-		else
+		Else If % index == Array.MaxIndex()-1
 		{
-			WinActivate, ahk_id %activeWinID%
+			Menu, TRAY, Icon
+			TrayTip, %exename%, %exename%ã®PathãŒæ­£ã—ããªã„ã‹ã€ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«ã•ã‚Œã¦ã„ãªã„ã€‚, 1, 0
+			sleep 1000
+			Send, %originally%
 			break
 		}
 	}
+
+	return %varSoftwarePID%
+}
+
+#^c::
+	; Win+Ctrl+c
+	Array := [ "C:\Program Files\Google\Chrome\Application\chrome.exe"
+			 , "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe"
+			 , ""]
+
+	moveBackToFront(Array, "#^c")
 return
 
-#+^s::
-	sakura := "C:\Program Files\sakura\sakura.exe"
-	IfNotExist, %sakura%
+#^f::
+	; Win+Ctrl+f
+	Array := [ "C:\Program Files\Mozilla Firefox\firefox.exe"
+			 , "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Firefox.lnk"
+			 , "C:\Program Files (x86)\Mozilla Firefox\firefox.exe"
+			 , ""]
+
+	moveBackToFront(Array, "#^f")
+return
+
+#^h::
+	; Win+Ctrl+h
+	Array := [ "C:\Program Files\Hidemaru\Hidemaru.exe"
+			 , "C:\Program Files (x86)\Hidemaru\Hidemaru.exe"
+			 , ""]
+
+	moveBackToFront(Array, "#^h")
+return
+
+#^p::
+	Array := [ systemroot . "\system32\mspaint.exe"
+			 , ""]
+
+	moveBackToFront(Array, "#^p")
+return
+
+#^+s::
+	; Win+Ctrl+Shift+s
+	Array := [ "C:\Program Files\sakura\sakura.exe"
+			 , "C:\Program Files (x86)\sakura\sakura.exe"
+			 , ""]
+
+	moveBackToFront(Array, "#^+s")
+return
+
+AppsKey & l::
+	; Ubuntuèµ·å‹•ã«å¤‰æ›´ï¼Ÿ
+	Array := [ "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Excel.lnk"
+			 , "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Microsoft Office\Microsoft Office Excel 2019.lnk"
+			 , "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Microsoft Office\Microsoft Office Excel 2016.lnk"
+			 , "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Microsoft Office\Microsoft Office Excel 2013.lnk"
+			 , "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Microsoft Office\Microsoft Office Excel 2010.lnk"
+			 , "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Microsoft Office\Microsoft Office Excel 2007.lnk"
+			 , "C:\Documents and Settings\All Users\ã‚¹ã‚¿ãƒ¼ãƒˆ ãƒ¡ãƒ‹ãƒ¥ãƒ¼\ãƒ—ãƒ­ã‚°ãƒ©ãƒ \Microsoft Office\Microsoft Office Excel 2003.lnk"
+			 , "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\LibreOffice 7.0\LibreOffice Calc.lnk"
+			 , ""]
+	oneSoftware :=
+	varSoftwarePID :=
+
+	oneSoftware := softRunGoGo(Array, varSoftwarePID, "AppsKey & e")
+	IfExist, %oneSoftware%
 	{
-		sakura := "C:\Program Files (x86)\sakura\sakura.exe"
-		IfNotExist, %sakura%
-		{
-			Send, #^s
-		}
-	}
-	IfExist, %sakura%
-	{
-		WinGet, OutputVar, List, ahk_exe %sakura%
-		WinGet, activeWinID, IDLast, ahk_exe %sakura%
-		Loop, %OutputVar%
-		{
-			WinGetClass, OutputVar, ahk_id A_LoopField
-			sakuraID := % OutputVar%A_Index%
-			if ( sakuraID == activeWinID )
-			{
-				WinActivate, ahk_id %sakuraID%
-			}
-			else
-			{
-				WinActivate, ahk_id %activeWinID%
-				break
-			}
-		}
+		sleep 200
+		WinActivate, ahk_pid %varSoftwarePID%
 	}
 return
 
-#+h::
-	hidemaru := "C:\Program Files (x86)\Hidemaru\Hidemaru.exe"
-	strSplitArray := StrSplit(hidemaru, "\" )
-	ii := strSplitArray.MaxIndex()
-	exename := strSplitArray[ii]
-	IfNotExist, %hidemaru%
-	{
-		hidemaru := "C:\Program Files\Hidemaru\Hidemaru.exe"
-		strSplitArray := StrSplit(hidemaru, "\" )
-		ii := strSplitArray.MaxIndex()
-		exename := strSplitArray[ii]
-		IfNotExist, %hidemaru%
-		{
-			Send, #h
-		}
-	}
-	IfExist, %hidemaru%
-	{
-		WinGet, OutputVar, List, ahk_exe %exename%
-		WinGet, activeWinID, IDLast, ahk_exe %exename%
-		Loop, %OutputVar%
-		{
-			WinGetClass, OutputVar, ahk_id A_LoopField
-			hidemaruID := % OutputVar%A_Index%
-			if ( hidemaruID == activeWinID )
-			{
-				WinActivate, ahk_id %hidemaruID%
-			}
-			else
-			{
-				WinActivate, ahk_id %activeWinID%
-				break
-			}
-		}
-	}
-return
+;;; Gvim win + v
+;		https://vim-jp.org/
+;		https://vim-jp.org/vimdoc-ja/
+;		https://www.vim.org/
+#v::
+;	â€»WindowOSæ¨™æº–ã®ã‚·ãƒ§ãƒ¼ãƒˆã‚«ãƒƒãƒˆã‚­ãƒ¼ã‚’ä¸Šæ›¸ãã™ã‚‹ã“ã¨ã«ãªã‚‹ãŸã‚ã€æ°—ã‚’ã¤ã‘ã‚‹ã“ã¨ã€‚
+;		ã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰å±¥æ­´ãŒæ½°ã‚Œã‚‹ã€‚
+	Array := [ "C:\Program Files\vim82-kaoriya-win64\gvim.exe"
+			 , "C:\Program Files (x86)\vim82-kaoriya-win32\gvim.exe"
+			 , "C:\Program Files\vim\gvim.exe"
+			 , "C:\Program Files (x86)\gvim.exe"
+			 , "C:\Program Files\vim83-kaoriya-win64\gvim.exe"
+			 , "C:\Program Files (x86)\vim83-kaoriya-win32\gvim.exe"
+			 , ""]
+	oneSoftware :=
+	varSoftwarePID :=
 
-#+v::
-	gvimEditor := "C:\Program Files\vim81-kaoriya-win64\gvim.exe"
-	IfNotExist, %gvimEditor%
+	oneSoftware := softRunGoGo(Array, varSoftwarePID, "#v")
+	IfExist, %oneSoftware%
 	{
-		gvimEditor := "C:\Program Files (x86)\vim82-kaoriya-win64\gvim.exe"
-		IfNotExist, %gvimEditor%
-		{
-			send, #v
-		}
-	}
-	IfExist, %gvimEditor%
-	{
-		strSplitArray := StrSplit(gvimEditor, "\" )
-		ii := strSplitArray.MaxIndex()
-		exename := strSplitArray[ii]
-		WinGet, OutputVar, List, ahk_exe %exename%
-		WinGet, activeWinID, IDLast, ahk_exe %exename%
-		Loop, %OutputVar%
-		{
-			WinGetClass, OutputVar, ahk_id A_LoopField
-			gvimID := % OutputVar%A_Index%
-			if ( gvimID == activeWinID )
-			{
-				WinActivate, ahk_id %gvimID%
-			}
-			else
-			{
-				WinActivate, ahk_id %activeWinID%
-				break
-			}
-		}
+		sleep 480
+		WinActivate, ahk_pid %varSoftwarePID%
 	}
 return
 
 ;Win+Alt+r
-;		AHKƒŠƒ[ƒh
-;		XboxGameBarŠÖ˜A‚ª—Dæ‚³‚ê‚é‚æ‚¤‚ÅAƒŠƒ[ƒh‚³‚ê‚È‚¢B
+;		AHKãƒªãƒ­ãƒ¼ãƒ‰(ä¸¸æ‹¬å¼§è¨˜å·ãªã©ã®æ­£è¦è¡¨ç¾ã«ä½¿ã‚ã‚Œã‚‹è¨˜å·ã‚’ãƒ•ã‚¡ã‚¤ãƒ«åã«å«ã‚ã¦ã¯ãªã‚‰ãªã„)
+;		XboxGameBaré–¢é€£ãŒå„ªå…ˆã•ã‚Œã‚‹ã‚ˆã†ã§ã€ãƒªãƒ­ãƒ¼ãƒ‰ã•ã‚Œãªã„ã€‚
 #NoTrayIcon
 #!r::
-	scriptname := ""
 	WinGetClass, className, A
 	WinGetTitle, titleReloadName, A
 	WinGet, winGetPID, PID, A
@@ -303,7 +407,7 @@ return
 	varFoundRegReload := RegExMatch(titleReloadName, regScriptName, varReload)
 	If ( ErrorLevel <> 0 )
 	{
-		MsgBox, err”­¶FErrorLevelFA_LineNumber
+		MsgBox, ãƒªãƒ­ãƒ¼ãƒ‰ã§ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿï¼šErrorLevel
 	}
 	If ( varFoundRegReload > 0 )
 	{
@@ -313,13 +417,13 @@ return
 	}
 return
 
-;;; ƒAƒvƒŠ‚ÌI—¹
+;;; ã‚¢ãƒ—ãƒªã®çµ‚äº†
 #q::
 	WinGetTitle, titleControlWName, A
 	varFoundRegControlWSakura := RegExMatch(titleControlWName, ".*(sakura).*$", varControlW)
 	If ( ErrorLevel <> 0 )
 	{
-		MsgBox, #qF%ErrorLevel%F%A_LineNumber%
+		MsgBox, #qï¼š%ErrorLevel%ï¼š%A_LineNumber%
 	}
 	If ( varFoundRegControlWSakura > 0 )
 	{
@@ -328,665 +432,6 @@ return
 	else
 	{
 		WinClose, A
-	}
-return
-
-;;; Gvim win + v
-#v::
-	softwareRun := "C:\Program Files\vim81-kaoriya-win64\gvim.exe"
-;	¦WindowOS•W€‚ÌƒVƒ‡[ƒgƒJƒbƒgƒL[‚ğã‘‚«‚·‚é‚±‚Æ‚É‚È‚é‚½‚ßA‹C‚ğ‚Â‚¯‚é‚±‚ÆB
-;		ƒNƒŠƒbƒvƒ{[ƒh—š—ğ‚ª’×‚ê‚éB
-	IfExist, %softwareRun%
-	{
-		Run, %softwareRun%, , , runPID
-	}
-	else
-	{
-		softwareRun := "C:\Program Files (x86)\vim82-kaoriya-win64\gvim.exe"
-		strSplitArray := StrSplit(softwareRun, "\" )
-		ii := strSplitArray.MaxIndex()
-		exename := strSplitArray[ii]
-		IfExist, %softwareRun%
-		{
-			Run, %softwareRun%, , , runPID
-		}
-		else
-		{
-			Menu, TRAY, Icon
-			TrayTip, %exename%, Path‚ª³‚µ‚­‚È‚¢‚©AƒCƒ“ƒXƒg[ƒ‹‚³‚ê‚Ä‚¢‚È‚¢B, 3, 0
-			sleep 1000
-			Menu, TRAY, NoIcon
-			Send, #v
-		}
-	}
-	IfExist, %softwareRun%
-	{
-		sleep 550
-		strSplitArray := StrSplit(softwareRun, "\" )
-		ii := strSplitArray.MaxIndex()
-		exename := strSplitArray[ii]
-		WinActivate, ahk_exe %exename%
-	}
-return
-
-;;; Chrome win + c
-;#!c::
-#c::
-	softwareRun := "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe"
-;	¦WindowOS•W€‚ÌƒVƒ‡[ƒgƒJƒbƒgƒL[‚ğã‘‚«‚·‚é‚±‚Æ‚É‚È‚é‚½‚ßA‹C‚ğ‚Â‚¯‚é‚±‚ÆB
-	;	Windows•W€‚ÌCortana‹N“®‚ÌƒVƒ‡[ƒgƒJƒbƒg‚ğ’×‚·B
-	IfExist, %softwareRun%
-	{
-		Run, %softwareRun%, , , softwarePID
-	}
-	else
-	{
-		softwareRun := "C:\Program Files\Google\Chrome\Application\chrome.exe"
-		IfExist, %softwareRun%
-		{
-			Run, %softwareRun%, , , softwarePID
-		}
-		else
-		{
-			Send, #c
-		}
-	}
-	IfExist, %softwareRun%
-	{
-		sleep 150
-		WinActivate, ahk_pid %softwarePID%
-	}
-return
-
-;;; Evernote win + Alt + e
-#!e::
-	softwareRun := "C:\Program Files (x86)\Evernote\Evernote\Evernote.exe"
-	UniqueID := WinExist("ahk_exe Evernote.exe")
-	IfExist, %softwareRun%
-	{
-		if % StrLen(UniqueID) == 3
-		{
-			Run, %softwareRun%, , , softwarePID
-		}
-	}
-	else
-	{
-		softwareRun := "C:\Program Files\Evernote\Evernote\Evernote.exe"
-		IfExist, %softwareRun%
-		{
-			if % StrLen(UniqueID) == 3
-			{
-				Run, %softwareRun%, , , softwarePID
-			}
-		}
-		else
-		{
-			Send, #!e
-		}
-	}
-	IfExist, %softwareRun%
-	{
-		sleep 150
-		if % StrLen(UniqueID) == 3
-		{
-			WinActivate, ahk_exe %softwareRun%
-		}
-		else
-		{
-			WinActivate, ahk_id %UniqueID%
-		}
-	}
-return
-
-;;; Firefoxƒuƒ‰ƒEƒU win + f
-#f::
-	softwareRun := "C:\Program Files\Mozilla Firefox\firefox.exe"
-;	¦WindowOS•W€‚ÌƒVƒ‡[ƒgƒJƒbƒgƒL[‚ğã‘‚«‚·‚é‚±‚Æ‚É‚È‚é‚½‚ßA‹C‚ğ‚Â‚¯‚é‚±‚ÆB
-;		ƒtƒB[ƒhƒoƒbƒNHubƒEƒBƒ“ƒhƒE‚ª‹N“®‚·‚é(•’Ê‚Íg‚í‚È‚¢‚æ‚Ë)B
-	IfExist, %softwareRun%
-	{
-		Run, %softwareRun%, , , softwarePID
-	}
-	else
-	{
-		softwareRun := "C:\Program Files (x86)\Mozilla Firefox\firefox.exe"
-		IfExist, %softwareRun%
-		{
-			Run, %softwareRun%, , , softwarePID
-		}
-		else
-		{
-			Send, #f
-		}
-	}
-	IfExist, %softwareRun%
-	{
-		sleep 800
-		WinActivate, Mozilla Firefox
-	}
-return
-
-;;; Sourcetree win + g
-#+g::
-#g::
-	StringTrimRight, appdataRoaming, A_AppData, 7
-	softwareRun := appdataRoaming . "Local\SourceTree\SourceTree.exe"
-;	¦WindowOS•W€‚ÌƒVƒ‡[ƒgƒJƒbƒgƒL[‚ğã‘‚«‚·‚é‚±‚Æ‚É‚È‚é‚½‚ßA‹C‚ğ‚Â‚¯‚é‚±‚ÆB
-;		Windows•W€‚ÌXboxƒQ[ƒ€‹L˜^—pƒvƒƒOƒ‰ƒ€‚Ì‹N“®‚ğ’×‚·(’×‚µ‚«‚ê‚È‚¢‚Ì‚¾‚ªAƒVƒ‡[ƒgƒJƒbƒg‚ğ–³Œø‰»‚µ‚½)B
-	IfExist, %softwareRun%
-	{
-		UniqueID := WinExist("ahk_exe SourceTree.exe")
-		if % StrLen(UniqueID) == 3
-		{
-			Run, %softwareRun%, , , softwarePID
-		}
-	}
-	else
-	{
-		softwareRun := "C:\Program Files (x86)\SourceTree\SourceTree.exe"
-		IfExist, %softwareRun%
-		{
-			UniqueID := WinExist("ahk_exe SourceTree.exe")
-			if % StrLen(UniqueID) == 3
-			{
-				Run, %softwareRun%, , , softwarePID
-			}
-		}
-		else
-		{
-			softwareRun := "C:\Program Files\SourceTree\SourceTree.exe"
-			IfExist, %softwareRun%
-			{
-				UniqueID := WinExist("ahk_exe SourceTree.exe")
-				if % StrLen(UniqueID) == 3
-				{
-					Run, %softwareRun%, , , softwarePID
-				}
-			}
-			else
-			{
-				Send, #g
-			}
-		}
-	}
-	IfExist, %softwareRun%
-	{
-		sleep 250
-		if % StrLen(UniqueID) == 3
-		{
-			WinActivate, ahk_exe SourceTree.exe
-		}
-		else
-		{
-			WinActivate, ahk_id %UniqueID%
-		}
-	}
-	; ƒVƒ‡[ƒgƒJƒbƒgƒtƒ@ƒCƒ‹‚Å‚ÌƒvƒƒOƒ‰ƒ€‹N“®‚Í‚Å‚«‚È‚¢‚æ‚¤‚¾B
-return
-
-;;;GŠÛ win + h
-#h::
-	softwareRun := "C:\Program Files (x86)\Hidemaru\Hidemaru.exe"
-;	¦WindowOS•W€‚ÌƒVƒ‡[ƒgƒJƒbƒgƒL[‚ğã‘‚«‚·‚é‚±‚Æ‚É‚È‚é‚½‚ßA‹C‚ğ‚Â‚¯‚é‚±‚ÆB
-;		ƒfƒBƒNƒe[ƒVƒ‡ƒ“‚È‚é‚à‚Ì‚ª“®‚­‚æ‚¤‚¾B‚µ‚©‚µA“ú–{Œê‰^—p‚Í“®‚©‚È‚¢‚æ‚¤‚¾B
-	strSplitArray := StrSplit(softwareRun, "\" )
-	ii := strSplitArray.MaxIndex()
-	exename := strSplitArray[ii]
-	IfExist, %softwareRun%
-	{
-		UniqueID := WinExist("ahk_exe Hidemaru.exe")
-		if % StrLen(UniqueID) == 3
-		{
-			Run, %softwareRun%, , , varHidemaruPID
-		}
-	}
-	else
-	{
-		softwareRun := "C:\Program Files\Hidemaru\Hidemaru.exe"
-		strSplitArray := StrSplit(softwareRun, "\" )
-		ii := strSplitArray.MaxIndex()
-		exename := strSplitArray[ii]
-		IfExist, %softwareRun%
-		{
-			UniqueID := WinExist("ahk_exe Hidemaru.exe")
-			if % StrLen(UniqueID) == 3
-			{
-				Run, %softwareRun%, , , varHidemaruPID
-			}
-		}
-		else
-		{
-			TrayTip, %exename%, Path‚ª³‚µ‚­‚È‚¢‚©AƒCƒ“ƒXƒg[ƒ‹‚³‚ê‚Ä‚¢‚È‚¢B, 3, 0
-			Send, #h
-		}
-	}
-	IfExist, %softwareRun%
-	{
-		sleep 100
-		strSplitArray := StrSplit(softwareRun, "\" )
-		ii := strSplitArray.MaxIndex()
-		exename := strSplitArray[ii]
-		WinActivate, ahk_exe %exename%
-		WinGetTitle, softwareTitle, ahk_exe %exename%
-		regFoundpos := RegExMatch(softwareTitle, ".*\(–³‘è\).*GŠÛ$")
-		if % StrLen(UniqueID) > 3  && regFoundpos == 0
-		{
-			sleep 100
-			Send, ^n
-			;	•¾ŠQ‚ª‚ ‚èA‹N“®‚ÉŠÔ‚ª‚©‚©‚éB
-		}
-	}
-return
-
-;;; Eclipse win + Alt + i
-;	‚È‚º‚©‹N“®‚¹‚¸A‘Îˆ•û–@‚ª‚í‚©‚ç‚È‚¢B
-#!i::
-	softwareRun := "C:\pleiades\eclipse\eclipse.exe"
-	UniqueID := WinExist("ahk_exe eclipse.exe")
-	IfExist, %softwareRun%
-	{
-		if % StrLen(UniqueID) == 3
-		{
-			Run, open %softwareRun%, ,  UseErrorLevel, softwarePID
-		}
-	}
-	else
-	{
-		softwareRun := "C:\Program Files (x86)\eclipse-pleiades\eclipse\eclipse.exe"
-		IfExist, %softwareRun%
-		{
-			UniqueID := WinExist("ahk_exe eclipse.exe")
-			if % StrLen(UniqueID) == 3
-			{
-				Run, open %softwareRun%, ,  UseErrorLevel, softwarePID
-			}
-		}
-		else
-		{
-			softwareRun := "C:\Program Files\eclipse-pleiades\eclipse\eclipse.exe"
-			IfExist, %softwareRun%
-			{
-				UniqueID := WinExist("ahk_exe eclipse.exe")
-				if % StrLen(UniqueID) == 3
-				{
-					Run, open %softwareRun%, ,  UseErrorLevel, softwarePID
-				}
-			}
-			else
-			{
-				Send, #!i
-			}
-		}
-	}
-	IfExist, %softwareRun%
-	{
-		sleep 250
-		if % StrLen(UniqueID) == 3
-		{
-			WinActivate, ahk_exe eclipse.exe
-		}
-		else
-		{
-			WinActivate, ahk_id %UniqueID%
-		}
-	}
-return
-
-;;; VisualStudioCode win + Alt + Ctrl + i
-#!^i::
-	StringTrimRight, appdataRoaming, A_AppData, 7
-	softwareRun := appdataRoaming . "Local\Programs\Microsoft VS Code\Code.exe"
-	UniqueID := WinExist("ahk_exe Code.exe")
-	IfExist, %softwareRun%
-	{
-		if % StrLen(UniqueID) == 3
-		{
-			Run, %softwareRun%, , , softwarePID
-		}
-	}
-	else
-	{
-		softwareRun := "C:\Program Files (x86)\Microsoft VS Code\Code.exe"
-		IfExist, %softwareRun%
-		{
-			if % StrLen(UniqueID) == 3
-			{
-				Run, %softwareRun%, , , softwarePID
-			}
-		}
-		else
-		{
-			softwareRun := "C:\Program Files\Microsoft VS Code\Code.exe"
-			IfExist, %softwareRun%
-			{
-				if % StrLen(UniqueID) == 3
-				{
-					Run, %softwareRun%, , , softwarePID
-				}
-			}
-			else
-			{
-				Send, #g
-			}
-		}
-	}
-	IfExist, %softwareRun%
-	{
-		sleep 250
-		if % StrLen(UniqueID) == 3
-		{
-			WinActivate, ahk_exe Code.exe
-		}
-		else
-		{
-			WinActivate, ahk_id %UniqueID%
-		}
-	}
-return
-
-;;; Jasper soft win + Alt + j
-#!j::
-	jaspersoft := "C:\Program Files\TIBCO\Jaspersoft Studio-6.16.0\Jaspersoft Studio.exe"
-	IfExist, %jaspersoft%
-	{
-		UniqueID := WinExist("ahk_exe Jaspersoft Studio.exe")
-		if % StrLen(UniqueID) == 3
-		{
-			Run, %jaspersoft%, , , varJaspersoftPID
-		}
-		else
-		{
-			WinActivate, ahk_exe %jaspersoft%
-			return
-		}
-	}
-	else
-	{
-		jaspersoft := "C:\Program Files (x86)\TIBCO\Jaspersoft Studio-6.16.0\Jaspersoft Studio.exe"
-		IfExist, %jaspersoft%
-		{
-			UniqueID := WinExist("ahk_exe %jaspersoft%")
-			if % StrLen(UniqueID) == 3
-			{
-				Run, %jaspersoft%, , , varJaspersoftPID
-			}
-			else
-			{
-				WinActivate, ahk_exe %jaspersoft%
-				return
-			}
-		}
-		else
-		{
-			Send, #!j
-		}
-	}
-	IfExist, %jaspersoft%
-	{
-		sleep 150
-		if % StrLen(UniqueID) == 3
-		{
-			WinActivate, ahk_exe %jaspersoft%
-		}
-		else
-		{
-			WinActivate, ahk_id %UniqueID%
-		}
-	}
-return
-
-;;; ƒLƒ“ƒhƒ‹ win + Alt + k
-#+!k::
-#!k::
-	StringTrimRight, appdataRoaming, A_AppData, 7
-	softwareRun := appdataRoaming . "Local\Amazon\Kindle\application\Kindle.exe"
-	IfExist, %softwareRun%
-	{
-		UniqueID := WinExist("ahk_exe Kindle.exe")
-		if % StrLen(UniqueID) == 3
-		{
-			sleep 100
-			Run, %softwareRun%, , , softwarePID
-		}
-	}
-	else
-	{
-		softwareRun := "C:\Program Files (x86)\Amazon\Kindle\Kindle.exe"
-		IfExist, %softwareRun%
-		{
-			UniqueID := WinExist("ahk_exe Kindle.exe")
-			if % StrLen(UniqueID) == 3
-			{
-				sleep 100
-				Run, %softwareRun%, , , softwarePID
-			}
-		}
-		else
-		{
-			softwareRun := "C:\Program Files\Amazon\Kindle\Kindle.exe"
-			IfExist, %softwareRun%
-			{
-				UniqueID := WinExist("ahk_exe Kindle.exe")
-				if % StrLen(UniqueID) == 3
-				{
-					sleep 100
-					Run, %softwareRun%, , , softwarePID
-				}
-			}
-			else
-			{
-				Send, #g
-			}
-		}
-	}
-	IfExist, %softwareRun%
-	{
-		sleep 250
-		if % StrLen(UniqueID) == 3
-		{
-			WinActivate, ahk_exe Kindle.exe
-		}
-		else
-		{
-			WinActivate, ahk_id %UniqueID%
-		}
-	}
-return
-
-;;; Minecraft win + Alt + m
-#+!m::
-#!m::
-	softwareRun := "C:\Program Files (x86)\Minecraft\MinecraftLauncher.exe"
-	UniqueID := WinExist("ahk_exe MinecraftLauncher.exe")
-	IfExist, %softwareRun%
-	{
-		if % StrLen(UniqueID) == 3
-		{
-			Run, open %softwareRun%, , , softwarePID
-		}
-	}
-	else
-	{
-		softwareRun := "C:\Program Files\Minecraft\MinecraftLauncher.exe"
-		IfExist, %softwareRun%
-		{
-			if % StrLen(UniqueID) == 3
-			{
-				Run, open %softwareRun%, , , softwarePID
-			}
-		}
-		else
-		{
-			Send, #!m
-		}
-	}
-	IfExist, %softwareRun%
-	{
-		sleep 500
-		if % StrLen(UniqueID) == 3
-		{
-			WinActivate, ahk_exe MinecraftLauncher.exe
-		}
-		else
-		{
-			WinActivate, ahk_id %UniqueID%
-		}
-	}
-return
-
-;;; ƒIƒŠƒWƒ“ win + Alt + o
-#+!o::
-#!o::
-	softwareRun := "C:\Program Files (x86)\Origin\Origin.exe"
-	UniqueID := WinExist("ahk_exe Origin.exe")
-	IfExist, %softwareRun%
-	{
-		if % StrLen(UniqueID) == 3
-		{
-			Run, open %softwareRun%, , , varOriginPID
-		}
-	}
-	else
-	{
-		softwareRun := "C:\Program Files\Origin\Origin.exe"
-		IfExist, %softwareRun%
-		{
-			if % StrLen(UniqueID) == 3
-			{
-				Run, open %softwareRun%, , , varOriginPID
-			}
-		}
-		else
-		{
-			Send, #!s
-		}
-	}
-	IfExist, %softwareRun%
-	{
-		sleep 150
-		if % StrLen(UniqueID) == 3
-		{
-			WinActivate, ahk_exe Origin.exe
-		}
-		else
-		{
-			WinActivate, ahk_id %UniqueID%
-		}
-	}
-return
-
-;;; WindowsOS•W€‚ÌƒyƒCƒ“ƒg@Win{p
-#p::
-	Run, %systemroot%\system32\mspaint.exe, , , varPaintPID
-	; %windir%	‚Æ‚Ç‚¤ˆá‚¤H
-;	¦WindowOS•W€‚ÌƒVƒ‡[ƒgƒJƒbƒgƒL[‚ğã‘‚«‚·‚é‚±‚Æ‚É‚È‚é‚½‚ßA‹C‚ğ‚Â‚¯‚é‚±‚ÆB
-;		ƒfƒ…ƒAƒ‹ƒfƒBƒXƒvƒŒƒC—p‚ÌƒVƒ‡[ƒgƒJƒbƒgH
-	sleep 300
-	SetTitleMatchMode,2
-	WinActivate ,ƒyƒCƒ“ƒg
-return
-
-;;;ƒTƒNƒ‰ƒGƒfƒBƒ^ win + Ctrl + s
-#^s::
-	softwareRun := "C:\Program Files\sakura\sakura.exe"
-;	¦WindowOS•W€‚ÌƒVƒ‡[ƒgƒJƒbƒgƒL[‚ğã‘‚«‚·‚é‚±‚Æ‚É‚È‚é‚½‚ßA‹C‚ğ‚Â‚¯‚é‚±‚ÆB
-;		‰¹º”F¯‚ÌƒZƒbƒgƒAƒbƒv‰æ–Ê‚ª‹N“®‚·‚éB
-	IfExist, %softwareRun%
-	{
-		Run, %softwareRun%, , , softwarePID
-	}
-	else
-	{
-		softwareRun := "C:\Program Files (x86)\sakura\sakura.exe"
-		IfExist, %softwareRun%
-		{
-			Run, %softwareRun%, , , softwarePID
-		}
-		else
-		{
-			Send, #^s
-		}
-	}
-	IfExist, %softwareRun%
-	{
-		sleep 100
-		WinActivate
-	}
-return
-
-;;; Steam win + Alt + s
-#+!s::
-#!s::
-	softwareRun := "C:\Program Files (x86)\Steam\Steam.exe"
-	UniqueID := WinExist("ahk_exe Steam.exe")
-	IfExist, %softwareRun%
-	{
-		if % StrLen(UniqueID) == 3
-		{
-			Run, open %softwareRun%, , , softwarePID
-		}
-	}
-	else
-	{
-		softwareRun :="C:\Program Files\Steam\Steam.exe"
-		IfExist, %softwareRun%
-		{
-			if % StrLen(UniqueID) == 3
-			{
-				Run, open %softwareRun%, , , softwarePID
-			}
-		}
-		else
-		{
-			Send, #!s
-		}
-	}
-	IfExist, %softwareRun%
-	{
-		sleep 150
-		if % StrLen(UniqueID) == 3
-		{
-			WinActivate, ahk_exe Steam.exe
-		}
-		else
-		{
-			WinActivate, ahk_id %UniqueID%
-		}
-	}
-return
-
-;	Dropbox win + Alt + x
-#!x::
-	Process, Exist, Dropbox.exe
-	softwarePID := ErrorLevel
-	softwareRun := "C:\Program Files (x86)\Dropbox\Client\Dropbox.exe"
-	IfExist, %softwareRun%
-	{
-		If ( softwarePID == 0 )
-		{
-			Run, open %softwareRun%, , , softwarePID
-		}
-	}
-	else
-	{
-		softwareRun := "C:\Program Files\Dropbox\Client\Dropbox.exe"
-		IfExist, %softwareRun%
-		{
-			If ( softwarePID == 0 )
-			{
-				Run, open %softwareRun%, , , softwarePID
-			}
-		}
-		else
-		{
-			Send, #!x
-		}
-	}
-	IfExist, %softwareRun%
-	{
-		Run Explorer "Dropbox"
-		sleep 500
-		Send, !ddropbox{Enter}
 	}
 return
 
@@ -1002,17 +447,843 @@ return
 	}
 return
 
-;	¡Control+wƒL[‚Ì‘g‚İ‡‚í‚¹‚ÅƒEƒBƒ“ƒhƒE‚ğ•Â‚¶‚½‚¢.
+#+e::
+;	win + Shift + e
+;	Explorerã‚’æ¬¡ã€…ã«æœ€å°åŒ–ã«ã™ã‚‹ã€‚
+	WinGet, OutputList, List, ahk_class CabinetWClass
+	Loop, %OutputList%
+	{
+		dirID := % OutputList%A_Index%
+		WinMinimize, ahk_id %dirID%
+	}
+return
+
+#^e::
+;	win + Ctrl + e
+;	Explorerã‚’ã™ã¹ã¦ã‚¢ã‚¯ãƒ†ã‚£ãƒ–åŒ–ã™ã‚‹ã€‚
+	WinGet, OutputList, List, ahk_class CabinetWClass
+	Loop, %OutputList%
+	{
+		dirID := % OutputList%A_Index%
+		WinActivate, ahk_id %dirID%
+	}
+	WinActivate, A
+return
+
+;;; "Visual Studio" win + Alt + Ctrl + i
+#!^i::
+	Array := [ "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Visual Studio 2019.lnk"
+			 , "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Visual Studio 2017.lnk"
+			 , "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Visual Studio 2015.lnk"
+			 , "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Visual Studio 2013.lnk"
+			 , "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Visual Studio 2012.lnk"
+			 , ""]
+	oneSoftware :=
+
+	; ä»¥ä¸‹ã€ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã«ã‚ˆã£ã¦ã¯å¤‰æ›´ãŒå¿…è¦ã«ãªã‚‹ã ã‚ã†ã€‚
+	oneSoftware := officeExeRunGoGo(Array, varSoftwarePID, "devenv.exe", "#!^i")
+	IfExist, %oneSoftware%
+	{
+		sleep 200
+		WinActivate, ahk_pid %varSoftwarePID%
+	}
+return
+
+; ä»¥ä¸‹ã€æ”¹è‰¯ãŒå¿…è¦â‡’ä¸€å¤ªéƒèµ·å‹•ã«å¤‰æ›´ã€‚
+#!+i::
+;	eclipse := "C:\pleiades\eclipse\eclipse.exe"
+;	IfNotExist, %eclipse%
+;	{
+;		eclipse := "C:\Program Files (x86)\eclipse-pleiades\eclipse\eclipse.exe"
+;		IfNotExist, %eclipse%
+;		{
+;			eclipse := "C:\Program Files\eclipse-pleiades\eclipse\eclipse.exe"
+;			IfNotExist, %eclipse%
+;			{
+;				Send, #!+i
+;			}
+;		}
+;	}
+;	IfExist, %eclipse%
+;	{
+;		WinGet, activeWinID, IDLast, ahk_class SWT_Window0, , - Eclipse IDE
+;		WinActivate, ahk_id %activeWinID%
+;	}
+;
+;	StringTrimRight, appdataRoaming, A_AppData, 7
+;	msvscode := appdataRoaming . "Local\Programs\Microsoft VS Code\Code.exe"
+;	IfNotExist, %msvscode%
+;	{
+;		msvscode := "C:\Program Files (x86)\Microsoft VS Code\Code.exe"
+;		IfNotExist, %msvscode%
+;		{
+;			msvscode := "C:\Program Files\Microsoft VS Code\Code.exe"
+;			IfNotExist, %msvscode%
+;			{
+;				Send, #!+i
+;			}
+;		}
+;	}
+;	IfExist, %msvscode%
+;	{
+;		WinGet, activeWinID, IDLast, ahk_exe %msvscode%
+;		WinActivate, ahk_id %activeWinID%
+;	}
+;return
+;#!+i::
+;	ä¸€å¤ªéƒèµ·å‹•ã«å¤‰æ›´ã€‚
+;	; Win+Alt+Shift+i
+	Array := [ "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\ä¸€å¤ªéƒ\ä¸€å¤ªéƒ2025.lnk"
+			 , "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\ä¸€å¤ªéƒ\ä¸€å¤ªéƒ2024.lnk"
+			 , "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\ä¸€å¤ªéƒ\ä¸€å¤ªéƒ2023.lnk"
+			 , "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\ä¸€å¤ªéƒ\ä¸€å¤ªéƒ2022.lnk"
+			 , "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\ä¸€å¤ªéƒ\ä¸€å¤ªéƒ2021.lnk"
+			 , "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\ä¸€å¤ªéƒ\ä¸€å¤ªéƒ2020.lnk"
+			 , "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\ä¸€å¤ªéƒ\ä¸€å¤ªéƒ2019.lnk"
+			 , "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\ä¸€å¤ªéƒ\ä¸€å¤ªéƒ2018.lnk"
+			 , "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\ä¸€å¤ªéƒ\ä¸€å¤ªéƒ2017.lnk"
+			 , "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\ä¸€å¤ªéƒ\ä¸€å¤ªéƒ2016.lnk"
+			 , "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\ä¸€å¤ªéƒ\ä¸€å¤ªéƒ2015.lnk"
+			 , ""]
+	oneSoftware :=
+	varSoftwarePID :=
+
+	; ãƒãƒ¼ã‚¸ãƒ§ãƒ³å¤‰æ›´ã«ã‚ˆã‚Šã€å¿…ãšä»¥ä¸‹(ç¬¬3å¼•æ•°)ã®ä¿®æ­£ãŒå¿…è¦ã«ãªã‚‹ã€‚
+	oneSoftware := officeRunGoGo(Array, varSoftwarePID, "js:TARO28", "#!+i")
+	IfExist, %oneSoftware%
+	{
+		sleep 200
+		WinActivate, ahk_pid %varSoftwarePID%
+	}
+return
+
+;	Dropbox win + Alt + x
+#!x::
+	Array := [ "C:\Program Files\Dropbox\Client\Dropbox.exe"
+			 , "C:\Program Files (x86)\Dropbox\Client\Dropbox.exe"
+			 , "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Dropbox\Dropbox.lnk"
+			 , ""]
+	oneSoftware :=
+	varSoftwarePID :=
+
+	oneSoftware := softRunGoGo(Array, varSoftwarePID, "#!x")
+	IfExist, %oneSoftware%
+	{
+		Run Explorer "Dropbox", , , varExplorerPID
+		sleep 1000
+		WinActivate, ahk_id %varExplorerPID%
+		Send, !ddropbox{Enter}
+	}
+return
+
+;;; Steam win + Alt + s
+#^!s::
+#!s::
+	Array := [ "C:\Program Files\Steam\Steam.exe"
+			 , "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Steam\Steam.lnk"
+			 , "C:\Program Files (x86)\Steam\Steam.exe"
+			 , ""]
+	oneSoftware :=
+
+	UniqueID := WinExist("ahk_exe Steam.exe")
+	oneSoftware := softRunGoGo(Array, varSoftwarePID, "#!s")
+
+	IfExist, %oneSoftware%
+	{
+		sleep 150
+		WinActivate, ahk_pid %varSoftwarePID%
+	}
+return
+
+;;; ã‚ªãƒªã‚¸ãƒ³ win + Alt + o
+#^!o::
+#!o::
+	Array := [ "C:\Program Files\Origin\Origin.exe"
+			 , "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Origin\Origin.lnk"
+			 , "C:\Program Files (x86)\Origin\Origin.exe"
+			 , ""]
+	oneSoftware :=
+
+	UniqueID := WinExist("ahk_exe Origin.exe")
+	oneSoftware := softRunGoGo(Array, varSoftwarePID, "#!o")
+	IfExist, %oneSoftware%
+	{
+		sleep 150
+		WinActivate, ahk_pid %varSoftwarePID%
+	}
+return
+
+;;; Minecraft win + Alt + m
+#+!m::
+#!m::
+	Array := [ "C:\Program Files\Minecraft\MinecraftLauncher.exe"
+			 , "C:\Program Files (x86)\Minecraft\MinecraftLauncher.exe"
+			 , "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Minecraft\Minecraft.lnk"
+			 , ""]
+	oneSoftware :=
+	varSoftwarePID :=
+
+	oneSoftware := officeExeRunGoGo(Array, varSoftwarePID, "minecraft.exe", "#!m")
+	IfExist, %oneSoftware%
+	{
+		sleep 200
+		WinActivate, ahk_pid %varSoftwarePID%
+	}
+return
+
+;;; ã‚­ãƒ³ãƒ‰ãƒ« win + Alt + k
+#+!k::
+#!k::
+	Array := [ "C:\Program Files\Amazon\Kindle\Kindle.exe"
+			 , UserProfile . "\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Amazon\Amazon Kindle\.lnk"
+			 , "C:\Program Files (x86)\Amazon\Kindle\Kindle.exe"
+			 , ""]
+	oneSoftware :=
+
+	StringTrimRight, appdataRoaming, A_AppData, 7
+	Kindle := appdataRoaming . "Local\Amazon\Kindle\application\Kindle.exe"
+	UniqueID := WinExist("ahk_exe Kindle.exe")
+	IfExist, %Kindle%
+	{
+		if % StrLen(UniqueID) == 3
+		{
+			sleep 100
+			Run, %Kindle%, , , varKindlePID
+		}
+	}
+	else
+	{
+		oneSoftware := softRunGoGo(Array, varSoftwarePID, "#!k")
+	}
+
+	; ä»¥ä¸‹ã®å‡¦ç†å¿…è¦ã‹ï¼Ÿ
+	IfExist, %Kindle%
+	{
+		sleep 450
+		if % StrLen(UniqueID) == 3
+		{
+			WinActivate, ahk_exe Kindle.exe
+		}
+		else
+		{
+			WinActivate, ahk_id %UniqueID%
+		}
+	}
+return
+
+;;;	JW_CAD_win
+#!j::
+	; Win + Alt + j
+	; ä»¥ä¸‹ã€ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«å…ˆã®Pathã‚’å¤‰æ›´ã™ã‚‹å¿…è¦ãŒå‡ºã¦ãã‚‹ã“ã¨ã ã‚ã†ã€‚
+	Array := [ "C:\jww\Jw_win.exe"
+			 , "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Jw_cad\jw_cad.lnk"
+			 , ""]
+	oneSoftware :=
+
+;	oneSoftware := officeRunGoGo(Array, varSoftwarePID, "Afx:00400000:b:00010005:00000006:011B0669", "#^j")
+;	oneSoftware := softRunGoGo(Array, varSoftwarePID, "#^j")
+	oneSoftware := officeExeRunGoGo(Array, varSoftwarePID, "Jw_win.exe", "#^j")
+
+	IfExist, %oneSoftware%
+	{
+		sleep 200
+		WinActivate, ahk_pid %varSoftwarePID%
+	}
+return
+
+;;; Eclipse win + Alt + i
+;	ãªãœã‹èµ·å‹•ã›ãšã€å¯¾å‡¦æ–¹æ³•ãŒã‚ã‹ã‚‰ãªã„ã€‚
+#!i::
+	Array := [ "C:\pleiades\eclipse\eclipse.exe"
+			 , "C:\Program Files\eclipse-pleiades\eclipse\eclipse.exe"
+			 , "C:\Program Files (x86)\eclipse-pleiades\eclipse\eclipse.exe"
+			 , ""]
+	oneSoftware :=
+
+	; ä»¥ä¸‹ã€ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã«ã‚ˆã£ã¦ã¯å¤‰æ›´ãŒå¿…è¦ã«ãªã‚‹ã ã‚ã†ã€‚
+	oneSoftware := officeRunGoGo(Array, varSoftwarePID, "SWT_Window0", "#!i")
+
+	IfExist, %oneSoftware%
+	{
+		sleep 200
+		WinActivate, ahk_pid %varSoftwarePID%
+	}
+return
+
+;;; Godoto win + Alt + e
+#^!g::
+#!g::
+	Array := [ "C:\Program Files\Godot.exe"
+			 , "C:\Program Files\Godot_v3.3.2-stable_win64.exe"
+			 , "C:\Program Files\Godot\Godot.exe"
+			 , "C:\Program Files\Godot\Godot_v3.3.2-stable_win64.exe"
+			 , "C:\Program Files (x86)\Godot.exe"
+			 , "C:\Program Files (x86)\Godot\Godot.exe"
+			 , "C:\Program Files (x86)\Godot\Godot_v3.3.2-stable_win32.exe"
+			 , ""]
+	oneSoftware :=
+
+	oneSoftware := officeExeRunGoGo(Array, varSoftwarePID, "Godot_v3.3.2-stable_win64.exe", "#!g")
+	IfExist, %oneSoftware%
+	{
+		sleep 200
+		WinActivate, ahk_pid %varSoftwarePID%
+	}
+return
+
+;;; Evernote win + Alt + e
+#^!e::
+#!e::
+	Array := [ "C:\Program Files\Evernote\Evernote\Evernote.exe"
+			 , "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Evernote\Evernote.lnk"
+			 , "C:\Program Files (x86)\Evernote\Evernote\Evernote.exe"
+			 , ""]
+	oneSoftware :=
+
+	oneSoftware := officeRunGoGo(Array, varSoftwarePID, "ENMainFrame", "#!e")
+
+	IfExist, %oneSoftware%
+	{
+		sleep 200
+		WinActivate, ahk_pid %varSoftwarePID%
+	}
+return
+
+;;; Infinityãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯CAD win + Alt + c
+#!c::
+	Array := [ "C:\Program Files\AisanTechnology\WingneoINFINITY\WNI64UTL\UTIL\StartWos.exe"
+			 , "C:\Program Files (x86)\AisanTechnology\WingneoINFINITY\WNI64UTL\UTIL\StartWos.exe"
+			 , ""]
+	oneSoftware :=
+
+For index, element in Array
+{
+	IF FileExist( element )
+	{
+		softwareRunString := element . " /NET /N"
+		Run, %softwareRunString%, , , varSoftwarePID
+		oneSoftware = %element%
+		break
+	}
+	Else If % index = Array.MaxIndex()
+	{
+		Send, #!c
+	}
+}
+	IfExist, %oneSoftware%
+	{
+		sleep 800
+
+		WinGetTitle, titleNameGet, INFINITY
+		if titleNameGet =
+		{
+			WinGetTitle, titleNameGet, WingFan
+		}
+		WinGetClass, OutputVar, %titleNameGet%
+		WinActivate ahk_class %OutputVar%
+	}
+return
+
+;;;ã‚µã‚¯ãƒ©ã‚¨ãƒ‡ã‚£ã‚¿ win + Ctrl + s
+#^s::
+;	â€»WindowOSæ¨™æº–ã®ã‚·ãƒ§ãƒ¼ãƒˆã‚«ãƒƒãƒˆã‚­ãƒ¼ã‚’ä¸Šæ›¸ãã™ã‚‹ã“ã¨ã«ãªã‚‹ãŸã‚ã€æ°—ã‚’ã¤ã‘ã‚‹ã“ã¨ã€‚
+;		éŸ³å£°èªè­˜ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ç”»é¢ãŒèµ·å‹•ã™ã‚‹ã€‚
+	Array := Object()
+	Array := [ "C:\Program Files\sakura\sakura.exe"
+			 , "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\ã‚µã‚¯ãƒ©ã‚¨ãƒ‡ã‚£ã‚¿\ã‚µã‚¯ãƒ©ã‚¨ãƒ‡ã‚£ã‚¿.lnk"
+			 , "C:\Program Files (x86)\sakura\sakura.exe"
+			 , "" ]
+	oneSoftware :=
+	varSoftwarePID :=
+
+	oneSoftware := softRunGoGo(Array, varSoftwarePID, "#^s")
+
+	IfExist, %oneSoftware%
+	{
+		sleep 300
+		WinActivate, ahk_pid %varSoftwarePID%
+	}
+return
+
+;;; Jasper soft win + Ctrl + j
+#^j::
+	; ã“ã£ã¡ã‚’ä¸€å¤ªéƒèµ·å‹•ã«ã™ã‚‹ï¼Ÿ
+Array := [ "C:\Program Files\TIBCO\Jaspersoft Studio-6.16.0\Jaspersoft Studio.exe"
+		 , "C:\Program Files (x86)\TIBCO\Jaspersoft Studio-6.16.0\Jaspersoft Studio.exe"
+		 , ""]
+	oneSoftware :=
+	varSoftwarePID :=
+
+	oneSoftware := softRunGoGo(Array, varSoftwarePID, "#!j")
+	IfExist, %oneSoftware%
+	{
+		sleep 300
+		WinActivate, ahk_pid %varSoftwarePID%
+	}
+return
+
+#^v::
+	Array := [ "C:\Program Files\Vim\gvim.exe"
+			 , "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Vim 8.2\gVim.lnk"
+			 , "C:\Program Files\vim82-kaoriya-win64\gvim.exe"
+			 , "C:\Program Files (x86)\Vim\gvim.exe"
+			 , "C:\Program Files (x86)\vim82-kaoriya-win64\gvim.exe"
+			 , ""]
+
+	moveBackToFront(Array, "#^v")
+return
+
+;;; WindowsOSæ¨™æº–ã®ãƒšã‚¤ãƒ³ãƒˆã€€Winï¼‹p
+#p::
+	Run, %systemroot%\system32\mspaint.exe, , , varPaintPID
+;	â€»WindowOSæ¨™æº–ã®ã‚·ãƒ§ãƒ¼ãƒˆã‚«ãƒƒãƒˆã‚­ãƒ¼ã‚’ä¸Šæ›¸ãã™ã‚‹ã“ã¨ã«ãªã‚‹ãŸã‚ã€æ°—ã‚’ã¤ã‘ã‚‹ã“ã¨ã€‚
+;		ãƒ‡ãƒ¥ã‚¢ãƒ«ãƒ‡ã‚£ã‚¹ãƒ—ãƒ¬ã‚¤ç”¨ã®ã‚·ãƒ§ãƒ¼ãƒˆã‚«ãƒƒãƒˆï¼Ÿ
+	sleep 300
+	SetTitleMatchMode,2
+	WinActivate ,ãƒšã‚¤ãƒ³ãƒˆ
+return
+
+;;;ç§€ä¸¸ win + h
+#h::
+;	â€»WindowOSæ¨™æº–ã®ã‚·ãƒ§ãƒ¼ãƒˆã‚«ãƒƒãƒˆã‚­ãƒ¼ã‚’ä¸Šæ›¸ãã™ã‚‹ã“ã¨ã«ãªã‚‹ãŸã‚ã€æ°—ã‚’ã¤ã‘ã‚‹ã“ã¨ã€‚
+;		ãƒ‡ã‚£ã‚¯ãƒ†ãƒ¼ã‚·ãƒ§ãƒ³ãªã‚‹ã‚‚ã®ãŒå‹•ãã‚ˆã†ã ã€‚ã—ã‹ã—ã€æ—¥æœ¬èªé‹ç”¨æ™‚ã¯å‹•ã‹ãªã„ã‚ˆã†ã ã€‚
+	Array := [ "C:\Program Files\Hidemaru\Hidemaru.exe"
+			 , "C:\Program Files (x86)\Hidemaru\Hidemaru.exe"
+			 , ""]
+
+	oneSoftware :=
+	varSoftwarePID :=
+	UniqueID := WinExist("ahk_exe Hidemaru.exe")
+
+For index, element in Array
+{
+	IF FileExist( element )
+	{
+		WinActivate, ahk_exe %element%
+		oneSoftware = %element%
+		break
+	}
+	Else If % index = Array.MaxIndex()
+	{
+		Send, #h
+	}
+}
+	IfExist, %oneSoftware%
+	{
+		sleep 100
+		WinActivate, ahk_pid %varSoftwarePID%
+
+		WinGetTitle, hidemaruTitle, ahk_exe %oneSoftware%
+		regFoundpos := RegExMatch(hidemaruTitle, ".*\(ç„¡é¡Œ\).*ç§€ä¸¸$")
+		if % StrLen(UniqueID) > 3  && regFoundpos == 0
+		{
+			Send, ^n
+			;	å¼Šå®³ãŒã‚ã‚Šã€èµ·å‹•ã«æ™‚é–“ãŒã‹ã‹ã‚‹ã€‚
+		}
+		else if % StrLen(UniqueID) < 4
+		{
+			Run, %element%, , , varSoftwarePID
+		}
+		else
+		{
+			WinActivate, ahk_exe %element%
+		}
+	}
+return
+
+;;; Sourcetree win + g
+#^g::
+#g::
+;	â€»WindowOSæ¨™æº–ã®ã‚·ãƒ§ãƒ¼ãƒˆã‚«ãƒƒãƒˆã‚­ãƒ¼ã‚’ä¸Šæ›¸ãã™ã‚‹ã“ã¨ã«ãªã‚‹ãŸã‚ã€æ°—ã‚’ã¤ã‘ã‚‹ã“ã¨ã€‚
+	;	Windowsæ¨™æº–ã®Xboxã‚²ãƒ¼ãƒ è¨˜éŒ²ç”¨ãƒ—ãƒ­ã‚°ãƒ©ãƒ ã®èµ·å‹•ã‚’æ½°ã™(æ½°ã—ãã‚Œãªã„ã®ã ãŒã€ã‚·ãƒ§ãƒ¼ãƒˆã‚«ãƒƒãƒˆã‚’ç„¡åŠ¹åŒ–ã—ãŸ)ã€‚
+	Array := [ "C:\Program Files\SourceTree\SourceTree.exe"
+			 , UserProfile . "\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Atlassian\Sourcetree.lnk"
+			 , "C:\Program Files (x86)\SourceTree\SourceTree.exe"
+			 , ""]
+	oneSoftware :=
+
+	StringTrimRight, appdataRoaming, A_AppData, 7
+	Sourcetree := appdataRoaming . "Local\SourceTree\SourceTree.exe"
+
+	UniqueID := WinExist("ahk_exe SourceTree.exe")
+
+	IfExist, %Sourcetree%
+	{
+		if % StrLen(UniqueID) == 3
+		{
+			Run, %Sourcetree%, , , varSourcetreePID
+		}
+	}
+	else
+	{
+		oneSoftware := softRunGoGo(Array, varSoftwarePID, "#g")
+	}
+
+	; ä»¥ä¸‹ã®å‡¦ç†å¿…è¦ã‹ï¼Ÿ
+	IfExist, %Sourcetree%
+	{
+		sleep 300
+		if % StrLen(UniqueID) == 3
+		{
+			WinActivate, ahk_exe SourceTree.exe
+		}
+		else
+		{
+			WinActivate, ahk_id %UniqueID%
+		}
+	}
+return
+
+;;; Firefoxãƒ–ãƒ©ã‚¦ã‚¶ win + f
+#f::
+;	â€»WindowOSæ¨™æº–ã®ã‚·ãƒ§ãƒ¼ãƒˆã‚«ãƒƒãƒˆã‚­ãƒ¼ã‚’ä¸Šæ›¸ãã™ã‚‹ã“ã¨ã«ãªã‚‹ãŸã‚ã€æ°—ã‚’ã¤ã‘ã‚‹ã“ã¨ã€‚
+;		ãƒ•ã‚£ãƒ¼ãƒ‰ãƒãƒƒã‚¯Hubã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãŒèµ·å‹•ã™ã‚‹(æ™®é€šã¯ä½¿ã‚ãªã„ã‚ˆã­)ã€‚
+	Array := [ "C:\Program Files\Mozilla Firefox\firefox.exe"
+			 , "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Firefox.lnk"
+			 , "C:\Program Files (x86)\Mozilla Firefox\firefox.exe"
+			 , ""]
+	oneSoftware :=
+
+	oneSoftware := softRunGoGo(Array, varSoftwarePID, "#f")
+	IfExist, %oneSoftware%
+	{
+		sleep 150
+		WinActivate, ahk_pid %varSoftwarePID%
+	}
+return
+
+;;; Chrome win + c
+#c::
+;	â€»WindowOSæ¨™æº–ã®ã‚·ãƒ§ãƒ¼ãƒˆã‚«ãƒƒãƒˆã‚­ãƒ¼ã‚’ä¸Šæ›¸ãã™ã‚‹ã“ã¨ã«ãªã‚‹ãŸã‚ã€æ°—ã‚’ã¤ã‘ã‚‹ã“ã¨ã€‚
+	;	Windowsæ¨™æº–ã®Cortanaèµ·å‹•ã®ã‚·ãƒ§ãƒ¼ãƒˆã‚«ãƒƒãƒˆã‚’æ½°ã™20210110
+	Array := [ "C:\Program Files\Google\Chrome\Application\chrome.exe"
+			 , "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Google Chrome.lnk"
+			 , "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe"
+			 , ""]
+	oneSoftware :=
+
+	oneSoftware := softRunGoGo(Array, varSoftwarePID, "#c")
+	IfExist, %oneSoftware%
+	{
+		sleep 280
+		WinActivate, ahk_pid %varSoftwarePID%
+	}
+return
+
+; Accessèµ·å‹•
+AppsKey & a::
+	Array := [ "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Access.lnk"
+			 , "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Microsoft Office\Microsoft Office Access 2019.lnk"
+			 , "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Microsoft Office\Microsoft Office Access 2016.lnk"
+			 , "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Microsoft Office\Microsoft Office Access 2013.lnk"
+			 , "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Microsoft Office\Microsoft Office Access 2010.lnk"
+			 , "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Microsoft Office\Microsoft Office Access 2007.lnk"
+			 , "C:\Documents and Settings\All Users\ã‚¹ã‚¿ãƒ¼ãƒˆ ãƒ¡ãƒ‹ãƒ¥ãƒ¼\ãƒ—ãƒ­ã‚°ãƒ©ãƒ \Microsoft Office\Microsoft Office Access 2003.lnk"
+			 , "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\LibreOffice 7.0\LibreOffice Base.lnk"
+			 , ""]
+	oneSoftware :=
+
+	oneSoftware := officeExeRunGoGo(Array, varSoftwarePID, "MSACCESS.EXE", "{AppsKey down}a{AppsKey up}")
+	IfExist, %oneSoftware%
+	{
+		sleep 200
+		WinActivate, ahk_pid %varSoftwarePID%
+	}
+return
+
+; Blend for Visual Studioèµ·å‹•
+AppsKey & b::
+	Array := [ "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Blend for Visual Studio 2019.lnk"
+			 , "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Blend for Visual Studio 2017.lnk"
+			 , "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Blend for Visual Studio 2015.lnk"
+			 , "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Blend for Visual Studio 2013.lnk"
+			 , "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Blend for Visual Studio 2012.lnk"
+			 , ""]
+	oneSoftware :=
+
+	oneSoftware := officeExeRunGoGo(Array, varSoftwarePID, "Blend.exe", "{AppsKey down}b{AppsKey up}")
+	IfExist, %oneSoftware%
+	{
+		sleep 200
+		WinActivate, ahk_pid %varSoftwarePID%
+	}
+return
+
+; OneDriveèµ·å‹•
+AppsKey & d::
+	Array := [ UserProfile . "\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\OneDrive.lnk"
+			 , ""]
+	oneSoftware :=
+
+	oneSoftware := softRunGoGo(Array, varSoftwarePID, "{AppsKey down}d{AppsKey up}")
+	IfExist, %oneSoftware%
+	{
+		sleep 200
+		WinActivate, ahk_pid %varSoftwarePID%
+	}
+return
+
+; Excelèµ·å‹•
+AppsKey & e::
+	Array := [ "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Excel.lnk"
+			 , "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Microsoft Office\Microsoft Office Excel 2019.lnk"
+			 , "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Microsoft Office\Microsoft Office Excel 2016.lnk"
+			 , "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Microsoft Office\Microsoft Office Excel 2013.lnk"
+			 , "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Microsoft Office\Microsoft Office Excel 2010.lnk"
+			 , "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Microsoft Office\Microsoft Office Excel 2007.lnk"
+			 , "C:\Documents and Settings\All Users\ã‚¹ã‚¿ãƒ¼ãƒˆ ãƒ¡ãƒ‹ãƒ¥ãƒ¼\ãƒ—ãƒ­ã‚°ãƒ©ãƒ \Microsoft Office\Microsoft Office Excel 2003.lnk"
+			 , "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\LibreOffice 7.0\LibreOffice Calc.lnk"
+			 , ""]
+	oneSoftware :=
+	varSoftwarePID :=
+
+	oneSoftware := officeRunGoGo(Array, varSoftwarePID, "XLMAIN", "{AppsKey down}e{AppsKey up}")
+	IfExist, %oneSoftware%
+	{
+		sleep 200
+		WinActivate, ahk_pid %varSoftwarePID%
+	}
+return
+
+; Grooveèµ·å‹•
+AppsKey & g::
+	Array := [ UserProfile . "\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\.lnk"
+			 , "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Microsoft Office\Microsoft Office Groove 2019.lnk"
+			 , "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Microsoft Office\Microsoft Office Groove 2016.lnk"
+			 , "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Microsoft Office\Microsoft Office Groove 2013.lnk"
+			 , "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Microsoft Office\Microsoft Office Groove 2010.lnk"
+			 , "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Microsoft Office\Microsoft Office Groove 2007.lnk"
+			 , "C:\Documents and Settings\All Users\ã‚¹ã‚¿ãƒ¼ãƒˆ ãƒ¡ãƒ‹ãƒ¥ãƒ¼\ãƒ—ãƒ­ã‚°ãƒ©ãƒ \Microsoft Office\Microsoft Office Groove 2003.lnk"
+			 , ""]
+	oneSoftware :=
+
+	oneSoftware := softRunGoGo(Array, varSoftwarePID, "{AppsKey down}g{AppsKey up}")
+	IfExist, %oneSoftware%
+	{
+		sleep 200
+		WinActivate, ahk_pid %varSoftwarePID%
+	}
+return
+
+; Publisherèµ·å‹•
+AppsKey & h::
+	Array := [ "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Publisher.lnk"
+			 , "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Microsoft Office\Microsoft Office Publisher 2019.lnk"
+			 , "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Microsoft Office\Microsoft Office Publisher 2016.lnk"
+			 , "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Microsoft Office\Microsoft Office Publisher 2013.lnk"
+			 , "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Microsoft Office\Microsoft Office Publisher 2010.lnk"
+			 , "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Microsoft Office\Microsoft Office Publisher 2007.lnk"
+			 , "C:\Documents and Settings\All Users\ã‚¹ã‚¿ãƒ¼ãƒˆ ãƒ¡ãƒ‹ãƒ¥ãƒ¼\ãƒ—ãƒ­ã‚°ãƒ©ãƒ \Microsoft Office\Microsoft Office Publisher 2003.lnk"
+			 , "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\LibreOffice 7.0\LibreOffice Draw.lnk"
+			 , ""]
+	oneSoftware :=
+
+	oneSoftware := officeExeRunGoGo(Array, varSoftwarePID, "MSPUB.EXE", "{AppsKey down}h{AppsKey up}")
+	IfExist, %oneSoftware%
+	{
+		sleep 200
+		WinActivate, ahk_pid %varSoftwarePID%
+	}
+return
+
+; InfoPathèµ·å‹•
+AppsKey & i::
+	Array := [ UserProfile . "\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\.lnk"
+			 , "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Microsoft Office\Microsoft Office InfoPath 2019.lnk"
+			 , "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Microsoft Office\Microsoft Office InfoPath 2016.lnk"
+			 , "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Microsoft Office\Microsoft Office InfoPath 2013.lnk"
+			 , "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Microsoft Office\Microsoft Office InfoPath 2010.lnk"
+			 , "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Microsoft Office\Microsoft Office InfoPath 2007.lnk"
+			 , "C:\Documents and Settings\All Users\ã‚¹ã‚¿ãƒ¼ãƒˆ ãƒ¡ãƒ‹ãƒ¥ãƒ¼\ãƒ—ãƒ­ã‚°ãƒ©ãƒ \Microsoft Office\Microsoft Office InfoPath 2003.lnk"
+			 , ""]
+	oneSoftware :=
+
+	oneSoftware := softRunGoGo(Array, varSoftwarePID, "{AppsKey down}i{AppsKey up}")
+	IfExist, %oneSoftware%
+	{
+		sleep 200
+		WinActivate, ahk_pid %varSoftwarePID%
+	}
+return
+
+AppsKey & k::
+	board := systemroot . "\system32\osk.exe"
+	board := UserProfile . "\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Accessories\Accessibility\On-Screen Keyboard.lnk"
+	Send, #r
+	sleep 100
+	Send, osk.exe{Enter}
+	sleep 100
+	; Windows10ã®å ´åˆã¯ã€ä»¥ä¸‹ã ã‘ã§å‹•ãã€‚
+	Run, %systemroot% . \system32\osk.exe, , , varOskPID
+return
+
+; Outlookèµ·å‹•
+AppsKey & m::
+	Array := [ "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Outlook.lnk"
+			 , "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Microsoft Office\Microsoft Office Outlook 2019.lnk"
+			 , "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Microsoft Office\Microsoft Office Outlook 2016.lnk"
+			 , "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Microsoft Office\Microsoft Office Outlook 2013.lnk"
+			 , "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Microsoft Office\Microsoft Office Outlook 2010.lnk"
+			 , "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Microsoft Office\Microsoft Office Outlook 2007.lnk"
+			 , "C:\Documents and Settings\All Users\ã‚¹ã‚¿ãƒ¼ãƒˆ ãƒ¡ãƒ‹ãƒ¥ãƒ¼\ãƒ—ãƒ­ã‚°ãƒ©ãƒ \Microsoft Office\Microsoft Office Outlook 2003.lnk"
+			 , ""]
+	oneSoftware :=
+
+	oneSoftware := officeRunGoGo(Array, varSoftwarePID, "rctrl_renwnd32", "{AppsKey down}m{AppsKey up}")
+	IfExist, %oneSoftware%
+	{
+		sleep 200
+		WinActivate, ahk_pid %varSoftwarePID%
+	}
+return
+
+; OneNoteèµ·å‹•
+AppsKey & n::
+	Array := [ "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\OneNote.lnk"
+			 , "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Microsoft Office\Microsoft Office OneNote 2019.lnk"
+			 , "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Microsoft Office\Microsoft Office OneNote 2016.lnk"
+			 , "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Microsoft Office\Microsoft Office OneNote 2013.lnk"
+			 , "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Microsoft Office\Microsoft Office OneNote 2010.lnk"
+			 , "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Microsoft Office\Microsoft Office OneNote 2007.lnk"
+			 , "C:\Documents and Settings\All Users\ã‚¹ã‚¿ãƒ¼ãƒˆ ãƒ¡ãƒ‹ãƒ¥ãƒ¼\ãƒ—ãƒ­ã‚°ãƒ©ãƒ \Microsoft Office\Microsoft Office OneNote 2003.lnk"
+			 , ""]
+	oneSoftware :=
+
+	oneSoftware := officeRunGoGo(Array, varSoftwarePID, "Framework::CFrame", "{AppsKey down}n{AppsKey up}")
+	IfExist, %oneSoftware%
+	{
+		sleep 200
+		WinActivate, ahk_pid %varSoftwarePID%
+	}
+return
+
+; PowerPointèµ·å‹•
+AppsKey & p::
+	Array := [ "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\PowerPoint.lnk"
+			 , "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Microsoft Office\Microsoft Office PowerPoint 2019.lnk"
+			 , "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Microsoft Office\Microsoft Office PowerPoint 2016.lnk"
+			 , "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Microsoft Office\Microsoft Office PowerPoint 2013.lnk"
+			 , "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Microsoft Office\Microsoft Office PowerPoint 2010.lnk"
+			 , "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Microsoft Office\Microsoft Office PowerPoint 2007.lnk"
+			 , "C:\Documents and Settings\All Users\ã‚¹ã‚¿ãƒ¼ãƒˆ ãƒ¡ãƒ‹ãƒ¥ãƒ¼\ãƒ—ãƒ­ã‚°ãƒ©ãƒ \Microsoft Office\Microsoft Office PowerPoint 2003.lnk"
+			 , "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\LibreOffice 7.0\LibreOffice Impress.lnk"
+			 , ""]
+	oneSoftware :=
+
+	oneSoftware := officeRunGoGo(Array, varSoftwarePID, "PPTFrameClass", "{AppsKey down}p{AppsKey up}")
+	IfExist, %oneSoftware%
+	{
+		sleep 200
+		WinActivate, ahk_pid %varSoftwarePID%
+	}
+return
+
+; PowerShellèµ·å‹•
+AppsKey & s::
+	Array := [ "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Windows PowerShell\Windows PowerShell ISE.lnk"
+			 , "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Accessories\Windows PowerShell\Windows PowerShell ISE.lnk"
+			 , ""]
+	oneSoftware :=
+
+	oneSoftware := officeExeRunGoGo(Array, varSoftwarePID, "PowerShell_ISE.exe", "{AppsKey down}s{AppsKey up}")
+	IfExist, %oneSoftware%
+	{
+		sleep 200
+		WinActivate, ahk_pid %varSoftwarePID%
+	}
+return
+
+AppsKey & u::
+	cal := systemroot . "\system32\calc.exe"
+	Run, %systemroot%\system32\calc.exe, , , varCalcPID
+return
+
+; VSCodeèµ·å‹•
+AppsKey & v::
+	Array := [ UserProfile . "\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Visual Studio Code\Visual Studio Code.lnk"
+			 , ""]
+	oneSoftware :=
+
+	oneSoftware := officeExeRunGoGo(Array, varSoftwarePID, "Code.exe", "{AppsKey down}v{AppsKey up}")
+	IfExist, %oneSoftware%
+	{
+		sleep 200
+		WinActivate, ahk_pid %varSoftwarePID%
+	}
+return
+
+; Wordèµ·å‹•
+AppsKey & w::
+	Array := [ "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Word.lnk"
+			 , "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Microsoft Office\Microsoft Office Word 2019.lnk"
+			 , "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Microsoft Office\Microsoft Office Word 2016.lnk"
+			 , "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Microsoft Office\Microsoft Office Word 2013.lnk"
+			 , "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Microsoft Office\Microsoft Office Word 2010.lnk"
+			 , "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Microsoft Office\Microsoft Office Word 2007.lnk"
+			 , "C:\Documents and Settings\All Users\ã‚¹ã‚¿ãƒ¼ãƒˆ ãƒ¡ãƒ‹ãƒ¥ãƒ¼\ãƒ—ãƒ­ã‚°ãƒ©ãƒ \Microsoft Office\Microsoft Office Word 2003.lnk"
+			 , "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\LibreOffice 7.0\LibreOffice Writer.lnk"
+			 , ""]
+	oneSoftware :=
+
+	oneSoftware := officeRunGoGo(Array, varSoftwarePID, "OpusApp", "{AppsKey down}w{AppsKey up}")
+	IfExist, %oneSoftware%
+	{
+		sleep 200
+		WinActivate, ahk_pid %varSoftwarePID%
+	}
+return
+
+; Bash on Ubuntu on Windows
+F23 & u::
+	Array := [ systemroot . "\System32\bash.exe"
+			 , UserProfile . "\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Bash on Ubuntu on Windows.lnk"
+			 , ""]
+	oneSoftware :=
+
+	oneSoftware := officeRunGoGo(Array, varSoftwarePID, "ConsoleWindowClass", "{F23 down}u{F23 up}")
+	IfExist, %oneSoftware%
+	{
+		sleep 200
+		WinActivate, ahk_pid %varSoftwarePID%
+	}
+return
+
+; LibreOfficeã®è¨ˆç®—Math(è¦ã¯ã€LaTeX)
+F23 & m::
+	Array := [ "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\LibreOffice 7.0\LibreOffice Math.lnk"
+			 , ""]
+	oneSoftware :=
+
+	oneSoftware := officeRunGoGo(Array, varSoftwarePID, "", "{F23 down}m{F23 up}")
+	IfExist, %oneSoftware%
+	{
+		sleep 200
+		WinActivate, ahk_pid %varSoftwarePID%
+	}
+return
+
+; ã‚¿ã‚¹ã‚¯ãƒãƒãƒ¼ã‚¸ãƒ£èµ·å‹•
+AppsKey & t::
+	; ã„ãšã‚Œèµ·å‹•ã‚­ãƒ¼ã‚’å¤‰æ›´ã™ã‚‹ã€‚
+	Send, ^+{Esc}
+	
+	moveBackToFront(Array, "^+{Esc}")
+return
+
+;	â– Control+wã‚­ãƒ¼ã®çµ„ã¿åˆã‚ã›ã§ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’é–‰ã˜ãŸã„.
 ~^w::
 	WinGetTitle, titleControlWName, A
-	varFoundRegControlWHidemaru := RegExMatch(titleControlWName, ".*(GŠÛ)$", varControlW)
+	varFoundRegControlWHidemaru := RegExMatch(titleControlWName, ".*(ç§€ä¸¸)$", varControlW)
 	varFoundRegControlWSakura := RegExMatch(titleControlWName, ".*(sakura).*$", varControlW)
 	varFoundRegControlWPowerShell := RegExMatch(titleControlWName, ".*(Windows PowerShell).*$", varControlW)
 	varFoundRegControlWEvernoteChild := RegExMatch(titleControlWName, ".*(?!.*com - )(Evernote)$", varControlW)
-		; ³‹K•\Œ»Fhttp://uxmilk.jp/50674
+	varFoundRegControlWVSCode := RegExMatch(titleControlWName, ".*(Visual Studio Code).*$", varControlW)
+	varFoundRegControlWPhotoView := RegExMatch(titleControlWName, ".*( - Windows ãƒ•ã‚©ãƒˆ ãƒ“ãƒ¥ãƒ¼ã‚¢ãƒ¼).*$", varControlW)
+;	varFoundRegControlWGVIM := RegExMatch(titleControlWName, ".*(GVIM).*$", varControlW)
+		; æ­£è¦è¡¨ç¾ï¼šhttp://uxmilk.jp/50674
 	If ( ErrorLevel <> 0 )
 	{
-		MsgBox, ³‹K•\Œ»ErrorLevelF%ErrorLevel%F%A_LineNumber%
+		MsgBox, æ­£è¦è¡¨ç¾ErrorLevelï¼š%ErrorLevel%ï¼š%A_LineNumber%
 	}
 	If ( varFoundRegControlWHidemaru > 0 )
 	{
@@ -1030,195 +1301,211 @@ return
 	{
 		Send, ^{F4}
 	}
+	Else If ( varFoundRegControlWVSCode > 0 )
+	{
+		Send, ^{F4}
+	}
+	Else If ( varFoundRegControlWPhotoView > 0 )
+	{
+		; Windows7ç”¨
+		Send, !{F4}
+	}
+;	Else
+;	Else If ( varFoundRegControlWGVIM > 0 )
+;	{
+;		Send, ^w
+;	}
 return
 
-#e::
-	Run Explorer %UserProfile%
-	sleep 1200
-	Send, !d%A_UserName%{Enter}
+F13::
+	WinActivate, ahk_class CabinetWClass
 return
 
-#F13::
-	Run Explorer %A_Desktop%
-return
-
-;¡Gvim—p‚Ìİ’è
-#IfWinActive ahk_exe gvim.exe
-#t::Send, {Esc 2}^{[}:tabnew{Enter}	; Ctrl+t‚ÅV‹Kƒ^ƒuì¬¦
-#w::Send, {Esc 2}^{[}:tabclose{Enter}	; Ctrl+c‚Åƒ^ƒuClose¦
-#m::Send, {Esc 2}^{[}:tab split{Enter}:tabprev{Enter}:close{Enter}:tabnext{Enter}	; Ctrl+m‚ÅŠù‘¶ƒoƒbƒtƒ@‚ğƒ^ƒuˆÚ“®¦
-	;	¦Windows‚ÌƒVƒ‡[ƒgƒJƒbƒg‚ğ’×‚·
-!Space::WinMinimize
-#!d::Send, {Esc 2}^{[}:bw{Enter}
-#+!d::Send, !bd	; •s—v‚Èˆ—‚¾‚ë‚¤B
-#IfWinActive
-
-;¡GŠÛƒGƒfƒBƒ^‚Ìİ’è
-#IfWinActive ahk_exe Hidemaru.exe
-^g::Send, !sg	; Ctrl&g‚É‚æ‚éGrepŒŸõƒ_ƒCƒAƒƒO‚ğŠJ‚­(‚»‚Ì•¾ŠQ‚ÅAs”Ô†w’è‚ÌƒWƒƒƒ“ƒv‚ª‚Å‚«‚È‚­‚È‚éËƒVƒ‡[ƒgƒJƒbƒg‚ğ’×‚µ‚½‚½‚ß)B
-^j::Send, ^g	; Ctrl&g‚ªã‹L‚Å’×‚ê‚½‚½‚ßACtrl+j‚Åw’èsˆÚ“®‚ğ‰Â”\‚É‚µ‚½(–{—ˆ‚ÌŠ„“–‚Í‚È‚¢)B
-^!f::Send, !vz	; ‘S‰æ–Ê•\¦(Ctrl+Alt+f)B‚±‚ê‚ÍAMacOS‚É—‚©Šñ‚ç‚¹‚½B
-#IfWinActive
-
-^m::
-;!n::
-WinMinimize, A
-return
-
-;¡Eclipse‚Ìİ’è
-#IfWinActive ahk_exe eclipse.exe
-^g::Send, !aa	; Ctrl&g‚É‚æ‚éGrepŒŸõƒ_ƒCƒAƒƒO‚ğŠJ‚­(Šù‘¶ƒVƒ‡[ƒgƒJƒbƒgƒL[‚ğ’×‚µ‚½)
-^j::Send, ^l	; Ctrl&j‚É‚æ‚éw’èsˆÚ“®ƒ_ƒCƒAƒƒO‚ğŠJ‚­
-#IfWinActive
-
-#+!^c::
-	Menu, TRAY, Icon
-	TrayTip, "make", (c)asakunotomohiro`ndateF2021/01/10`nAHKVerF%A_AhkVersion%`ndateF%A_YYYY%/%A_MM%/%A_DD%(%A_DDDD%) %A_Hour%:%A_Min% %A_Sec%.%A_MSec%, 3, 0
-	sleep 3000
-	Menu, TRAY, NoIcon
-return
-
-;;; ’[––ŒÅ—L‚ÌƒvƒƒOƒ‰ƒ€‚ğ•Ï”‚Éİ’è
-;	GŠÛƒGƒfƒBƒ^
-hidemaru := ""
-
-; ¡ƒXƒNƒŠ[ƒ“ƒVƒ‡ƒbƒg
-;	Alt+Ctrl+PrtSc Ë Win+Shift+S
+;	Alt+Ctrl+PrtSc â‡’ Win+Shift+S
 !^PrintScreen::
 	Send, #+s
 return
 
+;â– Gvimç”¨ã®è¨­å®š
+#IfWinActive ahk_exe gvim.exe
+#t::Send, {Esc 2}^{[}:tabnew{Enter}	; Win+tã§æ–°è¦ã‚¿ãƒ–ä½œæˆâ€»
+#w::Send, {Esc 2}^{[}:tabclose{Enter}	; Win+cã§ã‚¿ãƒ–Closeâ€»
+#m::Send, {Esc 2}^{[}:tab split{Enter}:tabprev{Enter}:close{Enter}:tabnext{Enter}	; Win+mã§æ—¢å­˜ãƒãƒƒãƒ•ã‚¡ã‚’ã‚¿ãƒ–ç§»å‹•â€»
+	;	â€»Windowsã®ã‚·ãƒ§ãƒ¼ãƒˆã‚«ãƒƒãƒˆã‚’æ½°ã™
+!Space::WinMinimize
+#!d::Send, {Esc 2}^{[}:bw{Enter}	; ãƒãƒƒãƒ•ã‚¡å‰Šé™¤
+#+!d::Send, !bd	; ä¸è¦ãªå‡¦ç†ã ã‚ã†ã€‚
+#IfWinActive
+
+;â– ç§€ä¸¸ã‚¨ãƒ‡ã‚£ã‚¿ã®è¨­å®š
+#IfWinActive ahk_exe Hidemaru.exe
+^g::Send, !sg	; Ctrl&gã«ã‚ˆã‚‹Grepæ¤œç´¢ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã‚’é–‹ã(ãã®å¼Šå®³ã§ã€è¡Œç•ªå·æŒ‡å®šã®ã‚¸ãƒ£ãƒ³ãƒ—ãŒã§ããªããªã‚‹â‡’ã‚·ãƒ§ãƒ¼ãƒˆã‚«ãƒƒãƒˆã‚’æ½°ã—ãŸãŸã‚)ã€‚
+^j::Send, ^g	; Ctrl&gãŒä¸Šè¨˜ã§æ½°ã‚ŒãŸãŸã‚ã€Ctrl+jã§æŒ‡å®šè¡Œç§»å‹•ã‚’å¯èƒ½ã«ã—ãŸ(æœ¬æ¥ã®å‰²å½“ã¯ãªã„)ã€‚
+^!f::Send, !vz	; å…¨ç”»é¢è¡¨ç¤º(Ctrl+Alt+f)ã€‚ã“ã‚Œã¯ã€MacOSã«ä¼¼ã‹å¯„ã‚‰ã›ãŸã€‚
+#IfWinActive
+
+; â– App+Space
+;	Win+Spaceã¯ã€WindowOSæ¨™æº–ã®ã‚·ãƒ§ãƒ¼ãƒˆã‚«ãƒƒãƒˆã‚­ãƒ¼ã‚’ä¸Šæ›¸ãã™ã‚‹ã“ã¨ã«ãªã‚‹ãŸã‚ã€æ°—ã‚’ã¤ã‘ã‚‹ã“ã¨ã€‚
+#Space::
+;AppsKey & Space::
+	; ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®æœ€å°åŒ–ã€‚
+	WinMinimize, A
+return
+
+#e::
+	Run Explorer %UserProfile%, , , varExplorerPID
+	sleep 140
+	WinActivate, ahk_id %varExplorerPID%
+return
+
+#F13::
+	Run Explorer %A_Desktop%, , , varExplorerPID
+	sleep 140
+	WinActivate, ahk_id %varExplorerPID%
+return
+
+; â– Eclipseã®è¨­å®š
+#IfWinActive ahk_exe eclipse.exe
+^g::Send, !aa	; Ctrl&gã«ã‚ˆã‚‹Grepæ¤œç´¢ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã‚’é–‹ã(æ—¢å­˜ã‚·ãƒ§ãƒ¼ãƒˆã‚«ãƒƒãƒˆã‚­ãƒ¼ã‚’æ½°ã—ãŸ)
+^j::Send, ^l	; Ctrl&jã«ã‚ˆã‚‹æŒ‡å®šè¡Œç§»å‹•ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã‚’é–‹ã
+#IfWinActive
+
+#+!^c::
+	Menu, TRAY, Icon
+	TrayTip, "make", (c)asakunotomohiro`ndateï¼š2021/06/01`nAHKVerï¼š%A_AhkVersion%`ndateï¼š%A_YYYY%/%A_MM%/%A_DD%(%A_DDDD%) %A_Hour%:%A_Min% %A_Sec%.%A_MSec%, 3, 0
+	sleep 3000
+	Menu, TRAY, NoIcon
+return
+
+#^!x::
+	; Win+Ctrl+Alt+x
+	;	Dropboxãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã‚’ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã«ã™ã‚‹ã€‚
+	Array := [ "C:\Program Files\Dropbox\Client\Dropbox.exe"
+			 , "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Dropbox\Dropbox.lnk"
+			 , "C:\Program Files (x86)\Dropbox\Client\Dropbox.exe"
+			 , ""]
+	oneSoftware :=
+
+	For index, element in Array
+	{
+		IF FileExist( element )
+		{
+			oneSoftware = %element%
+			break
+		}
+	}
+
+	IfExist, %oneSoftware%
+	{
+		WinGet, activeWinID, IDLast, ahk_class CabinetWClass, Dropbox
+		WinActivate, ahk_id %activeWinID%
+	}
+return
+
 #+!x::
-	softwareRun := "C:\Program Files (x86)\Dropbox\Client\Dropbox.exe"
-	IfNotExist, %softwareRun%
-	{
-		softwareRun := "C:\Program Files\Dropbox\Client\Dropbox.exe"
-		IfNotExist, %softwareRun%
-		{
-			Send, #+!x
-		}
-	}
-	IfExist, %softwareRun%
-	{
-		WinGet, OutputVar, List, ahk_exe Explorer.exe 
-		Loop, %OutputVar%
-		{
-			WinGetClass, OutputVar, ahk_id A_LoopField
-			softwareID := % OutputVar%A_Index%
-			WinGet, activeWinID, IDLast, ahk_exe Explorer.exe, Dropbox
-			if ( softwareID == activeWinID )
-			{
-				WinActivate, ahk_exe Explorer.exe, Dropbox
-			}
-			else
-			{
-				WinActivate, ahk_id %activeWinID%
-				break
-			}
-		}
-	}
-return
-
-^#!x::
-	WinGet, OutputVar, List, ahk_exe Explorer.exe, ,, Dropbox
-	Loop, %OutputVar%
-	{
-		notSoftwareID := % OutputVar%A_Index%
-		WinActivate, ahk_id %notSoftwareID%
-	}
-return
-
-#^e::
-	WinGet, OutputVar, List, ahk_exe Explorer.exe
-	Loop, %OutputVar%
+	;	Win+Shift+Alt+x
+	WinGet, OutputList, List, ahk_class CabinetWClass, ,, Dropbox
+	WinGet, activeWinID, IDLast, ahk_class CabinetWClass, ,, Dropbox
+	Loop, %OutputList%
 	{
 		WinGetClass, OutputVar, ahk_id A_LoopField
-		dirID := % OutputVar%A_Index%
-		WinMinimize, ahk_id %dirID%
-	}
-return
-
-#+e::
-	WinGet, OutputVar, List, ahk_exe Explorer.exe
-	Loop, %OutputVar%
-	{
-		WinGetClass, OutputVar, ahk_id A_LoopField
-		dirID := % OutputVar%A_Index%
-		WinActivate, ahk_id %dirID%
-	}
-return
-
-; ˆÈ‰ºA‰ü—Ç‚ª•K—vB
-#!+i::
-	eclipse := "C:\pleiades\eclipse\eclipse.exe"
-	IfNotExist, %eclipse%
-	{
-		eclipse := "C:\Program Files (x86)\eclipse-pleiades\eclipse\eclipse.exe"
-		IfNotExist, %eclipse%
+		winWordID := % OutputVar%A_Index%
+		if ( winWordID == activeWinID )
 		{
-			eclipse := "C:\Program Files\eclipse-pleiades\eclipse\eclipse.exe"
-			IfNotExist, %eclipse%
-			{
-				Send, #!+i
-			}
+			WinActivate, A
 		}
-	}
-	IfExist, %eclipse%
-	{
-		WinGet, OutputVar, List, ahk_exe %eclipse%
-		WinGet, activeWinID, IDLast, ahk_exe %eclipse%
-		Loop, %OutputVar%
+		else
 		{
-			WinGetClass, OutputVar, ahk_id A_LoopField
-			eclipseID := % OutputVar%A_Index%
-			if ( chromeID == activeWinID )
-			{
-				WinActivate, ahk_id %eclipseID%
-			}
-			else
-			{
-				WinActivate, ahk_id %activeWinID%
-				break
-			}
-		}
-	}
-
-	StringTrimRight, appdataRoaming, A_AppData, 7
-	msvscode := appdataRoaming . "Local\Programs\Microsoft VS Code\Code.exe"
-	IfNotExist, %msvscode%
-	{
-		msvscode := "C:\Program Files (x86)\Microsoft VS Code\Code.exe"
-		IfNotExist, %msvscode%
-		{
-			msvscode := "C:\Program Files\Microsoft VS Code\Code.exe"
-			IfNotExist, %msvscode%
-			{
-				Send, #!+i
-			}
-		}
-	}
-	IfExist, %msvscode%
-	{
-		WinGet, OutputVar, List, ahk_exe %msvscode%
-		WinGet, activeWinID, IDLast, ahk_exe %msvscode%
-		Loop, %OutputVar%
-		{
-			WinGetClass, OutputVar, ahk_id A_LoopField
-			eclipseID := % OutputVar%A_Index%
-			if ( chromeID == activeWinID )
-			{
-				WinActivate, ahk_id %msvscode%
-			}
-			else
-			{
-				WinActivate, ahk_id %activeWinID%
-				break
-			}
+			WinActivate, ahk_id %activeWinID%
+			break
 		}
 	}
 return
 
-;¡s”Ì•i‚ÌƒL[ƒ{[ƒh‘Î‰
-; ¡Capslock‚ğCtrlƒL[‚É“ü‚ê‘Ö‚¦‚é.
+;â–  ä»¥ä¸‹ã€å€‹åˆ¥ã®ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢è¨­å®š(ç¾æ™‚ç‚¹ã§ã¯Ctrl+Tabã§åŒã‚½ãƒ•ãƒˆã®åˆ‡ã‚Šæ›¿ãˆã®ã¿)
+#IfWinActive ahk_class CabinetWClass
+Ctrl & Tab::
+	WinGet, activeWinID, IDLast, ahk_class CabinetWClass
+	WinActivate, ahk_id %activeWinID%
+return
+#IfWinActive
 
-;	ˆÈãB‚±‚±‚Ü‚ÅB
+#IfWinActive ahk_exe Acrobat.exe
+Ctrl & Tab::
+	WinGet, activeWinID, IDLast, ahk_class AcrobatSDIWindow
+	WinActivate, ahk_id %activeWinID%
+return
+#IfWinActive
+
+#IfWinActive ahk_exe DllHost.exe
+Ctrl & Tab::
+	WinGet, activeWinID, IDLast, ahk_class Photo_Lightweight_Viewer
+	WinActivate, ahk_id %activeWinID%
+return
+#IfWinActive
+#IfWinActive, ahk_exe ApplicationFrameHost.exe
+Ctrl & Tab::
+	WinGet, activeWinID, IDLast, ahk_class ApplicationFrameWindow
+	WinActivate, ahk_id %activeWinID%
+return
+#IfWinActive
+
+#IfWinActive ahk_exe WINWORD.EXE
+Ctrl & Tab::
+	OutputList := 
+	WinGet, activeWinID, IDLast, ahk_class OpusApp
+	WinActivate, ahk_id %activeWinID%
+return
+#IfWinActive
+
+#IfWinActive ahk_exe POWERPNT.EXE
+Ctrl & Tab::
+	OutputList := 
+;	WinGet, activeWinID, IDLast, ahk_exe POWERPNT.EXE
+	; ä»¥ä¸‹ã€Office365
+	WinGet, activeWinID, IDLast, ahk_class PPTFrameClass
+	if activeWinID =
+	{
+		; ä»¥ä¸‹ã€Offce2017
+		WinGet, activeWinID, IDLast, ahk_class PP12FrameClass
+	}
+	WinActivate, ahk_id %activeWinID%
+return
+#IfWinActive
+
+#IfWinActive ahk_exe ONENOTE.EXE
+Ctrl & Tab::
+	OutputList := 
+	WinGet, activeWinID, IDLast, ahk_class Framework::CFrame
+	WinActivate, ahk_id %activeWinID%
+return
+#IfWinActive
+
+#IfWinActive ahk_exe OUTLOOK.EXE
+Ctrl & Tab::
+	OutputList := 
+	WinGet, activeWinID, IDLast, ahk_class rctrl_renwnd32
+	WinActivate, ahk_id %activeWinID%
+return
+#IfWinActive
+
+#IfWinActive ahk_exe Code.exe
+Ctrl & Tab::
+	Send, {Blind}^{PgDn}
+return
+#IfWinActive
+
+#IfWinActive ahk_class MSPaintApp
+Ctrl & Tab::
+	WinGet, activeWinID, IDLast, ahk_class MSPaintApp
+	WinActivate, ahk_id %activeWinID%
+return
+#IfWinActive
+
+AppsKey::AppsKey
+^h::Send {Backspace}
+;â– å¸‚è²©å“ã®ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰å¯¾å¿œ
+; â– Capslockã‚’Ctrlã‚­ãƒ¼ã«å…¥ã‚Œæ›¿ãˆã‚‹.
+
+; vim:set ts=4 sts=4 sw=4 tw=0:
+;	ä»¥ä¸Šã€‚ã“ã“ã¾ã§ã€‚
