@@ -72,6 +72,9 @@ let g:isTermux = split(&runtimepath, ',')[0] =~? 'termux' ? v:true : v:false
 "	Press ENTER or type command to continue
 "	softservicenoMacBook-Pro:~ softservice$
 
+" スクリプトの読み込み確認コマンド
+"	:scriptnames
+
 if isdirectory(expand(minpackSTART . "minpac"))  || isdirectory(expand(minpackOPT . "minpac"))
 packadd minpac
 endif
@@ -578,6 +581,7 @@ endif
 " タグ一覧表示の切り替え(トグル)
 if isdirectory(expand(minpackSTART . "tagbar"))  || isdirectory(expand(minpackOPT . "tagbar"))
 nmap <F8> :TagbarToggle<CR>
+nmap <F15> :TagbarToggle<CR>
 endif
 
 " アンドゥツリー切り替え(トグル)
@@ -838,6 +842,7 @@ filetype plugin on
 
 " 括弧の対応関係を一瞬表示
 "set showmatch
+"set matchtime=1
 "	%移動の拡張
 source $VIMRUNTIME/macros/matchit.vim
 
@@ -848,6 +853,52 @@ source $VIMRUNTIME/macros/matchit.vim
 "nnoremap # #zz
 "nnoremap g* g*zz
 "nnoremap g# g#zz
+"	g;：変更箇所にジャンプ
+"	g,：変更箇所にジャンプした場所から戻る。
+
+" fモーションのカスタマイズ	By.@monaqa
+noremap fj f<C-k>j
+noremap Fj F<C-k>j
+noremap tj t<C-k>j
+noremap Tj T<C-k>j
+digraphs jj 106  " j
+" 以下、続く。
+
+"	カッコ
+digraphs j( 65288  " （
+digraphs j) 65289  " ）
+digraphs j[ 12300  " 「
+digraphs j] 12301  " 」
+digraphs j{ 12302  " 『
+digraphs j} 12303  " 』
+digraphs j< 12304  " 【
+digraphs j> 12305  " 】
+
+"	句読点
+digraphs j! 65281  " ！
+digraphs j? 65311  " ？
+digraphs j: 65306  " ：
+"digraphs j, 65292  " ，
+digraphs j, 12289  " 、
+"digraphs j. 65294  " ．
+digraphs j. 12290  " 。
+
+"	数字
+digraphs j0 65296  " ０
+digraphs j1 65297  " １
+digraphs j2 65298  " ２
+digraphs j3 65299  " ３
+digraphs j4 65300  " ４
+digraphs j5 65301  " ５
+digraphs j6 65302  " ６
+digraphs j7 65303  " ７
+digraphs j8 65304  " ８
+digraphs j9 65305  " ９
+
+"	その他の記号
+digraphs j~ 12316  " 〜
+digraphs j/ 12539  " ・
+digraphs js 12288  " 　
 
 " ctagsの検索場所を親ディレクトリから再帰的に探す。
 set tags=tags;$HOME;
@@ -918,6 +969,9 @@ set completeopt=menuone
 "		help ins-completion
 "		help 'complete'
 
+" 補完メニュー数
+set pumheight=10
+
 "	スペルチェックをするようだが、日本語未対応なのか、技術用語未対応なのか分からないが、使い物にならない。
 "set spell
 
@@ -986,8 +1040,10 @@ set scrolloff=0
 "	:help L
 
 " 見た目の行数で移動する.
-":nnoremap j gj
-":nnoremap k gk
+"nnoremap <expr> j v:count == 0 ? 'gj' : 'j'
+"xnoremap <expr> j (v:count == 0 && mode() ==# 'v') ? 'gj' : 'j'
+"nnoremap <expr> k v:count == 0 ? 'gk' : 'k'
+"xnoremap <expr> k (v:count == 0 && mode() ==# 'v') ? 'gk' : 'k'
 
 "---------------------------------------------------------------------------
 " 編集に関する設定:
@@ -1049,9 +1105,15 @@ augroup quitcmd
 	" どのような終了方法を指す？
 augroup END
 function! s:CleanupStuff()
-"	let s:undo_fileName=&undodir . "/" . expand('%:t')
 	let l:undoFileName=expand('%:p')
-	let l:undo_fileName = substitute(l:undoFileName, '\/', "%", "g")
+	if ( has('win32') || has('win64') )
+		" 以下、'C:\Users\～'　⇒　'C:%Users%～'
+		let l:undo_fileName = substitute(l:undoFileName, '\\', "%", "g")
+		"       'C:%Users%～'　⇒　'C%%Users%～'
+		let l:undo_fileName = substitute(l:undo_fileName, ':', "%", "g")
+	else
+		let l:undo_fileName = substitute(l:undoFileName, '\/', "%", "g")
+	end
 	let l:deleteUndoFile=&undodir . "/" . l:undo_fileName
 	echo "call delete(" . l:deleteUndoFile . ")"
 	call delete(l:deleteUndoFile)
@@ -1061,10 +1123,10 @@ endfunction
 set switchbuf=useopen
 
 "	セッション管理用保存ディレクトリ。
-"let s:sessionDir_dir = expand('~/.vim_backup/sessions')
-"if !isdirectory(s:sessionDir_dir)
-"	exec mkdir(s:sessionDir_dir, '', 0700)
-"endif
+let s:sessionDir_dir = expand('~/.vim_backup/sessions')
+if !isdirectory(s:sessionDir_dir)
+	exec mkdir(s:sessionDir_dir, '', 0700)
+endif
 
 " 最後のカーソル位置を復元する
 if has("autocmd")
@@ -1457,6 +1519,12 @@ endif
 
 
 " ■vimgrep
+"	*記号と#記号
+"		*記号：カーソル下の単語だけで検索する。userで検索した場合user_nameには検索に掛からない。
+"		g*記号：上記のuser_nameにヒットする。
+"		#記号：*記号とは逆方向に検索する。
+"		g#記号：g*とは逆方向に検索する。
+"
 "	https://qiita.com/yuku_t/items/0c1aff03949cb1b8fe6b
 "	※grepの簡易版？
 "	書　式：:vimgrep <パターン> <Path>
