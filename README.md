@@ -5,7 +5,7 @@
 設定ファイルが混在するため、見にくくなることだろう。  
 それを本ファイルで説明することにより、少し緩和できたらと思う。  
 
-当たり前だが、私のWindows10で動かすことを前提にしている。  
+当たり前だが、私のWindows10端末で動かすことを前提にしている。  
 要は、他のOSバージョンでは動作できない可能性が高い。  
 例えば、同じPathを設定しているからという理由で起動する保証は無いと言うこと。  
 
@@ -67,19 +67,28 @@ vimエディタからマークダウンファイルをプレビューで見る�
 
 [https://sakura-editor.github.io/](https://sakura-editor.github.io/)  
 
+### Visual Studio Code
+Microsoft社製品のエディタ利用を拒否する輩はいますまい。  
+
+[https://code.visualstudio.com/](https://code.visualstudio.com/)  
+~~[https://azure.microsoft.com/ja-jp/products/visual-studio-code/](https://azure.microsoft.com/ja-jp/products/visual-studio-code/)~~  
 
 ### テラパッドエディタ
 普段は使わない。  
 
+### ノートパッド++
+普段は使わない。  
+
+[https://github.com/notepad-plus-plus/notepad-plus-plus](https://github.com/notepad-plus-plus/notepad-plus-plus/commit/06657c82b3b9a1871c483982282f046b1ac7b3be)  
+[https://notepad-plus-plus.org/](https://notepad-plus-plus.org/)  
 
 ## makeLinkfile
 下記のAutoHotKey(Windowsのみ)・[g]vimrcファイルのシンボリックファイルを各所に配置する。  
 
 * AutoHotKey：ドキュメントディレクトリ・スタートアップに配置する。  
 * alias.bat：ドキュメントディレクトリに配置する。  
-  失敗したかもしれない。この設定をしてからスリープモード復帰後に、ソフトウェア全般が固まってしまい、何も操作を受け付けなくなる(ただ、原因がつかめないため、これではないかもしれない)。  
 * [g]vimrc：HOMEディレクトリに配置する。  
-* _gitignore_global(以下、シンボリックファイルとして利用する)  
+* \_gitignore\_global(以下、シンボリックファイルとして利用する)  
   * gitignore\_global.txt：ドキュメントディレクトリに配置する(Sourcetree専用？)。  
   * hgignore\_global.txt：ドキュメントディレクトリに配置する(Sourcetree専用？)。  
   * ignore：~/.config/git/ignore(すべてのgitアカウント用)。  
@@ -117,6 +126,19 @@ vimエディタからマークダウンファイルをプレビューで見る�
 
 2021/02/23：新規登録。  
 
+## VSCodeディレクトリ
+Visual Studio Codeのバックアップファイル(Windows用？)。  
+
+C:\Users\asakunotomohiro\AppData\Roaming\Code\User\settings.json  
+C:\Users\asakunotomohiro\.vscode\extensions  
+他に、ワークスペースの`settings.json`と`workspace.code-workspace`の2種類のファイルなどが必要になるが、これはそのプロジェクトにあるため、ここで個別バックアップはしない。  
+
+~~他に、`Japanese Language Pack for Visual Studio Code`などの日本語化作業が必要~~  
+
+extensionsディレクトリは、20MB近くある。  
+
+2021/07/01：新規登録。  
+
 
 ## TERATERM.INI
 テラタームの設定ファイル。  
@@ -132,23 +154,36 @@ vimエディタからマークダウンファイルをプレビューで見る�
 
 
 ## AutoHotkey
-Windows専用のキーボードショートカットツール。  
+通称AHKと言われるWindows専用のキーボードショートカットツール。  
 しかし、任意のソフトウェアを起動する場合、フルPathをべた書きする必要があり、他環境では変更を要求される。  
+また、Windows98/Meは動作保証外。  
 
 2021/02/12：新規登録。  
   exe：v1.1.33.2 Unicode 64-bi  
 
-今後の予定：
-* 細かいバグを解消する。
-* AutoHotKeyを無視するウィンドウ(ソフトウェア)が存在するため、それを回避してAutoHotKeyを優先させたい(具体的には、WindowsOSが用意しているソフトウェア一部)。  
+* 今後の予定：
+  * WindowsStoreでのインストールソフトは、起動させることが出来ない。  
+    それを起動できるようにさせたい。現在、デスクトップにショートカットファイルがあれば、起動させることはできる。  
+  * AutoHotKeyを無視するウィンドウ(ソフトウェア)が存在するため、それを回避してAutoHotKeyを優先させたい(具体的には、WindowsOSが用意しているソフトウェア一部)。  
+    タスクマネージャがアクティブになっているときも有効にしたかったが、こればかりはできそうにないようだ(勝手に外部のソフトウェアが動かせたら問題あるかららしい)。  
+
+### 朝来野智博.exe
+現在公開している`AutoHotkey.ahk`から生成したのではなく、キー起動方法を変えた実行ファイルになる。  
+具体的には、Excelなどを起動する場合、AppsKeyとの組み合わせで起動させる方法をとっていたが、キーボードによってはそのキーが存在しないため設定が無駄になる。  
+それをPAUSE(and F1)キーに変更したのが本ファイルになる。  
+
+その起動方法の組み合わせは、`メモYYYYMMDD.xlsx`の`初期設定(ターミナル・Bash・キーボード)`シートに記載した。  
+それとは別に、`F23 & [ej]`にて、英語キーボードから日本語キーボードへの変更(もしくはその逆)を実施する(要管理者権限：**括弧内の数字が`11`になっていること**)処理も埋め込んでいる。  
+※今回の作成以後、更新することのないexeファイルになる(悔いがあるため、あと1回は更新する？)。
+
+無理矢理起動させる仕組みを付けているため、ショートカットファイルをデスクトップに置いておけば、起動できるソフトウェアもあるだろう。  
+当然、起動時間はかかる・・・(時間が掛かる作業前に、確認ダイアログメッセージで問い合わせる)。  
 
 ### 以下、ホットキー(ソフトウェア起動用)
 ソフト起動時の通常Path(例外あり)  
 
 - C:\Program Files\～～～  
 - C:\Program Files (x86)\～～～  
-
-※ここに起動内容を記載していたが、煩わしいため、削除した。  
 
 ※WindowOS標準のショートカットキーを上書きすることになるため、気をつけること。  
 
@@ -204,17 +239,15 @@ HOMEディレクトリ直下に配置するのが基本になる。
 
 2021/02/12：vimrc新規登録。  
 2021/02/13：gvimrc新規登録。  
-2021/04/01：vimrcAndroid新規登録(廃止・vimrcに統合)。  
 
 ### 内容
 バックアップファイルは、OS問わず、ホームディレクトリ直下の.vim\_backupディレクトリを使うようにしている。  
 ただし、スワップファイルの作成は、カレントディレクトリに作る。  
-その理由は言わずもがな。
-ファイルサーバでの編集をする場合は、当然のようにカレントディレクトリが求められるからだ。  
-しかし、ファイルの開き方によっては、スワップファイルがカレントディレクトリに作られないこともあるようだ(これも困る)。  
 
-難点は、セッション管理用のプラグイン導入にて、vimを起動するたびにデフォルト名でディレクトリを作るようになっている。  
+難点は、セッション管理用のプラグイン導入にて、vimを起動するたびにデフォルト名でディレクトリを作るようになっている(Windows限定？)。  
 対処方法不明。  
+
+<details><summary>vim設定</summary>
 
 #### プラグイン無関係設定
 日本語や多バイト言語の設定をしている。  
@@ -252,37 +285,31 @@ gvimrc限定の設定としては、ウィンドウサイズを固定したま�
 
 ##### 困りごと(gvimrc)。
 一番の困りごとは、日本語入力時の文節区切りが判別できないこと(こればかりは最悪だ)。  
+ATOKを使っているからか？  
 
 `vim-gitgutter`での色設定が反映されない。  
-そのため、vimrcとgvimrcで同じ設定を試みたが、撃沈した。  
-vimエディタ本体をアンインストール・インストールを何度か行ってみたが、徒労に終わった。  
 
-CUI版は、色がどぎつく、とてもじゃないが、実用に耐えられない。
-しかし、対処できずに困っている。  
 
 #### プラグイン用設定
 キーマップ(備忘録用)。  
 
-※ここにプラグイン操作方法を記載していたが、煩わしいため、削除した。  
+* [minpac](https://github.com/k-takata/minpac)  
+* [nerdtree](https://github.com/preservim/nerdtree)  
+  私の環境固有バグあり。  
+* [vim-gitgutter](https://github.com/airblade/vim-gitgutter)  
+* [vim-fugitive](https://github.com/tpope/vim-fugitive)・[vim-rhubarb](https://github.com/tpope/vim-rhubarb)  
+* [tagbar](https://github.com/preservim/tagbar)  
+* [undotree](https://github.com/mbbill/undotree)  
+* [open-browser.vim](https://github.com/tyru/open-browser.vim)  
+* [vim-session](https://github.com/xolox/vim-session)・[vim-misc](https://github.com/xolox/vim-misc)  
+* [vim-findroot](https://github.com/mattn/vim-findroot)  
+* [vim-smartinput](https://github.com/kana/vim-smartinput)  
 
-* minpac  
-* nerdtree  
-  私の環境固有のバグあり。  
-* vim-gitgutter  
-* vim-fugitive  
-* vim-rhubarb(一応上記と対のプラグイン)  
-* tagbar  
-* undotree  
-* open-browser.vim  
-* vim-session・vim-misc  
-* vim-findroot  
-* 囲み文字の編集  
-  * kana/vim-smartinput  
-
+</details>
 
 
 ### vimファイル
-拡張子がvimの場合、ファイル形式別の設定ファイル。  
+拡張子がvimの場合は、ファイル形式別の設定ファイル。  
 その前提を崩したくないため、セッションファイルは別名にしている。  
 
 配置場所は、 `~/.vim/after/ftplugin` 配下に置く。  
@@ -302,7 +329,7 @@ CUI版は、色がどぎつく、とてもじゃないが、実用に耐えら�
 
 
 ### AutoHotKey
-一太郎を起動するようにしているが、絶対に使わない設定だろうな。
+一太郎を起動するようにしているが、絶対に使わない設定だろう。  
 
 ## ATOK
 Windows版は設定をバックアップできるが、Mac版はできない。  
@@ -315,7 +342,7 @@ Windows版は設定をバックアップできるが、Mac版はできない。
 git設定(無視ファイルの設定)  
 
 2021/02/11：新規登録。  
-2021/04/01：hgignore\_global新規登録。
+2021/04/01：hgignore\_global新規登録。  
 
 
 
@@ -324,7 +351,11 @@ git設定(無視ファイルの設定)
 
 2021/02/14：新規登録。  
 
+## メモ\_YYYYMMDD(Excelファイル)
+WindowsOSでの作業準備ファイル。  
+作業を残すためのひな形でもある。  
 
+2021/04/01：新規登録。  
 
 ## マウス設定(M-DUX70BK).xml
 ゲーム用にボタン設定をしている。  
@@ -373,13 +404,11 @@ git設定(無視ファイルの設定)
 
 ## 今後
 今は、簡易的なメモ取りとしてMarkdownを使っているが、将来的には、sphinxでメモを取れるようになりたい。  
-そのために、一応はO'Reillyで本を購入して・・・ちょこっと触った。  
-で、終わった。  
 
 ## ライセンス
 GPL-ver2  
 
 改造を含む利用可能なソースコードと同一条件でのライセンス  
-そもそも隠す物ではないはずなので、このライセンスで十分と思っているが・・・。  
+そもそも隠す物ではないはず。  
 
 以上。  
