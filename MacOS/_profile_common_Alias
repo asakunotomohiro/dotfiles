@@ -9,7 +9,9 @@ alias visudo='sudo visudo'
 alias df='df -Hi'
 
 #	☆Pathの書き換え必須☆
-alias python='/Users/asakunotomohiro/.pyenv/shims/python'
+#alias python='/Users/asakunotomohiro/.pyenv/shims/python'
+#	そもそもpyenvは使うなとのこと。
+alias python='python3'
 
 # tarファイルの閲覧
 alias tarview="tar tvf "

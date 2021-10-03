@@ -15,6 +15,7 @@ VIMBACDIR=~/.vim_backup
 if [ -d $VIMBACDIR ]; then
 	echo "vim環境がある。"
 
+	echo "sudo unlink /etc/bashrc"
 	sudo unlink /etc/bashrc
 	ret=$?
 	echo "実行結果"$ret
@@ -25,9 +26,12 @@ if [ -d $VIMBACDIR ]; then
 		echo 処理失敗
 		exit
 	fi
+	echo "sudo mv /etc/bashrc_bk /etc/bashrc"
 	sudo mv /etc/bashrc_bk /etc/bashrc
 
+	echo "sudo unlink /etc/profile"
 	sudo unlink /etc/profile
+	echo "sudo mv /etc/profile_bk /etc/profile"
 	sudo mv /etc/profile_bk /etc/profile
 	echo "実行結果"$?
 

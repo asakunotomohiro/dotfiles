@@ -5,19 +5,46 @@
 VIM=/Applications/MacVim.app/Contents/MacOS/
 PATH=$PATH:${VIM}
 
+
 # pyenvさんに自動補完機能を提供してもらう
 #if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
 PATH="/usr/local/opt/tcl-tk/bin:$PATH"
 PATH="/Users/asakunotomohiro/.python-version:$PATH"
+PATH="$PATH:~/perl5/perlbrew/bin/perlbrew"
 export LDFLAGS="-L/usr/local/opt/tcl-tk/lib"
 export CPPFLAGS="-I/usr/local/opt/tcl-tk/include"
 export PKG_CONFIG_PATH="/usr/local/opt/tcl-tk/lib/pkgconfig"
 export PYTHON_CONFIGURE_OPTS="--with-tcltk-includes='-I/usr/local/opt/tcl-tk/include' --with-tcltk-libs='-L/usr/local/opt/tcl-tk/lib -ltcl8.6 -ltk8.6'"
 
+
 # Golang
-export GOPATH="/Users/asakunotomohiro/go"
-PATH=$PATH:${GOPATH}/bin
-export PATH
+#	brew install go	←☆今後これで管理する。
+#export GOPATH="/Users/asakunotomohiro/go"
+#PATH=$PATH:${GOPATH}/bin
+#export PATH
+
+
+# Java(openJDK)
+#	brew install java	←☆今後これで管理する。
+export CPPFLAGS="-I/usr/local/opt/openjdk/include"
+#PATH="/usr/local/opt/openjdk/bin:$PATH"
+#export PATH
+# 以下の作業も必要だ。
+#	sudo ln -sfn /usr/local/opt/openjdk/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk.jdk
+
+
+# Ruby
+#	Homebrewでのrbenvからの環境構築済み。
+eval "$(rbenv init -)"
+# 以下の作業により、eval処理ができているか確認できるそうだ。
+#	curl -fsSL https://github.com/rbenv/rbenv-installer/raw/master/bin/rbenv-doctor | bash
+
+
+# 以下、Perl管理ツールをインストール済みであること。
+#	https://perlbrew.pl
+#	\curl -L https://install.perlbrew.pl | bash
+source ~/perl5/perlbrew/etc/bashrc
+
 
 # viエディタに関する設定（ターミナル用）
 export EDITOR=/Applications/MacVim.app/Contents/MacOS/Vim

@@ -8,20 +8,32 @@
 	autocrlf = false
 	quotepath = false
 	editor = vim
+	excludesfile = C:\\Users\\asakunotomohiro\\Documents\\gitignore_global.txt
 
-[difftool "sourcetree"]
-	path = 
-
-[mergetool "sourcetree"]
-	trustExitCode = true
+#[difftool "sourcetree"]
+#	path = 
+#
+#[mergetool "sourcetree"]
+#	trustExitCode = true
 
 [status]
 	showUntrackedFiles = all
 
 [alias]
-	lol = log --graph --decorate --pretty=oneline --all --abbrev-commit
+	lol = log --graph --decorate --pretty=oneline --all --parents --abbrev-commit
+	ll = log --graph --oneline --first-parent
 
+[diff]
+	tool = vimdiff
+	tool = winmerge
 
+[merge]
+	ff = false
+	tool = vimdiff
+	tool = winmerge
+
+[pull]
+	ff = only
 
 # 以下、端末固有の設定を記述する(ディレクトリごとに分岐も可能なようだ)。
 #	https://git-scm.com/docs/git-config#_conditional_includes

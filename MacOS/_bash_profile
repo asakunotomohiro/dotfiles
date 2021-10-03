@@ -18,6 +18,8 @@ alias tree='tree -N'
 #	未定義の変数を null ではなくエラーとして扱う
 #set -o nounset
 
+# rust言語用の環境設定
+. "$HOME/.cargo/env"
 
 export HISTCONTROL=ignoreboth
 #export HISTCONTROL=erasedups

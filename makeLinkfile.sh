@@ -90,10 +90,10 @@ echo "(cd ~;ln -f --symbolic  "${filedir}/MacOS/_profile_common_EnvironmentVaria
 echo "(cd ~ln -f --symbolic  "${filedir}/MacOS/_inputrc" ./.inputrc)"
 (cd ~/;`ln -sf "${filedir}/MacOS/_inputrc" ./.inputrc`;echo "実行結果"$?)
 
-echo "(cd /etc;ln -f --symbolic  "${filedir}/MacOS/etc_bashrc" ./bashrc)"
+echo "(cd /etc;ln -f --symbolic  "${filedir}/MacOS/etc_bashrc" ./bashrc)(スーパユーザ利用)"
 (cd /etc;`sudo ln -sf "${filedir}/MacOS/etc_bashrc" ./bashrc`;echo "実行結果"$?)
 
-echo "(cd /etc;ln -f --symbolic  "${filedir}/MacOS/etc_profile" ./profile)"
+echo "(cd /etc;ln -f --symbolic  "${filedir}/MacOS/etc_profile" ./profile)(スーパユーザ利用)"
 (cd /etc;`sudo ln -sf "${filedir}/MacOS/etc_profile" ./profile`;echo "実行結果"$?)
 
 echo "(ln -f --symbolic  "${filedir}/_gitconfig" ~/.gitconfig)"

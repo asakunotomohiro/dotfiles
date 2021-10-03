@@ -272,7 +272,7 @@ data_*/
 /[Aa]ssets/AssetStoreTools*
 /[Aa]ssets/Plugins/Editor/JetBrains*
 Exported.consulo/
-*.csproj
+#*.csproj
 *.unityproj
 *.booproj
 *.svd
@@ -315,7 +315,7 @@ Build/Android/res/*/*
 
 ### Cocos2dx ###
 *.vcproj.*.vcxproj.user
-*.csproj.user
+#*.csproj.user
 *.i
 *.icf
 *.cache
@@ -858,7 +858,7 @@ $tf/
 *.sbr
 *.scc
 *.sdf
-*.sln
+#*.sln
 *.sln.docstates
 *.slo
 *.snupkg
@@ -872,7 +872,7 @@ $tf/
 *.tmp
 *.tmp_proj
 *.tss
-*.user
+#*.user
 *.userosscache
 *.userprefs
 *.vbw

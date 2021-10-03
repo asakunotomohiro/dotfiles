@@ -1,5 +1,4 @@
-<!-- vim:set ts=4 sts=4 sw=4 tw=0: -->
-
+<!-- vim: set ts=4 sts=4 sw=4 tw=0 ff=unix fenc=utf-8 ft=markdown expandtab: -->
 # 概要。
 各ソフトウェアに対する設定ファイルを保存する場所になる。  
 設定ファイルが混在するため、見にくくなることだろう。  
@@ -9,8 +8,10 @@
 要は、他のOSバージョンでは動作できない可能性が高い。  
 例えば、同じPathを設定しているからという理由で起動する保証は無いと言うこと。  
 
+
 ## 事前準備物
 以下の資材が導入済みであること。  
+
 
 ### Git
 バージョン管理システムのこと。  
@@ -23,12 +24,14 @@ Windowsでは、取得(Clone)時に改行が勝手に切り替えられる。
 そのため、抑止コマンドでの制御が必要になる。  
 `git config --global core.autocrlf false`  
 
+
 #### \_gitconfig
 そもそもこのファイルを一般公開して良いのかどうか・・・。  
 OS用ごとにファイル内容を分けて記載しているのもどうかと思うな・・・GUI側で設定を変更した場合、元のファイルが書き換えられてしまう。
 何のためにファイルを分けたのか分からない。  
 
 2021/02/11：新規登録。  
+
 
 ### vim
 Windows・Macなどなどで使うためのエディタ。  
@@ -47,25 +50,30 @@ vimエディタからマークダウンファイルをプレビューで見る�
 
 [https://www.mozilla.org/ja/firefox/new/](https://www.mozilla.org/ja/firefox/new/)  
 
+
 ### Ctags
 あればよし。無くても問題ない。  
 
 [https://github.com/universal-ctags/ctags](https://github.com/universal-ctags/ctags)  
+
 
 #### Golang
 あればよし。無くても問題ない。  
 
 [https://golang.org/](https://golang.org/)  
 
+
 ### 秀丸エディタ
 あればよし。無くても問題ない。  
 
 [https://hide.maruo.co.jp/software/hidemaru.html](https://hide.maruo.co.jp/software/hidemaru.html)  
 
+
 ### サクラエディタ
 これぐらいは用意できるだろう？  
 
 [https://sakura-editor.github.io/](https://sakura-editor.github.io/)  
+
 
 ### Visual Studio Code
 Microsoft社製品のエディタ利用を拒否する輩はいますまい。  
@@ -73,14 +81,17 @@ Microsoft社製品のエディタ利用を拒否する輩はいますまい。
 [https://code.visualstudio.com/](https://code.visualstudio.com/)  
 ~~[https://azure.microsoft.com/ja-jp/products/visual-studio-code/](https://azure.microsoft.com/ja-jp/products/visual-studio-code/)~~  
 
+
 ### テラパッドエディタ
 普段は使わない。  
+
 
 ### ノートパッド++
 普段は使わない。  
 
 [https://github.com/notepad-plus-plus/notepad-plus-plus](https://github.com/notepad-plus-plus/notepad-plus-plus/commit/06657c82b3b9a1871c483982282f046b1ac7b3be)  
 [https://notepad-plus-plus.org/](https://notepad-plus-plus.org/)  
+
 
 ## makeLinkfile
 下記のAutoHotKey(Windowsのみ)・[g]vimrcファイルのシンボリックファイルを各所に配置する。  
@@ -101,9 +112,10 @@ Microsoft社製品のエディタ利用を拒否する輩はいますまい。
 2021/04/01：新規登録(Mac用・Android用)。  
 
 
-
 ## hidemaru.hmereg
 秀丸エディタの設定ファイル  
+ファイルを開いているときに、他で編集が行われた場合、読み込み直すことへの問い合わせをするようにしたが、、、間違えてその確認を閉じた場合、再表示させる方法が分からない。  
+困る。
 
 ※ **エディタからの読み込み方法があるため、それを用いること。**  
 他の方法で読み込む場合、設定が壊れる可能性があるため気をつけること。  
@@ -113,6 +125,7 @@ Microsoft社製品のエディタ利用を拒否する輩はいますまい。
 
 2021/02/11：新規登録。  
 
+
 ### キー割り当て.KEY
 `F4`	：画面分割(上下)  
 `Shift+F4`	：画面分割(左右)  
@@ -121,10 +134,12 @@ Microsoft社製品のエディタ利用を拒否する輩はいますまい。
 
 画面分割は、vimエディタを超えることは出来ないようだ(標準でショートカットも割り当てられていないため、サクラエディタより劣ることになっている)。  
 
+
 ## sakura.ini
 サクラエディタの設定ファイル。  
 
 2021/02/23：新規登録。  
+
 
 ## VSCodeディレクトリ
 Visual Studio Codeのバックアップファイル(Windows用？)。  
@@ -152,7 +167,6 @@ extensionsディレクトリは、20MB近くある。
 2021/02/23：新規登録。  
 
 
-
 ## AutoHotkey
 通称AHKと言われるWindows専用のキーボードショートカットツール。  
 しかし、任意のソフトウェアを起動する場合、フルPathをべた書きする必要があり、他環境では変更を要求される。  
@@ -167,17 +181,18 @@ extensionsディレクトリは、20MB近くある。
   * AutoHotKeyを無視するウィンドウ(ソフトウェア)が存在するため、それを回避してAutoHotKeyを優先させたい(具体的には、WindowsOSが用意しているソフトウェア一部)。  
     タスクマネージャがアクティブになっているときも有効にしたかったが、こればかりはできそうにないようだ(勝手に外部のソフトウェアが動かせたら問題あるかららしい)。  
 
-### 朝来野智博.exe
-現在公開している`AutoHotkey.ahk`から生成したのではなく、キー起動方法を変えた実行ファイルになる。  
-具体的には、Excelなどを起動する場合、AppsKeyとの組み合わせで起動させる方法をとっていたが、キーボードによってはそのキーが存在しないため設定が無駄になる。  
-それをPAUSE(and F1)キーに変更したのが本ファイルになる。  
 
-その起動方法の組み合わせは、`メモYYYYMMDD.xlsx`の`初期設定(ターミナル・Bash・キーボード)`シートに記載した。  
-それとは別に、`F23 & [ej]`にて、英語キーボードから日本語キーボードへの変更(もしくはその逆)を実施する(要管理者権限：**括弧内の数字が`11`になっていること**)処理も埋め込んでいる。  
-※今回の作成以後、更新することのないexeファイルになる(悔いがあるため、あと1回は更新する？)。
-
+### AutoHotKey.exe
+よくよく考えたらexeファイルを分ける必要なかった。
+そのため、`朝来野智博.exe`を通常名に戻した。  
+また、今まで通り、アプリケーションキーだけでなく、PAUSE・F1キーも加えている。  
 無理矢理起動させる仕組みを付けているため、ショートカットファイルをデスクトップに置いておけば、起動できるソフトウェアもあるだろう。  
 当然、起動時間はかかる・・・(時間が掛かる作業前に、確認ダイアログメッセージで問い合わせる)。  
+無理矢理起動させるにしても時間が掛かるため、その場合は`Win+Alt+r`のリロードで読み込み直すことにより、処理が停止する。  
+
+起動方法の組み合わせは、`メモYYYYMMDD.xlsx`の`初期設定(ターミナル・Bash・キーボード)`シートに記載した。  
+`F23 & [ej]`にて、英語キーボードから日本語キーボードへの変更(もしくはその逆)を実施する処理(要管理者権限)も埋め込んでいる。  
+
 
 ### 以下、ホットキー(ソフトウェア起動用)
 ソフト起動時の通常Path(例外あり)  
@@ -187,6 +202,7 @@ extensionsディレクトリは、20MB近くある。
 
 ※WindowOS標準のショートカットキーを上書きすることになるため、気をつけること。  
 
+
 ### ホットキー(ソフトウェア内での挙動)
 こちらも通常のショートカットキーを潰している可能性がある。  
 
@@ -194,6 +210,7 @@ extensionsディレクトリは、20MB近くある。
 * Ctrl+w	：ウィンドウ終了(タブ・子ウィンドウ)  
 * Win+q	：ウィンドウ終了(親ウィンドウまるごと)  
 * 基本的には、ソフトウェア起動を主に設定している。  
+
 
 #### Gvim
 個別対応  
@@ -204,12 +221,14 @@ extensionsディレクトリは、20MB近くある。
 * Alt+Space	：アクティブウィンドウの最小化。  
 * Win+Alt+d	：現在のバッファを完全終了  
 
+
 #### 秀丸エディタ
 個別対応  
 
 * Ctrl+g	：Grep検索ウィンドウ表示  
 * Ctrl+j	：指定行移動  
 * Win+Alt+f	：全画面表示(割り当てキーをいずれ変更する？)。  
+
 
 #### Eclipse
 個別対応  
@@ -226,6 +245,7 @@ HOMEディレクトリ直下に配置するのが基本になる。
 
 ※ **シェル** ：zshとの共通ファイルを読み込む。  
 
+
 ## zsh用環境ファイル
 HOMEディレクトリ直下に配置するのが基本になる。  
 
@@ -233,12 +253,14 @@ HOMEディレクトリ直下に配置するのが基本になる。
 
 ※ **シェル** ：bashとの共通ファイルを読み込む。  
 
+
 ## vimrc・gvimrc
 Vimエディタの設定ファイル。  
 HOMEディレクトリ直下に配置するのが基本になる。  
 
 2021/02/12：vimrc新規登録。  
 2021/02/13：gvimrc新規登録。  
+
 
 ### 内容
 バックアップファイルは、OS問わず、ホームディレクトリ直下の.vim\_backupディレクトリを使うようにしている。  
@@ -248,6 +270,7 @@ HOMEディレクトリ直下に配置するのが基本になる。
 対処方法不明。  
 
 <details><summary>vim設定</summary>
+
 
 #### プラグイン無関係設定
 日本語や多バイト言語の設定をしている。  
@@ -260,7 +283,7 @@ HOMEディレクトリ直下に配置するのが基本になる。
 * zR	：すべての折りたたみを開く  
 * zM	：すべての折りたたみを閉じる。  
 
-秀丸エディタやサクラエディタのように、タブバーも使いやすいように設定している。  
+タブバーも使いやすいように設定している。  
 
 * \<Leader\>tn	：新規タブを開く。  
 * \<Leader\>tc	：タブを閉じる。  
@@ -280,8 +303,10 @@ vimエディタの設定ファイルを開ける。
 gvimrc限定の設定としては、ウィンドウサイズを固定したままエディタ起動するとか、日本語や多バイト文字への対処などなど。  
 などなどの設定説明は、ざっくりではあるが、コメントを付けているため、混乱することはないはず。  
 
+
 ##### 困りごと(vimrc)。
 任意の文字コードを解釈できずに、異なる文字コードで開くことがあり、困っている。  
+
 
 ##### 困りごと(gvimrc)。
 一番の困りごとは、日本語入力時の文節区切りが判別できないこと(こればかりは最悪だ)。  
@@ -293,17 +318,18 @@ ATOKを使っているからか？
 #### プラグイン用設定
 キーマップ(備忘録用)。  
 
-* [minpac](https://github.com/k-takata/minpac)  
-* [nerdtree](https://github.com/preservim/nerdtree)  
-  私の環境固有バグあり。  
-* [vim-gitgutter](https://github.com/airblade/vim-gitgutter)  
-* [vim-fugitive](https://github.com/tpope/vim-fugitive)・[vim-rhubarb](https://github.com/tpope/vim-rhubarb)  
-* [tagbar](https://github.com/preservim/tagbar)  
-* [undotree](https://github.com/mbbill/undotree)  
-* [open-browser.vim](https://github.com/tyru/open-browser.vim)  
-* [vim-session](https://github.com/xolox/vim-session)・[vim-misc](https://github.com/xolox/vim-misc)  
-* [vim-findroot](https://github.com/mattn/vim-findroot)  
-* [vim-smartinput](https://github.com/kana/vim-smartinput)  
+* プラグイン  
+  * [minpac](https://github.com/k-takata/minpac)  
+  * [nerdtree](https://github.com/preservim/nerdtree)  
+  * [vim-gitgutter](https://github.com/airblade/vim-gitgutter)  
+  * [vim-fugitive](https://github.com/tpope/vim-fugitive)・[vim-rhubarb](https://github.com/tpope/vim-rhubarb)  
+  * [tagbar](https://github.com/preservim/tagbar)  
+  * [undotree](https://github.com/mbbill/undotree)  
+  * [open-browser.vim](https://github.com/tyru/open-browser.vim)  
+  * [vim-session](https://github.com/xolox/vim-session)・[vim-misc](https://github.com/xolox/vim-misc)  
+  * [vim-findroot](https://github.com/mattn/vim-findroot)  
+  * [vim-smartinput](https://github.com/kana/vim-smartinput)  
+  * [vim-visual-star-search](https://github.com/nelstrom/vim-visual-star-search)  
 
 </details>
 
@@ -315,7 +341,6 @@ ATOKを使っているからか？
 配置場所は、 `~/.vim/after/ftplugin` 配下に置く。  
 
 2021/02/21：新規登録。  
-
 
 
 ## 一太郎
@@ -331,11 +356,11 @@ ATOKを使っているからか？
 ### AutoHotKey
 一太郎を起動するようにしているが、絶対に使わない設定だろう。  
 
+
 ## ATOK
 Windows版は設定をバックアップできるが、Mac版はできない。  
 
 2021/04/01：新規登録(Windows用)。  
-
 
 
 ## gitignoreファイル
@@ -351,11 +376,13 @@ git設定(無視ファイルの設定)
 
 2021/02/14：新規登録。  
 
+
 ## メモ\_YYYYMMDD(Excelファイル)
 WindowsOSでの作業準備ファイル。  
 作業を残すためのひな形でもある。  
 
 2021/04/01：新規登録。  
+
 
 ## マウス設定(M-DUX70BK).xml
 ゲーム用にボタン設定をしている。  
@@ -405,10 +432,12 @@ WindowsOSでの作業準備ファイル。
 ## 今後
 今は、簡易的なメモ取りとしてMarkdownを使っているが、将来的には、sphinxでメモを取れるようになりたい。  
 
+
 ## ライセンス
 GPL-ver2  
 
 改造を含む利用可能なソースコードと同一条件でのライセンス  
 そもそも隠す物ではないはず。  
 
-以上。  
+
+以上。

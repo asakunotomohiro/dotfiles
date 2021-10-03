@@ -1,4 +1,5 @@
-" vim:set ts=4 sts=4 sw=4 tw=0:
+" vim: set ts=4 sts=4 sw=4 tw=0 ff=unix fenc=utf-8 ft=vim noexpandtab:
+
 let g:skip_defaults_vim = 1
 "	そもそもファイルが存在しないので読み込まない。
 "
@@ -105,7 +106,7 @@ call minpac#add('mattn/vim-lsp-settings')
 "	・環境構築が整っていない場合に出るメッセージのようだ。
 "		efm-langserver requires go
 call minpac#add('mattn/vim-goimports', {'type': 'opt'})	" インポート用：GoImport
-"	go get golang.org/x/tools/cmd/goimports		←このコマンドがインストールされていなければ、プラグインによるインポートが行われない。
+"	go install golang.org/x/tools/cmd/goimports		←このコマンドがインストールされていなければ、プラグインによるインポートが行われない。
 "		非同期のオートコンプリート
 "			オートコンプリートポップアップメニュー表示(自動補完補助)
 call minpac#add('prabirshrestha/asyncomplete.vim')
@@ -177,6 +178,9 @@ call minpac#add('ctrlpvim/ctrlp.vim')
 " Perl言語用の正規表現での検索用プラグイン。
 "call minpac#add('othree/eregex.vim', {'type': 'opt'})
 "	使いこなせないため、導入見送り。
+
+" *記号と#記号による検索を現在の選択範囲に広げるプラグイン。
+call minpac#add('nelstrom/vim-visual-star-search', {'type': 'opt'})
 
 " ファイル検索
 "call minpac#add('junegunn/fzf')
@@ -298,6 +302,7 @@ let packPluginlists = [
 	\ 'xptemplate',
 	\ 'nerdtree',
 	\ 'vim-showmarks',
+	\ 'vim-visual-star-search',
 	\ 'vim-rhubarb',
 	\ 'vim-commentary',
 	\ 'delimitMate',
@@ -618,6 +623,9 @@ let g:findroot_patterns = [
 "let g:findroot_not_for_subdir = 0
 endif
 
+"if isdirectory(expand(minpackSTART . "vim-visual-star-search"))  || isdirectory(expand(minpackOPT . "vim-visual-star-search"))
+	" *と#による選択範囲検索。
+"endif
 
 " セッション管理
 if isdirectory(expand(minpackSTART . "vim-session"))  || isdirectory(expand(minpackOPT . "vim-session"))
@@ -628,7 +636,8 @@ else
 endif
 let g:session_lock_directory = g:session_directory
 let g:session_extension = '.vimSession'
-let g:session_autosave = 'yes'
+let g:session_autosave = 'no'
+	" 自動保存しない。
 let g:session_autoload = 'no'
 let g:session_autosave_periodic = 0
 let g:session_autosave_silent = 1
@@ -708,6 +717,7 @@ augroup filetype_markdown
 	au!
 	au FileType markdown packadd previm
 	au FileType markdown nnoremap <Leader>p :PrevimOpen<CR>
+"	setlocal expandtab
 augroup END
 
 
@@ -813,6 +823,7 @@ set smartcase
 
 "	検索方法を自然な正規表現に変換(very Magic)
 nnoremap / /\v
+	"	\Vの場合は、一部の例外を除き、記号を無効化し、その記号のまま検索する。
 
 "	マッチ箇所をハイライト
 set hlsearch
@@ -935,6 +946,7 @@ command! TagsMake !ctags -R .
 
 " 改行時に、前の行を構文解析後に、カレント行のインデント増減を決める。
 set smartindent
+inoremap # X<C-H>#
 
 " <C-a>の増減を10進数で行う。
 set nrformats=
@@ -1177,6 +1189,15 @@ set encoding=UTF-8
 
 " 日本語整形スクリプト
 let format_allow_over_tw = 1 " ぶら下り可能幅
+
+"---------------------------------------------------------------------------
+" Python3に強制したいが、できなかった。
+"			https://vim-jp.org/vimdoc-ja/if_pyth.html#has-pythonx
+if has('python3')
+	set pyx=3
+elseif has('python')
+	set pyx=2
+endif
 
 "---------------------------------------------------------------------------
 " マウスに関する設定:
