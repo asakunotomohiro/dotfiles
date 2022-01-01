@@ -22,6 +22,7 @@
 [alias]
 	lol = log --graph --decorate --pretty=oneline --all --parents --abbrev-commit
 	ll = log --graph --oneline --first-parent
+#	_bash_profile	ファイルにもGit関連のエイリアスを仕込んでいるため注意すること。
 
 [diff]
 	tool = vimdiff

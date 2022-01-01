@@ -45,8 +45,8 @@
 	trustExitCode = true
 
 # 以下、Macで設定されていた内容だが、Windowsでも有効？
-[commit]
-	template = /Users/asakunotomohiro/.stCommitMsg
+#[commit]
+#	template = /Users/asakunotomohiro/.stCommitMsg
 
 # Windows用メモ
 #	・Git bash

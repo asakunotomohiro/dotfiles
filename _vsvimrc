@@ -1,0 +1,185 @@
+" vim: set ts=4 sts=4 sw=4 tw=0 ff=unix fenc=utf-8 ft=vim noexpandtab:
+
+let g:skip_defaults_vim = 1
+
+"	リーダーキー
+let mapleader = "\<Space>"
+
+" ステータスラインに文字コードを表示させる。
+"set statusline=%<%f\ %m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}%=%l,%c%V%8P
+
+let minpackOPT = "$HOME/.vim/pack/minpac/opt/"
+let minpackSTART = "$HOME/.vim/pack/minpac/start/"
+
+"---------------------------------------------------------------------------
+" フォント設定:
+
+" □や○の文字があってもカーソル位置がずれないよう。
+" □とか○の文字があってもカーソル位置がずれないようにする
+if exists('&ambiwidth')
+	" 一部のUCS文字の幅を自動計測して決める
+	set ambiwidth=double
+endif
+
+
+"---------------------------------------------------------------------------
+
+" 上書き後に終了するコマンドを無効化する。
+nnoremap ZZ <Nop>
+
+"---------------------------------------------------------------------------
+" 日本語入力に関する設定:
+
+"	以下は、Escキー押下で日本語入力Offになる。
+"　全然機能しない（VisualStudio2019）
+"set noimdisable
+
+"ESCでIMEを確実にOFF
+inoremap <silent> <ESC> <ESC>:set iminsert=0<CR>
+inoremap <silent> <C-[> <C-[>:set iminsert=0<CR>
+
+
+"	インサートモードでバックスペース機能を有効にする。
+set backspace=indent,eol,start
+
+" 大小文字を区別せずに検索する。
+set ignorecase
+
+" 大文字を含む場合は、大小文字を区別して検索するが、すべて小文字の場合は大小文字を区別せずに検索する。
+set smartcase
+
+"	検索方法を自然な正規表現に変換(very Magic)
+nnoremap / /\v
+	"	\Vの場合は、一部の例外を除き、記号を無効化し、その記号のまま検索する。
+
+"	マッチ箇所をハイライト
+set hlsearch
+"		ハイライト解除の場合はExコマンド上で"noh"を打てば消える(再度検索すればハイライトになる)。
+nnoremap <C-l> :nohlsearch<CR><C-l>
+"		Ctrl+l	の組み合わせでハイライト解除にした。
+
+"	ファイル端に達した場合、一周して検索を続行する。
+set wrapscan
+
+" QuickFixおよびHelpでは q でバッファを閉じる
+autocmd FileType help,qf nnoremap <buffer> q <C-w>c
+
+"	以下、vimgrep・grep・Ggrepの3種類のコマンドに対して、自動的にquickfix-windowを開く。
+autocmd QuickFixCmdPost *grep* cwindow
+
+"	対となるキーワード間の移動(検索)
+if &compatible
+	set nocompatible
+endif
+
+
+" fモーションのカスタマイズ
+
+
+" <C-a>の増減を10進数で行う。
+set nrformats=
+
+
+" コマンド補完
+set history=800 " 保存するコマンド履歴の数
+
+" 補完表示時のEnterで決定)
+"inoremap <expr><CR>  pumvisible() ? "<C-y>" : "<CR>"
+
+"	Tabで確定したい。
+"							inoremap <expr><Tab> pumvisible() ? "<C-y>" : "\<Tab>"
+"							inoremap <expr><CR>  pumvisible() ? "<C-y>" : "\<CR>"
+"	補完候補の選択を矢印キーで行う。
+"							inoremap <expr><C-n> pumvisible() ? "<Down>" : "<C-n>"
+"							inoremap <expr><C-p> pumvisible() ? "<Up>" : "<C-p>"
+" 常時補完候補を表示する(初回の補完時に挿入しない)
+"set completeopt=menuone,noinsert
+"set completeopt=menuone
+
+
+"---------------------------------------------------------------------------
+" GUI固有ではない画面表示の設定:
+
+" 行番号を表示 (nonumber:表示しない)
+set number
+
+"	行番号をカレント行から絶対的に表示
+set norelativenumber
+
+" タブや改行を表示 (nolist:表示しない)
+set list
+
+" 常にステータス行を表示 (詳細は:he laststatus)
+"set laststatus=2
+
+" タイプ中のコマンドを表示
+set showcmd
+
+set scrolloff=0
+
+
+"---------------------------------------------------------------------------
+" 編集に関する設定:
+
+" タブの画面上での幅
+set tabstop=4
+
+" 自動改行不可(日本語には関係なく改行するようだ？)
+set textwidth=0
+" シフト量の幅（"<<" または ">>"）
+"	smartindentで増減する幅
+set shiftwidth=4
+set softtabstop=4
+
+" 挿入モードの時にプットする場合、自動インデント機能を無効にする。
+inoremap <C-g><C-v> <F2><C-r>"<F2>
+
+"---------------------------------------------------------------------------
+" バックアップファイル・スワップファイル
+
+
+"---------------------------------------------------------------------------
+
+"　日本語ヘルプが開くように設定する。
+
+
+"---------------------------------------------------------------------------
+" 文字コードの設定
+
+
+" 日本語整形スクリプト
+let format_allow_over_tw = 1 " ぶら下り可能幅
+
+"---------------------------------------------------------------------------
+"	エクスプローラー
+
+nnoremap <Leader>E :Explore<CR>
+	" ↓通常:Seで水平分割上で開くのを変更。
+nnoremap <Leader>S :Sexplore<CR>
+	" ↓通常:Vexで水平分割上で開くのを変更変更
+nnoremap <Leader>V :Vexplore<CR>
+"	新規タブページで開く場合は:Teを使う必要がある.
+
+" 折りたたみ
+autocmd BufRead * normal zR
+
+"---------------------------------------------------------------------------
+"	インクリメンタルサーチをしない.
+set noincsearch
+
+" カーソルハイライト
+set cursorline " カーソルラインをハイライト
+
+"---------------------------------------------------------------------------
+
+" タブ操作
+"	以下、新規タブページを右端に作成する。
+nnoremap <Leader>tn :$tabnew<CR>
+nnoremap <Leader>tc :tabclose<CR>
+"	以下、現在のバッファを新規タブで開く(現在のバッファは既存のタブに残る)
+nnoremap <Leader>tm :tab split<CR>
+"	以下、カレントタブページ以外を閉じる。
+nnoremap <Leader>to :tabonly<CR>
+
+
+" 以上。

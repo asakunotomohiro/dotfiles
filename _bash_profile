@@ -1,0 +1,49 @@
+# 本ファイルに環境設定を仕込む(ログイン時にのみ読み込まれるため)。
+#	export対象の設定を本ファイルに記述する。
+# zshでも使えるように、_profile_commonに書き込むことにする。
+
+COMMON_ALIAS_FILE="$HOME/.profile_common_Alias"
+COMMON_ENVIRONMENTFILE="$HOME/.profile_common_EnvironmentVariable"
+
+if [ -e $COMMON_ALIAS_FILE ]
+then 
+	source $COMMON_ALIAS_FILE
+	source $COMMON_ENVIRONMENTFILE
+fi
+
+alias h='history 25'
+alias tree='tree -N'
+alias gitll='git log -15 --graph --oneline --first-parent'
+
+# OSがクラッシュするため中止
+#	未定義の変数を null ではなくエラーとして扱う
+#set -o nounset
+
+# rust言語用の環境設定
+. "$HOME/.cargo/env"
+
+export HISTCONTROL=ignoreboth
+#export HISTCONTROL=erasedups
+export HISTIGNORE=clear:fg:ll:ls:h:history:'git lol':'git mv':pwd:dirs:date:exit
+
+# CTRL+Dでシェルを終了できなくする
+set -o ignoreeof
+# 未定義の変数をnullではなくエラーとして扱う
+#set -u nounset
+
+COLOR_DEFAULT='\[\e[0m\]'
+COLOR_BLACK='\[\e[30m\]'
+COLOR_RED='\[\e[31m\]'
+COLOR_GREEN='\[\e[32m\]'
+COLOR_YELLOW='\[\e[33m\]'
+COLOR_BLUE='\[\e[34m\]'
+
+# プロンプト表記変更
+# "[ユーザ名@ホスト名 現在のディレクトリ] $"
+PS1="[${COLOR_YELLOW}\u${COLOR_DEFAULT}@\h ${COLOR_BLUE}\W${COLOR_DEFAULT}] $ "
+
+# 優先順位が2番目の環境設定ファイルを読み込む.
+. ~/.bash_login
+
+# エイリアスなどの設定は、.bashrcに設定する。
+# 以上。

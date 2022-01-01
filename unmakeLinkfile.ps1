@@ -13,16 +13,22 @@ if (Test-Path $vimdir) {
 
 
 Remove-Item '~/.inputrc' -Recurse -Force
+Remove-Item '~/.lesshst' -Recurse -Force
+Remove-Item '~/.minttyrc' -Recurse -Force
 Remove-Item '~/.bashrc' -Recurse -Force
 Remove-Item '~/.bashrc_sub' -Recurse -Force
 Remove-Item '~/.bash_history' -Recurse -Force
+Remove-Item '~/.bash_profile' -Recurse -Force
 Remove-Item '~/.profile_common_Alias' -Recurse -Force
 Remove-Item '~/.vimrc' -Recurse -Force
 Remove-Item '~/.gvimrc' -Recurse -Force
 Remove-Item '~/.viminfo' -Recurse -Force
 Remove-Item '~/_viminfo' -Recurse -Force
+Remove-Item '~/.vsvimrc' -Recurse -Force
 Remove-Item '~/.gitconfig' -Recurse -Force
 Remove-Item '~/.gitconfig.private-local' -Recurse -Force
+
+Remove-Item '~/NTUSER.DAT' -Recurse -Force
 
 # 以下のプログラムでは管理者権限での実行が必要になる。
 #	Start-Process powershell -Verb runAs
@@ -30,6 +36,9 @@ Remove-Item '~/.gitconfig.private-local' -Recurse -Force
 $document = [Environment]::GetFolderPath('MyDocuments')
 
 $documentFile = "${document}\AutoHotkey.ahk"
+Remove-Item $documentFile -Recurse -Force
+
+$documentFile = "${document}\gitignore_global.txt"
 Remove-Item $documentFile -Recurse -Force
 
 # コマンドプロンプトのエイリアス設定削除。

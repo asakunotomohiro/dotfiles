@@ -78,6 +78,8 @@ New-Item -Force -Value './Android/_bashrc' -Path '~/.bashrc' -ItemType SymbolicL
 New-Item -Force -Value './Windows/_bashrc_sub' -Path '~/.bashrc_sub' -ItemType SymbolicLink
 New-Item -Force -Value './MacOS/_profile_common_Alias' -Path '~/.profile_common_Alias' -ItemType SymbolicLink
 New-Item -Force -Value './MacOS/_inputrc' -Path '~/.inputrc' -ItemType SymbolicLink
+# 以下は、Visual Studio 2019のプラグイン用vimrc(https://github.com/VsVim/VsVim)
+New-Item -Force -Value './_vsvimrc' -Path '~/.vsvimrc' -ItemType SymbolicLink
 #	以下は、普通のコピー
 Copy-Item -Path './_gitconfig.private-local' -Destination '~/.gitconfig.private-local'
 #New-Item -Force -Value './_gitconfig.private-local' -Path '~/.gitconfig.private-local' -ItemType SymbolicLink
@@ -98,8 +100,9 @@ $document = [Environment]::GetFolderPath('MyDocuments')
 $documentFile = "${document}\AutoHotkey.ahk"
 New-Item -Force -Value '.\Windows\AutoHotkey.ahk' -Path "$documentFile" -ItemType SymbolicLink
 
-$documentFile = "${document}\alias.bat"
-New-Item -Force -Value '.\Windows\alias.bat' -Path "$documentFile" -ItemType SymbolicLink
+# vimエディタの挙動に干渉するため、実施不可。
+#$documentFile = "${document}\alias.bat"
+#New-Item -Force -Value '.\Windows\alias.bat' -Path "$documentFile" -ItemType SymbolicLink
 
 $userStartup = [Environment]::GetFolderPath('CommonStartup')
 $userStartupFile = "${userStartup}\AutoHotkey.ahk"
