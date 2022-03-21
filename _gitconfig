@@ -1,17 +1,18 @@
 # globalファイルとして扱う。
 [user]
-	user = 
-	name = 
-	email = 
+	user =
+	name =
+	email =
 
 [core]
 	autocrlf = false
 	quotepath = false
 	editor = vim
-	excludesfile = C:\\Users\\asakunotomohiro\\Documents\\gitignore_global.txt
+	#excludesfile = C:\\Users\\asakunotomohiro\\Documents\\gitignore_global.txt	←☆この書き方は非推奨。
+	excludesfile = C:\\Users\\asakunotomohiro\\.config\\git\\.gitignore_global
 
 #[difftool "sourcetree"]
-#	path = 
+#	path =
 #
 #[mergetool "sourcetree"]
 #	trustExitCode = true

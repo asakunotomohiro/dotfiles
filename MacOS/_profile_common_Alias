@@ -10,7 +10,7 @@ alias df='df -Hi'
 
 #	☆Pathの書き換え必須☆
 #alias python='/Users/asakunotomohiro/.pyenv/shims/python'
-#	そもそもpyenvは使うなとのこと。
+#	そもそもpyenvは使うなとのこと(勘違いした指摘では？)。
 alias python='python3'
 
 # tarファイルの閲覧

@@ -75,6 +75,7 @@ echo "(cd ~;ln -f --symbolic  "${filedir}/_gvimrc" ./.gvimrc)"
 echo "(cd ~;ln -f --symbolic  "${filedir}/MacOS/_zshrc" ./.zshrc)"
 (cd ~/;`ln -sf "${filedir}/MacOS/_zshrc" ./.zshrc`;echo "実行結果"$?)
 
+#	todo: 以下、無視リストファイルの配置場所を正しい位置に変更する(~/.config/git/ここ)。
 echo "(cd ~;ln -f --symbolic  "${filedir}/_gitconfig" ./.gitconfig)"
 (cd ~/;`ln -sf "${filedir}/_gitconfig" ./.gitconfig`;echo "実行結果"$?)
 

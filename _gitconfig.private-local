@@ -10,7 +10,8 @@
 
 #	■Windows用
 [core]
-	excludesfile = C:\\Users\\asakunotomohiro\\Documents\\gitignore_global.txt
+	#excludesfile = C:\\Users\\asakunotomohiro\\Documents\\gitignore_global.txt
+	excludesfile = C:\\Users\\asakunotomohiro\\.config\\git\\.gitignore_global
 
 [difftool "sourcetree"]
 #	cmd = 'C:/Program Files/WinMerge/WinMergeU.exe' \"$LOCAL\" \"$REMOTE\"
@@ -33,7 +34,8 @@
 
 #	■Mac用
 [core]
-	excludesfile = /Users/asakunotomohiro/.gitignore_global
+	#excludesfile = /Users/asakunotomohiro/.gitignore_global
+	excludesfile = /Users/asakunotomohiro/.config/git/.gitignore_global
 [difftool "vimdiff"]
 	cmd = opendiff -r -u \"$LOCAL\" \"$REMOTE\"
 	path = 

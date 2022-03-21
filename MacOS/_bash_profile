@@ -13,6 +13,7 @@ fi
 
 alias h='history 25'
 alias tree='tree -N'
+alias gitll='git log -25 --graph --oneline --first-parent'
 
 # OSがクラッシュするため中止
 #	未定義の変数を null ではなくエラーとして扱う
@@ -24,6 +25,10 @@ alias tree='tree -N'
 export HISTCONTROL=ignoreboth
 #export HISTCONTROL=erasedups
 export HISTIGNORE=clear:fg:ll:ls:h:history:'git lol':'git mv':pwd:dirs:date:exit
+export PATH="/usr/local/opt/openssl@3/bin:$PATH"
+#export LDFLAGS="-L/usr/local/opt/openssl@3/lib"
+#export CPPFLAGS="-I/usr/local/opt/openssl@3/include"
+#export PKG_CONFIG_PATH="/usr/local/opt/openssl@3/lib/pkgconfig"
 
 # CTRL+Dでシェルを終了できなくする
 set -o ignoreeof
@@ -40,6 +45,7 @@ COLOR_BLUE='\[\e[34m\]'
 # プロンプト表記変更
 # "[ユーザ名@ホスト名 現在のディレクトリ] $"
 PS1="[${COLOR_YELLOW}\u${COLOR_DEFAULT}@\h ${COLOR_BLUE}\W${COLOR_DEFAULT}] $ "
+	# 将来的に変更する必要がある(バグがある・表示がくずれる)。
 
 # 優先順位が2番目の環境設定ファイルを読み込む.
 . ~/.bash_login

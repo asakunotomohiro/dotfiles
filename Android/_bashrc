@@ -11,7 +11,7 @@ then
 #	source $COMMON_ENVIRONMENTFILE
 fi
 
-set -o vi 
+set -o vi
 export HISTCONTROL=ignoreboth
 export HISTCONTROL=erasedups
 export HISTIGNORE=clear:fg:ll:ls:h:history:'git lol':'git mv':pwd:dirs:date:exit

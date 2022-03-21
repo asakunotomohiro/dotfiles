@@ -84,6 +84,7 @@ echo "(cd ${ANDROIDHOME};ln -f --symbolic  "${ANDROIDHOME}/Android/_bashrc" ~/.b
 unlink ~/.bashrc 2>/dev/null
 (cd ${ANDROIDHOME}/;`ln -sf "${ANDROIDHOME}/Android/_bashrc" ~/.bashrc`;echo "実行結果"$?)
 
+#	todo: 以下、無視リストファイルの配置場所を正しい位置に変更する(~/.config/git/ここ)。
 echo "(ln -f --symbolic  "${ANDROIDHOME}/_gitconfig" ~/.gitconfig)"
 unlink ~/.gitconfig 2>/dev/null
 (cd ~/;`ln -sf "${ANDROIDHOME}/_gitconfig" ./.gitconfig`;echo "実行結果"$?)

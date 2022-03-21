@@ -16,6 +16,10 @@ export CPPFLAGS="-I/usr/local/opt/tcl-tk/include"
 export PKG_CONFIG_PATH="/usr/local/opt/tcl-tk/lib/pkgconfig"
 export PYTHON_CONFIGURE_OPTS="--with-tcltk-includes='-I/usr/local/opt/tcl-tk/include' --with-tcltk-libs='-L/usr/local/opt/tcl-tk/lib -ltcl8.6 -ltk8.6'"
 
+# Perl
+#export PERL_CPANM_OPT="$HOME/.cpan"	Pathが違う。
+#export PATH=$HOME/perl5/bin:$PATH;
+#export PERL5LIB=$HOME/perl5/lib/perl5:$PERL5LIB;
 
 # Golang
 #	brew install go	←☆今後これで管理する。

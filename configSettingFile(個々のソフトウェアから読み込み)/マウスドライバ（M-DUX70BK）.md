@@ -2,7 +2,7 @@
 プロファイルを複数あるため、それぞれに任意の設定を割り当てられる。  
 
 ## URL
-http://www2.elecom.co.jp/products/M-DUX70BK.html  
+<http://www2.elecom.co.jp/products/M-DUX70BK.html>  
 
 ## プロファイル
 以下、5つのプロファイルを示す。  
@@ -10,7 +10,7 @@ http://www2.elecom.co.jp/products/M-DUX70BK.html
 ### Profile1	マインクラフトを基準に設定
 以下、マインクラフトゲームを基準に設定している。  
 
-* https://minecraft-ja.gamepedia.com/操作  
+* <https://minecraft-ja.gamepedia.com/操作>  
   * G1	F2	：スクリーンショット  
   * G8	Q	：ものを捨てる.  
   * G12	E	：インベントリの開閉  
@@ -21,8 +21,8 @@ http://www2.elecom.co.jp/products/M-DUX70BK.html
 ### Profile2	factorioを基準に設定
 以下、ファクトリオゲームを基準に設定している。  
 
-* https://wiki.factorio.com/Keyboard_bindings/ja  
-* https://wikiwiki.jp/factorio/操作方法  
+* <https://wiki.factorio.com/Keyboard_bindings/ja>  
+* <https://wikiwiki.jp/factorio/操作方法>  
   * G3	Q	：持ち物を戻す  
   * G8	Z	：ものを捨てる.  
   * G9	F	：アイテムを拾う.  
@@ -97,3 +97,4 @@ http://www2.elecom.co.jp/products/M-DUX70BK.html
 * G16	：無変換キー  
 
 以上。  
+<!-- vim: set ts=4 sts=4 sw=4 tw=0 ff=unix fenc=utf-8 ft=markdown expandtab: -->

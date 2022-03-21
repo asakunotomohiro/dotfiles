@@ -110,7 +110,9 @@ call minpac#add('mattn/vim-goimports', {'type': 'opt'})	" インポート用：G
 "		非同期のオートコンプリート
 "			オートコンプリートポップアップメニュー表示(自動補完補助)
 call minpac#add('prabirshrestha/asyncomplete.vim')
+"	一時削除(ATOKとの競合確認)20220112
 "			オートコンプリートソース(自動補完補助)
+"			勘違いで、このプラグインでは無かった(それでも上のプラグインは何に使うのだろう)。
 call minpac#add('prabirshrestha/asyncomplete-lsp.vim')
 
 "	シンタックスチェック
@@ -240,7 +242,9 @@ call minpac#add('jacquesbh/vim-showmarks', {'type': 'opt'})
 "call minpac#add('Raimondi/delimitMate', {'type': 'opt'})
 "call minpac#add('cohama/lexima.vim', {'type': 'opt'})
 
-call minpac#add('kana/vim-smartinput', {'type': 'opt'})
+"call minpac#add('kana/vim-smartinput', {'type': 'opt'})
+"	一時削除(ATOKとの競合確認)20220112
+"		このプラグインがATOKと競合を起こす(Macのみ？)。
 
 "call minpac#add('vim-denops/denops.vim')
 "call minpac#add('higashi000/dps-kakkonan')
@@ -872,7 +876,7 @@ noremap fj f<C-k>j
 noremap Fj F<C-k>j
 noremap tj t<C-k>j
 noremap Tj T<C-k>j
-digraphs jj 106  " j
+digraphs jj 106  " j	←☆これを忘れる。
 " 以下、続く。
 
 "	カッコ
@@ -909,7 +913,7 @@ digraphs j9 65305  " ９
 "	その他の記号
 digraphs j~ 12316  " 〜
 digraphs j/ 12539  " ・
-digraphs js 12288  " 　
+digraphs js 12288  " 　	←☆これを忘れる。
 
 " ctagsの検索場所を親ディレクトリから再帰的に探す。
 set tags=tags;$HOME;
@@ -1264,15 +1268,22 @@ let $LUA_DLL = simplify($VIM . '/../../Frameworks/libluajit-5.1.2.dylib')
 if has('multi_byte_ime') || has('xim')
 	" IME ON時のカーソルの色を設定
 	highlight CursorIM guibg=Red guifg=LightRed
+		"カーソルを変更するのは、括弧などの自動補完プラグインと競合するのか、相性が悪いようで、ATOK変換の足を引っ張る。
+		"そのため、無効化する20220111
+		"この処理じゃなかったようだ。
 	" 挿入モード・検索モードでのデフォルトのIME状態設定
 "	set iminsert=0 imsearch=0
 endif
 
 " カーソルハイライト
 set cursorline " カーソルラインをハイライト
+"	ATOKと'prabirshrestha/asyncomplete-lsp.vim'プラグインが競合するため、コメントアウトした20220112
 
 "		アンダーライン付き。
 highlight CursorLine gui=underline guifg=NONE guibg=NONE
+"	ATOKと'prabirshrestha/asyncomplete-lsp.vim'プラグインが競合するため、コメントアウトした20220112
+"	この処理じゃ無かったようだ。
+"	効果が無かったため、プラグインを削除した20220112
 
 " 挿入モード時、ステータスラインの色を変更
 " 参考URL：https://sites.google.com/site/fudist/Home/vim-nihongo-ban/vim-color#color-insertmode

@@ -96,6 +96,7 @@ echo "(cd /etc;ln -f --symbolic  "${filedir}/MacOS/etc_bashrc" ./bashrc)(スー�
 echo "(cd /etc;ln -f --symbolic  "${filedir}/MacOS/etc_profile" ./profile)(スーパユーザ利用)"
 (cd /etc;`sudo ln -sf "${filedir}/MacOS/etc_profile" ./profile`;echo "実行結果"$?)
 
+#	todo: 以下、無視リストファイルの配置場所を正しい位置に変更する(~/.config/git/ここ)。
 echo "(ln -f --symbolic  "${filedir}/_gitconfig" ~/.gitconfig)"
 (cd ~/;`ln -sf "${filedir}/_gitconfig" ./.gitconfig`;echo "実行結果"$?)
 echo "(cp -p "${filedir}/_gitconfig.private-local" ~/.gitconfig.private-local)"

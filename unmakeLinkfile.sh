@@ -35,7 +35,8 @@ if [ -d $VIMBACDIR ]; then
 	sudo mv /etc/profile_bk /etc/profile
 	echo "実行結果"$?
 
-	rm -f ~/.viminfo ~/.gitconfig.private-local ~/.bash_history 
+	# いずれ~/.config/git/ココのファイルの削除する。
+	rm -f ~/.viminfo ~/.gitconfig.private-local ~/.bash_history
 	echo "実行結果"$?
 
 

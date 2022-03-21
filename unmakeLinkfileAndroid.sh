@@ -15,6 +15,7 @@ echo "$filedir"
 	#if [ -d $VIMBACDIR ]; then
 	echo "vim環境がある。"
 
+	# いずれ~/.config/git/ココのファイルの削除する。
 	rm -f ~/.viminfo ~/.gitconfig.private-local ~/.bash_history 
 
 	echo "(cd ~;unlink ".vimrc")"

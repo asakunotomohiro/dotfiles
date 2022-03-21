@@ -6,6 +6,7 @@ $vimsessiondir = "~\.vim_backup\sessions"
 $vimundodir = "~\.vim_backup\undofile"
 $gitIgnoredir = "%XDG_CONFIG_HOME%/git/ignore"	# OS依存のGit用無視ファイル
 $gitconfig = "~/.config/git/ignore"	# OS依存のGit用無視ファイル
+$gitconfig = "~/.config/git/"	# Git用設定ディレクトリ
 
 $vimdirColors = "~\.vim\colors"
 $vimdirCompiler = "~\.vim\compiler"
@@ -39,6 +40,8 @@ if (Test-Path $vimdir) {
     New-Item -Path $vimdirKeymap -ItemType Directory
     New-Item -Path $vimdirPlugin -ItemType Directory
     New-Item -Path $vimdirSyntax -ItemType Directory
+
+    New-Item -Path $gitconfig -ItemType Directory
 }
 
 $currentDir = pwd
@@ -108,11 +111,13 @@ $userStartup = [Environment]::GetFolderPath('CommonStartup')
 $userStartupFile = "${userStartup}\AutoHotkey.ahk"
 New-Item -Force -Value '.\Windows\AutoHotkey.ahk' -Path "$userStartupFile" -ItemType SymbolicLink
 
-$documentFile = "${document}\gitignore_global.txt"
+#$documentFile = "${document}\gitignore_global.txt"
+$documentFile = "$HOME\.config\git\.gitignore_global"
 New-Item -Force -Value '.\_gitignore_global' -Path "$documentFile" -ItemType SymbolicLink
 
-New-ItemProperty -LiteralPath 'Registry::HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Keyboard Layout' -Name 'Scancode Map' -PropertyType 'Binary' -Value $bin -Force
-New-ItemProperty -LiteralPath 'Registry::HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Command Processor' -Name 'AutoRun' -PropertyType 'String' -Value "`"${documentFile}`"" -Force
+#	AutoHotKeyで対応する(もしくは、Windows10以降「設定=>時刻と言語=>言語=>優先する言語の日本語のオプション=>レイアウトを変更する」で対応可能)。
+#New-ItemProperty -LiteralPath 'Registry::HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Keyboard Layout' -Name 'Scancode Map' -PropertyType 'Binary' -Value $bin -Force
+#New-ItemProperty -LiteralPath 'Registry::HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Command Processor' -Name 'AutoRun' -PropertyType 'String' -Value "`"${documentFile}`"" -Force
 
 
 #	AutoHotkeyでのWin+Ctrl+Alt+Shiftの組み合わせをOffice Online画面の起動を抑止するための措置。

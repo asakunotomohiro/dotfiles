@@ -1,7 +1,7 @@
 COMMON_ALIAS_FILE=$HOME/.profile_common_Alias
 COMMON_ENVIRONMENTFILE=$HOME/.profile_common_EnvironmentVariable
 if [ -e $COMMON_ALIAS_FILE ]
-then 
+then
 	source $COMMON_ALIAS_FILE
 	source $COMMON_ENVIRONMENTFILE
 fi

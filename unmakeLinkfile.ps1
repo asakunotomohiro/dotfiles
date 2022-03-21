@@ -25,7 +25,8 @@ Remove-Item '~/.gvimrc' -Recurse -Force
 Remove-Item '~/.viminfo' -Recurse -Force
 Remove-Item '~/_viminfo' -Recurse -Force
 Remove-Item '~/.vsvimrc' -Recurse -Force
-Remove-Item '~/.gitconfig' -Recurse -Force
+#Remove-Item '~/.gitconfig' -Recurse -Force
+Remove-Item '~/.config/git/.gitignore_global' -Recurse -Force
 Remove-Item '~/.gitconfig.private-local' -Recurse -Force
 
 Remove-Item '~/NTUSER.DAT' -Recurse -Force
@@ -56,11 +57,12 @@ Set-ItemProperty -Path 'Registry::HKEY_CURRENT_USER\Control Panel\Accessibility\
 #	Commandキーそのものが消える。(既定)だけを削除したかったが、できず。
 #		作成時は、Shellを含むその配下のキーがまるごと無かった。
 #		しかし、今回削除するときに、Commandキーに他の値が設定されていた場合の削除を考えなければ、他で影響が出そうだ。
-Remove-Item -Path 'Registry::HKEY_CURRENT_USER\SOFTWARE\Classes\ms-officeapp\Shell\Open\Command' 
+Remove-Item -Path 'Registry::HKEY_CURRENT_USER\SOFTWARE\Classes\ms-officeapp\Shell\Open\Command'
 #		作成の時のように、コマンドプロンプトで削除すればいいのかもしれない。
 
 # Caps LockキーをCtrlキーに置き換えたレジストリを削除する。
-cmd /D /U /C 'REG DELETE "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Keyboard Layout" /v "Scancode Map" /f'
+#	※AutoHotKyeで対応するため、ここはコメントアウトしている。
+#cmd /D /U /C 'REG DELETE "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Keyboard Layout" /v "Scancode Map" /f'
 #	オプションを付けた場合、エラーになってしまい、空にできなかった。
 
 # スタートアップ配下のAutoHotkeyファイル削除

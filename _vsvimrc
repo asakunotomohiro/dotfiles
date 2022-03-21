@@ -49,7 +49,8 @@ set ignorecase
 set smartcase
 
 "	検索方法を自然な正規表現に変換(very Magic)
-nnoremap / /\v
+"		エラーになる。
+"nnoremap / /\v
 	"	\Vの場合は、一部の例外を除き、記号を無効化し、その記号のまま検索する。
 
 "	マッチ箇所をハイライト
