@@ -1,6 +1,18 @@
 #	ここは、Windowsのbash環境を設定したい。
 
+COLOR_DEFAULT='\[\e[0m\]'
+COLOR_BLACK='\[\e[30m\]'
+COLOR_RED='\[\e[31m\]'
+COLOR_GREEN='\[\e[32m\]'
+COLOR_YELLOW='\[\e[33m\]'
+COLOR_BLUE='\[\e[34m\]'
 # プロンプト表記変更
-PS1="[${COLOR_YELLOW}\u${COLOR_DEFAULT}@\h ${COLOR_BLUE}\W${COLOR_DEFAULT}] $ "
+#PS1="[${COLOR_YELLOW}\u${COLOR_DEFAULT}@\h ${COLOR_BLUE}\W${COLOR_DEFAULT}] $ "
+#PS1="\[\e[33m\]\u\[\e[0m\]\[\e[92m\]@\[\e[0m\]\[\e[94m\]\h\[\e[0m\] \W \[\e[31m\]\$\[\e[0m\] "
+#PS1="\[\e[33m\]\u\[\e[0m\]\[\e[92m\]@\[\e[0m\]\[\e[94m\]\h\[\e[0m\] \W \$ "
+#	ユーザ名とコンピュータ名不要と判断した。
+#PS1="\[\e[92m\]@\[\e[0m\] \W \[\e[91m\]\$\[\e[0m\] "
+PS1="\W \[\e[91m\]\$\[\e[0m\] "
 
 # 以上。
+# vim: set ts=4 sts=4 sw=4 tw=0 ff=unix fenc=utf-8 ft=bash noexpandtab:

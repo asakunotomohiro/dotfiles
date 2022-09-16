@@ -1,0 +1,30 @@
+さいしゅう	ーーー最終行ーーー	名詞	
+べりー	BlackBerryKey2	名詞	
+べりー	BlackBerryKeyOne	名詞	
+ついったー	Twitter	名詞	
+たいたん	Titan	名詞	
+たいたん	Unihertz-Titan	名詞	
+すりむ	Titan-Slim(Unihertz)	名詞	
+すりむ	Titan-Slim	名詞	
+きんどる	Kindle	名詞	
+ぱー	%	名詞	
+のーとかね	@money入出金money	名詞	
+かねのーと	@money入出金money	名詞	
+たぐれしーと	#レシート_Host	名詞	
+たぐめーる	#メール_Host	名詞	
+たぐめも	#pレビューメモ_HOST	名詞	
+あさくの	あさくの	名詞	
+あさくの	https://github.com/asakunotomohiro/dotfiles	名詞	
+ぎっと	git clone https://github.com/asakunotomohiro/asakunotomohiro.git	名詞	
+しむしてぃ	シムシティ	名詞	
+しむしてぃ	Sim City	名詞	
+しむしてぃ	Sim City 2000	名詞	
+しむしてぃ	Sim City 3000	名詞	
+しむしてぃ	Sim City 2013	名詞	
+しむしてぃ	Sim City BuildIt	名詞	
+しょうおう	商鞅	名詞	
+しょうおう	衛鞅	名詞	
+しょうおう	大良造(商鞅)	名詞	
+しょうおう	商君書	名詞	
+しんふがい	申不害	名詞	
+しんふがい	宰相(申不害)	名詞	

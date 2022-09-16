@@ -7,20 +7,24 @@
 
 echo "vimファイルのシンボリックファイル作成開始"
 
-filedir=`pwd`
-echo "$filedir"
+if [ "$1" == "" ]; then
+	filedir=`pwd`
+	echo "$filedir"
+else
+	filedir="$1"
+fi
 
 VIMDIR=~/.vim/pack/minpac/opt
 VIMDIRAFTER=~/.vim/after/ftplugin
 VIMBACDIR=~/.vim_backup
-if [ -d $VIMDIRAFTER ]; then
-	echo "vim環境がある。"
-else
-	echo "vim環境がないため、作成する。"
+#if [ -d $VIMDIRAFTER ]; then
+#	echo "vim環境がある。"
+#else
+#	echo "vim環境がないため、作成する。"
 	mkdir -p $VIMDIR
 	mkdir -p $VIMBACDIR
 	mkdir -p $VIMDIRAFTER
-fi
+#fi
 
 if [ -d "${filedir}/subFunction" ]; then
 	# ディレクトリが存在する。
@@ -40,3 +44,4 @@ for textFile in "$currentVimFile"; do
 done
 
 echo "vimファイルのシンボリックファイル作成終了"
+# vim: set ts=4 sts=4 sw=4 tw=0 ff=unix fenc=utf-8 ft=bash noexpandtab:

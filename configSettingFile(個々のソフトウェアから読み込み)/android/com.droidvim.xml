@@ -1,0 +1,202 @@
+<?xml version='1.0' encoding='utf-8' standalone='yes' ?>
+<map>
+    <boolean name="navigationbar_menu" value="false" />
+    <boolean name="functionbar_f11" value="false" />
+    <boolean name="functionbar_f12" value="false" />
+    <boolean name="functionbar_f10" value="false" />
+    <boolean name="navigationbar_menu_quit" value="false" />
+    <boolean name="functionbar_next2" value="true" />
+    <boolean name="functionbar_next0" value="false" />
+    <boolean name="alt_sends_esc" value="false" />
+    <boolean name="back_as_esc" value="false" />
+    <boolean name="functionbar_ime_toggle" value="false" />
+    <boolean name="navigationbar_colon" value="false" />
+    <boolean name="navigationbar_open_file" value="false" />
+    <boolean name="functionbar_open_file" value="true" />
+    <string name="termtype">screen-256color</string>
+    <boolean name="AltEsc" value="false" />
+    <string name="ime_shortcuts_action_rev2">60</string>
+    <boolean name="navigationbar_plus" value="false" />
+    <boolean name="navigationbar_softkeyboard" value="true" />
+    <boolean name="functionbar_m9" value="true" />
+    <boolean name="oneline_textbox_esc_rev2" value="false" />
+    <string name="html_viewer_mode">0</string>
+    <boolean name="functionbar_plus" value="false" />
+    <string name="backaction">5</string>
+    <string name="vi_cooperative_mode">3</string>
+    <boolean name="mouse_tracking" value="true" />
+    <boolean name="functionbar_m7" value="true" />
+    <boolean name="functionbar_m8" value="true" />
+    <boolean name="functionbar_m12" value="true" />
+    <boolean name="functionbar_m5" value="true" />
+    <boolean name="functionbar_m11" value="true" />
+    <boolean name="use_app_files_button_rev2" value="true" />
+    <boolean name="functionbar_m6" value="true" />
+    <boolean name="functionbar_m10" value="true" />
+    <boolean name="functionbar_m3" value="true" />
+    <boolean name="functionbar_m4" value="true" />
+    <boolean name="functionbar_m1" value="true" />
+    <boolean name="functionbar_m2" value="true" />
+    <string name="cloud_googledrive_filepicker">1</string>
+    <boolean name="functionbar_esc" value="false" />
+    <boolean name="functionbar_pipe" value="true" />
+    <string name="function_key_cmd_m10"></string>
+    <string name="function_key_cmd_m11"></string>
+    <string name="function_key_cmd_m12"></string>
+    <boolean name="alt_uses_8bit_meta" value="false" />
+    <string name="intent_command"></string>
+    <boolean name="cloud_storage_write_check" value="false" />
+    <boolean name="navigationbar_pipe" value="false" />
+    <boolean name="functionbar_equal" value="false" />
+    <boolean name="navigationbar_vim_yank" value="false" />
+    <boolean name="functionbar_colon" value="true" />
+    <boolean name="functionbar_menu_quit" value="true" />
+    <boolean name="functionbar_tab" value="false" />
+    <boolean name="pref_key_show_dotfiles" value="true" />
+    <boolean name="navigationbar_asterisk" value="false" />
+    <boolean name="navigationbar_minus" value="false" />
+    <string name="top_double_tap_action">1006</string>
+    <string name="initialcommand_rev6">cd %STARTUP_DIR%&#10;bash&#10;-vim.app</string>
+    <string name="actionbar_user_action">1355</string>
+    <string name="font_filename">システムフォント</string>
+    <boolean name="functionbar_f8" value="false" />
+    <boolean name="AltGrave" value="false" />
+    <boolean name="functionbar_f9" value="false" />
+    <boolean name="functionbar_f6" value="false" />
+    <boolean name="functionbar_f7" value="false" />
+    <boolean name="functionbar_ctrl" value="false" />
+    <boolean name="functionbar_f4" value="false" />
+    <boolean name="functionbar_f5" value="false" />
+    <boolean name="functionbar_f2" value="false" />
+    <boolean name="functionbar_f3" value="false" />
+    <boolean name="functionbar_up" value="false" />
+    <string name="cloud_onedrive_filepicker">0</string>
+    <boolean name="force_flush_drawtext" value="false" />
+    <boolean name="ShiftSpace" value="false" />
+    <boolean name="functionbar_page_down" value="false" />
+    <string name="fontleading">0</string>
+    <boolean name="CtrlSpace" value="false" />
+    <string name="actionbar_invert_action">1363</string>
+    <boolean name="statusbar_icon" value="true" />
+    <boolean name="functionbar_alt" value="false" />
+    <boolean name="functionbar_f1" value="false" />
+    <boolean name="navigationbar_equal" value="true" />
+    <boolean name="functionbar" value="true" />
+    <boolean name="navigationbar_up" value="true" />
+    <boolean name="functionbar_left" value="true" />
+    <string name="color">0</string>
+    <boolean name="navigationbar_f8" value="false" />
+    <boolean name="keepscreen_at_startup" value="false" />
+    <boolean name="navigationbar_f9" value="false" />
+    <boolean name="navigationbar_f6" value="false" />
+    <boolean name="navigationbar_f7" value="false" />
+    <boolean name="navigationbar_f1" value="false" />
+    <boolean name="navigationbar_enter" value="false" />
+    <boolean name="navigationbar_f4" value="false" />
+    <boolean name="navigationbar_f5" value="false" />
+    <boolean name="navigationbar_f2" value="false" />
+    <boolean name="navigationbar_f3" value="false" />
+    <boolean name="navigationbar_fn_toggle" value="true" />
+    <boolean name="navigationbar_left" value="false" />
+    <boolean name="navigationbar_right" value="false" />
+    <boolean name="ZENKAKU_HANKAKU" value="false" />
+    <boolean name="functionbar_prev" value="true" />
+    <string name="ambiwidth">2</string>
+    <string name="external_app_package_name">com.termux</string>
+    <boolean name="functionbar_i" value="false" />
+    <boolean name="AltSpace" value="false" />
+    <boolean name="CtrlJ" value="false" />
+    <boolean name="functionbar_vim_yank" value="true" />
+    <boolean name="navigationbar_invert" value="false" />
+    <string name="fontsize">14.0</string>
+    <string name="ime_direct_input_method">1</string>
+    <boolean name="proot" value="false" />
+    <boolean name="cloud_storage_read_check" value="false" />
+    <boolean name="volume_as_cursor" value="true" />
+    <string name="functionbar_diamond_action_rev3">1360</string>
+    <boolean name="navigationbar_esc" value="true" />
+    <string name="functionbar_diamond_action_rev4">1360</string>
+    <string name="cloud_dropbox_filepicker">1</string>
+    <boolean name="navigationbar_slash" value="false" />
+    <string name="function_key_cmd_m9"></string>
+    <string name="function_key_cmd_m4"></string>
+    <string name="android_shell_path">/system/bin/sh -</string>
+    <string name="function_key_cmd_m3"></string>
+    <string name="function_key_cmd_m2"></string>
+    <boolean name="functionbar_navigation_button" value="true" />
+    <string name="function_key_cmd_m1"></string>
+    <string name="function_key_cmd_m8"></string>
+    <boolean name="navigationbar_ctrl" value="false" />
+    <string name="function_key_cmd_m7"></string>
+    <string name="function_key_cmd_m6"></string>
+    <string name="function_key_cmd_m5"></string>
+    <string name="function_key_label_m10">F10</string>
+    <string name="function_key_label_m11">F11</string>
+    <string name="function_key_label_m2">F2</string>
+    <string name="function_key_label_m12">F12</string>
+    <boolean name="functionbar_page_up" value="false" />
+    <string name="function_key_label_m1">F1</string>
+    <boolean name="navigationbar_alt" value="true" />
+    <string name="function_key_label_m6">F6</string>
+    <string name="function_key_label_m5">F5</string>
+    <boolean name="navigationbar_i" value="false" />
+    <string name="function_key_label_m4">F4</string>
+    <boolean name="functionbar_voice_input" value="false" />
+    <string name="function_key_label_m3">F3</string>
+    <boolean name="navigationbar_ime_toggle" value="true" />
+    <string name="function_key_label_m9">F9</string>
+    <boolean name="functionbar_menu_hide" value="true" />
+    <string name="function_key_label_m8">F8</string>
+    <string name="function_key_label_m7">F7</string>
+    <boolean name="navigationbar_voice_input" value="false" />
+    <string name="bottom_double_tap_action">1261</string>
+    <string name="theme">4</string>
+    <boolean name="functionbar_invert" value="true" />
+    <string name="ime_default_inputtype">53</string>
+    <string name="cursorcolor"></string>
+    <boolean name="functionbar_softkeyboard" value="false" />
+    <boolean name="functionbar_down" value="false" />
+    <string name="composingtext">1</string>
+    <boolean name="navigationbar_down" value="true" />
+    <boolean name="functionbar_asterisk" value="false" />
+    <boolean name="functionbar_backspace" value="false" />
+    <boolean name="navigationbar_tab" value="false" />
+    <boolean name="functionbar_slash" value="false" />
+    <boolean name="pinch_in_out" value="true" />
+    <boolean name="force_normal_input_to_physical_keyboard" value="false" />
+    <boolean name="pref_first" value="false" />
+    <boolean name="navigationbar_vim_paste" value="false" />
+    <string name="external_app_action_mode">1</string>
+    <boolean name="functionbar_vim_paste" value="true" />
+    <string name="cursorstyle">0</string>
+    <boolean name="navigationbar_backspace" value="false" />
+    <boolean name="navigationbar_menu_user" value="false" />
+    <boolean name="functionbar_enter" value="false" />
+    <boolean name="CtrlSpaceToShell" value="false" />
+    <boolean name="navigationbar_page_up" value="false" />
+    <boolean name="oneline_textbox_cr" value="true" />
+    <boolean name="auto_hide_functionbar" value="false" />
+    <boolean name="functionbar_menu" value="true" />
+    <boolean name="navigationbar_page_down" value="false" />
+    <string name="home_path">/mnt/expand/c1f0d018-5221-4ae0-8168-7932550537cb/user/0/com.droidvim/files/home</string>
+    <string name="left_double_tap_action">1355</string>
+    <boolean name="functionbar_prev2" value="true" />
+    <string name="ime">1</string>
+    <string name="keepscreentime">10</string>
+    <string name="actionbar_x_action">1253</string>
+    <string name="double_tap_action">1355</string>
+    <boolean name="oneline_textbox_esc" value="false" />
+    <boolean name="functionbar_minus" value="false" />
+    <boolean name="functionbar_right" value="true" />
+    <boolean name="oneline_textbox" value="true" />
+    <string name="orientation">0</string>
+    <boolean name="hw_acceleration_by_default" value="true" />
+    <boolean name="navigationbar_f11" value="false" />
+    <boolean name="navigationbar_f12" value="false" />
+    <boolean name="GRAVE" value="false" />
+    <boolean name="navigationbar_f10" value="false" />
+    <string name="right_double_tap_action">1002</string>
+    <boolean name="functionbar_menu_user" value="true" />
+    <boolean name="ignore_xoff" value="true" />
+    <string name="cursor_direction_ctrl_mode">1</string>
+</map>

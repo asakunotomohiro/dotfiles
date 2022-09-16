@@ -1,10 +1,24 @@
 #	Android用
 Host [Key-Name]
 	HostName bitbucket.org
+	# 以下、リモート先との紐付け用の名前。
 	User git
+	# 以下、公開鍵を優先して認証することを示している？
+	#	公開鍵のパーミッション：0600
 	PreferredAuthentications publickey
-	IdentityFile ~/.ssh/[Key-Name]
+	# 以下、秘密鍵を公開鍵と紐付け。
+	#	秘密鍵のパーミッション：0600
+	IdentityFile ~/.ssh/[Key-Name]	←☆秘密鍵の指定(id_rsa)。
+	# 以下、秘密鍵のみの利用。
 	IdentitiesOnly yes
+	# 以下、パスフレーズ利用Off(セキュリティに問題あり)。
 	AddKeysToAgent yes
+	# 以下、一定期間操作(通信)がない場合、切断する。
 	TCPKeepAlive no
+	# 以下、上記のTCP KeepAliveを有効にした場合に、以下の間隔で通信が行われる(秒)。
+	#ServerAliveInterval 300
+	# 以下、Mac管理下のkeychainに鍵情報を保存する。
 #	UseKeychain yes
+
+
+# vim: set ts=4 sts=4 sw=4 tw=0 ff=unix fenc=utf-8 noexpandtab:

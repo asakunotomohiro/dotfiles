@@ -88,6 +88,13 @@ call minpac#init()
 " minpacでminpacを更新する場合は以下を有効にする。
 call minpac#add('k-takata/minpac', {'type': 'opt'})
 
+" vimヘルプの日本語化。
+call minpac#add('vim-jp/vimdoc-ja', {'type': 'opt'})
+"	:help [調べたい単語]
+"	※原文に当たりたい場合、調べたい単語の末尾に「@en」を付ける。
+"	例）help f	←☆fについてのドキュメントが日本語版として出てくる。
+"	例）help f@en	←☆fについてのドキュメントが原文が出てくる。
+
 " プレビュー用
 call minpac#add('previm/previm', {'type': 'opt'})
 	" ブラウザを起動し、上記のprevimを表示させる。
@@ -184,6 +191,16 @@ call minpac#add('ctrlpvim/ctrlp.vim')
 " *記号と#記号による検索を現在の選択範囲に広げるプラグイン。
 call minpac#add('nelstrom/vim-visual-star-search', {'type': 'opt'})
 
+"	対になる開き記号と閉じ記号の移動プラグイン
+"call minpac#add('andymass/vim-matchup', {'type': 'opt'})
+"		動かない。
+
+"	モーション拡張プラグイン
+call minpac#add('easymotion/vim-easymotion', {'type': 'opt'})
+"	リーダキー2回にモーションにて、動く。
+"		\\w
+"		→ワード単位で動く場合に加えて、どのワード単位に移動するかを選択できる。
+
 " ファイル検索
 "call minpac#add('junegunn/fzf')
 "	外部バイナリからの実行補佐プラグイン？
@@ -198,6 +215,7 @@ call minpac#add('nelstrom/vim-visual-star-search', {'type': 'opt'})
 " エクスプローラ
 "call minpac#add('lambdalisue/fern.vim', {'type': 'opt'})
 if isdirectory(expand(minpackSTART . "fern.vim"))  || isdirectory(expand(minpackOPT . "fern.vim"))
+	" このプラグイン使っていない。
 noremap <Leader>er :Fern . -reveal=%<CR>
 nnoremap <F13> :<c-u>Fern . -drawer -stay -keep -toggle -reveal=%<CR>
 
@@ -242,7 +260,7 @@ call minpac#add('jacquesbh/vim-showmarks', {'type': 'opt'})
 "call minpac#add('Raimondi/delimitMate', {'type': 'opt'})
 "call minpac#add('cohama/lexima.vim', {'type': 'opt'})
 
-"call minpac#add('kana/vim-smartinput', {'type': 'opt'})
+call minpac#add('kana/vim-smartinput', {'type': 'opt'})
 "	一時削除(ATOKとの競合確認)20220112
 "		このプラグインがATOKと競合を起こす(Macのみ？)。
 
@@ -283,8 +301,32 @@ call minpac#add('itchyny/calendar.vim')
 endif	" パッケージ管理の読み込みなど
 "	ーーーーーーーーーーーーーーーーーー 遅延読み込みここまで ーーーーーーーーーーーーーーーーーー
 
+" セッション管理
 if isdirectory(expand(minpackSTART . "vim-session"))  || isdirectory(expand(minpackOPT . "vim-session"))
-let g:session_menu = 0
+	"let s:local_session_directory = expand('~/.vim_backup/sessions')
+	if ( has('win32') || has('win64') )
+		let g:session_directory = expand($HOME) . "/.vim_backup/sessions"
+	else
+		let g:session_directory = expand('~/.vim_backup/sessions')
+	endif
+	let g:session_lock_directory = g:session_directory
+	let g:session_extension = '.vimSession'
+	let g:session_autosave = 'no'	" 自動保存しない。
+	let g:session_autoload = 'no'
+	let g:session_autosave_periodic = 0
+	let g:session_autosave_silent = 1	" オートセーブをする場合、無音で実施。
+	"let g:session_verbose_messages = 0
+	"let g:loaded_session = 1
+
+	if has("gui_running")
+	else
+		"if g:isDroid || g:isTermux
+		" メニューの無効化(CUIなので)。
+		let g:session_menu = 0
+		"endif
+	endif
+
+"	:CloseTabSession
 endif
 
 
@@ -307,12 +349,15 @@ let packPluginlists = [
 	\ 'nerdtree',
 	\ 'vim-showmarks',
 	\ 'vim-visual-star-search',
+	\ 'vim-easymotion',
 	\ 'vim-rhubarb',
 	\ 'vim-commentary',
 	\ 'delimitMate',
 	\ 'lexima.vim',
-	\ 'vim-smartinput',
+	\ 'vimdoc-ja',
 	\ ]
+	"\ 'vim-matchup',
+	"\ 'vim-smartinput',
 for pluginPack in packPluginlists
 	if isdirectory(expand(minpackSTART . pluginPack))  || isdirectory(expand(minpackOPT . pluginPack))
 		execute("packadd " . pluginPack)
@@ -628,25 +673,29 @@ let g:findroot_patterns = [
 endif
 
 "if isdirectory(expand(minpackSTART . "vim-visual-star-search"))  || isdirectory(expand(minpackOPT . "vim-visual-star-search"))
-	" *と#による選択範囲検索。
+"	*と#による選択範囲検索。
 "endif
 
-" セッション管理
-if isdirectory(expand(minpackSTART . "vim-session"))  || isdirectory(expand(minpackOPT . "vim-session"))
-if ( has('win32') || has('win64') )
-	let g:session_directory = expand($HOME) . "/.vim_backup/sessions"
-else
-	let g:session_directory = expand('~/.vim_backup/sessions')
-endif
-let g:session_lock_directory = g:session_directory
-let g:session_extension = '.vimSession'
-let g:session_autosave = 'no'
-	" 自動保存しない。
-let g:session_autoload = 'no'
-let g:session_autosave_periodic = 0
-let g:session_autosave_silent = 1
-" let g:session_verbose_messages = 0
-" let g:loaded_session = 1	" 使う時は0
+if isdirectory(expand(minpackSTART . "vim-easymotion"))  || isdirectory(expand(minpackOPT . "vim-easymotion"))
+	"	http://haya14busa.com/mastering-vim-easymotion/
+	" 以下の設定は、移動選択肢が1つの場合に限り、移動選択肢をせずに、即座に移動する。
+	"	f移動・t移動。	←☆それぞれリーダーキーとの組み合わせになる(要は、利用は1タップ増加する)。
+	map <Leader>f <Plug>(easymotion-fl)
+	"map <Leader>f <Plug>(easymotion-bd-f)
+	"nmap <Leader>f <Plug>(easymotion-overwin-f)
+	map <Leader>t <Plug>(easymotion-tl)
+	"map <Leader>t <Plug>(easymotion-bd-t)
+	map <Leader>F <Plug>(easymotion-Fl)
+	"map <Leader>F <Plug>(easymotion-bd-F)
+	map <Leader>T <Plug>(easymotion-Tl)
+	"map <Leader>T <Plug>(easymotion-bd-T)
+
+	"<Plug>(easymotion-next)
+	"<Plug>(easymotion-prev)
+	"<Plug>(easymotion-repeat)
+
+	" 以下は、日本語文字も検索対象とする(ローマ字にした場合の先頭文字で移動する：例）検索を対象とする場合、kで移動対象にできる)。
+	let g:EasyMotion_use_migemo = 1
 endif
 
 
@@ -684,7 +733,12 @@ command! -nargs=? BranchLoad call s:load_session(<f-args>)
 endif
 
 if isdirectory(expand(minpackSTART . "ctrlp.vim"))  || isdirectory(expand(minpackOPT . "ctrlp.vim"))
-	let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
+	"	以下、git管理以外でもスワップファイルやバックアップファイルなどを開きたくない対処をしたいが、失敗。
+	"let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
+	"let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard', 'git -C ~/.config/git/ignore']
+	"let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
+	"let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
+	let g:ctrlp_user_command = ['.git', 'git -C "%s" ls-files']
 endif
 if isdirectory(expand(minpackSTART . "eregex.vim"))  || isdirectory(expand(minpackOPT . "eregex.vim"))
 	nnoremap <Leader>/ :M/
@@ -1102,9 +1156,14 @@ else
 	let s:backup_dir = expand('~/.vim_backup')
 	let s:undo_dir = expand('~/.vim_backup/undofile')
 endif
-if !isdirectory(s:backup_dir) || !isdirectory(s:undo_dir)
-	exec mkdir(s:backup_dir, '', 0700)
-	exec mkdir(s:undo_dir, '', 0700)
+"if !isdirectory(s:backup_dir) || !isdirectory(s:undo_dir)
+"if !isdirectory(s:backup_dir)	失敗
+if !isdirectory(s:backup_dir)
+	execute mkdir(s:backup_dir, '', 0700)
+endif
+if !isdirectory(s:undo_dir)
+"	execute mkdir(s:backup_dir, '', 0700)	存在した場合、エラーになる。
+	execute mkdir(s:undo_dir, '', 0700)
 endif
 let &backupdir = s:backup_dir
 "let &directory = s:backup_dir	" スワップファイルの作成場所をカレントディレクトリにするため、コメントアウト。

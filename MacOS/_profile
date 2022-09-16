@@ -1,5 +1,9 @@
+#	方針を変え、このファイルは読み込まないようにした。
+#
+#
 # このファイルはエイリアスのみ設定する。
 # このファイルは .bash_login ファイルに読み込まれた。
+#	※インタラクティブシェルだが、ノンインタラクティブシェルとして使うようだ。
 
 # 履歴編集コマンド
 export FCEDIT=${EDITOR}
@@ -7,4 +11,13 @@ export FCEDIT=${EDITOR}
 # 表示内容のTab幅を半角スペース4桁で表示。
 tabs -4
 
+# エイリアス。
+#	以下、移動コマンド
+alias cddotfile='cd /Users/asakunotomohiro/github/dotfiles'
+alias opendotfile='open /Users/asakunotomohiro/github/dotfiles'
+
+# ~/.bashrcはログイン時に読み込まないため、手動で読み込む必要がある。
+#	今回作成しない。
+
 # 以上。
+# vim: set ts=4 sts=4 sw=4 tw=0 ff=unix fenc=utf-8 ft=bash noexpandtab:

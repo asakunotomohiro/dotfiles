@@ -1,24 +1,38 @@
 #	ここは、端末独自の環境を設定したい(コピーして使うファイル)。
 
 # "[ユーザ名@ホスト名 現在のディレクトリ] $"
-PS1="[${COLOR_BLUE}\W${COLOR_DEFAULT}] $ "
+#PS1="${COLOR_BLUE}\W${COLOR_DEFAULT} $ "
+#PS1="\W \[\e[91m\]\$\[\e[0m\] "
+PS1="\W \[\e[31m\]\$\[\e[0m\] "
 
 # termuxにログインした時点で表示される、ディレクトリ。
 
+# 不要。
+unalias telnet
+
 #cd "/storage/emulated/0/"
-cd "/storage/emulated/0/asakunotomohiro/tmp"
+#cd "/storage/emulated/0/asakunotomohiro/tmp"
+#cd "/data/data/com.termux/files/home/storage/shared/Documents/asakunotomohiro/tmp"
+cd "/data/data/com.termux/files/home/storage/shared/Documents/dotfiles"
 
-
-export MY="/storage/emulated/0/asakunotomohiro"
+#export MY="/storage/emulated/0/asakunotomohiro"
+export SHARE="/data/data/com.termux/files/home/storage/shared/"
+export MY="${SHARE}/Documents/asakunotomohiro/"
 alias cdmy='cd ${MY}'
 
-export MYTMP="/storage/emulated/0/asakunotomohiro/tmp"
-alias cdtmp='cd ${MYTMP}'
+#export MYTMP="/storage/emulated/0/asakunotomohiro/tmp"
+#alias cdtmp='cd ${MYTMP}'
+alias cdtmp='cd ${MY}/TemporarilySaved一時保存。'
 
-export TOP="/storage/emulated/0/"
-alias cdzero='cd ${TOP}'
+#export TOP="/storage/emulated/0/"
+#export TOP="/data/data/com.termux/files/home/storage/shared/"
+#alias cdzero='cd ${TOP}'
+alias cdshared='cd ${SHARE}'
 
-export DOTFILE="/storage/emulated/0/dotfiles/"
+#export DOTFILE="/storage/emulated/0/dotfiles/"
+#export DOTFILE="/data/data/com.termux/files/home/storage/shared/Documents/dotfiles/"
+export DOTFILE="${SHARE}/Documents/dotfiles/"
 alias cddot='cd ${DOTFILE}'
 
 # 以上。
+# vim: set ts=4 sts=4 sw=4 tw=0 ff=unix fenc=utf-8 ft=bash noexpandtab:

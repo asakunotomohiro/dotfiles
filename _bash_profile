@@ -2,7 +2,7 @@
 #	export対象の設定を本ファイルに記述する。
 # zshでも使えるように、_profile_commonに書き込むことにする。
 
-COMMON_ALIAS_FILE="$HOME/.profile_common_Alias"
+COMMON_ALIAS_FILE="$HOME/.config/shell/profile_common_Alias"
 COMMON_ENVIRONMENTFILE="$HOME/.profile_common_EnvironmentVariable"
 
 if [ -e $COMMON_ALIAS_FILE ]
@@ -11,9 +11,9 @@ then
 	source $COMMON_ENVIRONMENTFILE
 fi
 
-alias h='history 25'
-alias tree='tree -N'
-alias gitll='git log -15 --graph --oneline --first-parent'
+alias h='history 25 '
+#alias tree='tree -N '
+#alias gitll='git log -15 --graph --oneline --first-parent '
 
 # OSがクラッシュするため中止
 #	未定義の変数を null ではなくエラーとして扱う
@@ -40,10 +40,12 @@ COLOR_BLUE='\[\e[34m\]'
 
 # プロンプト表記変更
 # "[ユーザ名@ホスト名 現在のディレクトリ] $"
-PS1="[${COLOR_YELLOW}\u${COLOR_DEFAULT}@\h ${COLOR_BLUE}\W${COLOR_DEFAULT}] $ "
+#PS1="[${COLOR_YELLOW}\u${COLOR_DEFAULT}@\h ${COLOR_BLUE}\W${COLOR_DEFAULT}] $ "
+#	ここの設定は、OSごと・端末ごとに設定する。
 
 # 優先順位が2番目の環境設定ファイルを読み込む.
 . ~/.bash_login
 
-# エイリアスなどの設定は、.bashrcに設定する。
+
 # 以上。
+# vim: set ts=4 sts=4 sw=4 tw=0 ff=unix fenc=utf-8 ft=bash noexpandtab:

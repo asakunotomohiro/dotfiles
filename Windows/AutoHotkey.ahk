@@ -4,6 +4,9 @@
 #InstallKeybdHook
 
 
+SendMode Input
+;SendMode InputThenPlay	役に立たず。
+
 ;キーの指定方法のメモ
 ;　Windowsロゴキー #
 ;　無変換キー vk1Dsc07B
@@ -74,8 +77,6 @@ exit
 ;				k	Kindle
 ;				m	minecraft
 ;				n	Notepad++
-;				o	Origin Game
-;				s	Steam Game
 ;				t	calc(計算ソフトウェア)
 ;				w	JW_CAD
 ;				x	Dropbox
@@ -126,6 +127,8 @@ exit
 ;	ポウズキー(Pause)との組み合わせ(上記MS-Office起動対応)
 ;				i	IDE(Eclipse)	※起動させられない。
 ;	F10との組み合わせ
+;				o	Origin Game
+;				s	Steam Game
 ;				u	Bash on Ubuntu
 ;	F23との組み合わせ(ゲームに特化しよう)
 ;				o	Oxygen Not Included
@@ -490,18 +493,63 @@ Ctrl & Tab::
 return
 #IfWinActive
 
-#e::
-	Run Explorer "C:\Users\"%A_UserName%, , , varExplorerPID
-	sleep 240
-	WinActivate, ahk_pid %varExplorerPID%
-return
-
 #IfWinActive ahk_class CabinetWClass
 Ctrl & Tab::
 	WinGet, activeWinID, IDLast, ahk_class CabinetWClass
 	WinActivate, ahk_id %activeWinID%
 return
 #IfWinActive
+
+#IfWinActive, ahk_exe ApplicationFrameHost.exe
+Ctrl & Tab::
+	WinGet, activeWinID, IDLast, ahk_class ApplicationFrameWindow
+	WinActivate, ahk_id %activeWinID%
+return
+#IfWinActive
+
+#IfWinActive ahk_exe WINWORD.EXE
+Ctrl & Tab::
+	WinGetClass, winClassName, ahk_exe WINWORD.EXE
+	WinGet, activeWinID, IDLast, ahk_class %winClassName%
+	WinActivate, ahk_id %activeWinID%
+return
+#IfWinActive
+
+#IfWinActive ahk_exe Acrobat.exe
+Ctrl & Tab::
+	WinGetClass, winClassName, ahk_exe Acrobat.exe
+	WinGet, activeWinID, IDLast, ahk_class %winClassName%
+	WinActivate, ahk_id %activeWinID%
+return
+#IfWinActive
+
+#IfWinActive ahk_exe mspaint.exe
+Ctrl & Tab::
+	WinGetClass, winClassName, ahk_exe mspaint.exe
+	WinGet, activeWinID, IDLast, ahk_class %winClassName%
+	WinActivate, ahk_id %activeWinID%
+return
+#IfWinActive
+
+#IfWinActive ahk_exe Code.exe
+Ctrl & Tab::
+	Send, {Blind}^{PgDn}
+return
+#IfWinActive
+
+#IfWinActive ahk_exe OUTLOOK.EXE
+Ctrl & Tab::
+	WinGetClass, winClassName, ahk_exe OUTLOOK.EXE
+	WinGet, activeWinID, IDLast, ahk_class %winClassName%
+	WinActivate, ahk_id %activeWinID%
+return
+#IfWinActive
+
+#e::
+	Run Explorer "C:\Users\"%A_UserName%, , , varExplorerPID
+	sleep 240
+	WinActivate, ahk_pid %varExplorerPID%
+return
 
 #F13::
 	Run Explorer %A_Desktop%, , , varExplorerPID
@@ -529,6 +577,7 @@ F23 & h::
 	oneSoftware := steamGameSearch(GameArray, varSoftwarePID )
 return
 
+;	Win+Ctrl+Shift+s
 #^+s::
 	Array := [ 
 			 , A_ProgramFiles . "\sakura\sakura.exe"
@@ -631,7 +680,7 @@ AppsKey & e::
 			 , A_StartMenuCommon . "\Programs\Microsoft Office\Microsoft Office Excel 2010.lnk"
 			 , A_StartMenuCommon . "\Programs\Microsoft Office\Microsoft Office Excel 2007.lnk"
 			 , A_StartMenuCommon . "\Programs\Microsoft Office\Microsoft Office Excel 2023.lnk"
-			 , "C:\Documents and Settings\All Users\スタート メニュー\プログラム\Microsoft Office\Microsoft Office Excel 2003.lnk"
+			 , A_ProgramsCommon . "\Microsoft Office\Microsoft Office Excel 2003.lnk"
 			 , A_ProgramFiles . " (x86)\Microsoft Office\root\Office16\EXCEL.EXE"
 			 , A_StartMenuCommon . "\Programs\OpenOffice 4.1.10\OpenOffice Calc.lnk"
 			 , A_ProgramFiles . "\OpenOffice 4\program\scalc.exe"
@@ -682,13 +731,6 @@ return
 ;		WinActivate, ahk_pid %varSoftwarePID%
 ;	}
 return
-
-#IfWinActive, ahk_exe ApplicationFrameHost.exe
-Ctrl & Tab::
-	WinGet, activeWinID, IDLast, ahk_class ApplicationFrameWindow
-	WinActivate, ahk_id %activeWinID%
-return
-#IfWinActive
 
 F19 & b::
 	Run, https://github.com/asakunotomohiro/
@@ -777,14 +819,6 @@ F23 & s::
 	oneSoftware := steamGameSearch(GameArray, varSoftwarePID )
 return
 
-#IfWinActive ahk_exe WINWORD.EXE
-Ctrl & Tab::
-	WinGetClass, winClassName, ahk_exe WINWORD.EXE
-	WinGet, activeWinID, IDLast, ahk_class %winClassName%
-	WinActivate, ahk_id %activeWinID%
-return
-#IfWinActive
-
 ;;; スラックの起動 win + k
 #k::
 ;	※WindowOS標準のショートカットキーを上書きすることになるため、気をつけること。
@@ -826,8 +860,9 @@ return
 return
 
 ;;; オリジン win + Alt + o
-#^!o::
-#!o::
+;#^!o::
+;#!o::
+F10 & o::
 	Array := [ 
 			 , A_ProgramFiles . "\Origin\Origin.exe"
 			 , A_StartMenuCommon . "\Programs\Origin\Origin.lnk"
@@ -867,8 +902,8 @@ return
 			 , A_StartMenu . "\Programs\一太郎\一太郎2023.lnk"
 			 , A_StartMenu . "\Programs\一太郎\一太郎2024.lnk"
 			 , A_StartMenu . "\Programs\一太郎\一太郎2025.lnk"
-			 , "C:\Documents and Settings\All Users\スタート メニュー\プログラム\一太郎\一太郎2010.lnk"
-			 , "C:\Documents and Settings\All Users\スタート メニュー\プログラム\一太郎\一太郎2008.lnk"
+			 , A_ProgramsCommon . "\一太郎\一太郎2010.lnk"
+			 , A_ProgramsCommon . "\一太郎\一太郎2008.lnk"
 			 , A_StartMenu . "\プログラム\一太郎\一太郎2010.lnk"
 			 , A_StartMenu . "\プログラム\一太郎\一太郎2008.lnk"
 			 , A_StartMenuCommon . "\プログラム\一太郎\一太郎2010.lnk"
@@ -906,8 +941,9 @@ return
 return
 
 ;;; Steam win + Alt + s
-#^!s::
-#!s::
+;#^!s::
+;#!s::
+F10 & s::
 	Array := [
 			 , A_ProgramFiles . "\Steam\Steam.exe"
 			 , A_StartMenuCommon . "\Programs\Steam\Steam.lnk"
@@ -945,14 +981,6 @@ return
 ;		WinActivate, ahk_id %varSoftwareID%
 ;	}
 return
-
-#IfWinActive ahk_exe Acrobat.exe
-Ctrl & Tab::
-	WinGetClass, winClassName, ahk_exe Acrobat.exe
-	WinGet, activeWinID, IDLast, ahk_class %winClassName%
-	WinActivate, ahk_id %activeWinID%
-return
-#IfWinActive
 
 ;;; Godot win + Alt + g
 #^!g::
@@ -1004,9 +1032,9 @@ AppsKey & p::
 			 , A_StartMenuCommon . "\Programs\OpenOffice 4.1.10\OpenOffice Impress.lnk"
 			 , A_ProgramFiles . "\OpenOffice 4\program\simpress.exe"
 			 , A_ProgramFiles . " (x86)\OpenOffice 4\program\simpress.exe"
-			 , "C:\Documents and Settings\All Users\スタート メニュー\プログラム\Microsoft Office\Microsoft Office PowerPoint 2003.lnk"
-			 , "C:\Documents and Settings\All Users\スタート メニュー\プログラム\Agree 2010\Agree 2010.lnk"
-			 , "C:\Documents and Settings\All Users\スタート メニュー\プログラム\Agree 2009\Agree 2009.lnk"
+			 , A_ProgramsCommon . "\Microsoft Office\Microsoft Office PowerPoint 2003.lnk"
+			 , A_ProgramsCommon . "\Agree 2010\Agree 2010.lnk"
+			 , A_ProgramsCommon . "\Agree 2009\Agree 2009.lnk"
 			 , A_StartMenuCommon . "\Programs\WPS Office\WPS Presentation.lnk"
 			 , A_StartMenuCommon . "\Programs\LibreOffice 7.0\LibreOffice Impress.lnk"
 			 , A_ProgramFiles . "\OpenOffice 5\program\simpress.exe"
@@ -1135,8 +1163,8 @@ return
 			 , A_StartMenuCommon . "\Programs\花子\花子2017.lnk"
 			 , A_StartMenuCommon . "\Programs\花子\花子2016.lnk"
 			 , A_StartMenuCommon . "\Programs\花子\花子2015.lnk"
-			 , "C:\Documents and Settings\All Users\スタート メニュー\プログラム\花子\花子2010.lnk"
-			 , "C:\Documents and Settings\All Users\スタート メニュー\プログラム\花子\花子2008.lnk"
+			 , A_ProgramsCommon . "\花子\花子2010.lnk"
+			 , A_ProgramsCommon . "\花子\花子2008.lnk"
 			 , A_StartMenu . "\Programs\花子\花子2025.lnk"
 			 , A_StartMenu . "\Programs\花子\花子2024.lnk"
 			 , A_StartMenu . "\Programs\花子\花子2023.lnk"
@@ -1230,11 +1258,11 @@ return
 			 , A_StartMenu . "\Programs\calc\calc 4.lnk"
 			 , A_ProgramFiles . "\OpenOffice 4\program\smath.exe"
 			 , A_ProgramFiles . " (x86)\OpenOffice 4\program\smath.exe"
-			 , "C:\Documents and Settings\All Users\スタート メニュー\プログラム\三四郎\三四郎2010.lnk"
-			 , "C:\Documents and Settings\All Users\スタート メニュー\プログラム\三四郎\三四郎2009.lnk"
-			 , "C:\Documents and Settings\All Users\スタート メニュー\プログラム\三四郎\三四郎2008.lnk"
-			 , "C:\Documents and Settings\All Users\スタート メニュー\プログラム\三四郎\三四郎2007.lnk"
-			 , "C:\Documents and Settings\All Users\スタート メニュー\プログラム\三四郎\三四郎2005.lnk"
+			 , A_ProgramsCommon . "\三四郎\三四郎2010.lnk"
+			 , A_ProgramsCommon . "\三四郎\三四郎2009.lnk"
+			 , A_ProgramsCommon . "\三四郎\三四郎2008.lnk"
+			 , A_ProgramsCommon . "\三四郎\三四郎2007.lnk"
+			 , A_ProgramsCommon . "\三四郎\三四郎2005.lnk"
 			 , A_ProgramFiles . "\OpenOffice 5\program\smath.exe"
 			 , A_ProgramFiles . " (x86)\OpenOffice 5\program\smath.exe"
 			 , A_StartMenu . "\Programs\calc\calc 6.lnk"
@@ -1282,15 +1310,8 @@ return
 	WinActivate ,ペイント
 return
 
-#IfWinActive ahk_exe mspaint.exe
-Ctrl & Tab::
-	WinGetClass, winClassName, ahk_exe mspaint.exe
-	WinGet, activeWinID, IDLast, ahk_class %winClassName%
-	WinActivate, ahk_id %activeWinID%
-return
-#IfWinActive
-
-;;;サクラエディタ win + Ctrl + s
+;;;サクラエディタ
+;	Win+Ctrl+s
 #^s::
 ;	※WindowOS標準のショートカットキーを上書きすることになるため、気をつけること。
 ;		音声認識のセットアップ画面が起動する。
@@ -1322,12 +1343,6 @@ BlockInput, On
 ^j::Send, ^g	; Ctrl&gが上記で潰れたため、Ctrl+jで指定行移動を可能にした(本来の割当はない)。
 ^!f::Send, !vz	;	全画面表示(Ctrl+Alt+f)。これは、MacOSに似か寄らせた。
 BlockInput, Off
-return
-#IfWinActive
-
-#IfWinActive ahk_exe Code.exe
-Ctrl & Tab::
-	Send, {Blind}^{PgDn}
 return
 #IfWinActive
 
@@ -1522,14 +1537,6 @@ For index, element in Array
 	}
 return
 
-#IfWinActive ahk_exe OUTLOOK.EXE
-Ctrl & Tab::
-	WinGetClass, winClassName, ahk_exe OUTLOOK.EXE
-	WinGet, activeWinID, IDLast, ahk_class %winClassName%
-	WinActivate, ahk_id %activeWinID%
-return
-#IfWinActive
-
 ;;; Jasper soft win + Ctrl + j
 #^j::
 Array := [
@@ -1573,7 +1580,7 @@ F19 & t::
 	Run, https://twitter.com/asakunojp
 return
 
-^!f::
+#!f::
 	WinGet, windowSizeGet, MinMax, A
 	if ( 1 == windowSizeGet )
 	{
@@ -1708,11 +1715,11 @@ AppsKey & b::
 			 , A_StartMenuCommon . "\Programs\Blend for Visual Studio 2015.lnk"
 			 , A_StartMenuCommon . "\Programs\Blend for Visual Studio 2013.lnk"
 			 , A_StartMenuCommon . "\Programs\Blend for Visual Studio 2012.lnk"
-			 , "C:\Documents and Settings\All Users\スタート メニュー\プログラム\Microsoft Visual Studio 2010 Express\Visual Studio コマンド プロンプト (2010).lnk"
-			 , "C:\Documents and Settings\All Users\スタート メニュー\プログラム\Microsoft Visual Studio 2005\Microsoft Visual Studio 2005.lnk"
-			 , "C:\Documents and Settings\All Users\スタート メニュー\プログラム\Microsoft Visual Studio 6.0\Microsoft Visual C++ 6.0.lnk"
-			 , "C:\Documents and Settings\All Users\スタート メニュー\プログラム\Microsoft Visual Studio 6.0\Microsoft Visual Basic 6.0.lnk"
-			 , "C:\Documents and Settings\All Users\スタート メニュー\プログラム\Microsoft Visual Studio 6.0\Microsoft Visual InterDev 6.0.lnk"
+			 , A_ProgramsCommon . "\Microsoft Visual Studio 2010 Express\Visual Studio コマンド プロンプト (2010).lnk"
+			 , A_ProgramsCommon . "\Microsoft Visual Studio 2005\Microsoft Visual Studio 2005.lnk"
+			 , A_ProgramsCommon . "\Microsoft Visual Studio 6.0\Microsoft Visual C++ 6.0.lnk"
+			 , A_ProgramsCommon . "\Microsoft Visual Studio 6.0\Microsoft Visual Basic 6.0.lnk"
+			 , A_ProgramsCommon . "\Microsoft Visual Studio 6.0\Microsoft Visual InterDev 6.0.lnk"
 			 , A_Desktop . "\Blend for Visual Studio.lnk"
 			 , ""]
 
@@ -1757,9 +1764,13 @@ AppsKey & m::
 			 , A_StartMenu . "\Programs\Shuriken\Shuriken 2021.lnk"
 			 , A_StartMenu . "\Programs\Shuriken\Shuriken 2020.lnk"
 			 , A_StartMenu . "\Programs\Shuriken\Shuriken 2019.lnk"
-			 , "C:\Documents and Settings\All Users\スタート メニュー\プログラム\Shuriken 2020\Shuriken 2020.lnk"
-			 , "C:\Documents and Settings\All Users\スタート メニュー\プログラム\Shuriken 2010\Shuriken 2010.lnk"
+			 , A_ProgramsCommon . "\Shuriken 2020\Shuriken 2020.lnk"
+			 , A_ProgramsCommon . "\Shuriken 2010\Shuriken 2010.lnk"
 			 , A_Desktop . "\Outlook.lnk"
+			 , A_StartMenuCommon . "\Programs\Thunderbird.lnk"
+			 , A_ProgramFiles . " (x86)\Mozilla Thunderbird\thunderbird.exe"
+			 , A_StartMenu . "\Programs\Thunderbird.lnk"
+			 , A_ProgramFiles . "\Mozilla Thunderbird\thunderbird.exe"
 			 , ""]
 
 	oneSoftware := officeRunGoGo(Array, varSoftwareID, "{AppsKey down}m{AppsKey up}")
@@ -1835,7 +1846,7 @@ AppsKey & w::
 			 , A_ProgramFiles . " (x86)\OpenOffice 4\program\swriter.exe"
 			 , A_StartMenuCommon . "\Programs\WPS Office\WPS Writer.lnk"
 			 , A_StartMenuCommon . "\Programs\LibreOffice 7.0\LibreOffice Writer.lnk"
-			 , "C:\Documents and Settings\All Users\スタート メニュー\プログラム\Microsoft Office\Microsoft Office Word 2003.lnk"
+			 , A_ProgramsCommon . "\Microsoft Office\Microsoft Office Word 2003.lnk"
 			 , A_ProgramFiles . "\OpenOffice 5\program\swriter.exe"
 			 , A_ProgramFiles . " (x86)\OpenOffice 5\program\swriter.exe"
 			 , A_StartMenu . "\Programs\Word.lnk"
@@ -1876,7 +1887,7 @@ AppsKey & h::
 			 , A_StartMenuCommon . "\Programs\OpenOffice 4.1.10\OpenOffice Draw.lnk"
 			 , A_ProgramFiles . "\OpenOffice 4\program\sdraw.exe"
 			 , A_ProgramFiles . " (x86)\OpenOffice 4\program\sdraw.exe"
-			 , "C:\Documents and Settings\All Users\スタート メニュー\プログラム\Microsoft Office\Microsoft Office Publisher 2003.lnk"
+			 , A_ProgramsCommon . "\Microsoft Office\Microsoft Office Publisher 2003.lnk"
 			 , A_StartMenuCommon . "\Programs\LibreOffice 7.0\LibreOffice Draw.lnk"
 			 , A_ProgramFiles . "\OpenOffice 5\program\sdraw.exe"
 			 , A_ProgramFiles . " (x86)\OpenOffice 5\program\sdraw.exe"
@@ -1947,7 +1958,7 @@ AppsKey & a::
 			 , A_StartMenuCommon . "\Programs\Microsoft Office\Microsoft Office Access 2007.lnk"
 			 , A_StartMenuCommon . "\Programs\Microsoft Office\Microsoft Office Access 2023.lnk"
 			 , A_ProgramFiles . " (x86)\Microsoft Office\root\Office16\MSACCESS.EXE"
-			 , "C:\Documents and Settings\All Users\スタート メニュー\プログラム\Microsoft Office\Microsoft Office Access 2003.lnk"
+			 , A_ProgramsCommon . "\Microsoft Office\Microsoft Office Access 2003.lnk"
 			 , A_StartMenuCommon . "\Programs\OpenOffice 4.1.10\OpenOffice Base.lnk"
 			 , A_ProgramFiles . "\OpenOffice 4\program\sbase.exe"
 			 , A_ProgramFiles . " (x86)\OpenOffice 4\program\sbase.exe"
@@ -1986,7 +1997,7 @@ AppsKey & l::
 			 , A_StartMenuCommon . "\Programs\Microsoft Office\Microsoft Office Excel 2010.lnk"
 			 , A_StartMenuCommon . "\Programs\Microsoft Office\Microsoft Office Excel 2007.lnk"
 			 , A_StartMenuCommon . "\Programs\Microsoft Office\Microsoft Office Excel 2023.lnk"
-			 , "C:\Documents and Settings\All Users\スタート メニュー\プログラム\Microsoft Office\Microsoft Office Excel 2003.lnk"
+			 , A_ProgramsCommon . "\Microsoft Office\Microsoft Office Excel 2003.lnk"
 			 , A_ProgramFiles . " (x86)\Microsoft Office\root\Office16\EXCEL.EXE"
 			 , A_StartMenuCommon . "\Programs\OpenOffice 4.1.10\OpenOffice Calc.lnk"
 			 , A_ProgramFiles . "\OpenOffice 4\program\scalc.exe"
@@ -2204,6 +2215,7 @@ return
 ;F23 & u::
 ;Pause & u::
 F10 & u::
+;F10 & o::
 	Array := [
 			 , A_WinDir . "\System32\bash.exe"
 			 , A_StartMenu . "\Programs\Bash on Ubuntu on Windows.lnk"
@@ -2245,6 +2257,13 @@ F23 & p::
 	steamGameSearch(GameArray, varSoftwarePID )
 return
 
+; ■App+Space
+;	Win+Spaceは、WindowOS標準のショートカットキーを上書きすることになるため、気をつけること。
+#Space::
+;AppsKey & Space::
+	WinMinimize, A
+return
+
 #IfWinActive ahk_exe POWERPNT.EXE
 Ctrl & Tab::
 	WinGetClass, winClassName, ahk_exe POWERPNT.EXE
@@ -2253,13 +2272,6 @@ Ctrl & Tab::
 	WinActivate, ahk_id %activeWinID%
 return
 #IfWinActive
-
-; ■App+Space
-;	Win+Spaceは、WindowOS標準のショートカットキーを上書きすることになるため、気をつけること。
-#Space::
-;AppsKey & Space::
-	WinMinimize, A
-return
 
 #IfWinActive ahk_exe ONENOTE.EXE
 Ctrl & Tab::
@@ -2282,17 +2294,18 @@ return
 
 ; タスクマネージャ起動
 AppsKey & t::
-;Pause & t::
-BlockInput, On
+Pause & t::
+	; いずれ起動キーを変更する。
+;BlockInput, On
 	Send, ^+{Esc}
-BlockInput, Off
+;BlockInput, Off
 return
 
 ;	Alt+Ctrl+PrtSc ⇒ Win+Shift+S
 !^PrintScreen::
-BlockInput, On
+;BlockInput, On
 	Send, #+s
-BlockInput, Off
+;BlockInput, Off
 return
 
 #+x::
@@ -2325,9 +2338,9 @@ return
 
 
 LWin & Pause::
-	BlockInput, On
+	;BlockInput, On
 	Send, {LWin Down}{Pause}{LWin Up}
-	BlockInput, Off
+	;BlockInput, Off
 return
 
 moveBackToFront(Array, originally)
@@ -2675,4 +2688,4 @@ return
 ; ■CapslockをCtrlキーに入れ替える.
 
 ;	以上。ここまで。
-; vim:set ts=4 sts=4 sw=4 tw=0:
+; vim: set ts=4 sts=4 sw=4 tw=0 ff=dos fenc=utf-8 ft=autohotkey noexpandtab:

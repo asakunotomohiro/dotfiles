@@ -1,26 +1,30 @@
 # 本ファイルに環境設定を仕込む(ログイン時にのみ読み込まれるため)。
 #	export対象の設定を本ファイルに記述する。
+#	本ファイルがもっとも優先順位の高い読み込みファイル。
 # zshでも使えるように、_profile_commonに書き込むことにする。
 
-COMMON_ALIAS_FILE="$HOME/.profile_common_Alias"
+set -o vi
+
+#BASHRC_FILE="$HOME/.bashrc"
+#COMMON_ALIAS_FILE="$HOME/.config/shell/profile_common_Alias"
 COMMON_ENVIRONMENTFILE="$HOME/.profile_common_EnvironmentVariable"
 
-if [ -e $COMMON_ALIAS_FILE ]
-then 
-	source $COMMON_ALIAS_FILE
-	source $COMMON_ENVIRONMENTFILE
+if [ -e "$COMMON_ENVIRONMENTFILE" ]
+then
+#	source "$COMMON_ALIAS_FILE"
+	source "$COMMON_ENVIRONMENTFILE"
 fi
 
-alias h='history 25'
-alias tree='tree -N'
-alias gitll='git log -25 --graph --oneline --first-parent'
 
 # OSがクラッシュするため中止
 #	未定義の変数を null ではなくエラーとして扱う
 #set -o nounset
 
 # rust言語用の環境設定
-. "$HOME/.cargo/env"
+if [ -e "$HOME/.cargo/env" ]
+then
+	. "$HOME/.cargo/env"
+fi
 
 export HISTCONTROL=ignoreboth
 #export HISTCONTROL=erasedups
@@ -29,6 +33,14 @@ export PATH="/usr/local/opt/openssl@3/bin:$PATH"
 #export LDFLAGS="-L/usr/local/opt/openssl@3/lib"
 #export CPPFLAGS="-I/usr/local/opt/openssl@3/include"
 #export PKG_CONFIG_PATH="/usr/local/opt/openssl@3/lib/pkgconfig"
+
+# 個人的な設定(bash用)
+alias h='history 25'
+#alias tree='tree -N'
+#alias gitll='git log -25 --graph --oneline --first-parent'
+alias ll='ls -Flt'
+#alias grep='grep --color=always -EHin '
+
 
 # CTRL+Dでシェルを終了できなくする
 set -o ignoreeof
@@ -39,16 +51,33 @@ COLOR_DEFAULT='\[\e[0m\]'
 COLOR_BLACK='\[\e[30m\]'
 COLOR_RED='\[\e[31m\]'
 COLOR_GREEN='\[\e[32m\]'
+COLOR_HIGREEN='\[\e[92m\]'
 COLOR_YELLOW='\[\e[33m\]'
 COLOR_BLUE='\[\e[34m\]'
 
 # プロンプト表記変更
-# "[ユーザ名@ホスト名 現在のディレクトリ] $"
-PS1="[${COLOR_YELLOW}\u${COLOR_DEFAULT}@\h ${COLOR_BLUE}\W${COLOR_DEFAULT}] $ "
+# "[ユーザ名@ホスト名 現在のディレクトリ] $"	←☆末尾はrootの時に#記号を使い、それ以外に$記号を使う。
+#PS1="[${COLOR_YELLOW}\u${COLOR_DEFAULT}@\h ${COLOR_BLUE}\W${COLOR_DEFAULT}] \$ "
+#PS1="[\[\e[33m\]\u\[\e[0m\]@\h \[\e[34m\]\W\[\e[0m\]] \$ "
+#PS1="[\[\e[33m\]\u\[\e[0m\]\[\e[91m\]@\[\e[0m\]\h \[\e[94m\]\W\[\e[0m\]] \$ "
+#PS1="[\[\e[33m\]\u\[\e[0m\]\[\e[92m\]@\[\e[0m\]\h \[\e[94m\]\W\[\e[0m\]] \$ "
+#PS1="[\[\e[33m\]\u\[\e[0m\]\[\e[92m\]@\[\e[0m\]\[\e[34m\]\h\[\e[0m\] \W \$ "
+#PS1="\[\e[33m\]\u\[\e[0m\]\[\e[92m\]@\[\e[0m\]\[\e[34m\]\h\[\e[0m\] \W \[\e[31m\]\$\[\e[0m\] "	←☆表示が崩れることがある。
+PS1="${COLOR_YELLOW}\u${COLOR_DEFAULT}${COLOR_HIGREEN}@${COLOR_DEFAULT}${COLOR_BLUE}\h${COLOR_DEFAULT} \W ${COLOR_RED}\$${COLOR_DEFAULT} "
 	# 将来的に変更する必要がある(バグがある・表示がくずれる)。
 
-# 優先順位が2番目の環境設定ファイルを読み込む.
-. ~/.bash_login
+# コマンド実行時にターミナル画面の大きさに合わせた結果を出すようにする。
+#shopt -s checkwinsize
+#	既存で実行済み。
 
-# エイリアスなどの設定は、.bashrcに設定する。
+# 優先順位が2番目の環境設定ファイルを読み込む.
+#. ~/.bash_login
+
+# 以下のファイルは、ログイン毎に読み込まれるはずだが、読み込まれないため、ここで読み込む。
+if [ -e "$HOME/.bashrc" ]
+then
+	. "$HOME/.bashrc"
+fi
+
 # 以上。
+# vim: set ts=4 sts=4 sw=4 tw=0 ff=unix fenc=utf-8 ft=bash noexpandtab:

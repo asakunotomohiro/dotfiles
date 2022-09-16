@@ -1,0 +1,29 @@
+#	このファイルは、ターミナル(プロンプト)をviとして、利用することを前提としたファイルである。
+#set editing-mode vi
+#set keyseq-timeout 5
+
+set show-mode-in-prompt on
+#set vi-cmd-mode-string "\1\[\e[36m\]\2cmd\1\[\e[0m\]\2 "
+#set vi-cmd-mode-string "\[\e[36m\]cmd\[\e[0m\] "
+#set vi-cmd-mode-string "\[\e[36m\]cmd\[\e[0m\] "
+#set vi-cmd-mode-string "\e[36mcmd\e[0m "
+#set vi-cmd-mode-string "\1\e[36m\2cmd\1\e[0m\2"
+#set vi-cmd-mode-string "[\1\e[93m\2cmd\1\e[0m\2]"
+set vi-cmd-mode-string "\1\e[32m\2[\1\e[0m\2\1\e[93m\2cmd\1\e[0m\2\1\e[32m\2]\1\e[0m\2"
+#set vi-ins-mode-string "\1\[\e[32m\]\2ins\1\[\e[0m\]\2 "
+#set vi-ins-mode-string "\e[32mins\e[0m "
+#set vi-ins-mode-string "\[\e[32m\]ins\[\e[0m\] "
+#set vi-ins-mode-string "\1\e[32m\2ins\1\e[0m\2"
+set vi-ins-mode-string "\1\e[32m\2[\1\e[0m\2\1\e[92m\2ins\1\e[0m\2\1\e[32m\2]\1\e[0m\2"
+
+set keymap vi-command
+"\C-p": history-search-backward
+"\C-n": history-search-forward
+
+set keymap vi-insert
+"\C-l": clear-screen
+"\C-p": history-search-backward
+"\C-n": history-search-forward
+
+# 以上。
+# vim: set ts=4 sts=4 sw=4 tw=0 ff=unix fenc=utf-8 noexpandtab:

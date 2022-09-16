@@ -1,0 +1,35 @@
+#	基本は、複数のサーバを記載する。
+#	しかし、何かしらの技術があれば、複数のファイルに分けることも出来るそうだ。
+Host [ホスト名]	←☆この名前でSSH接続できる(例：> ssh ホスト名)。
+	HostName github.com	←☆この名前がサーバ先になる(基本はIPアドレス？)。
+	# 以下、リモート先との紐付け用の名前。
+	User [アカウント名]	←☆サーバ先のログイン名(基本はgit)。
+	# 以下、公開鍵を優先して認証することを示している？
+	#	公開鍵のパーミッション：0600
+	PreferredAuthentications publickey
+	# 以下、秘密鍵を公開鍵と紐付け。
+	#	秘密鍵のパーミッション：0600
+	IdentityFile ~/.ssh/[Key-Name]	←☆秘密鍵の指定(基本はid_rsa)。
+	# 以下、秘密鍵のみの利用。
+	IdentitiesOnly yes
+	# 以下、パスフレーズ利用Off(セキュリティに問題あり)。
+	AddKeysToAgent yes	←☆デフォルトno
+	# 以下、一定期間操作(通信)がない場合、切断するためにnoを指定。
+	TCPKeepAlive no
+	# 以下、上記のTCP KeepAliveを有効にした場合に、以下の間隔で通信が行われる(秒)。
+	#ServerAliveInterval 300
+	# 以下、Mac管理下のkeychainに鍵情報を保存する。
+#	UseKeychain yes	←☆デフォルトno	←☆上記AddKeysToAgentとの併用で端末再起動後も有効にできそうだったが、無理だった(他にも設定が必須のようだ)。
+#		ssh-agent ---> ssh-add	←☆Mac特有コマンド。
+#		https://docs.github.com/ja/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent
+
+
+
+# ・通常クローン方法(たぶんこれで動く)。
+#	様式）git clone アカウント名@ホスト名:asakunotomohiro/dotfiles.git ドットファイル
+
+# ・http関係でのクローン方法(現在環境が無いため、推測)。
+#	様式）git clone http://ユーザ名:パスワード@URL.git
+#	見本）git clone -b dotfiles https://user:password@github.com/asakunotomohiro/dotfiles.git ドットファイル
+
+# vim: set ts=4 sts=4 sw=4 tw=0 ff=unix fenc=utf-8 noexpandtab:

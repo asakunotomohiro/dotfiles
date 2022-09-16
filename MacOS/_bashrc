@@ -1,6 +1,10 @@
-# 本ファイルにAndroid環境設定を仕込む。
-#	1つのファイルにまとめなければ使い勝手が悪くなる(小さい画面でちまちま操作できない)。
-#	WindowsOSのホームディレクトリにも配置することにした(gitcmd.exeのため)。
+# 本ファイルにMac環境設定を仕込む。
+#	対話モードのbash起動時に実行される。
+#	※環境変数以外の設定。
+#		エイリアス	←全く効果なし。
+#		シェル関数
+#		コマンドライン補完設定
+#	完全に無視している・・・。	todo: ファイル全体を見直す。
 
 BASHRCSUB_FILE="$HOME/.config/shell/bashrc_sub"
 GITRCSUB_FILE="$HOME/.config/shell/git_prompt"
@@ -10,17 +14,9 @@ COMMON_ENVIRONMENTFILE="$HOME/.config/shell/profile_common_EnvironmentVariable"
 if [ -e "$COMMON_ALIAS_FILE" ]
 then
 	source "$COMMON_ALIAS_FILE"
-#	source $COMMON_ENVIRONMENTFILE
+#	source $COMMON_ENVIRONMENTFILE	大本のbash_profileで読み込む。
 fi
 
-# 以下のエイリアスは、Android側でエラーになるための対処として、ここに記載している(二重管理やん)。
-#alias ll='ls -Flt '
-
-set -o vi
-export HISTCONTROL=ignoreboth
-export HISTCONTROL=erasedups
-export HISTIGNORE=clear:fg:ll:ls:h:history:'git lol':'git mv':pwd:dirs:date:exit
-set -o ignoreeof
 
 # プロンプト用色づけ
 COLOR_DEFAULT='\[\e[0m\]'
@@ -29,6 +25,7 @@ COLOR_RED='\[\e[31m\]'
 COLOR_GREEN='\[\e[32m\]'
 COLOR_YELLOW='\[\e[33m\]'
 COLOR_BLUE='\[\e[34m\]'
+#PS1="\[\e[33m\]\u\[\e[0m\]\[\e[92m\]@\[\e[0m\]\[\e[34m\]\h\[\e[0m\] \W \[\e[31m\]\$\[\e[0m\] "
 
 export EDITOR=vim
 
@@ -38,13 +35,6 @@ export EDITOR=vim
 # 表示内容のTab幅を半角スペース4桁で表示.
 #tabs -4
 #	別途インストールが必要なようだ。
-
-# 個人的な設定(bash用)
-alias h='history 15 '
-#alias tree='tree -N '
-#alias gitll='git log -15 --graph --oneline --first-parent '
-# 以下、BusyBoxで動かないための代替。
-#alias ll='ls -Flt '
 
 
 #	以下、共通設定記載済み。

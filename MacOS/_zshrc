@@ -1,17 +1,17 @@
-COMMON_ALIAS_FILE=$HOME/.profile_common_Alias
-COMMON_ENVIRONMENTFILE=$HOME/.profile_common_EnvironmentVariable
-if [ -e $COMMON_ALIAS_FILE ]
+COMMON_ALIAS_FILE=$HOME/.config/shell/profile_common_Alias
+COMMON_ENVIRONMENTFILE=$HOME/.config/shell/profile_common_EnvironmentVariable
+if [ -e "$COMMON_ALIAS_FILE" ]
 then
-	source $COMMON_ALIAS_FILE
-	source $COMMON_ENVIRONMENTFILE
+	source "$COMMON_ALIAS_FILE"
+	#source "$COMMON_ENVIRONMENTFILE"
 fi
 
 
 # -----------------------------------
 #	zsh特有。
+#		※エイリアス・プロンプト表記・シェルオプション設定などに使う。
 # -----------------------------------
 
-alias h='history'
 
 # 履歴に残さない
 setopt HIST_IGNORE_DUPS
@@ -20,15 +20,23 @@ setopt HIST_IGNORE_SPACE
 setopt HIST_FIND_NO_DUPS
 setopt HIST_REDUCE_BLANKS
 setopt HIST_NO_STORE
+setopt HIST_ALLOW_CLOBBER
+setopt HIST_SAVE_NO_DUPS
+
+setopt HIST_FCNTL_LOCK
+
+# Ctrl+Dでのターミナル終了無効化。
+setopt ignore_eof
 
 # ヒストリを呼び出してから実行する間に一旦編集可能
-setopt hist_verify
+setopt HIST_VERIFY
+	# 結構邪魔くさく感じる。
 
 # メモリに保存される履歴の件数
 #export HISTSIZE=1000
 
 # 履歴ファイルに保存される履歴の件数
-#export SAVEHIST=100000
+#export SAVEHIST=10000
 
 # 開始と終了を記録
 setopt EXTENDED_HISTORY
@@ -74,30 +82,98 @@ EOF
 }
 precmd_functions+=(__update_history)
 
+#	brew対応コマンド
+typeset -U path PATH
+path=(
+	/opt/homebrew/bin(N-/)
+	/opt/homebrew/sbin(N-/)
+	/usr/bin
+	/usr/sbin
+	/bin
+	/sbin
+	/usr/local/bin(N-/)
+	/usr/local/sbin(N-/)
+	/Library/Apple/usr/bin
+)
+
 
 # コマンドのスペルミス指摘。
-setopt correct
+#setopt correct
+#	ミスした場合、エラーを出して終了させることを優先するため、コメントアウト。
 
 # コマンド補完(Tab)
 autoload -Uz compinit && compinit
+
+
+# 補完候補にファイルの種類を表示する。
+setopt LIST_TYPES
+#	ディレクトリ：/
+#	実行可能ファイル：*　←末尾につく。
 
 # コメント付きコマンド実行可能
 setopt interactivecomments
 
 # コマンド履歴検索(Ctrl+p・Ctrl+n)
-bindkey '^P' history-beginning-search-backward
-bindkey '^N' history-beginning-search-forward
-
+#bindkey '^P' history-beginning-search-backward
+#bindkey '^N' history-beginning-search-forward
+#	この2種類は意味がない。
 
 # 自動的にpushd
 setopt AUTO_PUSHD
 setopt PUSHD_SILENT
+#	過去のディレクトリに戻る場合は、"cd -[Tab]"にて、候補が出るため、そこから番号を選ぶ。
+
+# ディレクトリ名のみの移動
+# setopt autocd
+
+# グロブ利用時に存在しない場合の挙動をbashに寄せる。
+unsetopt nomatch
 
 # vi操作
 bindkey -v
 
 # プロンプト表記変更
-# "[ユーザ名@ホスト名 現在のディレクトリ] $"
-export PS1="[%F{yellow}%n%f%F{red}@%f%m %F{blue}%1~%f] $ "
+#	直近の以下の処理は、Gitでのブランチ情報を表示するための前段階。
+autoload -Uz vcs_info	# 前段階の前段階の前段階。
+precmd_vcs_info() { vcs_info }	# 前段階の前段階(コマンド実行毎に呼び出す関数)。
+precmd_functions+=( precmd_vcs_info )	# 前段階("vcs_info_msg_0_"と言う変数に結果を格納する)。
+setopt prompt_subst	# 実際の表示処理。
+zstyle ':vcs_info:git:*' formats '%F{yellow}%r%f%F{red}@%f%F{green}%b%f '	# 常時表示する形式
+
+# "[ユーザ名@ホスト名 現在のディレクトリ] %# "
+# "[%n@%m %1~ 現在のディレクトリ] %# "
+#export PS1="[%F{yellow}%n%f%F{red}@%f%m %B%F{blue}%1~%f%b] %# "
+#export PS1="zsh@%F{blue}%1~%f %# "
+export PS1=\$vcs_info_msg_0_'%1~%f %# '	# gitリポジトリの場合は、"リポジトリ名@ブランチ名 カレントディレクトリ"で、それ以外はカレントディレクトリのみ表示する。
+#	末尾%#	root時表記：#	それ以外表記：%
+# よく考えれば自分だけの環境になるため、ユーザ名・ホスト名の表記は不要。
+#	そして、リポジトリ名は、cloneしたときのディレクトリ名を表示するため、長い名前は避けねばならぬ・・・故に、設定を削除する可能性高しっ。
+
+
+# Go言語環境	goenvを読み込むためのPATH設定
+export GOENV_ROOT="$HOME/.goenv"
+if [ -e "$GOENV_ROOT" ]
+then
+	export PATH="$GOENV_ROOT/bin:$PATH"
+
+	# Go言語環境	goenv init設定
+	eval "$(goenv init -)"
+	export PATH="$GOROOT/bin:$PATH"
+	export PATH="$PATH:$GOPATH/bin"
+fi
+
+
+# エイリアス
+alias h='history -i -25 '
+	# -m	完全一致検索(ワイルドカード利用可)
+alias bash='/usr/local/bin/bash; source ~/.bash_profile '
+
+#	以下、bashと同じエイリアス。
+#alias tree='tree -N '
+#alias gitll='git log -25 --graph --oneline --first-parent '
+#alias ll='ls -Flt '
+
+
 
 # 以上。
+# vim: set ts=4 sts=4 sw=4 tw=0 ff=unix fenc=utf-8 ft=zsh noexpandtab:

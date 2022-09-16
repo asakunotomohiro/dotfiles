@@ -1,0 +1,48 @@
+#!/usr/bin/perl
+
+use v5.24;
+#use strict;
+#use warnings;
+#use utf8;
+#binmode STDIN, ":utf8";
+#binmode STDOUT, ":utf8";
+
+#***********************************************************************#
+#																		#
+#	プログラム名：XXXXXXXXXXX											#
+#	ファイル名　：XXXXXXXXXXX.pl										#
+#	文字コード　：UTF-8		(本プログラムファイル)						#
+#	文字コード　：xxxxx		(入力文字コード)							#
+#	文字コード　：xxxxx		(出力文字コード)							#
+#	機能概要　　：xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx。			#
+#	引数　　　　：XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX。				#
+#				　注意：ファイルはいくつでも可。						#
+#	戻り値　　　：0 ⇒ 正常終了。										#
+#				　非0 ⇒ 異常終了。										#
+#																		#
+#	動作例　　　：perl ./XXXXXXXXXXX.pl									#
+#				　入力ファイル名：										#
+#				　出力ファイル名：										#
+#																		#
+#	作成者　　　：3023XXXX　朝来野　智博								#
+#	改版履歴　　：2034XXXX　朝来野　智博　新規作成　R1.0				#
+#																		#
+#***********************************************************************#
+
+
+# 引数チェック
+if ( 1 > @ARGV ) {
+	print "引数にファイル名を指定してください.\n";
+}
+
+
+# サブ関数
+sub subMain()
+{
+
+}
+
+&subMain();
+
+'以上'
+# vim: set ts=4 sts=4 sw=4 tw=0 ff=unix fenc=utf-8 ft=perl noexpandtab:

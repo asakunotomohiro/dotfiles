@@ -2,24 +2,31 @@
 #		利用記載内容は、エイリアス周りになる。
 
 # ☆Windows・Androidでも利用する☆
+#	※busyBoxでは動かない場合があるため、慎重に追加する必要がある。
 
 # ■エイリアス。
-alias ll='ls -GFlt'
-alias visudo='sudo visudo'
-alias df='df -Hi'
+#alias h='history 25 '
+alias gitll='git log -25 --graph --oneline --first-parent '
+alias tree='tree -N '
+alias ll='ls -GFlt '
+alias visudo='sudo visudo '
+alias df='df -Hi '
+alias grep='grep --color=always -EHin '
 
 #	☆Pathの書き換え必須☆
 #alias python='/Users/asakunotomohiro/.pyenv/shims/python'
 #	そもそもpyenvは使うなとのこと(勘違いした指摘では？)。
-alias python='python3'
+alias python='python3 '
 
 # tarファイルの閲覧
 alias tarview="tar tvf "
 
 # dirsの一覧表示
-alias dirs='dirs -l -v'
+alias dirs='dirs -l -v '
 
 # telnet 先のOSに日本語入力するための設定
-alias telnet='telnet -L'
+alias telnet='telnet -L '
+	# そもそもこんなコマンドを使うな。
 
 # 以上。
+# vim: set ts=4 sts=4 sw=4 tw=0 ff=unix fenc=utf-8 ft=bash noexpandtab:

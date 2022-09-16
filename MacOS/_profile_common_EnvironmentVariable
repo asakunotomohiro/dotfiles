@@ -23,9 +23,10 @@ export PYTHON_CONFIGURE_OPTS="--with-tcltk-includes='-I/usr/local/opt/tcl-tk/inc
 
 # Golang
 #	brew install go	←☆今後これで管理する。
-#export GOPATH="/Users/asakunotomohiro/go"
-#PATH=$PATH:${GOPATH}/bin
-#export PATH
+export GOPATH="/Users/asakunotomohiro/go"
+#export GOPATH="~/go"
+PATH=$PATH:${GOPATH}/bin
+export PATH
 
 
 # Java(openJDK)
@@ -54,3 +55,4 @@ source ~/perl5/perlbrew/etc/bashrc
 export EDITOR=/Applications/MacVim.app/Contents/MacOS/Vim
 
 # 以上。
+# vim: set ts=4 sts=4 sw=4 tw=0 ff=unix fenc=utf-8 ft=bash noexpandtab:

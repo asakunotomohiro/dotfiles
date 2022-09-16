@@ -866,7 +866,6 @@ $tf/
 *.so
 *.suo
 *.svclog
-*.swp
 *.tlb
 *.tlh
 *.tli
