@@ -1,5 +1,13 @@
 " vim: set ts=4 sts=4 sw=4 tw=0 ff=unix fenc=utf-8 ft=vim noexpandtab:
 
+" ・まっさらな状態でのLinuxへのインストール。
+"	git clone https://github.com/vim/vim.git
+"	cd vim/src
+"	make
+"	make test
+"	make install
+"	vim
+
 let g:skip_defaults_vim = 1
 "	そもそもファイルが存在しないので読み込まない。
 "
@@ -806,6 +814,11 @@ augroup MyTermDebug
 	au FileType c packadd termdebug
 augroup END
 
+" 外部コマンド実行用ショートカットエイリアス
+noremap! <C-r>e <C-r>=systemlist('')<Left><Left>
+"	使用例）Ctrl+rからのeキー押下後、lsコマンドなどを入力することで、lsが（'')内に収まり、('ls')として外部コマンドが実行される。
+"	その結果がvimに入力される。
+
 
 " MacOS Xメニューの日本語化 (メニュー表示前に行なう必要がある)
 if has('mac')
@@ -1213,7 +1226,9 @@ endif
 "---------------------------------------------------------------------------
 
 "　日本語ヘルプが開くように設定する。
+"	https://vim-jp.slack.com/archives/CJMV3MSLR/p1678083227076859
 set helplang=ja,en
+	" この設定だけで日本語が優先される(ただし、引数は勝手に追加しているため、挙動は不明)。
 
 " .vimrcの編集中のみKキー押下することにより、Vimのマニュアルが開く。
 augroup vimrc

@@ -49,6 +49,7 @@ zshaddhistory() {
 	[[ #	${#line} -ge 5 &&
 		${cmd} != (l[sl])
 		&& ${cmd} != (h)
+		&& ${cmd} != (fg)
 #		&& ${cmd} != (cd)
 		&& ${cmd} != (man)
 		&& ${cmd} != (less)
@@ -139,15 +140,12 @@ precmd_vcs_info() { vcs_info }	# 前段階の前段階(コマンド実行毎に�
 precmd_functions+=( precmd_vcs_info )	# 前段階("vcs_info_msg_0_"と言う変数に結果を格納する)。
 setopt prompt_subst	# 実際の表示処理。
 zstyle ':vcs_info:git:*' formats '%F{yellow}%r%f%F{red}@%f%F{green}%b%f '	# 常時表示する形式
-
-# "[ユーザ名@ホスト名 現在のディレクトリ] %# "
-# "[%n@%m %1~ 現在のディレクトリ] %# "
-#export PS1="[%F{yellow}%n%f%F{red}@%f%m %B%F{blue}%1~%f%b] %# "
-#export PS1="zsh@%F{blue}%1~%f %# "
-export PS1=\$vcs_info_msg_0_'%1~%f %# '	# gitリポジトリの場合は、"リポジトリ名@ブランチ名 カレントディレクトリ"で、それ以外はカレントディレクトリのみ表示する。
-#	末尾%#	root時表記：#	それ以外表記：%
-# よく考えれば自分だけの環境になるため、ユーザ名・ホスト名の表記は不要。
-#	そして、リポジトリ名は、cloneしたときのディレクトリ名を表示するため、長い名前は避けねばならぬ・・・故に、設定を削除する可能性高しっ。
+# 以下、2種類の表記を行う(zsh限定)。
+#	gitブランチ設定あり：リポジトリ名@ブランチ名 カレントディレクトリ
+#	gitブランチ設定なし：カレントディレクトリ
+export PS1="[\$vcs_info_msg_0_%1~%f] $ "
+		# gitリポジトリの場合は、""で、それ以外はカレントディレクトリのみ表示する。
+#	末尾%#	root時表記：#	それ以外表記：%	←☆そもそもMacで切り替えることがないため、常時$記号を用いることにした。
 
 
 # Go言語環境	goenvを読み込むためのPATH設定
