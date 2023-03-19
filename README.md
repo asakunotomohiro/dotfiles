@@ -11,33 +11,38 @@
 ## 事前準備物
 以下の資材が導入済みであること。  
 
+<a name="tableOfContents"></a>
 * 目次  
-  * [Git](#gitperation)  
-  * [vim](#vimperation)  
-  * [firefox](#firefoxperation)  
-  * [Ctags](#ctagsperation)  
-  * [Golang](#golangperation)  
-  * [秀丸エディタ](#hidemaruperation)  
-  * [サクラエディタ](#sakuraperation)  
-  * [ATOM](#atomperation)  
-  * [Visual Studio Code](#vscodeperation)  
-  * [テラパッドエディタ](#terapadperation)  
-  * [ノートパッド++](#notepadperation)  
+  * エディタ  
+    * [vim](#vimperation)  
+    * [秀丸エディタ](#hidemaruperation)  
+    * [サクラエディタ](#sakuraperation)  
+    * [ATOM](#atomperation)  
+    * [Visual Studio Code](#vscodeperation)  
+    * [テラパッドエディタ](#terapadperation)  
+    * [ノートパッド++](#notepadperation)  
   * [AutoHotKey](#autohotkeyperation)  
   * [開発環境構築](#production)  
+    * [Git](#gitperation)  
+    * [Ctags](#ctagsperation)  
+    * [Golang](#golangperation)  
     * [Python環境構築](#productionpython)  
     * [C環境構築](#productionclang)  
     * [Java環境構築](#productionjava)  
     * [Ruby環境構築](#productionruby)  
     * [Perl環境構築](#productionperl)  
-  * [bash用環境ファイル](#configfilebash)  
-  * [zsh用環境ファイル](#configfilezsh)  
-  * [AndroidOS向け作業](#androidosoperation)  
-  * [一太郎](#onetaroperation)  
-  * [ATOK](#atokperation)  
-  * [メモ(テキストファイル)](#memotextperation)  
-  * [メモ(Excelファイル)](#memoexcelperation)  
-  * [マウス設定(M-DUX70BK)](#mouseperation)  
+  * ブラウザ  
+    * [firefox](#firefoxperation)  
+  * その他  
+    * [bash用環境ファイル](#configfilebash)  
+    * [zsh用環境ファイル](#configfilezsh)  
+    * [AndroidOS向け作業](#androidosoperation)  
+  * 主にWindows向け  
+    * [一太郎](#onetaroperation)  
+    * [ATOK](#atokperation)  
+    * [メモ(テキストファイル)](#memotextperation)  
+    * [メモ(Excelファイル)](#memoexcelperation)  
+    * [マウス設定(M-DUX70BK)](#mouseperation)  
   * [今後の課題](#fromnowonperation)  
   * [ライセンス](#licenseperation)  
 
@@ -68,6 +73,8 @@ Windowsでは、取得(Clone)時に改行が勝手に切り替えられる。
     本来のファイル名：**ignore**
     本来の配置場所：**~/.config/git/**
 
+[目次に戻る](#tableOfContents)  
+
 
 <a name="vimperation"></a>
 ### vim
@@ -91,6 +98,8 @@ ver7では、Android部分の判定でエラーが発生する。
 [あんちょこ](https://gihyo.jp/assets/files/magazine/SD/2015/201510/download/Furoku_CheatSheet_Vim.pdf)  
 
 <details><summary>インストール方法について。</summary>
+
+[目次に戻る](#tableOfContents)  
 
 #### Vim環境構築
 ※Mac端末への構築。  
@@ -227,12 +236,16 @@ vimエディタからマークダウンファイルをプレビューで見る�
 
 [https://www.mozilla.org/ja/firefox/new/](https://www.mozilla.org/ja/firefox/new/)  
 
+[目次に戻る](#tableOfContents)  
+
 
 <a name="ctagsperation"></a>
 ### Ctags
 あればよし。無くても問題ない。  
 
 [https://github.com/universal-ctags/ctags](https://github.com/universal-ctags/ctags)  
+
+[目次に戻る](#tableOfContents)  
 
 
 <a name="golangperation"></a>
@@ -271,12 +284,16 @@ vimエディタからマークダウンファイルをプレビューで見る�
 
 [https://golang.org/](https://golang.org/)  
 
+[目次に戻る](#tableOfContents)  
+
 
 <a name="hidemaruperation"></a>
 ### 秀丸エディタ
 あればよし。無くても問題ない。  
 
 <details><summary>設定ファイル。</summary>
+
+[目次に戻る](#tableOfContents)  
 
 #### hidemaru.hmereg
 秀丸エディタの設定ファイル  
@@ -334,6 +351,8 @@ vimエディタからマークダウンファイルをプレビューで見る�
 
 </details>
 
+[目次に戻る](#tableOfContents)  
+
 
 <a name="atomperation"></a>
 ### ATOM
@@ -347,6 +366,8 @@ vimエディタからマークダウンファイルをプレビューで見る�
 [GitHubがテキストエディタ「Atom」の開発停止を宣言、2022年12月15日にリポジトリがアーカイブ予定](https://gigazine.net/news/20220609-github-sunsetting-atom/)  
 [Sunsetting Atom](https://github.blog/2022-06-08-sunsetting-atom/)  
 
+[目次に戻る](#tableOfContents)  
+
 
 <a name="vscodeperation"></a>
 ### Visual Studio Code(VSCode)
@@ -357,6 +378,9 @@ Microsoft社製品のエディタ利用を拒否する輩はいますまい。
 ~~[https://azure.microsoft.com/ja-jp/products/visual-studio-code/](https://azure.microsoft.com/ja-jp/products/visual-studio-code/)~~  
 
 <details><summary>VSCodeディレクトリ。</summary>
+
+[目次に戻る](#tableOfContents)  
+
 
 #### VSCodeの設定ファイル。
 Visual Studio Codeのバックアップファイル(Windows用？)。  
@@ -380,6 +404,9 @@ Visual Studio Codeのバックアップファイル(Windows用？)。
 
 <details><summary>iniファイル。</summary>
 
+[目次に戻る](#tableOfContents)  
+
+
 #### TeraPad.ini
 テラパッドエディタの設定ファイル。  
 
@@ -394,6 +421,8 @@ Visual Studio Codeのバックアップファイル(Windows用？)。
 
 [https://github.com/notepad-plus-plus/notepad-plus-plus](https://github.com/notepad-plus-plus/notepad-plus-plus/commit/06657c82b3b9a1871c483982282f046b1ac7b3be)  
 [https://notepad-plus-plus.org/](https://notepad-plus-plus.org/)  
+
+[目次に戻る](#tableOfContents)  
 
 
 <a name="imitationmakefile"></a>
@@ -476,6 +505,8 @@ DroidVimには配布できないようだ。
 * Ctrl+j	：指定行移動  
 
 </details>
+
+[目次に戻る](#tableOfContents)  
 
 
 #### ホットキー(ソフトウェア内での挙動)
@@ -607,6 +638,8 @@ DroidVimには配布できないようだ。
 * 勉強サイト  
   [Pythonプログラミング入門](https://utokyo-ipp.github.io/index.html)  
 
+[目次に戻る](#tableOfContents)  
+
 
 <a name="productionclang"></a>
 ### C環境構築
@@ -616,6 +649,8 @@ DroidVimには配布できないようだ。
 
 普通に使うのはしんどいため、mac標準搭載のcコンパイラを使うことにする。  
 今回インストールしたバージョンのCコンパイラを使う場合のコマンド：`gcc-11 cファイル`  
+
+[目次に戻る](#tableOfContents)  
 
 
 <a name="productionjava"></a>
@@ -628,10 +663,14 @@ sudoでのリンク張り替えが必須になるようだ。
 `sudo ln -sfn /opt/homebrew/opt/openjdk/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk.jdk`  
 ※このコマンドは、インストール後に表示されるはず。  
 
+[目次に戻る](#tableOfContents)  
+
 
 <a name="productionruby"></a>
 ### Ruby環境構築
 `brew install rbenv ruby-build`  
+
+[目次に戻る](#tableOfContents)  
 
 
 <a name="productionperl"></a>
@@ -652,6 +691,8 @@ sudoでのリンク張り替えが必須になるようだ。
   **~/.pl**  
 
 </details>
+
+[目次に戻る](#tableOfContents)  
 
 
 <a name="configfilebash"></a>
@@ -678,6 +719,8 @@ HOMEディレクトリ直下に配置するのが基本になる。
 2021/04/01：Mac用・Android用新規登録。  
 
 ※ **シェル** ：zshとの共通ファイルを読み込む。  
+
+[目次に戻る](#tableOfContents)  
 
 
 <a name="configfilezsh"></a>
@@ -709,6 +752,8 @@ Ctrl+Dでのターミナル終了無効化。
 </details>
 
 ※ **シェル** ：bashとの共通ファイルを読み込む。  
+
+[目次に戻る](#tableOfContents)  
 
 
 <a name="androidosoperation"></a>
@@ -756,6 +801,8 @@ content IS NOT going to be deleted.
 
 </details>
 
+[目次に戻る](#tableOfContents)  
+
 
 <a name="onetaroperation"></a>
 ## 一太郎
@@ -769,6 +816,8 @@ AutoHotKeyの設定にて、一太郎を起動する設定キーあり。
 
 2021/04/01：新規登録。  
 
+[目次に戻る](#tableOfContents)  
+
 
 <a name="atokperation"></a>
 ## ATOK
@@ -777,12 +826,16 @@ Mac版の買い切り版が無いため、今後IMEの乗り換えを検討す�
 
 2021/04/01：新規登録(Windows用)。  
 
+[目次に戻る](#tableOfContents)  
+
 
 <a name="memotextperation"></a>
 ## メモ\_YYYYMMDD(テキストファイル)
 メモをとるためのひな形  
 
 2021/02/14：新規登録。  
+
+[目次に戻る](#tableOfContents)  
 
 
 <a name="memoexcelperation"></a>
@@ -792,6 +845,8 @@ WindowsOSでの作業準備ファイル。
 
 2021/04/01：新規登録。  
 
+[目次に戻る](#tableOfContents)  
+
 
 <a name="mouseperation"></a>
 ## マウス設定(M-DUX70BK).xml
@@ -800,6 +855,7 @@ WindowsOSでの作業準備ファイル。
 
 2021/02/15：新規登録。  
 
+[目次に戻る](#tableOfContents)  
 
 
 
@@ -848,6 +904,8 @@ WindowsOSでの作業準備ファイル。
 気がつけば編集した量が膨大になり、見直しに時間が掛かってしまう。  
 編集した段階でコミットするように心がける。  
 
+[目次に戻る](#tableOfContents)  
+
 
 <a name="licenseperation"></a>
 ## ライセンス
@@ -855,6 +913,8 @@ GPL-ver2
 
 改造を含む利用可能なソースコードと同一条件でのライセンス  
 そもそも隠す物ではないはず。  
+
+[目次に戻る](#tableOfContents)  
 
 
 以上。
