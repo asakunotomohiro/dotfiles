@@ -678,7 +678,7 @@ $
 <details><summary>実際のインストール作業。</summary>
 
 ```terminal
-$ sw_vers
+$ sw_vers	←☆mac端末のバージョン確認。
 ProductName:    macOS
 ProductVersion: 12.6
 BuildVersion:   21G115
@@ -689,150 +689,9 @@ Running `brew update --auto-update`...
 ==> Fetching giflib
 ==> Downloading https://ghcr.io/v2/homebrew/core/giflib/manifests/5.2.1
 ######################################################################## 100.0%
-==> Downloading https://ghcr.io/v2/homebrew/core/giflib/blobs/sha256:6a1194d7b2d991583e3b5d46782ac8d0cecfc35bc28a5b4daf86ec4311cc7cdc
-==> Downloading from https://pkg-containers.githubusercontent.com/ghcr1/blobs/sha256:6a1194d7b2d991583e3b5d46782ac8d0cecfc35bc28a5b4daf86ec4311cc7cdc?se=2023-03-20T07%3A20%3A00Z&sig=McbR1
-######################################################################## 100.0%
-==> Fetching libpng
-==> Downloading https://ghcr.io/v2/homebrew/core/libpng/manifests/1.6.39-1
-######################################################################## 100.0%
-==> Downloading https://ghcr.io/v2/homebrew/core/libpng/blobs/sha256:3866f0b5172ab2d599f2cb43e14870b2a444dee43964ce5ececa35b885c9330d
-==> Downloading from https://pkg-containers.githubusercontent.com/ghcr1/blobs/sha256:3866f0b5172ab2d599f2cb43e14870b2a444dee43964ce5ececa35b885c9330d?se=2023-03-20T07%3A20%3A00Z&sig=7L7%2
-######################################################################## 100.0%
-==> Fetching freetype
-==> Downloading https://ghcr.io/v2/homebrew/core/freetype/manifests/2.13.0_1
-######################################################################## 100.0%
-==> Downloading https://ghcr.io/v2/homebrew/core/freetype/blobs/sha256:731770a82dfaa0512945bf4cdb9d0743c7c1ef54653eecaefb6163a5539c828e
-==> Downloading from https://pkg-containers.githubusercontent.com/ghcr1/blobs/sha256:731770a82dfaa0512945bf4cdb9d0743c7c1ef54653eecaefb6163a5539c828e?se=2023-03-20T07%3A20%3A00Z&sig=OfiZp
-######################################################################## 100.0%
-==> Fetching fontconfig
-==> Downloading https://ghcr.io/v2/homebrew/core/fontconfig/manifests/2.14.2
-######################################################################## 100.0%
-==> Downloading https://ghcr.io/v2/homebrew/core/fontconfig/blobs/sha256:2e1558c0e3cb449da701c17897cdad76b21cc4a4af619a31848b08fa0a9fb2ca
-==> Downloading from https://pkg-containers.githubusercontent.com/ghcr1/blobs/sha256:2e1558c0e3cb449da701c17897cdad76b21cc4a4af619a31848b08fa0a9fb2ca?se=2023-03-20T07%3A20%3A00Z&sig=%2B3h
-######################################################################## 100.0%
-==> Fetching pcre2
-==> Downloading https://ghcr.io/v2/homebrew/core/pcre2/manifests/10.42
-######################################################################## 100.0%
-==> Downloading https://ghcr.io/v2/homebrew/core/pcre2/blobs/sha256:23ce93cf86bd4816b7d039efa0a5d68c751bce3f552a8cbf41762518b4be199e
-==> Downloading from https://pkg-containers.githubusercontent.com/ghcr1/blobs/sha256:23ce93cf86bd4816b7d039efa0a5d68c751bce3f552a8cbf41762518b4be199e?se=2023-03-20T07%3A20%3A00Z&sig=EqLYY
-######################################################################## 100.0%
-==> Fetching glib
-==> Downloading https://ghcr.io/v2/homebrew/core/glib/manifests/2.76.0
-######################################################################## 100.0%
-==> Downloading https://ghcr.io/v2/homebrew/core/glib/blobs/sha256:99e3328a0d04c5ee44f8263c418176d0a1f936f4fac7bc6f06c49ebd8ca672a3
-==> Downloading from https://pkg-containers.githubusercontent.com/ghcr1/blobs/sha256:99e3328a0d04c5ee44f8263c418176d0a1f936f4fac7bc6f06c49ebd8ca672a3?se=2023-03-20T07%3A20%3A00Z&sig=%2Bdb
-######################################################################## 100.0%
-==> Fetching xorgproto
-==> Downloading https://ghcr.io/v2/homebrew/core/xorgproto/manifests/2022.2
-######################################################################## 100.0%
-==> Downloading https://ghcr.io/v2/homebrew/core/xorgproto/blobs/sha256:d6deb2e4712bdd55eadfdcd7156814a6c42c9d94eb5cda72b89c9e4221a8a99d
-==> Downloading from https://pkg-containers.githubusercontent.com/ghcr1/blobs/sha256:d6deb2e4712bdd55eadfdcd7156814a6c42c9d94eb5cda72b89c9e4221a8a99d?se=2023-03-20T07%3A20%3A00Z&sig=mwfLp
-######################################################################## 100.0%
-==> Fetching libxau
-==> Downloading https://ghcr.io/v2/homebrew/core/libxau/manifests/1.0.11
-######################################################################## 100.0%
-==> Downloading https://ghcr.io/v2/homebrew/core/libxau/blobs/sha256:8f7c0378757601370d13539c5f1a11f560326464d9ba1f9fb9f5e2631163d559
-==> Downloading from https://pkg-containers.githubusercontent.com/ghcr1/blobs/sha256:8f7c0378757601370d13539c5f1a11f560326464d9ba1f9fb9f5e2631163d559?se=2023-03-20T07%3A20%3A00Z&sig=rlUC2
-######################################################################## 100.0%
-==> Fetching libxdmcp
-==> Downloading https://ghcr.io/v2/homebrew/core/libxdmcp/manifests/1.1.4
-######################################################################## 100.0%
-==> Downloading https://ghcr.io/v2/homebrew/core/libxdmcp/blobs/sha256:7ead4738215915004a6f3333584cbcb7ae1accb1b9b0a4742708e276c64ff984
-==> Downloading from https://pkg-containers.githubusercontent.com/ghcr1/blobs/sha256:7ead4738215915004a6f3333584cbcb7ae1accb1b9b0a4742708e276c64ff984?se=2023-03-20T07%3A20%3A00Z&sig=fOG8g
-######################################################################## 100.0%
-==> Fetching libxcb
-==> Downloading https://ghcr.io/v2/homebrew/core/libxcb/manifests/1.15_1
-######################################################################## 100.0%
-==> Downloading https://ghcr.io/v2/homebrew/core/libxcb/blobs/sha256:8a0df37f2087ac271ae9780b2db056b4a75f2090a535ac7c9560944d295962db
-==> Downloading from https://pkg-containers.githubusercontent.com/ghcr1/blobs/sha256:8a0df37f2087ac271ae9780b2db056b4a75f2090a535ac7c9560944d295962db?se=2023-03-20T07%3A20%3A00Z&sig=9GJdr
-######################################################################## 100.0%
-==> Fetching libx11
-==> Downloading https://ghcr.io/v2/homebrew/core/libx11/manifests/1.8.4
-######################################################################## 100.0%
-==> Downloading https://ghcr.io/v2/homebrew/core/libx11/blobs/sha256:5da752047f0745a2628343aa2f313f4544b13d0643ff796ae079fcc4d3203a63
-==> Downloading from https://pkg-containers.githubusercontent.com/ghcr1/blobs/sha256:5da752047f0745a2628343aa2f313f4544b13d0643ff796ae079fcc4d3203a63?se=2023-03-20T07%3A20%3A00Z&sig=rvhCu
-######################################################################## 100.0%
-==> Fetching libxext
-==> Downloading https://ghcr.io/v2/homebrew/core/libxext/manifests/1.3.5
-######################################################################## 100.0%
-==> Downloading https://ghcr.io/v2/homebrew/core/libxext/blobs/sha256:4f194ef26f45585047eab4ceaa2c811c4273d32d2ea47d9b3d18f09bb0c1f300
-==> Downloading from https://pkg-containers.githubusercontent.com/ghcr1/blobs/sha256:4f194ef26f45585047eab4ceaa2c811c4273d32d2ea47d9b3d18f09bb0c1f300?se=2023-03-20T07%3A20%3A00Z&sig=72ixS
-######################################################################## 100.0%
-==> Fetching libxrender
-==> Downloading https://ghcr.io/v2/homebrew/core/libxrender/manifests/0.9.11
-######################################################################## 100.0%
-==> Downloading https://ghcr.io/v2/homebrew/core/libxrender/blobs/sha256:660b41237f01b7561da61e4abd212f4575e6c97f4c76cc70c550868edbe227e5
-==> Downloading from https://pkg-containers.githubusercontent.com/ghcr1/blobs/sha256:660b41237f01b7561da61e4abd212f4575e6c97f4c76cc70c550868edbe227e5?se=2023-03-20T07%3A20%3A00Z&sig=0TG7U
-######################################################################## 100.0%
-==> Fetching lzo
-==> Downloading https://ghcr.io/v2/homebrew/core/lzo/manifests/2.10
-######################################################################## 100.0%
-==> Downloading https://ghcr.io/v2/homebrew/core/lzo/blobs/sha256:e16072e8ef7a8810284ccea232a7333a2b620367814b133a455217d22e89ae8e
-==> Downloading from https://pkg-containers.githubusercontent.com/ghcr1/blobs/sha256:e16072e8ef7a8810284ccea232a7333a2b620367814b133a455217d22e89ae8e?se=2023-03-20T07%3A20%3A00Z&sig=Oq135
-######################################################################## 100.0%
-==> Fetching pixman
-==> Downloading https://ghcr.io/v2/homebrew/core/pixman/manifests/0.42.2
-######################################################################## 100.0%
-==> Downloading https://ghcr.io/v2/homebrew/core/pixman/blobs/sha256:1e4026e8980666338f1a49cc61a3b6e968a744d92a67aeacfe918f8e8266d8ce
-==> Downloading from https://pkg-containers.githubusercontent.com/ghcr1/blobs/sha256:1e4026e8980666338f1a49cc61a3b6e968a744d92a67aeacfe918f8e8266d8ce?se=2023-03-20T07%3A20%3A00Z&sig=FrfJg
-######################################################################## 100.0%
-==> Fetching cairo
-==> Downloading https://ghcr.io/v2/homebrew/core/cairo/manifests/1.16.0_5
-######################################################################## 100.0%
-==> Downloading https://ghcr.io/v2/homebrew/core/cairo/blobs/sha256:50feaae83e93330cc0ee6b90477cfa931fab52cdb98ad37a99a0e518da6a580e
-==> Downloading from https://pkg-containers.githubusercontent.com/ghcr1/blobs/sha256:50feaae83e93330cc0ee6b90477cfa931fab52cdb98ad37a99a0e518da6a580e?se=2023-03-20T07%3A20%3A00Z&sig=b2l5Z
-######################################################################## 100.0%
-==> Fetching graphite2
-==> Downloading https://ghcr.io/v2/homebrew/core/graphite2/manifests/1.3.14
-######################################################################## 100.0%
-==> Downloading https://ghcr.io/v2/homebrew/core/graphite2/blobs/sha256:2254ea02844280605c79ab735ce1c5eb4a943fe897c3119611de54169130a88e
-==> Downloading from https://pkg-containers.githubusercontent.com/ghcr1/blobs/sha256:2254ea02844280605c79ab735ce1c5eb4a943fe897c3119611de54169130a88e?se=2023-03-20T07%3A20%3A00Z&sig=UWms8
-######################################################################## 100.0%
-==> Fetching icu4c
-==> Downloading https://ghcr.io/v2/homebrew/core/icu4c/manifests/72.1
-######################################################################## 100.0%
-==> Downloading https://ghcr.io/v2/homebrew/core/icu4c/blobs/sha256:90c50fe2cbf8bedcae43886caaa096ab6fc54f893be192912220ba1ec48e634f
-==> Downloading from https://pkg-containers.githubusercontent.com/ghcr1/blobs/sha256:90c50fe2cbf8bedcae43886caaa096ab6fc54f893be192912220ba1ec48e634f?se=2023-03-20T07%3A20%3A00Z&sig=deKBs
-######################################################################## 100.0%
-==> Fetching harfbuzz
-==> Downloading https://ghcr.io/v2/homebrew/core/harfbuzz/manifests/7.1.0
-######################################################################## 100.0%
-==> Downloading https://ghcr.io/v2/homebrew/core/harfbuzz/blobs/sha256:a93182e4d1b76b7a5abe3be51d41c65531c603cbdfc069632b1e52f7c6efbd37
-==> Downloading from https://pkg-containers.githubusercontent.com/ghcr1/blobs/sha256:a93182e4d1b76b7a5abe3be51d41c65531c603cbdfc069632b1e52f7c6efbd37?se=2023-03-20T07%3A25%3A00Z&sig=zQoYw
-######################################################################## 100.0%
-==> Fetching jpeg-turbo
-==> Downloading https://ghcr.io/v2/homebrew/core/jpeg-turbo/manifests/2.1.5.1
-######################################################################## 100.0%
-==> Downloading https://ghcr.io/v2/homebrew/core/jpeg-turbo/blobs/sha256:844f7f6b0883d91c6e5f16c2c752d05566cea571def6f262b580c6d35a928e14
-==> Downloading from https://pkg-containers.githubusercontent.com/ghcr1/blobs/sha256:844f7f6b0883d91c6e5f16c2c752d05566cea571def6f262b580c6d35a928e14?se=2023-03-20T07%3A25%3A00Z&sig=R%2Fj
-######################################################################## 100.0%
-==> Fetching lz4
-==> Downloading https://ghcr.io/v2/homebrew/core/lz4/manifests/1.9.4
-######################################################################## 100.0%
-==> Downloading https://ghcr.io/v2/homebrew/core/lz4/blobs/sha256:284fa580570efdc8056e4fc95dc05f7b0546aa0c346795dd616d4cec8eb99426
-==> Downloading from https://pkg-containers.githubusercontent.com/ghcr1/blobs/sha256:284fa580570efdc8056e4fc95dc05f7b0546aa0c346795dd616d4cec8eb99426?se=2023-03-20T07%3A25%3A00Z&sig=Vn0wv
-######################################################################## 100.0%
-==> Fetching zstd
-==> Downloading https://ghcr.io/v2/homebrew/core/zstd/manifests/1.5.4
-######################################################################## 100.0%
-==> Downloading https://ghcr.io/v2/homebrew/core/zstd/blobs/sha256:6de68b55a5336e68071b587756944e5138334760f594d3c84f036c0558a06019
-==> Downloading from https://pkg-containers.githubusercontent.com/ghcr1/blobs/sha256:6de68b55a5336e68071b587756944e5138334760f594d3c84f036c0558a06019?se=2023-03-20T07%3A25%3A00Z&sig=MMBFH
-######################################################################## 100.0%
-==> Fetching libtiff
-==> Downloading https://ghcr.io/v2/homebrew/core/libtiff/manifests/4.4.0_1-1
-######################################################################## 100.0%
-==> Downloading https://ghcr.io/v2/homebrew/core/libtiff/blobs/sha256:b48b8b5166bc548be184e03892adf5259dad564bee1cb62ddb84c1bdf21caaeb
-==> Downloading from https://pkg-containers.githubusercontent.com/ghcr1/blobs/sha256:b48b8b5166bc548be184e03892adf5259dad564bee1cb62ddb84c1bdf21caaeb?se=2023-03-20T07%3A25%3A00Z&sig=XFojw
-######################################################################## 100.0%
-==> Fetching little-cms2
-==> Downloading https://ghcr.io/v2/homebrew/core/little-cms2/manifests/2.14
-######################################################################## 100.0%
-==> Downloading https://ghcr.io/v2/homebrew/core/little-cms2/blobs/sha256:ae03cf730b8472ba74ccf339e64c2275b3b1558bee4d43f87d13bb8ddf15bcfc
-==> Downloading from https://pkg-containers.githubusercontent.com/ghcr1/blobs/sha256:ae03cf730b8472ba74ccf339e64c2275b3b1558bee4d43f87d13bb8ddf15bcfc?se=2023-03-20T07%3A25%3A00Z&sig=u1wv%
-######################################################################## 100.0%
-==> Fetching openjdk
-==> Downloading https://ghcr.io/v2/homebrew/core/openjdk/manifests/19.0.2
-######################################################################## 100.0%
+　　　・
+　　　・
+　　　・
 ==> Downloading https://ghcr.io/v2/homebrew/core/openjdk/blobs/sha256:f0d33cdc95ee66471146865dd98092c92b0ef97598fe1ea57d4cb31f859851b5
 ==> Downloading from https://pkg-containers.githubusercontent.com/ghcr1/blobs/sha256:f0d33cdc95ee66471146865dd98092c92b0ef97598fe1ea57d4cb31f859851b5?se=2023-03-20T07%3A25%3A00Z&sig=aKO6b
 ######################################################################## 100.0%
@@ -840,77 +699,9 @@ Running `brew update --auto-update`...
 ==> Installing openjdk dependency: giflib
 ==> Pouring giflib--5.2.1.arm64_monterey.bottle.tar.gz
 🍺  /opt/homebrew/Cellar/giflib/5.2.1: 19 files, 540.7KB
-==> Installing openjdk dependency: libpng
-==> Pouring libpng--1.6.39.arm64_monterey.bottle.1.tar.gz
-🍺  /opt/homebrew/Cellar/libpng/1.6.39: 27 files, 1.3MB
-==> Installing openjdk dependency: freetype
-==> Pouring freetype--2.13.0_1.arm64_monterey.bottle.tar.gz
-🍺  /opt/homebrew/Cellar/freetype/2.13.0_1: 67 files, 2.4MB
-==> Installing openjdk dependency: fontconfig
-==> Pouring fontconfig--2.14.2.arm64_monterey.bottle.tar.gz
-==> Regenerating font cache, this may take a while
-==> /opt/homebrew/Cellar/fontconfig/2.14.2/bin/fc-cache -frv
-🍺  /opt/homebrew/Cellar/fontconfig/2.14.2: 88 files, 2.4MB
-==> Installing openjdk dependency: pcre2
-==> Pouring pcre2--10.42.arm64_monterey.bottle.tar.gz
-🍺  /opt/homebrew/Cellar/pcre2/10.42: 230 files, 6.2MB
-==> Installing openjdk dependency: glib
-==> Pouring glib--2.76.0.arm64_monterey.bottle.tar.gz
-🍺  /opt/homebrew/Cellar/glib/2.76.0: 455 files, 22.2MB
-==> Installing openjdk dependency: xorgproto
-==> Pouring xorgproto--2022.2.arm64_monterey.bottle.tar.gz
-🍺  /opt/homebrew/Cellar/xorgproto/2022.2: 268 files, 3.9MB
-==> Installing openjdk dependency: libxau
-==> Pouring libxau--1.0.11.arm64_monterey.bottle.tar.gz
-🍺  /opt/homebrew/Cellar/libxau/1.0.11: 21 files, 123.5KB
-==> Installing openjdk dependency: libxdmcp
-==> Pouring libxdmcp--1.1.4.arm64_monterey.bottle.tar.gz
-🍺  /opt/homebrew/Cellar/libxdmcp/1.1.4: 11 files, 130.4KB
-==> Installing openjdk dependency: libxcb
-==> Pouring libxcb--1.15_1.arm64_monterey.bottle.tar.gz
-🍺  /opt/homebrew/Cellar/libxcb/1.15_1: 2,461 files, 7.3MB
-==> Installing openjdk dependency: libx11
-==> Pouring libx11--1.8.4.arm64_monterey.bottle.tar.gz
-🍺  /opt/homebrew/Cellar/libx11/1.8.4: 1,054 files, 7MB
-==> Installing openjdk dependency: libxext
-==> Pouring libxext--1.3.5.arm64_monterey.bottle.tar.gz
-🍺  /opt/homebrew/Cellar/libxext/1.3.5: 87 files, 445.8KB
-==> Installing openjdk dependency: libxrender
-==> Pouring libxrender--0.9.11.arm64_monterey.bottle.tar.gz
-🍺  /opt/homebrew/Cellar/libxrender/0.9.11: 12 files, 213.9KB
-==> Installing openjdk dependency: lzo
-==> Pouring lzo--2.10.arm64_monterey.bottle.tar.gz
-🍺  /opt/homebrew/Cellar/lzo/2.10: 31 files, 565.6KB
-==> Installing openjdk dependency: pixman
-==> Pouring pixman--0.42.2.arm64_monterey.bottle.tar.gz
-🍺  /opt/homebrew/Cellar/pixman/0.42.2: 11 files, 842.5KB
-==> Installing openjdk dependency: cairo
-==> Pouring cairo--1.16.0_5.arm64_monterey.bottle.tar.gz
-🍺  /opt/homebrew/Cellar/cairo/1.16.0_5: 126 files, 6.4MB
-==> Installing openjdk dependency: graphite2
-==> Pouring graphite2--1.3.14.arm64_monterey.bottle.tar.gz
-🍺  /opt/homebrew/Cellar/graphite2/1.3.14: 18 files, 280.6KB
-==> Installing openjdk dependency: icu4c
-==> Pouring icu4c--72.1.arm64_monterey.bottle.tar.gz
-🍺  /opt/homebrew/Cellar/icu4c/72.1: 263 files, 78.4MB
-==> Installing openjdk dependency: harfbuzz
-==> Pouring harfbuzz--7.1.0.arm64_monterey.bottle.tar.gz
-🍺  /opt/homebrew/Cellar/harfbuzz/7.1.0: 76 files, 8.8MB
-==> Installing openjdk dependency: jpeg-turbo
-==> Pouring jpeg-turbo--2.1.5.1.arm64_monterey.bottle.tar.gz
-🍺  /opt/homebrew/Cellar/jpeg-turbo/2.1.5.1: 44 files, 2.5MB
-==> Installing openjdk dependency: lz4
-==> Pouring lz4--1.9.4.arm64_monterey.bottle.tar.gz
-🍺  /opt/homebrew/Cellar/lz4/1.9.4: 22 files, 681.5KB
-==> Installing openjdk dependency: zstd
-==> Pouring zstd--1.5.4.arm64_monterey.bottle.tar.gz
-🍺  /opt/homebrew/Cellar/zstd/1.5.4: 31 files, 2.3MB
-==> Installing openjdk dependency: libtiff
-==> Pouring libtiff--4.4.0_1.arm64_monterey.bottle.1.tar.gz
-🍺  /opt/homebrew/Cellar/libtiff/4.4.0_1: 249 files, 4.8MB
-==> Installing openjdk dependency: little-cms2
-==> Pouring little-cms2--2.14.arm64_monterey.bottle.tar.gz
-🍺  /opt/homebrew/Cellar/little-cms2/2.14: 21 files, 1.4MB
+　　　・
+　　　・
+　　　・
 ==> Installing openjdk
 ==> Pouring openjdk--19.0.2.arm64_monterey.bottle.tar.gz
 ==> Caveats
@@ -936,49 +727,9 @@ Hide these hints with HOMEBREW_NO_ENV_HINTS (see `man brew`).
 Disable this behaviour by setting HOMEBREW_NO_INSTALL_CLEANUP.
 Hide these hints with HOMEBREW_NO_ENV_HINTS (see `man brew`).
 Removing: /Users/asakunotomohiro/Library/Caches/Homebrew/berkeley-db--18.1.40_1... (2.3MB)
-Removing: /Users/asakunotomohiro/Library/Caches/Homebrew/cscope--15.9... (182.8KB)
-Removing: /Users/asakunotomohiro/Library/Caches/Homebrew/gdbm--1.23... (269.2KB)
-Removing: /Users/asakunotomohiro/Library/Caches/Homebrew/libyaml--0.2.5... (108.4KB)
-Removing: /Users/asakunotomohiro/Library/Caches/Homebrew/lua--5.4.4_1... (257.4KB)
-Removing: /Users/asakunotomohiro/Library/Caches/Homebrew/mpdecimal--2.5.1... (540.7KB)
-Removing: /Users/asakunotomohiro/Library/Caches/Homebrew/sqlite--3.41.0... (2MB)
-Removing: /Users/asakunotomohiro/Library/Caches/Homebrew/vim--9.0.1350... (12.7MB)
-Removing: /Users/asakunotomohiro/Library/Caches/Homebrew/vim--9.0.0350_1... (12.6MB)
-Removing: /Users/asakunotomohiro/Library/Caches/Homebrew/ruby_bottle_manifest--3.1.2_1... (13.5KB)
-Removing: /Users/asakunotomohiro/Library/Caches/Homebrew/sqlite_bottle_manifest--3.39.3... (6.9KB)
-Removing: /Users/asakunotomohiro/Library/Caches/Homebrew/berkeley-db_bottle_manifest--18.1.40_1... (7.2KB)
-Removing: /Users/asakunotomohiro/Library/Caches/Homebrew/macvim_bottle_manifest--9.0.472... (19.0KB)
-Removing: /Users/asakunotomohiro/Library/Caches/Homebrew/gdbm_bottle_manifest--1.23... (6.1KB)
-Removing: /Users/asakunotomohiro/Library/Caches/Homebrew/openssl@1.1_bottle_manifest--1.1.1q... (7.6KB)
-Removing: /Users/asakunotomohiro/Library/Caches/Homebrew/lua_bottle_manifest--5.4.4_1... (6.6KB)
-Removing: /Users/asakunotomohiro/Library/Caches/Homebrew/vim_bottle_manifest--9.0.0350_1... (26.8KB)
-Removing: /Users/asakunotomohiro/Library/Caches/Homebrew/libyaml_bottle_manifest--0.2.5... (7.5KB)
-Removing: /Users/asakunotomohiro/Library/Caches/Homebrew/ca-certificates_bottle_manifest--2022-07-19_1... (1.8KB)
-Removing: /Users/asakunotomohiro/Library/Caches/Homebrew/xz_bottle_manifest--5.2.6... (6.4KB)
-Removing: /Users/asakunotomohiro/Library/Caches/Homebrew/perl_bottle_manifest--5.34.0_1... (16.4KB)
-Removing: /Users/asakunotomohiro/Library/Caches/Homebrew/mpdecimal_bottle_manifest--2.5.1... (6.9KB)
-Removing: /Users/asakunotomohiro/Library/Caches/Homebrew/ncurses_bottle_manifest--6.3... (9KB)
-Removing: /Users/asakunotomohiro/Library/Caches/Homebrew/gettext_bottle_manifest--0.21... (10.5KB)
-Removing: /Users/asakunotomohiro/Library/Caches/Homebrew/python@3.10_bottle_manifest--3.10.6_2... (19.2KB)
-Removing: /Users/asakunotomohiro/Library/Caches/Homebrew/readline_bottle_manifest--8.1.2... (6.6KB)
-Removing: /Users/asakunotomohiro/Library/Caches/Homebrew/cscope_bottle_manifest--15.9... (8.1KB)
-Removing: /Users/asakunotomohiro/Library/Logs/Homebrew/vim... (64B)
-Removing: /Users/asakunotomohiro/Library/Logs/Homebrew/ncurses... (64B)
-Removing: /Users/asakunotomohiro/Library/Logs/Homebrew/gdbm... (64B)
-Removing: /Users/asakunotomohiro/Library/Logs/Homebrew/mpdecimal... (64B)
-Removing: /Users/asakunotomohiro/Library/Logs/Homebrew/cscope... (64B)
-Removing: /Users/asakunotomohiro/Library/Logs/Homebrew/libyaml... (64B)
-Removing: /Users/asakunotomohiro/Library/Logs/Homebrew/perl... (64B)
-Removing: /Users/asakunotomohiro/Library/Logs/Homebrew/readline... (64B)
-Removing: /Users/asakunotomohiro/Library/Logs/Homebrew/sqlite... (64B)
-Removing: /Users/asakunotomohiro/Library/Logs/Homebrew/xz... (64B)
-Removing: /Users/asakunotomohiro/Library/Logs/Homebrew/lua... (64B)
-Removing: /Users/asakunotomohiro/Library/Logs/Homebrew/macvim... (64B)
-Removing: /Users/asakunotomohiro/Library/Logs/Homebrew/ca-certificates... (64B)
-Removing: /Users/asakunotomohiro/Library/Logs/Homebrew/gettext... (64B)
-Removing: /Users/asakunotomohiro/Library/Logs/Homebrew/openssl@1.1... (64B)
-Removing: /Users/asakunotomohiro/Library/Logs/Homebrew/python@3.10... (2 files, 2.5KB)
-Removing: /Users/asakunotomohiro/Library/Logs/Homebrew/ruby... (64B)
+　　　・
+　　　・
+　　　・
 Removing: /Users/asakunotomohiro/Library/Logs/Homebrew/berkeley-db... (64B)
 Pruned 2 symbolic links and 19 directories from /opt/homebrew
 ==> Caveats
@@ -999,8 +750,6 @@ For compilers to find openjdk you may need to set:
 $
 $ sudo ln -sfn /opt/homebrew/opt/openjdk/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk.jdk
 Password: ログインパスワードの入力
-Sorry, try again.
-Password:
 $
 $ java --version
 openjdk 19.0.2 2023-01-17
@@ -1015,7 +764,7 @@ $
 
 sudoでのリンク張り替えが必須になる。  
 `sudo ln -sfn /opt/homebrew/opt/openjdk/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk.jdk`  
-※このコマンドは、インストール後に表示されるはず。  
+※手動で実施する必要があるため、忘れないこと。  
 
 [目次に戻る](#tableOfContents)  
 
