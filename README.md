@@ -1001,6 +1001,14 @@ $ sudo ln -sfn /opt/homebrew/opt/openjdk/libexec/openjdk.jdk /Library/Java/JavaV
 Password: ログインパスワードの入力
 Sorry, try again.
 Password:
+$
+$ java --version
+openjdk 19.0.2 2023-01-17
+OpenJDK Runtime Environment Homebrew (build 19.0.2)
+OpenJDK 64-Bit Server VM Homebrew (build 19.0.2, mixed mode, sharing)
+$ javac --version
+javac 19.0.2
+$
 ```
 
 </details>
