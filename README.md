@@ -656,6 +656,22 @@ DroidVimには配布できないようだ。
 <a name="productionjava"></a>
 ### Java環境構築
 
+<details><summary>環境確認。</summary>
+
+```terminal
+$ java --version	←☆実行環境がない。
+The operation couldn’t be completed. Unable to locate a Java Runtime.
+Please visit http://www.java.com for information on installing Java.
+
+$ javac --version	←☆コンパイル環境がない。
+The operation couldn’t be completed. Unable to locate a Java Runtime.
+Please visit http://www.java.com for information on installing Java.
+
+$
+```
+
+</details>
+
 インストール：
 `brew install java`  
 
