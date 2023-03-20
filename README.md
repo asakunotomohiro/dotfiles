@@ -658,10 +658,107 @@ DroidVimには配布できないようだ。
 
 インストール：
 `brew install java`  
+※アップデートを先にした方がいい。  
 
-sudoでのリンク張り替えが必須になるようだ。  
+<details><summary>実際のインストール作業。</summary>
+
+```terminal
+$ java --version	←☆実行環境がない。
+The operation couldn’t be completed. Unable to locate a Java Runtime.
+Please visit http://www.java.com for information on installing Java.
+
+$ javac --version	←☆コンパイル環境がない。
+The operation couldn’t be completed. Unable to locate a Java Runtime.
+Please visit http://www.java.com for information on installing Java.
+
+$
+$ sw_vers	←☆mac端末のバージョン確認。
+ProductName:    macOS
+ProductVersion: 12.6
+BuildVersion:   21G115
+$
+$ brew install java
+Running `brew update --auto-update`...
+==> Fetching dependencies for openjdk: giflib, libpng, freetype, fontconfig, pcre2, glib, xorgproto, libxau, libxdmcp, libxcb, libx11, libxext, libxrender, lzo, pixman, cairo, graphite2, icu4c, harfbuzz, jpeg-turbo, lz4, zstd, libtiff, and little-cms2
+==> Fetching giflib
+==> Downloading https://ghcr.io/v2/homebrew/core/giflib/manifests/5.2.1
+######################################################################## 100.0%
+　　　・
+　　　・
+　　　・
+==> Downloading https://ghcr.io/v2/homebrew/core/openjdk/blobs/sha256:f0d33cdc95ee66471146865dd98092c92b0ef97598fe1ea57d4cb31f859851b5
+==> Downloading from https://pkg-containers.githubusercontent.com/ghcr1/blobs/sha256:f0d33cdc95ee66471146865dd98092c92b0ef97598fe1ea57d4cb31f859851b5?se=2023-03-20T07%3A25%3A00Z&sig=aKO6b
+######################################################################## 100.0%
+==> Installing dependencies for openjdk: giflib, libpng, freetype, fontconfig, pcre2, glib, xorgproto, libxau, libxdmcp, libxcb, libx11, libxext, libxrender, lzo, pixman, cairo, graphite2, icu4c, harfbuzz, jpeg-turbo, lz4, zstd, libtiff, and little-cms2
+==> Installing openjdk dependency: giflib
+==> Pouring giflib--5.2.1.arm64_monterey.bottle.tar.gz
+🍺  /opt/homebrew/Cellar/giflib/5.2.1: 19 files, 540.7KB
+　　　・
+　　　・
+　　　・
+==> Installing openjdk
+==> Pouring openjdk--19.0.2.arm64_monterey.bottle.tar.gz
+==> Caveats
+For the system Java wrappers to find this JDK, symlink it with
+  sudo ln -sfn /opt/homebrew/opt/openjdk/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk.jdk
+
+openjdk is keg-only, which means it was not symlinked into /opt/homebrew,
+because macOS provides similar software and installing this software in
+parallel can cause all kinds of trouble.
+
+If you need to have openjdk first in your PATH, run:
+  echo 'export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"' >> ~/.zshrc
+
+For compilers to find openjdk you may need to set:
+  export CPPFLAGS="-I/opt/homebrew/opt/openjdk/include"
+
+==> Summary
+🍺  /opt/homebrew/Cellar/openjdk/19.0.2: 637 files, 320.0MB
+==> Running `brew cleanup openjdk`...
+Disable this behaviour by setting HOMEBREW_NO_INSTALL_CLEANUP.
+Hide these hints with HOMEBREW_NO_ENV_HINTS (see `man brew`).
+==> `brew cleanup` has not been run in the last 30 days, running now...
+Disable this behaviour by setting HOMEBREW_NO_INSTALL_CLEANUP.
+Hide these hints with HOMEBREW_NO_ENV_HINTS (see `man brew`).
+Removing: /Users/asakunotomohiro/Library/Caches/Homebrew/berkeley-db--18.1.40_1... (2.3MB)
+　　　・
+　　　・
+　　　・
+Removing: /Users/asakunotomohiro/Library/Logs/Homebrew/berkeley-db... (64B)
+Pruned 2 symbolic links and 19 directories from /opt/homebrew
+==> Caveats
+==> openjdk
+For the system Java wrappers to find this JDK, symlink it with
+  sudo ln -sfn /opt/homebrew/opt/openjdk/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk.jdk
+
+openjdk is keg-only, which means it was not symlinked into /opt/homebrew,
+because macOS provides similar software and installing this software in
+parallel can cause all kinds of trouble.
+
+If you need to have openjdk first in your PATH, run:
+  echo 'export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"' >> ~/.zshrc
+
+For compilers to find openjdk you may need to set:
+  export CPPFLAGS="-I/opt/homebrew/opt/openjdk/include"
+
+$
+$ sudo ln -sfn /opt/homebrew/opt/openjdk/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk.jdk
+Password: ログインパスワードの入力
+$
+$ java --version
+openjdk 19.0.2 2023-01-17
+OpenJDK Runtime Environment Homebrew (build 19.0.2)
+OpenJDK 64-Bit Server VM Homebrew (build 19.0.2, mixed mode, sharing)
+$ javac --version
+javac 19.0.2
+$
+```
+
+</details>
+
+sudoでのリンク張り替えが必須になる。  
 `sudo ln -sfn /opt/homebrew/opt/openjdk/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk.jdk`  
-※このコマンドは、インストール後に表示されるはず。  
+※手動で実施する必要があるため、忘れないこと。  
 
 [目次に戻る](#tableOfContents)  
 
