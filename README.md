@@ -997,6 +997,10 @@ For compilers to find openjdk you may need to set:
   export CPPFLAGS="-I/opt/homebrew/opt/openjdk/include"
 
 $
+$ sudo ln -sfn /opt/homebrew/opt/openjdk/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk.jdk
+Password: ログインパスワードの入力
+Sorry, try again.
+Password:
 ```
 
 </details>
