@@ -3,7 +3,7 @@ COMMON_ENVIRONMENTFILE=$HOME/.config/shell/profile_common_EnvironmentVariable
 if [ -e "$COMMON_ALIAS_FILE" ]
 then
 	source "$COMMON_ALIAS_FILE"
-	#source "$COMMON_ENVIRONMENTFILE"
+	#source "$COMMON_ENVIRONMENTFILE"	←☆これを読み込んではならない理由を忘れてしまった。
 fi
 
 
@@ -171,6 +171,11 @@ alias bash='/usr/local/bin/bash; source ~/.bash_profile '
 #alias gitll='git log -25 --graph --oneline --first-parent '
 #alias ll='ls -Flt '
 
+#	以下、perlのバージョン管理ツールの読み込み(別途個別インストール済みであること)。
+if [ -e ~/perl5/perlbrew/etc/bashrc ]
+then
+	source ~/perl5/perlbrew/etc/bashrc
+fi
 
 
 # 以上。
