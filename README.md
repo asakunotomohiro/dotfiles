@@ -772,16 +772,17 @@ sudoでのリンク張り替えが必須になる。
 
 <a name="productionperl"></a>
 ### Perl環境構築
-`curl -kL http://install.perlbrew.pl | bash`  
+詳しくは、[Perl用に勉強した環境構築ファイル](https://github.com/asakunotomohiro/asakunotomohiro/blob/study2programming/Perl言語/環境構築(インストール).md)を参照するのがいいだろう。  
 
-* インストール可能一覧表示コマンド  
-  `perlbrew available`  
-
-* 実際のインストール：`perlbrew install perl-5.36.0`  
-
-* インストール済み確認：`perlbrew list`  
-
-* バージョン切り替え：`perlbrew switch 5.36.0`  
+* 備忘録  
+  * [本体のインストールコマンド](https://perlbrew.pl/)  
+    `\curl -L https://install.perlbrew.pl | bash`  
+    ※Perlのバージョン管理ツールは、Perl本体が事前に入っていることで動く。  
+  * インストール可能一覧表示コマンド  
+    `perlbrew available`  
+  * 実際のインストール：例）`perlbrew install perl-5.36.0`  
+  * インストール済み確認：`perlbrew list`  
+  * バージョン切り替え：例）`perlbrew switch 5.36.0`  
 
 
 * todo: 後日解説。  
