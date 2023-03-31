@@ -156,8 +156,16 @@ then
 
 	# Go言語環境	goenv init設定
 	eval "$(goenv init -)"
+	# GOROOTは、何のため？古い？
 	export PATH="$GOROOT/bin:$PATH"
 	export PATH="$PATH:$GOPATH/bin"
+fi
+
+# Go言語環境(そもそもGOPATHに設定するのは間違っているが、ディレクトリ確認のために用いている)。紛らわしい？
+export GOPATH="$HOME/go/bin"
+if [ -d "$GOPATH" ]
+then
+	export PATH="$GOPATH:$PATH"
 fi
 
 

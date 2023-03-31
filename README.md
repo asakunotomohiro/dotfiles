@@ -252,7 +252,7 @@ vimエディタからマークダウンファイルをプレビューで見る�
 ### Golang
 あればよし。無くても問題ない。  
 
-<details><summary>インストール方法について。</summary>
+<details><summary>インストール方法について(複数バージョン管理用)。</summary>
 
 環境管理ソフトウェアの導入：`brew install --HEAD goenv`  
 
@@ -279,6 +279,14 @@ vimエディタからマークダウンファイルをプレビューで見る�
 
   * goenvでインストールしたgo言語環境のバージョン一覧コマンド  
     `goenv versions`  
+
+</details>
+
+<details><summary>インストール方法について(単発用)。</summary>
+
+インストールコマンド：`brew install go`  
+
+バージョン確認：`go version`  
 
 </details>
 
