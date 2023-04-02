@@ -90,10 +90,6 @@ ver7では、Android部分の判定でエラーが発生する。
 
 * Mac  
   [https://github.com/macvim-dev/macvim](https://github.com/macvim-dev/macvim)  
-  ~~リンク削除：`brew unlink vim`~~  
-  ~~`brew install macvim`~~  
-  ~~事前に、既存のvimをbrew管理から削除する必要がある：`brew unlink vim`~~  
-  ~~インストール後のリンク付け：`ln -s $(brew --prefix macvim)/MacVim.app /Applications`~~  
 
 [あんちょこ](https://gihyo.jp/assets/files/magazine/SD/2015/201510/download/Furoku_CheatSheet_Vim.pdf)  
 
@@ -105,6 +101,9 @@ ver7では、Android部分の判定でエラーが発生する。
 ※Mac端末への構築。  
 
 Macvimのほうがいい？  
+~~事前に、既存のvimをbrew管理から削除する必要がある：`brew unlink vim`~~  
+`brew install macvim`  
+~~インストール後のリンク付け：`ln -s $(brew --prefix macvim)/MacVim.app /Applications`~~  
 古いので止めた方が良いようだ。  
 しかし、今見返したら"Vim 9.0.0065"とのこと・・・新しい(古くもあるけど・・・)。  
 そして、香り屋さんのvimより新しいという・・・どういう風の吹き回しか。  
@@ -114,6 +113,10 @@ Macvimのほうがいい？
 導入後：**VIM - Vi IMproved 8.2 (2019 Dec 12, compiled Dec 17 2021 18:32:29)**  
 アップデートしただけだったようだが、何も変わらず。  
 **Running `brew update --auto-update`...**  
+
+2種類インストールされている場合競合する。  
+そのため、どちらかを消した方が吉。  
+`brew uninstall vim`  
 
 </details>
 
@@ -184,7 +187,7 @@ gvimrc限定の設定としては、ウィンドウサイズを固定したま�
 
 
 ##### 困りごと(gvimrc)。
-一番の困りごとは、日本語入力時の文節区切りが判別できないこと(こればかりは最悪だ)。  
+一番の困りごとは、日本語入力時の文節区切りが判別できないこと(色の変更ができず、目視できない。最悪だ)。  
 ATOKを使っているからか？  
 
 `vim-gitgutter`での色設定が反映されない。  
@@ -259,6 +262,8 @@ vimエディタからマークダウンファイルをプレビューで見る�
 * 以下、上記のgoenvを前提に構築する。  
   * Homebrew更新。  
     `brew update`  
+
+  * 個別ソフトウェアの更新。  
     `brew upgrade goenv`  
 
   * Go環境のインストール可能一覧コマンド  
@@ -285,6 +290,9 @@ vimエディタからマークダウンファイルをプレビューで見る�
 <details><summary>インストール方法について(単発用)。</summary>
 
 インストールコマンド：`brew install go`  
+この後、環境変数を設定する必要がある。  
+`export PATH=~/go/bin:$PATH`  
+※すでにzshrcに設定済み。  
 
 バージョン確認：`go version`  
 
@@ -365,7 +373,7 @@ vimエディタからマークダウンファイルをプレビューで見る�
 <a name="atomperation"></a>
 ### ATOM
 残念ながら開発中止になったエディタだ。  
-ちょっと使いにくく、数日使って利用を諦めてしまったぐらいだし・・・使いこなせないだけだろうが、他にエディタはあるからな。  
+ちょっと使いにくく、数日使って利用を諦めてしまった・・・使いこなせないだけだろうが、他にエディタはあるからな。  
 
 [https://atom.io](https://atom.io)  
 [https://github.com/atom/atom](https://github.com/atom/atom)  
@@ -394,7 +402,7 @@ Microsoft社製品のエディタ利用を拒否する輩はいますまい。
 Visual Studio Codeのバックアップファイル(Windows用？)。  
 
 * 格納ファイル。  
-  ※以下の他に、ワークスペースの`settings.json`と`workspace.code-workspace`の2種類のファイルなどが必要になるが、これはそのプロジェクトにあるため、ここで個別バックアップはしない。  
+  ※以下の他に、ワークスペースの`settings.json`と`workspace.code-workspace`の2種類のファイルなどが必要になるが、プロジェクトごとに作成されるため、今回のdotfilesの管理対象外になる。  
   [C:\Users\asakunotomohiro\AppData\Roaming\Code\User\settings.json]()  
   [C:\Users\asakunotomohiro.vscode\extensions]()  
   extensionsディレクトリは、20MB近くある。  
@@ -534,14 +542,13 @@ DroidVimには配布できないようだ。
   [zsh](#configfilezsh)  
 
 * MacOS専用：home-brew  
-`/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"`  
-次に、`echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> /Users/asakunotomohiro/.zprofile`コマンド必須。  
-
-* コマンド説明  
-  * Homebrewでのパッケージをアップグレード：`brew upgrade`  
-  * Homebrew本体の更新：`brew update`  
-  * Homebrew本体から一時的に切り離す：`brew unlink パッケージ名`  
-  * 切り離しから戻す(再接続の)場合：`brew link パッケージ名`  
+  `/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"`  
+  次に、`echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> /Users/asakunotomohiro/.zprofile`コマンド必須。  
+  * コマンド説明  
+    * Homebrew本体の更新：`brew update`  
+    * Homebrew本体から一時的に切り離す：`brew unlink パッケージ名`  
+    * 切り離しから戻す(再接続の)場合：`brew link パッケージ名`  
+    * Homebrewでのパッケージをアップグレード：`brew upgrade [パッケージ名]`  
 
 
 * シェルの起動種類(Mac用)  
@@ -625,7 +632,7 @@ DroidVimには配布できないようだ。
   * インストール可能一覧コマンド  
     `pyenv install --list`  
 
-  * Pythonインストールコマンド例  
+  * Pythonインストールコマンド例）  
     `pyenv install 3.10.4`  
 
   * pyenvでインストールしたPython言語環境のバージョン一覧コマンド  
@@ -793,7 +800,7 @@ sudoでのリンク張り替えが必須になる。
   * バージョン切り替え：例）`perlbrew switch 5.36.0`  
 
 
-* todo: 後日解説。  
+TODO: 後日解説。  
   **~/.pl**  
 
 </details>

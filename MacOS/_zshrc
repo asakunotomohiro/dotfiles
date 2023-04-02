@@ -150,29 +150,36 @@ export PS1="[\$vcs_info_msg_0_%1~%f] $ "
 
 # Go言語環境	goenvを読み込むためのPATH設定
 export GOENV_ROOT="$HOME/.goenv"
-if [ -e "$GOENV_ROOT" ]
+if [ -f "$GOENV_ROOT" ]
 then
 	export PATH="$GOENV_ROOT/bin:$PATH"
 
 	# Go言語環境	goenv init設定
 	eval "$(goenv init -)"
-	# GOROOTは、何のため？古い？
+	# GOROOTは、異なるバージョンを切り分けるために必要。
+	#	https://pleiades.io/help/go/configuring-goroot-and-gopath.html
+	#	> GOROOT は、Go SDK の場所を定義する変数です。異なる Go バージョンを使用する予定がない限り、この変数を変更する必要はありません。
+	#	> GOPATH は、ワークスペースのルートを定義する変数です。デフォルトでは、ワークスペースディレクトリは、ユーザーホームディレクトリ内の go という名前のディレクトリです
 	export PATH="$GOROOT/bin:$PATH"
-	export PATH="$PATH:$GOPATH/bin"
+	# しかし、GOPATH自体の設定は古い方法であり、今では忘れてかまわない存在だとのこと(By.KoRoNさん)。
+	#export PATH="$PATH:$GOPATH/bin"
+else
+	unset GOENV_ROOT
 fi
 
-# Go言語環境(そもそもGOPATHに設定するのは間違っているが、ディレクトリ確認のために用いている)。紛らわしい？
-export GOPATH="$HOME/go/bin"
-if [ -d "$GOPATH" ]
+# Go言語環境。
+export GOBINPATH="$HOME/go/bin"
+if [ -d "$GOBINPATH" ]
 then
-	export PATH="$GOPATH:$PATH"
+	# Go言語用の環境変数は、基本これだけで十分(GOPATH設定は古い情報になるため、惑わされないこと)。
+	export PATH="$GOBINPATH:$PATH"
 fi
 
 
 # エイリアス
 alias h='history -i -25 '
 	# -m	完全一致検索(ワイルドカード利用可)
-alias bash='/usr/local/bin/bash; source ~/.bash_profile '
+alias bash='/usr/local/bin/bash -l '
 
 #	以下、bashと同じエイリアス。
 #alias tree='tree -N '
@@ -182,6 +189,7 @@ alias bash='/usr/local/bin/bash; source ~/.bash_profile '
 #	以下、perlのバージョン管理ツールの読み込み(別途個別インストール済みであること)。
 if [ -e ~/perl5/perlbrew/etc/bashrc ]
 then
+	# インストールしたPerlを消した場合、ターミナル起動時、エラー表示される。
 	source ~/perl5/perlbrew/etc/bashrc
 fi
 
