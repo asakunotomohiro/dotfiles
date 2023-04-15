@@ -1,7 +1,20 @@
 #	基本は、複数のサーバを記載する。
 #	しかし、何かしらの技術があれば、複数のファイルに分けることも出来るそうだ。
-Host [ホスト名]	←☆この名前でSSH接続できる(例：> ssh ホスト名)。
-	HostName github.com	←☆この名前がサーバ先になる(基本はIPアドレス？)。
+
+# 通信先をハッシュ化して通信先を秘匿化する(非推奨設定名になっており、今後は改善名を使うことになるだろう)。
+#	改善名：ObscureKnownHostnames
+#	https://groups.google.com/g/opensshunixdev/c/e5-kTKpxcaI/m/bdVNyL4BBAAJ
+HashKnownHosts yes
+
+# サーバー側のパスワード認証に関わらず、パスワード認証接続を利用できないようにする。
+PasswordAuthentication no
+
+# ホストキー必須チェック。
+#	※yesの場合、事前にホスト鍵のfingerprintの登録が必須になる(どうやって入手する？)。
+#StrictHostKeyChecking yes
+
+Host [ホスト名]	←☆この名前でSSH接続できる(例：ssh ホスト名)。
+	HostName hoge.com	←☆この名前がサーバ先になる(基本はIPアドレス？)。
 	# 以下、リモート先との紐付け用の名前。
 	User [アカウント名]	←☆サーバ先のログイン名(基本はgit)。
 	# 以下、公開鍵を優先して認証することを示している？

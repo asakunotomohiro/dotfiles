@@ -68,7 +68,7 @@ PS1="${COLOR_YELLOW}\u${COLOR_DEFAULT}${COLOR_HIGREEN}@${COLOR_DEFAULT}${COLOR_B
 
 # コマンド実行時にターミナル画面の大きさに合わせた結果を出すようにする。
 #shopt -s checkwinsize
-#	既存で実行済み。
+#	既存で実行済み(どういう意味？)。
 
 # 優先順位が2番目の環境設定ファイルを読み込む.
 #. ~/.bash_login

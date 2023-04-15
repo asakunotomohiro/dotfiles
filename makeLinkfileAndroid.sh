@@ -85,7 +85,7 @@ ANDROIDHOME=/data/user/0/com.droidvim/files/home/dotfiles
 #	termuxで環境構築する場合は、以下のPathを使う。
 ANDROIDHOME=/data/data/com.termux/files/home/storage/shared/Documents/dotfiles
 
-# todo: ディレクトリ移動など重複しているため、整理する。
+# TODO: ディレクトリ移動など重複しているため、整理する。
 if [ -d ${ANDROIDHOME} ]; then
 	echo ドットファイルリポジトリあり。
 	SCRIPT_DIR=$(cd $(dirname $0); pwd)	# カレントディレクトリ名の絶対Path取得。
@@ -100,7 +100,7 @@ if [ -d ${ANDROIDHOME} ]; then
 		mkdir -p ${documents}
 		RETMKDIR=$?
 #		if [ "${RETMKDIR}" -eq 0 && -d "${documents}" ]; then
-			# TODO DroidVimでの実行では、以下のコピー方法を柔軟に対応する(現時点では権限が無くて動かない)。
+			# TODO: DroidVimでの実行では、以下のコピー方法を柔軟に対応する(現時点では権限が無くて動かない)。
 #			# ディレクトリ作成に成功かつ、そのディレクトリが存在する場合、dotfilesディレクトリを移動する。
 			(cd ..; cp -rp ${SCRIPT_DIR} ${documents};)
 			(cd ${ANDROIDHOME}; pwd; bash ./makeLinkfileAndroid.sh; echo "配置完了。")
@@ -159,7 +159,7 @@ echo "(cp 作成先：~/.config/git/gitconfig.private-local)上書きしない�
 #(cd ~/;`ln -s "${ANDROIDHOME}/_gitconfig.private-local" ./.gitconfig.private-local`;echo "実行結果"$?)
 (cd ~/;`cp -np "${ANDROIDHOME}/_gitconfig.private-local" ./.config/git/gitconfig.private-local`;echo "実行結果"$?)
 
-#	todo: 以下、無視リストファイルの配置場所を正しい位置に変更する(~/.config/git/ここ)。
+#	TODO: 以下、無視リストファイルの配置場所を正しい位置に変更する(~/.config/git/ここ)。
 #echo "([ローカルgit]/_gitignore ~/.gitignore)"
 echo "(ln 作成先：~/.config/git/ignore)"
 unlink ~/.gitignore 2>/dev/null
@@ -170,7 +170,7 @@ unlink ~/.config/git/.ignore 2>/dev/null
 (cd ${ANDROIDHOME}/;`ln -sf "${ANDROIDHOME}/_gitignore_global" ~/.config/git/ignore`;echo "実行結果"$?)
 #(cd ${ANDROIDHOME}/;`ln -sf "${ANDROIDHOME}/_gitignore_global" ~/.gitignore`;echo "実行結果"$?)
 
-#	TODO 以下、次回作成できるように設定する(削除も行うこと)。
+#	TODO: 以下、作成できるように設定する(削除も行うこと)。
 #echo "(ln 作成先：~/.config/git/stCommitMsg)"
 #(cd ${ANDROIDHOME}/;`ln -sf "${ANDROIDHOME}/_stCommitMsg" ~/.config/git/stCommitMsg`;echo "実行結果"$?)
 
@@ -213,6 +213,7 @@ echo "(mv 作成先：ダウンロード/pk_backup.pkb2)"
 
 if type "git" > /dev/null 2>&1; then
 	echo "gitコマンドあり。環境構築開始"
+
 	cd $VIMDIR
 	git clone https://github.com/k-takata/minpac
 else
@@ -221,7 +222,7 @@ fi
 
 
 #echo "サブシェル実行開始"
-#	携帯電話では対応不可(現時点で対応後回し)。
+#	TODO: 携帯電話では対応不可(現時点で対応後回し)要調査。
 #bash ${ANDROIDHOME}/subFunction/ftpplugVimFile.sh
 #echo "サブシェル実行終了"
 

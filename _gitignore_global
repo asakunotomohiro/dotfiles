@@ -2,10 +2,18 @@
 # Edit at https://www.toptal.com/developers/gitignore?templates=java,macos,windows,linux
 
 ### 一太郎 ###
+# ユーザ作成ファイルと同名のバックアップファイル
 *.$td
+
+# 定型文書の場合のバックアップファイル
 *.$tt
+
+# 通常圧縮形式の場合のバックアップファイル
 *.$tdc
+
+# 定型圧縮形式の場合のバックアップファイル
 *.$ttc
+
 
 ### Compressed ###
 *.7z
@@ -191,6 +199,9 @@ flycheck_*.el
 .scala_dependencies
 .worksheet
 .sts4-cache/
+# 以下、機能してくれない(と思ったが、ディレクトリ名を含んでいたのが原因だった)。
+#	しかし、このままでは必要な同名ファイルをコミット対象にできない。
+.gitignore
 
 
 ### VisualStudioCode ###

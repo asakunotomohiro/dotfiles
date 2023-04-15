@@ -28,6 +28,12 @@
 
 [alias]
 	lol = log --graph --decorate --pretty=oneline --all --parents --abbrev-commit
+			# --graph	：	
+			# --decorate	：	
+			# --pretty=oneline	：	
+			# --all	：全てのブランチ
+			# --parents	：	親ID付き表示。
+			# --abbrev-commit	：	IDの短縮表示。
 	ll = log --graph --oneline --first-parent
 #	_bash_profile	ファイルにもGit関連のエイリアスを仕込んでいるため注意すること。
 

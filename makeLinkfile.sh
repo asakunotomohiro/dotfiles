@@ -65,6 +65,11 @@ SSHCONFIGHOME=~/.ssh
 
 if type "git" > /dev/null 2>&1; then
 	echo "gitコマンドあり。環境構築開始"
+	# 以下、新規(追跡されていない)ディレクトリに含まれているファイルを表示する。
+	#	https://qiita.com/m-yamazaki/items/45ea4a71ebb769995043
+	#	https://git-scm.com/docs/git-status
+#	git config status.showUntrackedFiles all	←☆すでに設定済み(gitconfig)。
+
 	cd $VIMDIR
 	git clone https://github.com/k-takata/minpac
 else
@@ -125,13 +130,13 @@ echo "(ln "ローカルssh/Android_HOME_ssh_config" ~/.ssh/configAndroid用)"
 
 echo "(ln "ローカルgit/_gitconfig" ~/.gitconfig)"
 (cd ~/;`ln -sf "${filedir}/_gitconfig" ~/.gitconfig`;echo "実行結果"$?)
-echo "(cp -p "ローカルgit/_gitconfig.private-local" ~/gitconfig.private-local)"
+echo "(cp -p "ローカルgit/_gitconfig.private-local" ~/gitconfig.private-local)(普通のコピー)"
 (cd ~/;`cp -p "${filedir}/_gitconfig.private-local" ./.config/git/gitconfig.private-local`;echo "実行結果"$?)
 #(cd ~/;`ln -sf "${filedir}/_gitconfig.private-local" ./.gitconfig.private-local`;echo "実行結果"$?)
 echo "(ln "ローカルgit/_gitignore" ~/.config/git/ignore)"
 (cd ~/;`ln -sf "${filedir}/_gitignore_global" ./.config/git/ignore`;echo "実行結果"$?)
 
-#	TODO 以下、次回作成できるように設定する(削除も行うこと)。
+#	TODO: 以下、作成できるように設定する(削除も行うこと)。
 #echo "(ln "ローカルgit/_stCommitMsg" ~/.config/git/stCommitMsg)"
 #(cd ~/;`ln -sf "${filedir}/_stCommitMsg" ./.config/git/stCommitMsg`;echo "実行結果"$?)
 

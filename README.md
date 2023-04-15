@@ -13,6 +13,7 @@
 
 <a name="tableOfContents"></a>
 * 目次  
+  * [brewのインストール](#homebrewperation)  
   * エディタ  
     * [vim](#vimperation)  
     * [秀丸エディタ](#hidemaruperation)  
@@ -37,6 +38,7 @@
     * [bash用環境ファイル](#configfilebash)  
     * [zsh用環境ファイル](#configfilezsh)  
     * [AndroidOS向け作業](#androidosoperation)  
+    * [MacOS向け作業](#macosoperation)  
   * 主にWindows向け  
     * [一太郎](#onetaroperation)  
     * [ATOK](#atokperation)  
@@ -46,6 +48,60 @@
   * [今後の課題](#fromnowonperation)  
   * [ライセンス](#licenseperation)  
 
+<a name="homebrewperation"></a>
+### Homebrew
+<https://brew.sh>  
+
+<details><summary>インストール方法について。</summary>
+
+以下、実際のインストール作業記録。
+```terminal
+$ /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"	←☆インストール。
+==> Checking for `sudo` access (which may request your password)...
+Password:
+Sorry, try again.
+Password:
+==> This script will install:
+/opt/homebrew/bin/brew
+
+
+
+HEAD is now at 7a14ae618 Merge pull request #13876 from Homebrew/sponsors-maintainers-man-completions
+==> Tapping homebrew/core
+remote: Enumerating objects: 1270600, done.
+remote: Counting objects: 100% (30/30), done.
+remote: Compressing objects: 100% (21/21), done.
+remote: Total 1270600 (delta 16), reused 20 (delta 9), pack-reused 1270570
+Receiving objects: 100% (1270600/1270600), 513.50 MiB | 23.28 MiB/s, done.
+Resolving deltas: 100% (876215/876215), done.
+From https://github.com/Homebrew/homebrew-core
+ * [new branch]              master     -> origin/master
+HEAD is now at 796afdb1481 flix: update 0.31.0 bottle.
+Warning: /opt/homebrew/bin is not in your PATH.
+  Instructions on how to configure your shell for Homebrew
+  can be found in the 'Next steps' section below.
+==> Installation successful!
+
+==> Homebrew has enabled anonymous aggregate formulae and cask analytics.
+Read the analytics documentation (and how to opt-out) here:
+  https://docs.brew.sh/Analytics
+No analytics data has been sent yet (nor will any be during this install run).
+
+==> Homebrew is run entirely by unpaid volunteers. Please consider donating:
+  https://github.com/Homebrew/brew#donations
+
+==> Next steps:
+- Run these two commands in your terminal to add Homebrew to your PATH:
+    echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> /Users/asakunotomohiro/.zprofile
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+- Run brew help to get started
+- Further documentation:
+    https://docs.brew.sh
+
+$
+```
+
+</details>
 
 <a name="gitperation"></a>
 ### Git
@@ -53,12 +109,16 @@
 vimエディタで必要なプラグインを取得するのに必要。  
 また、[AndroidOS](#androidosoperation)のDroidVimソフトウェアは、OSのバージョンが古い場合、Git導入が出来ない。  
 
-[https://gitforwindows.org/](https://gitforwindows.org/)  
-[https://git-scm.com/book/ja/v2](https://git-scm.com/book/ja/v2)  
+[gitforwindows.org/](https://gitforwindows.org/)  
+[git-scm.com/book/ja/v2](https://git-scm.com/book/ja/v2)  
+[mkhrussell.github.io/blog/configure-git-on-macos-for-development-work/](https://mkhrussell.github.io/blog/configure-git-on-macos-for-development-work/)  
 
 Windowsでは、取得(Clone)時に改行が勝手に切り替えられる。  
 そのため、抑止コマンドでの制御が必要になる。  
 `git config --global core.autocrlf false`  
+設定の確認コマンド：`git config --global --get core.autocrlf`  
+※**true**の場合は、自動変換が有効化されている。  
+別の方法に`git config --global core.autocrlf input`がある(これは何？)。  
 
 * ファイル  
   * \_gitconfig  
@@ -72,6 +132,13 @@ Windowsでは、取得(Clone)時に改行が勝手に切り替えられる。
     2021/04/01：hgignore\_global新規登録。  
     本来のファイル名：**ignore**
     本来の配置場所：**~/.config/git/**
+
+* Gti技術で困ったときに見る。  
+  * [フリープログラミングブックス(目次)](https://github.com/EbookFoundation/free-programming-books/blob/master/books/free-programming-books-ja.md#git)  
+  * [サル先生のGit入門](https://backlog.com/ja/git-tutorial/reference/)  
+  * [デザイナのための Git(pull 時のトラブル)](https://github.com/hatena/Git-for-Designers#pull-%E6%99%82%E3%81%AE%E3%83%88%E3%83%A9%E3%83%96%E3%83%AB)  
+  * [Markdownファイル-相対リンク](https://github.com/tiimgreen/github-cheat-sheet/blob/master/README.ja.md#%E7%9B%B8%E5%AF%BE%E3%83%AA%E3%83%B3%E3%82%AF)  
+  * [すべての開発者へ。すごいGitHubリポジトリ10選](https://qiita.com/baby-degu/items/6c0c73a1e79644ebbb1a?utm_source=Qiita%E3%83%8B%E3%83%A5%E3%83%BC%E3%82%B9&utm_campaign=bf629460cb-Qiita_newsletter_464_06_02_2021&utm_medium=email&utm_term=0_e44feaa081-bf629460cb-33090553)  
 
 [目次に戻る](#tableOfContents)  
 
@@ -100,23 +167,71 @@ ver7では、Android部分の判定でエラーが発生する。
 #### Vim環境構築
 ※Mac端末への構築。  
 
-Macvimのほうがいい？  
-~~事前に、既存のvimをbrew管理から削除する必要がある：`brew unlink vim`~~  
-`brew install macvim`  
-~~インストール後のリンク付け：`ln -s $(brew --prefix macvim)/MacVim.app /Applications`~~  
-古いので止めた方が良いようだ。  
-しかし、今見返したら"Vim 9.0.0065"とのこと・・・新しい(古くもあるけど・・・)。  
+[Macvim](https://macvim.org)のほうがいい？  
+事前に、既存のvimをbrew管理から削除する必要がある：`brew unlink vim`  
+~~古いので止めた方が良いようだ。~~  
+しかし、今見返したら**Vim 9.0.0065**とのこと・・・新しい(古くもあるけど・・・)。  
 そして、香り屋さんのvimより新しいという・・・どういう風の吹き回しか。  
 
-`brew install vim`  
+~~`brew install vim`~~  
+`brew install macvim`  
 導入前：**VIM - Vi IMproved 8.2 (2019 Dec 12, compiled Dec 17 2021 18:32:29)**  
-導入後：**VIM - Vi IMproved 8.2 (2019 Dec 12, compiled Dec 17 2021 18:32:29)**  
+導入後：**VIM - Vi IMproved 9.0 (2022 Jun 28, compiled Feb 07 2023 11:35:56)**  
 アップデートしただけだったようだが、何も変わらず。  
 **Running `brew update --auto-update`...**  
+
+インストール後のリンク付け：`ln -s $(brew --prefix macvim)/MacVim.app /Applications`  
 
 2種類インストールされている場合競合する。  
 そのため、どちらかを消した方が吉。  
 `brew uninstall vim`  
+
+以下、実際のインストール作業記録。
+```terminal
+$ brew unlink vim	←☆既存のvimを切り離す(後日分かったが、uninstallしなければ、他のソフトウェアアップデート時にもエラーが発生する)。
+Unlinking /opt/homebrew/Cellar/vim/9.0.0350_1... 187 symlinks removed.
+$ brew install macvim	←☆インストール。
+Running `brew update --auto-update`...
+==> Homebrew is run entirely by unpaid volunteers. Please consider donating:
+  https://github.com/Homebrew/brew#donations
+
+==> Auto-updated Homebrew!
+Updated 1 tap (homebrew/core).
+==> New Formulae
+camlp-streams              gdrive-downloader          llvm@14                    quilt-installer            toml-test
+fuego-firestore            got                        opencl-icd-loader          scala@2.13
+
+==> Downloading https://ghcr.io/v2/homebrew/core/cscope/manifests/15.9
+######################################################################## 100.0%
+==> Downloading https://ghcr.io/v2/homebrew/core/cscope/blobs/sha256:b85e2ad5e9ddcdb57a2cca430520e64f70cefd2b182bae70c216360e72757611
+==> Downloading from https://pkg-containers.githubusercontent.com/ghcr1/blobs/sha256:b85e2ad5e9ddcdb57a2cca430520e64f70cefd2b182bae70
+######################################################################## 100.0%
+==> Downloading https://ghcr.io/v2/homebrew/core/macvim/manifests/9.0.472
+######################################################################## 100.0%
+==> Downloading https://ghcr.io/v2/homebrew/core/macvim/blobs/sha256:4cafa590c301a6faac579c80051f6a1d42aceaaf696543efd5c7534a7264b51c
+==> Downloading from https://pkg-containers.githubusercontent.com/ghcr1/blobs/sha256:4cafa590c301a6faac579c80051f6a1d42aceaaf696543ef
+######################################################################## 100.0%
+==> Installing dependencies for macvim: cscope
+==> Installing macvim dependency: cscope
+==> Pouring cscope--15.9.arm64_monterey.bottle.tar.gz
+🍺  /opt/homebrew/Cellar/cscope/15.9: 11 files, 749.5KB
+==> Installing macvim
+==> Pouring macvim--9.0.472.arm64_monterey.bottle.tar.gz
+🍺  /opt/homebrew/Cellar/macvim/9.0.472: 2,405 files, 47.5MB
+==> Running `brew cleanup macvim`...
+Disable this behaviour by setting HOMEBREW_NO_INSTALL_CLEANUP.
+Hide these hints with HOMEBREW_NO_ENV_HINTS (see `man brew`).
+$ ln -s $(brew --prefix macvim)/MacVim.app /Applications	←☆リンク貼り付け。
+$
+  [復元日時2022/09/21 23:16:51]
+Last login: Wed Sep 21 22:55:13 on console
+Restored session: 2022年 9月21日 水曜日 22時49分35秒 JST
+$
+```
+
+[ソースコード](https://github.com/macvim-dev/macvim)からインストールも可能なようだ。  
+
+何にせよ、インストールなどに悩むのならば、[Vimのユーザーと開発者を結ぶコミュニティ](https://vim-jp.org/docs/chat.html)にて、相談するのがいいかもしれない。  
 
 </details>
 
@@ -138,13 +253,18 @@ Macvimのほうがいい？
 #### vimrc・gvimrc
 Vimエディタの設定ファイル。  
 HOMEディレクトリ直下に配置するのが基本になる。  
+Macでは、LFの改行コードで無ければ動かない。  
+※MacVim-KaoriYa版は古い。  
 
 2021/02/12：vimrc新規登録。  
 2021/02/13：gvimrc新規登録。  
 
+* 技術で困ったときに見る。  
+  [Vim スクリプト](https://github.com/EbookFoundation/free-programming-books/blob/master/books/free-programming-books-ja.md#vim)  
+
 
 ##### 内容
-バックアップファイルは、OS問わず、ホームディレクトリ直下の.vim\_backupディレクトリを使うようにしている。  
+バックアップファイルは、OS問わず、ホームディレクトリ直下の**%USERPROFILE%\.vim\_backup**ディレクトリを使うようにしている。  
 ただし、スワップファイルの作成は、カレントディレクトリに作る。  
 
 
@@ -398,6 +518,7 @@ Microsoft社製品のエディタ利用を拒否する輩はいますまい。
 [目次に戻る](#tableOfContents)  
 
 
+<a name="vscodeperation_settingfile"></a>
 #### VSCodeの設定ファイル。
 Visual Studio Codeのバックアップファイル(Windows用？)。  
 
@@ -412,6 +533,30 @@ Visual Studio Codeのバックアップファイル(Windows用？)。
 2021/07/01：新規登録。  
 
 </details>
+
+
+<a name="eclipseperation"></a>
+### Eclipse
+Javaは、vimエディタでの操作は厳しい。  
+vimプラグインの[vim-lsp](https://github.com/prabirshrestha/vim-lsp)・[vim-lsp-settings](https://github.com/mattn/vim-lsp-settings)の組み合わせでは、Eclipseの補完にはかなわないそうだ。  
+むしろ、通常のエディタ機能ではJavaに特化したIDEに軍配が上がるそうだ。  
+> Javaの既存IDEは、ヒューリスティックな（それこそsystみたいな）やつにも結構長い年月を経た結果対応しているところがあって、LSPでどこまで対応してくれるかわかんないっすね...  
+
+フォーマッタがあるため、ちょっと触ってみた。  
+保存時にフォーマッタを動かすようにしたため、非常に煩わしい挙動をすると思う(本当にそう思った場合は取りやめる)。  
+Perlの構文色付けにどぎつい色が標準色になっているのはどうにかならないのかな(淡い色にした場合、それはそれで文字が見えない)。  
+
+Gitの無視リソースは既存のファイルを読み込めないのか？  
+
+[目次に戻る](#tableOfContents)  
+
+<a name="eclipseperation_settingfile"></a>
+#### Eclipseの設定ファイル。
+ファイル名：eclipse設定ファイル.epf  
+
+設定の取り込みは、設定画面から行う。  
+
+2023/04/15：新規登録。  
 
 
 <a name="terapadperation"></a>
@@ -445,28 +590,40 @@ Visual Studio Codeのバックアップファイル(Windows用？)。
 ## makeLinkfile
 下記のAutoHotKey(Windowsのみ)・[g]vimrcファイルのシンボリックファイルを各所に配置する。  
 
-* AutoHotKey：ドキュメントディレクトリ・スタートアップに配置する。  
-* alias.bat：ドキュメントディレクトリに配置する。  
-* [g]vimrc：HOMEディレクトリに配置する。  
-* \_gitignore\_global(以下、シンボリックファイルとして利用する)  
-  * ~~gitignore\_global.txt：ドキュメントディレクトリに配置する(Sourcetree専用？)~~。  
-  * ~~hgignore\_global.txt：ドキュメントディレクトリに配置する(Sourcetree専用？)~~。  
-  * ignore：~/.config/git/ignore(すべてのgitアカウント用)。  
+* 配置場所。  
+  * AutoHotKey：ドキュメントディレクトリ・スタートアップに配置する。  
+  * ~~alias.bat~~：ドキュメントディレクトリに配置する(現在中止)。  
+    プロンプト表記などを変更している。  
+  * profile.ps1：Windows限定として、PowerShellのプロンプト表記を変更する。  
+    ※System32ディレクトリ配下に配置するため、管理者権限必須。  
+  * [g]vimrc：HOMEディレクトリに配置する。  
+  * \_gitignore\_global(以下、シンボリックファイルとして利用する)  
+    * ~~gitignore\_global.txt：ドキュメントディレクトリに配置する(Sourcetree専用？)~~。  
+    * ~~hgignore\_global.txt：ドキュメントディレクトリに配置する(Sourcetree専用？)~~。  
+    * ignore：**~/.config/git/ignore**(すべてのgitアカウント用)。  
 
-※Windowsのコマンドプロンプトからbashを起動した場合読み込まず、`Bash on Ubuntu on Windows`でも、読み込まない。
-唯一`Ubuntu(Windowsの話)`で読み込んだ(配布方法を忘れた)。  
+※Windowsのコマンドプロンプトからbashを起動した場合読み込まず、**Bash on Ubuntu on Windows**でも、読み込まない。
+唯一**Ubuntu(Windowsの話)**で読み込んだ(配布方法を忘れた)。  
 ディレクトリに移動して、シェルを叩けば配置される？  
+
+Windows向けの**makeLinkfile.ps1**を実行する場合、レジストリを変更するため、気をつけること。  
+※CapsLockキーをCtrlキーに変更する処理も入っている。  
 
 2021/02/13：新規登録(Windows用)。  
 2021/04/01：新規登録(Mac用・Android用)。  
 
-DroidVimには配布できないようだ。  
+※環境を削除するにはファイル名先頭がunで始まるあと同名のファイル名を実行すること。  
+
+<details><summary>DroidVimには配布できないようだ。</summary>
+
 無理矢理
 `ln -sf /storage/emulated/0/ ~/shared_droidvim`
 を実行して無理矢理シェルを叩きに行ったところで、**vimrc** を **$HOME** に配置できない。  
 何より、権限が**root**になっており、閲覧できない。  
 そして、`chown -hR [whoami] .`での権限変更も受け付けてくれない。  
 完全に。
+
+</details>
 
 
 ## TERATERM.INI
@@ -479,6 +636,10 @@ DroidVimには配布できないようだ。
 通称AHKと言われるWindows専用のキーボードショートカットツール。  
 しかし、任意のソフトウェアを起動する場合、フルPathをべた書きする必要があり、他環境では変更を要求される。  
 また、Windows98/Meは動作保証外。  
+※ユニコード版に移行済み。  
+
+スタートアップに配置する(ドキュメント配下にもある)。  
+また、GVIMエディタから**Win+Alt+r**にて、再読み込みを行うようにしているため、他のエディタで使うのは勧めない。  
 
 2021/02/12：新規登録。  
   exe：v1.1.33.2 Unicode 64-bi  
@@ -489,9 +650,6 @@ DroidVimには配布できないようだ。
     ※起動に時間が掛かり、それを中断させる場合はスクリプトのリロードで処理が停止する。  
   * ~~AutoHotKeyを無視するウィンドウ(ソフトウェア)が存在するため、それを回避してAutoHotKeyを優先させたい(具体的には、WindowsOSが用意しているソフトウェア一部)~~。  
     タスクマネージャがアクティブになっているときも有効にしたかったが、できないようだ(勝手に外部のソフトウェアが動かせたら問題あるかららしい)。  
-
-<details><summary>スクリプトファイル。</summary>
-</details>
 
 
 <a name="autohotkeyperation"></a>
@@ -508,17 +666,18 @@ DroidVimには配布できないようだ。
 #### 以下、ホットキー(ソフトウェア起動用)
 ソフト起動時の通常Path(例外あり)  
 
-- C:\Program Files\～～～  
-- C:\Program Files (x86)\～～～  
+* Path  
+  * **C:\Program Files\～～～**  
+  * **C:\Program Files (x86)\～～～**  
 
 ※WindowOS標準のショートカットキーを上書きすることになるため、気をつけること。  
 
 
 #### AutoHotKey-Eclipse個別対応
-個別対応  
 
-* Ctrl+g	：Grep検索ウィンドウ表示  
-* Ctrl+j	：指定行移動  
+* 個別対応  
+  * Ctrl+g	：Grep検索ウィンドウ表示  
+  * Ctrl+j	：指定行移動  
 
 </details>
 
@@ -528,10 +687,11 @@ DroidVimには配布できないようだ。
 #### ホットキー(ソフトウェア内での挙動)
 こちらも通常のショートカットキーを潰している可能性がある。  
 
-* Ctrl+h	：バックスペースキー  
-* Ctrl+w	：ウィンドウ終了(タブ・子ウィンドウ)  
-* Win+q	：ウィンドウ終了(親ウィンドウまるごと)  
-* 基本的には、ソフトウェア起動を主に設定している。  
+* 個別対応  
+  * Ctrl+h	：バックスペースキー  
+  * Ctrl+w	：ウィンドウ終了(タブ・子ウィンドウ)  
+  * Win+q	：ウィンドウ終了(親ウィンドウまるごと)  
+  * 基本的には、ソフトウェア起動を主に設定している。  
 
 
 <a name="shellperation"></a>
@@ -549,6 +709,7 @@ DroidVimには配布できないようだ。
     * Homebrew本体から一時的に切り離す：`brew unlink パッケージ名`  
     * 切り離しから戻す(再接続の)場合：`brew link パッケージ名`  
     * Homebrewでのパッケージをアップグレード：`brew upgrade [パッケージ名]`  
+    * Homebrewでのパッケージを削除：`brew uninstall [パッケージ名]`  
 
 
 * シェルの起動種類(Mac用)  
@@ -558,6 +719,7 @@ DroidVimには配布できないようだ。
     1.**~/.zshenv**  
     2.**/etc/zprofile**  
   * インタラクティブシェル(作業者との対話型)  
+    **/etc**配下のファイルは触らないこと。  
     3.**~/.zprofile**  
     4.**/etc/zshrc**  
     5.**/etc/zshrc_Apple_Terminal**  
@@ -812,20 +974,79 @@ TODO: 後日解説。
 ### bash用環境ファイル
 HOMEディレクトリ直下に配置するのが基本になる。  
 ※Homebrewを使ったbashインストールは不可？  
+個人端末ならば、homebrewからのインストールも問題ないようだ(問題なのは、大規模なデプロイメントらしい)。  
+homebrewは、個人ユーザ向けに開発されているのが原因らしい。  
 
 <details><summary>環境構築。</summary>
 
-最新？  
-<https://ftp.gnu.org/gnu/bash/>  
-**bash-5.1.tar.gz	2020-12-06 15:44	10M**  
-パッチ：`curl 'https://ftp.gnu.org/gnu/bash/bash-5.1-patches/bash50-[001-016]' | patch -p0`  
-次のコマンド：`./configure`  
-次のコマンド：`make`  
-次のコマンド：`sudo make install`  
-**/usr/local/bin**にインストールされる。  
-既存のbashは、**/bin/bash**にある。  
-インストール後のバージョン確認コマンド：`/usr/local/bin/bash --version`  
-ログインシェルやデフォルトシェルをzshからbashに切り替える必要はあるが、割愛(今後zshを使う)。  
+* 手順  
+  <https://ftp.gnu.org/gnu/bash/>  
+  **bash-5.1.tar.gz	2020-12-06 15:44	10M**  
+  1. パッチ取得：<https://ftp.gnu.org/gnu/bash/bash-5.1-patches>  
+     * ※現時点の最新版：**bash51-016	2022-01-04 16:48	2.1K**  
+  1. パッチ適用コマンド：`curl 'https://ftp.gnu.org/gnu/bash/bash-5.1-patches/bash50-[001-016]' | patch -p0`  
+  1. コマンド実行：`./configure`  
+     エラーを確認する(問題なければ次のコマンドを実行)。  
+  1. コマンド実行：[`make`](#configfilebash_makerunonmac)  
+     環境構築。  
+  1. コマンド実行：`sudo make install`  
+     * **/usr/local/bin**にインストールされる。  
+     * 既存のbashは、[**/bin/bash**](#configfilebash_bashversiononmac)にある。  
+  1. インストール後のバージョン確認コマンド：`/usr/local/bin/bash --version`  
+  1. ログインシェルやデフォルトシェルをzshからbashに切り替える必要はあるが、割愛(今後zshを使う)。  
+
+<a name="configfilebash_makerunonmac"></a>
+以下、makeコマンド実行記録。
+```terminal
+$ make
+rm -f mksyntax
+gcc -DPROGRAM='"bash"' -DCONF_HOSTTYPE='"aarch64"' -DCONF_OSTYPE='"darwin21.6.0"' -DCONF_MACHTYPE='"aarch64-apple-darwin21.6.0"' -DCONF_VENDOR='"apple"' -DLOCALEDIR='"/usr/local/share/locale"' -DPACKAGE='"bash"' -DSHELL -DHAVE_CONFIG_H -DMACOSX   -I.  -I. -I./include -I./lib -I./lib/intl -I/Users/asakunotomohiro/Downloads/bash-5.1/lib/intl  -g -O2 -Wno-parentheses -Wno-format-security    -g -O2 -Wno-parentheses -Wno-format-security    -g -O2 -Wno-parentheses -Wno-format-security  -o mksyntax ./mksyntax.c 
+rm -f syntax.c
+./mksyntax -o syntax.c
+/bin/sh ./support/mkversion.sh -b -S . -s release -d 5.1 -o newversion.h \
+        && mv newversion.h version.h
+gcc -DPROGRAM='"bash"' -DCONF_HOSTTYPE='"aarch64"' -DCONF_OSTYPE='"darwin21.6.0"' -DCONF_MACHTYPE='"aarch64-apple-darwin21.6.0"' -DCONF_VENDOR='"apple"' -DLOCALEDIR='"/usr/local/share/locale"' -DPACKAGE='"bash"' -DSHELL -DHAVE_CONFIG_H -DMACOSX   -I.  -I. -I./include -I./lib -I./lib/intl -I/Users/asakunotomohiro/Downloads/bash-5.1/lib/intl  -g -O2 -Wno-parentheses -Wno-format-security  -DBUILDTOOL -c -o buildversion.o ./version.c
+gcc -DPROGRAM='"bash"' -DCONF_HOSTTYPE='"aarch64"' -DCONF_OSTYPE='"darwin21.6.0"' -DCONF_MACHTYPE='"aarch64-apple-darwin21.6.0"' -DCONF_VENDOR='"apple"' -DLOCALEDIR='"/usr/local/share/locale"' -DPACKAGE='"bash"' -DSHELL -DHAVE_CONFIG_H -DMACOSX   -I.  -I. -I./include -I./lib -I./lib/intl -I/Users/asakunotomohiro/Downloads/bash-5.1/lib/intl  -g -O2 -Wno-parentheses -Wno-format-security    -g -O2 -Wno-parentheses -Wno-format-security    -g -O2 -Wno-parentheses -Wno-format-security  -o bashversion ./support/bashversion.c buildversion.o
+
+      ***********************************************************
+      *                                                         *
+      * GNU bash, version 5.1.0(1)-release (aarch64-apple-darwin21.6.0)
+      *                                                         *
+      ***********************************************************
+
+making lib/intl/libintl.a in ./lib/intl
+            ・
+            ・
+            ・
+gcc -c   -I. -I../.. -I../.. -I../../lib -I../../include -I. -I../../lib/intl -I/Users/asakunotomohiro/Downloads/bash-5.1/lib/intl -DHAVE_CONFIG_H -DSHELL -DMACOSX  -g -O2 -Wno-parentheses -Wno-format-security   random.c
+random.c:93:8: warning: cast to smaller integer type 'unsigned int' from 'void (*)(void)' [-Wpointer-to-int-cast]
+  iv = (u_bits32_t)seedrand;            /* let the compiler truncate */
+       ^~~~~~~~~~~~~~~~~~~~
+1 warning generated.
+$
+```
+
+<a name="configfilebash_bashversiononmac"></a>
+以下、本来のMacに搭載しているbashバージョン
+```terminal
+$ bash --version
+GNU bash, version 3.2.57(1)-release (arm64-apple-darwin21)
+Copyright (C) 2007 Free Software Foundation, Inc.
+$
+```
+
+<a name="configfilebash_bashversionOninstall"></a>
+以下、今回インストールしたバージョン確認。
+```terminal
+$ /usr/local/bin/bash --version
+GNU bash, バージョン 5.1.0(1)-release (aarch64-apple-darwin21.6.0)
+Copyright (C) 2020 Free Software Foundation, Inc.
+ライセンス GPLv3+: GNU GPL バージョン 3 またはそれ以降 <http://gnu.org/licenses/gpl.html>
+
+This is free software; you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+$
+```
 
 </details>
 
@@ -841,10 +1062,13 @@ HOMEディレクトリ直下に配置するのが基本になる。
 HOMEディレクトリ直下に配置するのが基本になる。  
 ※bashと違い、Homebrewを使ったインストール可？  
 そもそもbrewコマンドを使わない場合のインストールは手順が面倒なので、Homebrewからインストール実施。  
+Macでは、LFの改行コードで無ければ動かない。  
 
 2021/04/01：Mac用新規登録。  
 
 <details><summary>環境調整メモ。</summary>
+
+基本はzshrcに直接記載している。  
 
 Bashの挙動に寄せる。  
 `unsetopt nomatch`  
@@ -865,6 +1089,9 @@ Ctrl+Dでのターミナル終了無効化。
 </details>
 
 ※ **シェル** ：bashとの共通ファイルを読み込む。  
+
+* 技術で困ったときに見る。  
+  * [Oh My Zsh(英語版のみ)](https://github.com/ohmyzsh/ohmyzsh)  
 
 [目次に戻る](#tableOfContents)  
 
@@ -917,6 +1144,33 @@ content IS NOT going to be deleted.
 [目次に戻る](#tableOfContents)  
 
 
+<a name="androidosoperation_jota"></a>
+#### Jota+(Androidアプリ)
+ファイル名：**jotaplus_preferences.export**  
+
+WindowsやMacで使えないため、取り扱いに気を付けること。  
+※ライセンス課金済み(買い切り)。  
+
+<a name="androidosoperation_droidvim"></a>
+#### DroidVim(Androidアプリ)
+ファイル名：**com.droidvim.xml**  
+
+※gitコマンド実行権限に課金済み(買い切り)。  
+
+<a name="macosoperation"></a>
+### MacOS向け作業。
+端末を入れ替えるときに、シェルなどで対応する技術がないため、GUIから操作する。  
+
+<a name="macosoperation_systemsetting"></a>
+#### システム環境設定
+
+* キーボード  
+  * ショートカット  
+    * Spotlight  
+      Spotlight検索発動：`Ctrl+Alt+Space`  
+      Finder検索発動：`Ctrl+Alt+Shift+Space`  
+
+
 <a name="onetaroperation"></a>
 ## 一太郎
 バックアップファイルを作成するように設定してあるが、 ~~ゴミ~~ バックアップファイルがカレントディレクトリに生成される。  
@@ -935,9 +1189,30 @@ AutoHotKeyの設定にて、一太郎を起動する設定キーあり。
 <a name="atokperation"></a>
 ## ATOK
 Windows版は設定をバックアップできるが、Mac版はできない。  
-Mac版の買い切り版が無いため、今後IMEの乗り換えを検討する。  
+Mac版の買い切り版が無い~~ため、今後IMEの乗り換えを検討する~~ (課金してしまった)。  
+Android版は買い切り版のみ手に入れたが、今後使うことはないだろう。  
+
+
+以下の組み合わせをATOKではできないようだ。  
+[AquaMozc for Titan](https://play.google.com/store/apps/details?id=jp.gr.aqua.mozc.titan)ではできるため、便利だと思っていたのだが・・・。  
+
+|入力組み合わせキー|期待結果|備考|
+|--------|------|----|
+|zh|←||
+|zj|↓||
+|zk|↑||
+|zl|→||
+||||  ||
+|z-|～||
+|z[|『||
+|z]|』||
+|z.|…||
+|z,|‥||
+|z/|・||
 
 2021/04/01：新規登録(Windows用)。  
+
+Mac版のIME：**英字入力中にスペルを自動変換**・**文頭を自動的に大文字にする**・**スペースバーを2回押してピリオドを入力**の3種類のチェックボックスをOffにする(設定---\>キーボード---\>ユーザ辞書)。  
 
 [目次に戻る](#tableOfContents)  
 
@@ -1016,6 +1291,8 @@ WindowsOSでの作業準備ファイル。
 今後は、普通にちまちまコミットしていくことにする。  
 気がつけば編集した量が膨大になり、見直しに時間が掛かってしまう。  
 編集した段階でコミットするように心がける。  
+
+[一般公開可能な調整サイト](https://chouseisan.com)  
 
 [目次に戻る](#tableOfContents)  
 

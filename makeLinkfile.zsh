@@ -64,6 +64,11 @@ SSHCONFIGHOME=~/.ssh
 
 if type "git" > /dev/null 2>&1; then
 	echo "gitコマンドあり。環境構築開始"
+	# 以下、新規(追跡されていない)ディレクトリに含まれているファイルを表示する。
+	#	https://qiita.com/m-yamazaki/items/45ea4a71ebb769995043
+	#	https://git-scm.com/docs/git-status
+#	git config status.showUntrackedFiles all	←☆すでに設定済み(gitconfig)。
+
 	cd $VIMDIR
 	git clone https://github.com/k-takata/minpac
 else
@@ -81,18 +86,18 @@ echo "(cd ~;ln -f --symbolic  ${filedir}/MacOS/_zshrc ./.zshrc)"
 	# 基本的に、zshのユーザ設定ファイルは~/.zprofileもしくは~/.zshrcに記述する。
 	# ちなみに、システム全体の(ユーザが触らない)ファイル配置は、/etc/zprofile・/etc/zshrc・/etc/zshrc_Apple_Terminalの3種類。
 
-#	todo: 以下、無視リストファイルの配置場所を正しい位置に変更する(~/.config/git/ここ)。
+#	TODO: 以下、無視リストファイルの配置場所を正しい位置に変更する(~/.config/git/ここ)。
 echo "(cd ~;ln -f --symbolic  ${filedir}/_gitconfig ./.gitconfig)"
 (cd ~/;`ln -sf "${filedir}/_gitconfig" ./.gitconfig`;echo "実行結果"$?)
 
-echo "(cp -p ${filedir}/_gitconfig.private-local ~/.config/git/gitconfig.private-local)"
+echo "(cp -p ${filedir}/_gitconfig.private-local ~/.config/git/gitconfig.private-local)(普通のコピー)"
 (cd ~/;`cp -p "${filedir}/_gitconfig.private-local" ./.config/git/gitconfig.private-local`;echo "実行結果"$?)
 #(cd ~/;`ln -f --symbolic "${filedir}/_gitconfig.private-local" ./.gitconfig.private-local`;echo "実行結果"$?)
 
 echo "(cd ~/;ln -f --symbolic  ${filedir}/_gitignore ~/.config/git/ignore)"
 (cd ~/;`ln -sf "${filedir}/_gitignore_global" ./.config/git/ignore`;echo "実行結果"$?)
 
-#	TODO 以下、次回作成できるように設定する(削除も行うこと)。
+#	TODO: 以下、作成できるように設定する(削除も行うこと)。
 #echo "(cd ~/;ln -f --symbolic  ${filedir}/_stCommitMsg ~/.config/git/stCommitMsg)"
 #(cd ~/;`ln -sf "${filedir}/_stCommitMsg" ./.config/git/stCommitMsg`;echo "実行結果"$?)
 
