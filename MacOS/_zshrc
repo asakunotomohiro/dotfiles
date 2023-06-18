@@ -3,7 +3,8 @@ COMMON_ENVIRONMENTFILE=$HOME/.config/shell/profile_common_EnvironmentVariable
 if [ -e "$COMMON_ALIAS_FILE" ]
 then
 	source "$COMMON_ALIAS_FILE"
-	#source "$COMMON_ENVIRONMENTFILE"
+#	source "$COMMON_ENVIRONMENTFILE"	←☆これを読み込んではならない理由を忘れてしまった。
+	source "$COMMON_ENVIRONMENTFILE"	# そのため、思い出すまで読み込むようにしておく。
 fi
 
 
@@ -22,23 +23,34 @@ setopt HIST_REDUCE_BLANKS
 setopt HIST_NO_STORE
 setopt HIST_ALLOW_CLOBBER
 setopt HIST_SAVE_NO_DUPS
+setopt INC_APPEND_HISTORY
 
 setopt HIST_FCNTL_LOCK
 
+# 履歴共有。
+#setopt SHARE_HISTORY
+
+# 出力停止・開始用にC-s/C-q利用禁止。
+setopt NO_FLOW_CONTROL
+
+# 全てのユーザのログイン・ログアウトを監視する。
+watch="all"
+# ログイン時にはすぐに表示する。
+#log
 # Ctrl+Dでのターミナル終了無効化。
-setopt ignore_eof
+setopt IGNORE_EOF
 
 # ヒストリを呼び出してから実行する間に一旦編集可能
 setopt HIST_VERIFY
 	# 結構邪魔くさく感じる。
 
 # メモリに保存される履歴の件数
-#export HISTSIZE=1000
+#export HISTSIZE=10000000
 
 # 履歴ファイルに保存される履歴の件数
 #export SAVEHIST=10000
 
-# 開始と終了を記録
+# 実行時刻と実行時間を保存。
 setopt EXTENDED_HISTORY
 
 # 登録しているコマンドを履歴に残さない
@@ -47,8 +59,10 @@ zshaddhistory() {
 	local cmd=${line%% *}
 
 	[[ #	${#line} -ge 5 &&
-		${cmd} != (l[sl])
+#		${cmd} != (l[sl])
+		${cmd} != (l[s])
 		&& ${cmd} != (h)
+		&& ${cmd} != (fg)
 #		&& ${cmd} != (cd)
 		&& ${cmd} != (man)
 		&& ${cmd} != (less)
@@ -102,6 +116,7 @@ path=(
 #	ミスした場合、エラーを出して終了させることを優先するため、コメントアウト。
 
 # コマンド補完(Tab)
+#	初期化？
 autoload -Uz compinit && compinit
 
 
@@ -110,13 +125,82 @@ setopt LIST_TYPES
 #	ディレクトリ：/
 #	実行可能ファイル：*　←末尾につく。
 
+# 補完候補に色を付ける。
+#	 ""：空文字列はデフォルト値
+zstyle ':completion:*:default' list-colors ""
+
+# 補完方法毎にグループ化する。
+#	補完方法の表示方法
+#		%B...%b: 「...」を太字にする。
+#		%d: 補完方法のラベル
+zstyle ':completion:*' format '%B%d%b'
+zstyle ':completion:*' group-name ''
+
+# 補完侯補をメニューから選択する。
+#	select=2：補完候補を一覧から選択する(なければ即選択)。
+zstyle ':completion:*:default' menu select=2
+
+# 補完候補がなければより曖昧に候補を探す。
+#	m:{a-z}={A-Z}：小文字を大文字に変えたものでも補完する。
+#	r:|[._-]=*：3種類記号(.・_・-)の前にワイルドカード(*)があるものとして補完する。
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z} r:|[._-]=*'
+
+# 補完方法の設定。指定した順番に実行する。
+#	_oldlist：前回の補完結果を再利用する。
+#	_complete：補完する。
+#	_match：globを展開しないで候補の一覧から補完する。
+#	_history：ヒストリのコマンドも補完候補とする。
+#	_ignored：補完候補にださないと指定したものも補完候補とする。
+#	_approximate：似ている補完候補も補完候補とする。
+#	_prefix：カーソル以降を無視してカーソル位置までで補完する。
+zstyle ':completion:*' completer _oldlist _complete _match _history _ignored _approximate _prefix
+
+# 補完候補をキャッシュする。
+zstyle ':completion:*' use-cache yes
+# 詳細情報利用。
+zstyle ':completion:*' verbose yes
+# sudo時にはsudo用のパス利用。
+zstyle ':completion:sudo:*' environ PATH="$SUDO_PATH:$PATH"
+
+# カーソル位置で補完する。
+setopt COMPLETE_IN_WORD
+# globを展開しないで候補の一覧から補完する。
+setopt GLOB_COMPLETE
+# 補完時にヒストリを自動的に展開する。
+setopt HIST_EXPAND
+# 補完候補がないときなどにビープ音を鳴らさない。
+setopt NO_BEEP
+# 辞書順ではなく数字順に並べる。
+setopt NUMERIC_GLOB_SORT
+
 # コメント付きコマンド実行可能
-setopt interactivecomments
+setopt INTERACTIVECOMMENTS
 
 # コマンド履歴検索(Ctrl+p・Ctrl+n)
 #bindkey '^P' history-beginning-search-backward
 #bindkey '^N' history-beginning-search-forward
 #	この2種類は意味がない。
+
+# バイナリファイルは、検索対象外。
+GREP_OPTIONS="--binary-files=without-match"
+# ディレクトリ対象にした場合、ディレクトリ内を再帰的にgrepする。
+GREP_OPTIONS="--directories=recurse $GREP_OPTIONS"
+# .tmp拡張子ファイルは無視する。
+GREP_OPTIONS="--exclude=\*.tmp $GREP_OPTIONS"
+# 管理用ディレクトリを無視する。
+#if grep --help | grep -q -- --exclude-dir
+#then
+#	GREP_OPTIONS="--exclude-dir=.svn $GREP_OPTIONS"
+#	GREP_OPTIONS="--exclude-dir=.git $GREP_OPTIONS"
+#	GREP_OPTIONS="--exclude-dir=.deps $GREP_OPTIONS"
+#	GREP_OPTIONS="--exclude-dir=.libs $GREP_OPTIONS"
+#fi
+# 可能なら色を付ける(エラーになった)。
+#if grep --help | grep -q -- --color
+#then
+#    GREP_OPTIONS="--color=auto $GREP_OPTIONS"
+#fi
+
 
 # 自動的にpushd
 setopt AUTO_PUSHD
@@ -124,13 +208,23 @@ setopt PUSHD_SILENT
 #	過去のディレクトリに戻る場合は、"cd -[Tab]"にて、候補が出るため、そこから番号を選ぶ。
 
 # ディレクトリ名のみの移動
-# setopt autocd
+# setopt AUTOCD	←☆こっちの名前は間違い？
+# setopt AUTO_CD
+
+# ディレクトリ移動に失敗した場合、移動可能なPathを表示。
+cdpath=(~)
+
+# ディレクトリ変更後、ディレクトリスタックを表示。
+chpwd_functions=($chpwd_functions dirs)
 
 # グロブ利用時に存在しない場合の挙動をbashに寄せる。
 unsetopt nomatch
 
 # vi操作
 bindkey -v
+
+# /記号も単語区切りとみなす。
+WORDCHARS=${WORDCHARS:s,/,,}
 
 # プロンプト表記変更
 #	直近の以下の処理は、Gitでのブランチ情報を表示するための前段階。
@@ -139,40 +233,70 @@ precmd_vcs_info() { vcs_info }	# 前段階の前段階(コマンド実行毎に�
 precmd_functions+=( precmd_vcs_info )	# 前段階("vcs_info_msg_0_"と言う変数に結果を格納する)。
 setopt prompt_subst	# 実際の表示処理。
 zstyle ':vcs_info:git:*' formats '%F{yellow}%r%f%F{red}@%f%F{green}%b%f '	# 常時表示する形式
+# 以下、2種類の表記を行う(zsh限定)。
+#	gitブランチ設定あり：リポジトリ名@ブランチ名 カレントディレクトリ
+#	gitブランチ設定なし：カレントディレクトリ
+export PS1="[\$vcs_info_msg_0_%1~%f] $ "
+		# gitリポジトリの場合は、""で、それ以外はカレントディレクトリのみ表示する。
+#	末尾%#	root時表記：#	それ以外表記：%	←☆そもそもMacで切り替えることがないため、常時$記号を用いることにした。
 
-# "[ユーザ名@ホスト名 現在のディレクトリ] %# "
-# "[%n@%m %1~ 現在のディレクトリ] %# "
-#export PS1="[%F{yellow}%n%f%F{red}@%f%m %B%F{blue}%1~%f%b] %# "
-#export PS1="zsh@%F{blue}%1~%f %# "
-export PS1=\$vcs_info_msg_0_'%1~%f %# '	# gitリポジトリの場合は、"リポジトリ名@ブランチ名 カレントディレクトリ"で、それ以外はカレントディレクトリのみ表示する。
-#	末尾%#	root時表記：#	それ以外表記：%
-# よく考えれば自分だけの環境になるため、ユーザ名・ホスト名の表記は不要。
-#	そして、リポジトリ名は、cloneしたときのディレクトリ名を表示するため、長い名前は避けねばならぬ・・・故に、設定を削除する可能性高しっ。
 
+# Ruby言語環境	rbenvを読み込む。
+#	TODO: 環境がある場合に実行する仕組みを作ること。
+eval "$(rbenv init - zsh)"
 
 # Go言語環境	goenvを読み込むためのPATH設定
 export GOENV_ROOT="$HOME/.goenv"
-if [ -e "$GOENV_ROOT" ]
+if [ -f "$GOENV_ROOT" ]
 then
 	export PATH="$GOENV_ROOT/bin:$PATH"
 
 	# Go言語環境	goenv init設定
 	eval "$(goenv init -)"
+	# GOROOTは、異なるバージョンを切り分けるために必要。
+	#	https://pleiades.io/help/go/configuring-goroot-and-gopath.html
+	#	> GOROOT は、Go SDK の場所を定義する変数です。異なる Go バージョンを使用する予定がない限り、この変数を変更する必要はありません。
+	#	> GOPATH は、ワークスペースのルートを定義する変数です。デフォルトでは、ワークスペースディレクトリは、ユーザーホームディレクトリ内の go という名前のディレクトリです
 	export PATH="$GOROOT/bin:$PATH"
-	export PATH="$PATH:$GOPATH/bin"
+	# しかし、GOPATH自体の設定は古い方法であり、今では忘れてかまわない存在だとのこと(By.KoRoNさん)。
+	#export PATH="$PATH:$GOPATH/bin"
+else
+	unset GOENV_ROOT
+fi
+
+# Go言語環境。
+export GOBINPATH="$HOME/go/bin"
+if [ -d "$GOBINPATH" ]
+then
+	# Go言語用の環境変数は、基本これだけで十分(GOPATH設定は古い情報になるため、惑わされないこと)。
+	export PATH="$GOBINPATH:$PATH"
 fi
 
 
 # エイリアス
 alias h='history -i -25 '
 	# -m	完全一致検索(ワイルドカード利用可)
-alias bash='/usr/local/bin/bash; source ~/.bash_profile '
+alias bash='/usr/local/bin/bash -l '
+alias tarball='tar -czvf '
+	# 圧縮：ファイルのアーカイブを作成しgzip形式で圧縮する。
+	#	基本的に拡張子は*.tgzを指定する。
+alias unball='tar -xzvf '
+	# 展開：それを解凍する。
+
+# jobsでプロセスIDも出力する。
+setopt LONG_LIST_JOBS
 
 #	以下、bashと同じエイリアス。
 #alias tree='tree -N '
 #alias gitll='git log -25 --graph --oneline --first-parent '
 #alias ll='ls -Flt '
 
+#	以下、perlのバージョン管理ツールの読み込み(別途個別インストール済みであること)。
+if [ -e ~/perl5/perlbrew/etc/bashrc ]
+then
+	# インストールしたPerlを消した場合、ターミナル起動時、エラー表示される。
+	source ~/perl5/perlbrew/etc/bashrc
+fi
 
 
 # 以上。

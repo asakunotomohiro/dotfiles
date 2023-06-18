@@ -53,7 +53,9 @@ $vimdirSyntax = "~\.vim\syntax"
 
 $currentDir = pwd
 
-#	CapsLockをCtrlキーに変更する。
+# CapsLockをCtrlキーに変更するレジストリ追加作業。
+#	https://forest.watch.impress.co.jp/docs/serial/nyanwin/1261604.html
+#	https://docs.microsoft.com/en-us/sysinternals/downloads/ctrl2cap
 $bin = @()
 $bin += [byte]0x00
 $bin += [byte]0x00
@@ -106,41 +108,58 @@ foreach ( $shellpath in $systemdir ) {
 		break
 	}
 }
+# 以下、PowerShellのプロンプト表記変更用ショートカットファイルの作成。
 $shellpath = $shellpath.Replace("Modules", "profile.ps1")
 New-Item -Force -Value '.\Windows\profile.ps1' -Path $shellpath -ItemType SymbolicLink
 
+# PowerShell起動時の警告'PSReadLine の無効化'表記を抑止するための措置(Import-Module PSReadLineを打てば解決するようだが・・・)。
 Set-ItemProperty -Path 'Registry::HKEY_CURRENT_USER\Control Panel\Accessibility\Blind Access' -Name 'On' -Value 0
 
+# AutoHotkeyファイルのショートカットファイルの作成。
+#	マイドキュメントディレクトリ取得
 $document = [Environment]::GetFolderPath('MyDocuments')
+#	AutoHotkeyファイルのショートカットファイルの作成。
 $documentFile = "${document}\AutoHotkey.ahk"
 New-Item -Force -Value '.\Windows\AutoHotkey.ahk' -Path "$documentFile" -ItemType SymbolicLink
 
 $documentFile = "${document}\TERATERM.INI"
 New-Item -Force -Value '.\configSettingFile(個々のソフトウェアから読み込み)\TERATERM.INI' -Path "$documentFile" -ItemType SymbolicLink
 
-# vimエディタの挙動に干渉するため、実施不可。
+#	コマンドプロンプト上でのエイリアスファイルの作成。
+#		※vimエディタの挙動に干渉するため、実施不可。
 #$documentFile = "${document}\alias.bat"
 #New-Item -Force -Value '.\Windows\alias.bat' -Path "$documentFile" -ItemType SymbolicLink
 
+#	以下、全ユーザ向けのスタートアップ用ディレクトリ。
 $userStartup = [Environment]::GetFolderPath('CommonStartup')
+#		以下、個別ユーザ向けのスタートアップ用ディレクトリ。
+#$userStartup = [Environment]::GetFolderPath('Startup')
 $userStartupFile = "${userStartup}\AutoHotkey.ahk"
 New-Item -Force -Value '.\Windows\AutoHotkey.ahk' -Path "$userStartupFile" -ItemType SymbolicLink
 
+#	以下、Gitのコミット対象制限ファイルの配布。
 #$documentFile = "${document}\gitignore_global.txt"
 #$documentFile = "$HOME\.config\git\.gitignore_global"
 $documentFile = "$HOME\.config\git\ignore"
 New-Item -Force -Value '.\_gitignore_global' -Path "$documentFile" -ItemType SymbolicLink
 
-#	TODO 以下、次回作成できるように設定する(削除も行うこと)。
+#	TODO: 以下、次回作成できるように設定する(削除も行うこと)。
 #$documentFile = "$HOME\.config\git\stCommitMsg"
 #New-Item -Force -Value '.\_stCommitMsg' -Path "$documentFile" -ItemType SymbolicLink
 
-#	AutoHotKeyで対応する(もしくは、Windows10以降「設定=>時刻と言語=>言語=>優先する言語の日本語のオプション=>レイアウトを変更する」で対応可能)。
-#New-ItemProperty -LiteralPath 'Registry::HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Keyboard Layout' -Name 'Scancode Map' -PropertyType 'Binary' -Value $bin -Force
+#	コマンドプロンプト上でのエイリアス設定。
 #New-ItemProperty -LiteralPath 'Registry::HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Command Processor' -Name 'AutoRun' -PropertyType 'String' -Value "`"${documentFile}`"" -Force
+#	以下、CapsLockをCtrlキーに変更する。
+#New-ItemProperty -LiteralPath 'Registry::HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Keyboard Layout' -Name 'Scancode Map' -PropertyType 'Binary' -Value $bin -Force
 
+# 英語キーボード用に変更。
+#	AutoHotKeyで対応する(もしくは、Windows10以降「設定=>時刻と言語=>言語=>優先する言語の日本語のオプション=>レイアウトを変更する」で対応可能)。
 
 #	AutoHotkeyでのWin+Ctrl+Alt+Shiftの組み合わせをOffice Online画面の起動を抑止するための措置。
+#		https://www.atmarkit.co.jp/ait/articles/1005/19/news108_4.html
+#			HKEY_CURRENT_USER に 「HKCU:」
+#			HKEY_LOCAL_MACHINE に 「HKLM:」
+#	https://superuser.com/questions/1457073/how-do-i-disable-specific-windows-10-office-keyboard-shortcut-ctrlshiftwinal
 cmd /D /U /C 'REG ADD "HKEY_CURRENT_USER\Software\Classes\ms-officeapp\Shell\Open\Command" /t REG_SZ /d rundll32 /f'
 
 # 以下、AutoHotkeyで定義しているPath用に合わせるショートカットファイルの作成。

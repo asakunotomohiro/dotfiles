@@ -24,10 +24,17 @@
 #	trustExitCode = true	# マージツールによる終了コードからマージ成功可否を判定する・・・と言う認識だがあっている？
 
 [status]
-	showUntrackedFiles = all	# 追跡していないファイルも表示する。
+	# 追跡していないファイルも表示する。
+	showUntrackedFiles = all
 
 [alias]
 	lol = log --graph --decorate --pretty=oneline --all --parents --abbrev-commit
+			# --graph	：
+			# --decorate	：
+			# --pretty=oneline	：
+			# --all	：全てのブランチ
+			# --parents	：	親ID付き表示。
+			# --abbrev-commit	：	IDの短縮表示。
 	ll = log --graph --oneline --first-parent
 #	_bash_profile	ファイルにもGit関連のエイリアスを仕込んでいるため注意すること。
 
@@ -57,22 +64,26 @@
 	tool = vimdiff
 
 [merge]
-	ff = false	# 3方向マージ(Non Fast-Forword)。
-				# コマンド例）git merge --no-ff ブランチ名
-#	tool = winmerge	# WindowsOS用。
+	# 3方向マージ(Non Fast-Forword)。
+	#	コマンド例）git merge --no-ff ブランチ名
+	ff = false
 	tool = vimdiff
+#	tool = winmerge	# WindowsOS用。
 
 [pull]
-	ff = only	# 早送りマージ(Fast-Forword)。
-				#	早送りができなければエラー。
-				# コマンド例）git merge --ff-only ブランチ名
+	# 早送りマージ(Fast-Forword)。
+	#	早送りができなければエラー。
+	#	コマンド例）git merge --ff-only ブランチ名
+	ff = only
 
 [rebase]
-	autosquash = false	# 自動スカッシュを無効化。
-						# 通常は、リベース時にスカッシュにて、コミットをまとめる。
+	# 自動スカッシュを無効化。
+	#	通常は、リベース時にスカッシュにて、コミットをまとめる。
+	autosquash = false
 
 [safe]
-	# Windows用のPowerShellからファイル配置を行った場合に、権限エラーが発生する(その対応)。直接権限を変えたいが、できないため、ここで対応する。
+	# Windows用のPowerShellからファイル配置を行った場合に、権限エラーが発生する(その対応)。
+	#	直接権限を変えたいが、できないため、ここで対応する。
 	directory = ~/.vim/pack/minpac/opt/minpac
 	# Android側からgit-cloneを実施したときに、権限エラーが発生するため、以下で対処する。
 	directory = /storage/emulated/0/Documents/dotfiles
@@ -80,7 +91,6 @@
 # 以下、端末固有の設定を記述する(ディレクトリごとに分岐も可能なようだ)。
 #	https://git-scm.com/docs/git-config#_conditional_includes
 [include]
-	#path = ~/.gitconfig.private-local
 	path = ~/.config/git/gitconfig.private-local
 
 # 以上。

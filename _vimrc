@@ -1,5 +1,16 @@
 " vim: set ts=4 sts=4 sw=4 tw=0 ff=unix fenc=utf-8 ft=vim noexpandtab:
 
+"	.vimrcなどの場所(macVim版)
+"		https://vim-jp.org/vimdoc-ja/starting.html#initialization
+
+" ・まっさらな状態でのLinuxへのインストール。
+"	git clone https://github.com/vim/vim.git
+"	cd vim/src
+"	make
+"	make test
+"	make install
+"	vim
+
 let g:skip_defaults_vim = 1
 "	そもそもファイルが存在しないので読み込まない。
 "
@@ -34,10 +45,20 @@ colorscheme torte
 let mapleader = "\<Space>"
 
 " ステータスラインに文字コードを表示させる。
+"	下記は、プラグインに全く関係のない処理。
 set statusline=%<%f\ %m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}%=%l,%c%V%8P
 
 
 "	ーーーパッケージ管理20190622ーーー
+"	git clone https://github.com/k-takata/minpac.git ~/.vim/pack/minpac/opt/minpac
+"	※ディレクトリは、あらかじめ作成しておくこと。
+"		~/.vim/pack/	←☆作成。
+"		~/.vim/pack/develop	←☆作成。
+"		~/.vim/pack/develop/opt	←☆作成。
+"		~/.vim/pack/develop/start	←☆作成。
+"		~/.vim/writing	←☆作成。
+"		~/.vim/writing/opt	←☆作成。
+"		~/.vim/writing/start	←☆作成。
 "	更新コマンド：:call minpac#update()
 "			削除：:call minpac#clean()
 "			情報：:call minpac#status()
@@ -91,7 +112,7 @@ call minpac#add('k-takata/minpac', {'type': 'opt'})
 " vimヘルプの日本語化。
 call minpac#add('vim-jp/vimdoc-ja', {'type': 'opt'})
 "	:help [調べたい単語]
-"	※原文に当たりたい場合、調べたい単語の末尾に「@en」を付ける。
+"	※原文にあたりたい場合、調べたい単語の末尾に「@en」を付ける。
 "	例）help f	←☆fについてのドキュメントが日本語版として出てくる。
 "	例）help f@en	←☆fについてのドキュメントが原文が出てくる。
 
@@ -104,16 +125,21 @@ call minpac#add('tyru/open-browser.vim', {'type': 'opt'})
 "call minpac#add('tpope/vim-vinegar')	" エクスプローラの補助的な枠割り？
 	" I：メニュー表示・~：ホームディレクトリ移動
 "let NERDTreeHijackNetrw = 0
-call minpac#add('prabirshrestha/async.vim')
-call minpac#add('prabirshrestha/vim-lsp')	" 挙動不審？
+call minpac#add('natebosch/vim-lsc')
+"call minpac#add('prabirshrestha/async.vim')	@heavenshellさんから不要だという指摘を受けた令和5年4月5日(水)
+" 以下、挙動不審？
+call minpac#add('prabirshrestha/vim-lsp')
+"call minpac#add('mattn/vim-lsp-settings', {'type': 'opt'})	" 遅延読み込みをした場合、機能しない20210124
+" 以下のプラグインではJava言語との相性が悪いようだ(Nvim向けのプラグインならば問題用だが、そのエディタを使うつもりはない)。
 call minpac#add('mattn/vim-lsp-settings')
 "	個々のインストール先：%LOCALAPPDATA%\vim-lsp-settings\servers
+"						：~/.local/share/vim-lsp-settings/servers
 "	以下のコマンドを打つことにより、プログラムファイルに応じたファイルがインストールされる。
 "	LspInstallServer
 "	・環境構築が整っていない場合に出るメッセージのようだ。
 "		efm-langserver requires go
-call minpac#add('mattn/vim-goimports', {'type': 'opt'})	" インポート用：GoImport
-"	go install golang.org/x/tools/cmd/goimports		←このコマンドがインストールされていなければ、プラグインによるインポートが行われない。
+call minpac#add('mattn/vim-goimports', {'type': 'opt'})
+"	事前準備：go install golang.org/x/tools/cmd/goimports
 "		非同期のオートコンプリート
 "			オートコンプリートポップアップメニュー表示(自動補完補助)
 call minpac#add('prabirshrestha/asyncomplete.vim')
@@ -146,10 +172,14 @@ call minpac#add('thomasfaingnaert/vim-lsp-snippets', {'type': 'opt'})
 
 "	スニペット用プラグイン。
 if g:isDroid || g:isTermux
+	" Androidでは最初から読み込まない。
 else
 call minpac#add('drmingdrmer/xptemplate', {'type': 'opt'})
 endif
 
+" 日本語入力の切り替え。
+"call minpac#add('mitsuse/swim')
+"	コンパイルが必要なため、利用中止。
 
 
 " Go言語用プラグイン
@@ -160,7 +190,9 @@ endif
 "	vimスクリプト用のランゲージサーバ
 "call minpac#add('iamcco/vim-language-server')	" 導入されないようだ。
 
-call minpac#add('tpope/vim-commentary', {'type': 'opt'})	" コメント化
+" ソースコードコメント化プラグイン。
+"	範囲選択後にgcコマンドにて有効(無効)化する。
+call minpac#add('tpope/vim-commentary', {'type': 'opt'})
 autocmd BufNewFile,BufRead *.sh setlocal commentstring=#\	%s
 "autocmd BufNewFile,BufRead *.sh setlocal commentstring=#\ %s
 autocmd BufNewFile,BufRead [._g]{,2}vimrc setlocal commentstring=\"\	%s
@@ -181,11 +213,12 @@ call minpac#add('ctrlpvim/ctrlp.vim')
 "		　　　々　(水平分割)：Ctrl+X
 "		CtrlPの終了　　　　 ：Esc
 
-" migemo：ローマ字のまま日本語をインクリメンタル検索
+" migemo：ローマ字(アルファベット)のまま日本語をインクリメンタル検索
 "call minpac#add('koron/cmigemo')
 
 " Perl言語用の正規表現での検索用プラグイン。
 "call minpac#add('othree/eregex.vim', {'type': 'opt'})
+"	他のプラグインとの設定が干渉する可能性がある。
 "	使いこなせないため、導入見送り。
 
 " *記号と#記号による検索を現在の選択範囲に広げるプラグイン。
@@ -198,7 +231,7 @@ call minpac#add('nelstrom/vim-visual-star-search', {'type': 'opt'})
 "	モーション拡張プラグイン
 call minpac#add('easymotion/vim-easymotion', {'type': 'opt'})
 "	リーダキー2回にモーションにて、動く。
-"		\\w
+"		例）\\w
 "		→ワード単位で動く場合に加えて、どのワード単位に移動するかを選択できる。
 
 " ファイル検索
@@ -218,14 +251,33 @@ if isdirectory(expand(minpackSTART . "fern.vim"))  || isdirectory(expand(minpack
 	" このプラグイン使っていない。
 noremap <Leader>er :Fern . -reveal=%<CR>
 nnoremap <F13> :<c-u>Fern . -drawer -stay -keep -toggle -reveal=%<CR>
+"	j	ツリーを下に移動
+"	k	ツリーを上に移動
+"	l	フォルダを開く
+"	h	フォルダを閉じる
+"	Enter	(フォルダ上で)子階層に移動
+"	Ctrl + w → Ctrl + w	内部ウィンドウの移動
+"	Ctrl + h	親階層に移動
+"	Ctrl + m	フォルダを開く。
+"	e	ファイルを開く
+"	Shift + e	垂直分割してファイルを開く。
+"	-	ファイルを選択
 
-" 以下、無効化したいができない。
+" 以下、数種類を無効化したいができない。
+"	Shift + c	ファイルをコピー
 noremap <Nop>clipboardCopy <Plug>(fern-action-clipboard-copy)
+"	Shift + m	ファイルをカット
 noremap <Nop>clipboardMove <Plug>(fern-action-clipboard-move)
+"	Shitf + p	ファイルをペースト
 noremap <Nop>clipboardPaste <Plug>(fern-action-clipboard-paste)
+"	Shift + d	ファイルを削除
 noremap <Nop>trash <Plug>(fern-action-trash)
+"	Shift + r	ファイル名を変更
+"	Shift + k	ディレクトリ作成
 noremap <Nop>newDir <Plug>(fern-action-new-dir)
+"	Shift + n	ファイル作成
 noremap <Nop>newFile <Plug>(fern-action-new-file)
+"	?	ヘルプ
 endif
 
 " エクスプローラ(上記より見やすい。)
@@ -250,7 +302,7 @@ call minpac#add('airblade/vim-gitgutter')
 
 call minpac#add('tpope/vim-fugitive')
 call minpac#add('tpope/vim-rhubarb', {'type': 'opt'})	" vim-fugitiveとの連携で、ブラウザでの比較を行う。
-	" :Gbrowse		github.com 上の該当のファイルをブラウザで開いてくれてプレビュー
+	" :Gbrowse		github.com 上の該当のファイルをブラウザで開いてプレビュー
 
 " マーク表示
 call minpac#add('jacquesbh/vim-showmarks', {'type': 'opt'})
@@ -259,6 +311,19 @@ call minpac#add('jacquesbh/vim-showmarks', {'type': 'opt'})
 "call minpac#add('jiangmiao/auto-pairs')
 "call minpac#add('Raimondi/delimitMate', {'type': 'opt'})
 "call minpac#add('cohama/lexima.vim', {'type': 'opt'})
+"	なぜか日本語入力時に挙動がおかしくなり、正常入力できなくなる。
+"		しかし、Windows版では問題なく動く。
+"	原因　⇒　set noimdisable
+"		MacVim-KaoriYa版にしたことで、悪化した。
+
+"call minpac#add('Raimondi/delimitMate', {'type': 'opt'})
+"	上記同様日本語入力時に挙動がおかしくなり、正常入力できなくなる。
+"	⇒一応対策を取ったが、Escキー押下時に日本語入力をOFFにしてくれなくなった20210327
+"	以下、プラグインの制御で、日本語入力ON/OFFを切り替えるのだが、Macの場合は外部ツールが必要になるため、このプラグインの導入も見送る20210327
+"call minpac#add('fuenor/im_control.vim')
+
+"call minpac#add('cohama/lexima.vim', {'type': 'opt'})
+"	上記同様日本語入力時に挙動がおかしくなり、正常入力できなくなる。
 
 call minpac#add('kana/vim-smartinput', {'type': 'opt'})
 "	一時削除(ATOKとの競合確認)20220112
@@ -269,6 +334,7 @@ call minpac#add('kana/vim-smartinput', {'type': 'opt'})
 "	使い方が分からない。
 
 "call minpac#add('rhysd/vim-operator-surround')
+"	私の想像と違うプラグインだ。括弧を付けたら自動で閉じ括弧を付けるのではない。括弧に対してどうするのかを指示しなければならない。
 
 " やり直し・取り消しを取り消す。
 "call minpac#add('sjl/gundo.vim')
@@ -277,18 +343,24 @@ call minpac#add('kana/vim-smartinput', {'type': 'opt'})
 
 " やり直し・取り消しを取り消す。
 call minpac#add('mbbill/undotree', {'type': 'opt'})
+"	Pythonなしでいける。
+"	永続的な取り消しを有効にする場合、
+":h persistent-undo
 
 " セッション管理
 call minpac#add('xolox/vim-session', {'type': 'opt'})
+"	以下を導入しなければ、上記セッションプラグインが動かない。
 call minpac#add('xolox/vim-misc', {'type': 'opt'})
 
 " プロジェクト管理
+"	https://zenn.dev/mattn/articles/965145fa78af93
 call minpac#add('mattn/vim-findroot', {'type': 'opt'})
+"	どのような挙動をするのが正しいのかわからないため、遅延読み込みさせられない20210316
 
 " タブ補完
 "call minpac#add('ervandew/supertab')
 "	普通のTabキー入力が打てなくなる(Ctrl+TabでTab入力)。
-"	⇒なるほど・・・文字に続けてTabを打つ場合に補完が働くのか・・・やっぱり邪魔くさいな。
+"	⇒文字に続けてTabを打つ場合に補完が働くのか・・・やっぱり邪魔くさいな。
 
 " カレンダ表示
 call minpac#add('itchyny/calendar.vim')
@@ -309,13 +381,21 @@ if isdirectory(expand(minpackSTART . "vim-session"))  || isdirectory(expand(minp
 	else
 		let g:session_directory = expand('~/.vim_backup/sessions')
 	endif
+	" このやり方で合っているのか？	そもそもこの設定をしていなくてもロックファイルは作られるぞ？
 	let g:session_lock_directory = g:session_directory
+	" session保持ファイルの拡張子
 	let g:session_extension = '.vimSession'
-	let g:session_autosave = 'no'	" 自動保存しない。
+	" vim終了時に自動保存しない。
+	let g:session_autosave = 'no'
+	" 引数なしでvimを起動した時にセッションを復元しない
 	let g:session_autoload = 'no'
+	" 1分間に1回自動保存をしない
 	let g:session_autosave_periodic = 0
-	let g:session_autosave_silent = 1	" オートセーブをする場合、無音で実施。
+	" オートセーブをする場合、無音で実施。
+	let g:session_autosave_silent = 1
+	" プロンプト表示無し。
 	"let g:session_verbose_messages = 0
+	" プラグイン無効化
 	"let g:loaded_session = 1
 
 	if has("gui_running")
@@ -326,12 +406,21 @@ if isdirectory(expand(minpackSTART . "vim-session"))  || isdirectory(expand(minp
 		"endif
 	endif
 
-"	:CloseTabSession
+	" ■使い方
+	"	:SaveSession		⇒	~/.vim_backup/sessions/default.vimSession
+	"	:SaveSession hoge	⇒	~/.vim_backup/sessions/hoge.vimSession
+	"	:OpenSession		⇒	~/.vim_backup/sessions/default.vimSession
+	"	:OpenSession hoge	⇒	~/.vim_backup/sessions/hoge.vimSession
+	"	:ViewSession		⇒	保存済みのセッションが一覧として表示される
+	"							(表示される番号のセッションを開いた場合、セッションファイルそのものが開く)。
+	"	:DeleteSession		⇒	保存済みのセッションが一覧として表示され、番号入力にて、それに紐付くセッションファイルが削除される。
+	"	:CloseSession		⇒	現在開いているセッションが終了する(バッファにも残らない)。
+	"	:OpenTabSession		⇒	現在のバッファを開きつつ指定のセッションを開く。
+	"	:SaveTabSession
+	"	:AppendTabSession
+	"	:CloseTabSession
 endif
 
-
-"	以下のコマンドを打つことにより、プログラムファイルに応じたファイルがインストールされる。
-"	LspInstallServer。
 
 " 以下、遅延読み込み用の対応(これをすることで遅延読み込みにしたのが無駄になる？)。
 "	読み込む順番が大事なプラグインもあるため気をつけること。
@@ -370,6 +459,27 @@ endfor
 "	基本的に、vimrc読み込み後に、自動的に下記コマンドが実行される。
 "packloadall
 
+"if isdirectory(expand(minpackSTART . "vim-indent-guides"))  || isdirectory(expand(minpackOPT . "vim-indent-guides"))
+"	" デフォルトマッピング：<Leader>ig.	トグル
+"" 以下、常に有効化。
+"let g:indent_guides_enable_on_vim_startup = 1
+"let g:indent_guides_start_level = 2
+"let g:indent_guides_guide_size = 1
+"let g:indent_guides_exclude_filetypes = ['help', 'nerdtree', 'tagbar' ]
+"" 以下、gVim用の色変更(逆に言えば、これを設定しなければ動かない？)。
+""let g:indent_guides_auto_colors = 0
+""autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=red   ctermbg=3
+""autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=4
+"endif
+
+"if isdirectory(expand(minpackSTART . "indentLine"))  || isdirectory(expand(minpackOPT . "indentLine"))
+"let g:indentLine_color_term =239
+"let g:indentLine_color_gui = '#708090'
+"let g:indentLine_char = '¦'
+""let g:indentLine_char = '' "use ¦, ┆ or │ 
+""let g:indentLine_char_list = ['|', '¦', '┆', '┊']
+"endif
+
 " ■マーク
 if isdirectory(expand(minpackSTART . "vim-showmarks"))  || isdirectory(expand(minpackOPT . "vim-showmarks"))
 ":DoShowMarks!
@@ -388,8 +498,9 @@ endif
 
 
 " ■IDEのように補完してくれる
+"	https://mattn.kaoriya.net/software/vim/20191231213507.htm
 if isdirectory(expand(minpackSTART . "vim-lsp"))  || isdirectory(expand(minpackOPT . "vim-lsp"))
-" ファイルの変更に伴いリアルタイムにエラー表示する機能 
+" ファイルの変更に伴いリアルタイムにエラー表示する機能
 let g:lsp_diagnostics_enabled = 1
 let g:lsp_diagnostics_echo_cursor = 1
 
@@ -436,20 +547,49 @@ if isdirectory(expand(minpackSTART . "vim-goimports"))  || isdirectory(expand(mi
 unlet! g:goimports_simplify
 endif
 
+"	https://github.com/Shougo/deoplete.nvim
+"let g:deoplete#enable_at_startup = 1
+
+"if isdirectory(expand(minpackSTART . "vim-smartinput"))  || isdirectory(expand(minpackOPT . "vim-smartinput"))
+"	公式サイト：https://github.com/kana/vim-smartinput/blob/master/doc/smartinput.txt
+"	let g:smartinput_no_default_key_mappings = 2
+"endif
 
 if isdirectory(expand(minpackSTART . "asyncomplete.vim"))  || isdirectory(expand(minpackOPT . "asyncomplete.vim"))
+	" よく分からないがピリオド記号などが直前にあった場合候補が出てこない。そして、候補を出すこともできない(必ず候補を出したい直前は半角スペースが必須)。
+	"	私の設定に問題があると思う。
+
+let g:lsp_async_completion = 1
+
 let g:asyncomplete_smart_completion = 1
 let g:asyncomplete_remove_duplicates = 1
 
 " 自動で入力補完ポップアップを表示する設定
 let g:asyncomplete_auto_popup = 1
 let g:asyncomplete_auto_completeopt = 1
+"let g:asyncomplete_auto_completeopt = 0
 " ポップアップを表示するまでのディレイ
 let g:asyncomplete_popup_delay = 200
+
+" 補完表示時のEnterで決定)改行しない。
+"inoremap <expr><CR>  pumvisible() ? "<C-y>" : "<CR>"
+
+"	Tabで確定したい。
+inoremap <expr><Tab> pumvisible() ? "<C-y>" : "\<Tab>"
+inoremap <expr><CR>  pumvisible() ? "<C-y>" : "\<CR>"
+"	補完候補の選択を矢印キーで行う。
+inoremap <expr><C-n> pumvisible() ? "<Down>" : "<C-n>"
+inoremap <expr><C-p> pumvisible() ? "<Up>" : "<C-p>"
+"
+" 補完候補の再表示(Javaとは相性が悪い)。
+"	For Vim 8 (<c-@> corresponds to <c-space>):
+"	imap <c-@> <Plug>(asyncomplete_force_refresh)
+"inoremap <c-space> <Plug>(asyncomplete_force_refresh)
+inoremap <c-@> <Plug>(asyncomplete_force_refresh)
 endif
 
 
-" For snippets
+" スニペッツ
 "if isdirectory(expand(minpackSTART . "ultisnips"))  || isdirectory(expand(minpackOPT . "ultisnips"))
 "	funcと入力してタブを押下するとスニペットが展開されるようだが、動かないぞ？
 "let g:UltiSnipsExpandTrigger="<Tab>"
@@ -548,6 +688,10 @@ else
 set statusline+=%{'(Git:'.GitStatus().')'}
 endif
 
+" Gitディレクトリパスを取得
+" `:p:h`の部分は、:h filename-modifiersで確認
+"let gits_dirpath = fnamemodify(gits_path, ':p:h')
+
 "	以下、記号列を常時表示。
 "set signcolumn=yes
 "	以下、起動時のハイライト有効設定
@@ -558,7 +702,9 @@ let g:gitgutter_highlight_lines = 1
 "	let g:gitgutter_git_executable = 'C:\Program Files\Git\bin\git.exe'
 "endif
 
-let g:gitgutter_sign_allow_clobber = 0	" 優先度を上げる。
+" 優先度を上げる。
+let g:gitgutter_sign_allow_clobber = 0
+
 let g:gitgutter_sign_removed_first_line = "^_"
 let g:gitgutter_override_sign_column_highlight = 0
 
@@ -568,6 +714,8 @@ let g:gitgutter_override_sign_column_highlight = 0
 
 "	以下、記号列の色をつける(上記とかぶるため、順序に気をつけること)。
 highlight SignColumn guibg=NONE ctermbg=NONE
+"		↑
+"	これ(NONE)はこれで他の設定を上書きする(指定無しという指定をしているため)。
 
 "	以下、記号列の記号色が変わる。
 highlight GitGutterAdd ctermfg=blue ctermbg=NONE
@@ -585,18 +733,22 @@ highlight GitGutterChangeDelete ctermfg=green "ctermbg=NONE
 " vim-GitGutter
 "	<Leader>hs：ハンク部分のステージング
 "				以下の定義で、ステージング方法を追加。
-noremap <leader>ha :GitGutterStageHunk<cr>
+"noremap <leader>ha :GitGutterStageHunk<cr>
+"	無効化(したつもりができておらず)。
+nnoremap <Nop>hs :GitGutterStageHunk<cr>
 
 " GitGutterの行ハイライト切り替え(トグル)
+"	以下のhは必要か？
+"	CUI用のvimでは、無効化される。その代わり、文字の大小トグルとして働く20210207
 nmap <Leader>h :GitGutterLineHighlightsToggle<CR>
-nmap <F19> :GitGutterLineHighlightsToggle<CR>
+nmap <F19>     :GitGutterLineHighlightsToggle<CR>
 "	CUI用vimの場合、F16以降はMacに機能が奪われてしまい、一般的なファンクションキーとして動かない。
 endif
 
 
 " vim-fugitive
 if isdirectory(expand(minpackSTART . "vim-fugitive"))  || isdirectory(expand(minpackOPT . "vim-fugitive"))
-"	ステータスのこと。
+"	ステータス(git status)のこと。
 nnoremap <leader>gs :tab sp<CR>:Gstatus<CR>:only<CR>
 "	git add
 nnoremap <leader>ga :Gwrite<CR>
@@ -634,19 +786,25 @@ endif
 
 " タグ一覧表示の切り替え(トグル)
 if isdirectory(expand(minpackSTART . "tagbar"))  || isdirectory(expand(minpackOPT . "tagbar"))
+	" 以下のキーマップは、<記号キーに当てはまるようにしている。
 nmap <F8> :TagbarToggle<CR>
+	" タグと言うことで、Tキーに割り当てている。
 nmap <F15> :TagbarToggle<CR>
 endif
 
 " アンドゥツリー切り替え(トグル)
-if isdirectory(expand(minpackSTART . "gundo.vim"))  || isdirectory(expand(minpackOPT . "gundo.vim"))
-nmap <Leader>u :GundoToggle<CR>
-nmap <F17> :GundoToggle<CR>
-endif
+"if isdirectory(expand(minpackSTART . "gundo.vim"))  || isdirectory(expand(minpackOPT . "gundo.vim"))
+"	" Pythonを含むVim環境が必要なため、動かせないプラグインになる。
+"nmap <Leader>u :GundoToggle<CR>
+"	" 以下のキーマップは、uキーに当てはまるようにしている。
+"nmap <F17> :GundoToggle<CR>
+"endif
 
 " アンドゥツリー切り替え(トグル)
 if isdirectory(expand(minpackSTART . "undotree"))  || isdirectory(expand(minpackOPT . "undotree"))
+	" 普段のやり直しプラグインはこっちを使っている。
 nmap <Leader>u :UndotreeToggle<CR>
+	" 以下のキーマップは、uキーに当てはまるようにしている。
 nmap <F17> :UndotreeToggle<CR>
 endif
 
@@ -679,7 +837,7 @@ endif
 if isdirectory(expand(minpackSTART . "vim-easymotion"))  || isdirectory(expand(minpackOPT . "vim-easymotion"))
 	"	http://haya14busa.com/mastering-vim-easymotion/
 	" 以下の設定は、移動選択肢が1つの場合に限り、移動選択肢をせずに、即座に移動する。
-	"	f移動・t移動。	←☆それぞれリーダーキーとの組み合わせになる(要は、利用は1タップ増加する)。
+	"	f移動・t移動。	←☆それぞれ<リーダーキーとの組み合わせ>になる(要は、利用は1タップ増加する)。
 	map <Leader>f <Plug>(easymotion-fl)
 	"map <Leader>f <Plug>(easymotion-bd-f)
 	"nmap <Leader>f <Plug>(easymotion-overwin-f)
@@ -694,7 +852,8 @@ if isdirectory(expand(minpackSTART . "vim-easymotion"))  || isdirectory(expand(m
 	"<Plug>(easymotion-prev)
 	"<Plug>(easymotion-repeat)
 
-	" 以下は、日本語文字も検索対象とする(ローマ字にした場合の先頭文字で移動する：例）検索を対象とする場合、kで移動対象にできる)。
+	" 以下は、日本語文字も検索対象とする(ローマ字orアルファベットにした場合の先頭文字で移動する)。
+	"	例）検索を対象とする場合、kで移動対象にできる)。
 	let g:EasyMotion_use_migemo = 1
 endif
 
@@ -704,6 +863,8 @@ function! s:save_session(...)
 	if a:0
 		let session_name = a:1
 	else
+		" fugitive.vimの機能を使っているのはブランチ名を取得する部分のみ
+		" substitute(system('git rev-parse --abbrev-ref HEAD'), '\n', '', 'g')などで代替可能
 		let session_name = fugitive#head()
 	end
 
@@ -733,6 +894,8 @@ command! -nargs=? BranchLoad call s:load_session(<f-args>)
 endif
 
 if isdirectory(expand(minpackSTART . "ctrlp.vim"))  || isdirectory(expand(minpackOPT . "ctrlp.vim"))
+	" .gitignoreに書き込まれたファイルを無視する20210403
+	"	https://github.com/ctrlpvim/ctrlp.vim/blob/master/readme.md#basic-options
 	"	以下、git管理以外でもスワップファイルやバックアップファイルなどを開きたくない対処をしたいが、失敗。
 	"let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
 	"let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard', 'git -C ~/.config/git/ignore']
@@ -740,11 +903,17 @@ if isdirectory(expand(minpackSTART . "ctrlp.vim"))  || isdirectory(expand(minpac
 	"let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 	let g:ctrlp_user_command = ['.git', 'git -C "%s" ls-files']
 endif
+
+" 正規表現(検索)
 if isdirectory(expand(minpackSTART . "eregex.vim"))  || isdirectory(expand(minpackOPT . "eregex.vim"))
 	nnoremap <Leader>/ :M/
 "
 "	" 改行コードの設定？
 "	let eregex_replacement=3
+
+"	" 置換の場合
+"	"	:[range]S/{eregex}/{string}/[&cegpriISCDMm]
+"	"		など。
 endif
 
 " supertab
@@ -762,6 +931,7 @@ if (has('win32') || has('win64') )
 elseif (has('gui_macvim') || has('mac') )
 "	let g:previm_open_cmd = 'open -a "Google Chrome"'
 	let g:previm_open_cmd = 'open -a Firefox'
+	" サファリブラウザで開けない(ブラウザそのものは開くが"Loading... "が表示されて固まる)。
 "	let g:previm_open_cmd = 'open -a Safari'
 elseif has('xfontset')
 endif
@@ -770,6 +940,7 @@ autocmd BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=markdown
 let g:vim_markdown_folding_disabled=1	" 自動折りたたみ無効化
 " Ctrl-pでプレビュー(他のプラグインとダブってしまうため、\pにした)
 "	CtrlPプラグインとかぶるため変更	nnoremap <silent> <C-p> :PrevimOpen<CR>
+"	markdown.vimに待避	nnoremap <Leader>p :PrevimOpen<CR>
 augroup filetype_markdown
 	" マークダウンファイルのみ有効
 	au!
@@ -806,6 +977,11 @@ augroup MyTermDebug
 	au FileType c packadd termdebug
 augroup END
 
+" 外部コマンド実行用ショートカットエイリアス
+noremap! <C-r>e <C-r>=systemlist('')<Left><Left>
+"	使用例）Ctrl+rからのeキー押下後、lsコマンドなどを入力することで、lsが（'')内に収まり、('ls')として外部コマンドが実行される。
+"	その結果がvimに入力される。
+
 
 " MacOS Xメニューの日本語化 (メニュー表示前に行なう必要がある)
 if has('mac')
@@ -825,6 +1001,10 @@ if !(has('win32') || has('mac')) && has('multi_lang')
 	endif
 endif
 
+" コマンドラインの場合は、IM(インプットメソッド)がオンになる20190827
+"	https://vim-jp.org/vimdoc-ja/options.html#'imcmdline'
+"imcmdline
+"	"command+v=貼り付け"をしたとき、IMEが勝手にオフにならないようにしたいのだが、この設定では無かったようだ20190827
 
 "---------------------------------------------------------------------------
 " フォント設定:
@@ -882,6 +1062,7 @@ set smartcase
 "	検索方法を自然な正規表現に変換(very Magic)
 nnoremap / /\v
 	"	\Vの場合は、一部の例外を除き、記号を無効化し、その記号のまま検索する。
+	"	Perl系の検索が出来るようになるとのことだった。
 
 "	マッチ箇所をハイライト
 set hlsearch
@@ -900,6 +1081,7 @@ autocmd QuickFixCmdPost *grep* cwindow
 
 "	対となるキーワード間の移動(検索)
 if &compatible
+	" 機械翻訳：`:set nocp`には多くの副作用があります。 したがって、これは「互換性」が設定されている場合にのみ実行する必要があります。
 	set nocompatible
 endif
 filetype plugin on
@@ -922,6 +1104,7 @@ source $VIMRUNTIME/macros/matchit.vim
 "nnoremap # #zz
 "nnoremap g* g*zz
 "nnoremap g# g#zz
+" メモ
 "	g;：変更箇所にジャンプ
 "	g,：変更箇所にジャンプした場所から戻る。
 
@@ -930,7 +1113,8 @@ noremap fj f<C-k>j
 noremap Fj F<C-k>j
 noremap tj t<C-k>j
 noremap Tj T<C-k>j
-digraphs jj 106  " j	←☆これを忘れる。
+  " jへの移動は、以下jjで移動する。	←☆これを忘れる。
+digraphs jj 106
 " 以下、続く。
 
 "	カッコ
@@ -970,6 +1154,7 @@ digraphs j/ 12539  " ・
 digraphs js 12288  " 　	←☆これを忘れる。
 
 " ctagsの検索場所を親ディレクトリから再帰的に探す。
+"		https://github.com/universal-ctags/ctags
 set tags=tags;$HOME;
 "	Ctrl+]：定義場所に移動する。Push
 "	Ctrl+t：タグスタックを遡る(カーソルが前いたファイルの位置に戻る)。Pop
@@ -1010,25 +1195,17 @@ inoremap # X<C-H>#
 set nrformats=
 
 
-" コマンド補完
+" コマンドモードの補完(ステータスラインに自動補完の選択肢を出す)20210123
 set wildmenu
-"set wildmode=list:longest,full	"	←fullのみが規定値(それ以外は個人付け足し)
+"set wildmode=list:longest,full	"	←最長マッチまで補完してから自動補完メニューを開く(マスタリングVim_P71)20210117
+"									fullのみが規定値(それ以外は個人付け足し)
 set wildmode=longest,full
 set history=800 " 保存するコマンド履歴の数
 
-" 補完表示時のEnterで決定)
-"inoremap <expr><CR>  pumvisible() ? "<C-y>" : "<CR>"
 
-"	Tabで確定したい。
-inoremap <expr><Tab> pumvisible() ? "<C-y>" : "\<Tab>"
-inoremap <expr><CR>  pumvisible() ? "<C-y>" : "\<CR>"
-"	補完候補の選択を矢印キーで行う。
-inoremap <expr><C-n> pumvisible() ? "<Down>" : "<C-n>"
-inoremap <expr><C-p> pumvisible() ? "<Up>" : "<C-p>"
-" 常時補完候補を表示する(初回の補完時に挿入しない)
-"set completeopt=menuone,noinsert
-set completeopt=menuone
 
+" 補完メニュー数(標準では最大数が設定されている)
+set pumheight=10
 "	インサート補完モード
 "		Ctrl+x
 "		このコマンドに続けて、以下の4種類のどれかを選ぶことで、補完が完了する。
@@ -1038,9 +1215,14 @@ set completeopt=menuone
 "			s		スペルチェック候補の補完(spell設定が有効の場合)
 "		help ins-completion
 "		help 'complete'
+"
+" 常時補完候補を表示する(初回の補完時に挿入しない)
+"set completeopt=menuone,noinsert
+"set completeopt=menuone,longest
+"set completeopt=menuone,insert
+"set completeopt=menuone
+set completeopt=menuone,noinsert,noselect,preview
 
-" 補完メニュー数
-set pumheight=10
 
 "	スペルチェックをするようだが、日本語未対応なのか、技術用語未対応なのか分からないが、使い物にならない。
 "set spell
@@ -1048,6 +1230,7 @@ set pumheight=10
 "	ファイル名の指定だけでPathを指定せずに開けるようにする。
 "if ( has('win32') || has('win64') )
 "	set path+="C:\asakunotomohiro\dotfiles\**"
+"	フルPathは無理なようだ	→実践vim(ISBN978-4-04-891659-2)	P138	20180807
 "endif
 
 
@@ -1064,7 +1247,9 @@ set formatexpr=autofmt#japanese#formatexpr()
 " GUI固有ではない画面表示の設定:
 
 " ビープ音を鳴らさない
+"	画面がチラチラするため、これを設定するわけにはいかない。
 "set vb t_vb=
+"	以下なら問題ない。
 set belloff=all
 
 " 他で書き換えられたら自動で読み直す
@@ -1153,6 +1338,7 @@ if ( has('win32') || has('win64') )
 	let s:undo_dir = expand($HOME) . "/.vim_backup/undofile"
 	"	本来これらは%TEMP%ディレクトリが望ましいだろう(手動削除しなければ無限に増える)。
 else
+	" Windows以外のOS用処理。
 	let s:backup_dir = expand('~/.vim_backup')
 	let s:undo_dir = expand('~/.vim_backup/undofile')
 endif
@@ -1169,6 +1355,7 @@ let &backupdir = s:backup_dir
 "let &directory = s:backup_dir	" スワップファイルの作成場所をカレントディレクトリにするため、コメントアウト。
 " undofileが勝手に作られるが、無効化ではなく、作る場所を一カ所にまとめることにした。
 	"	※これは、kaoriya版のVer.7.4.277からの仕様らしい。
+	"		https://www.kaoriya.net/blog/2014/03/30/
 	" アンドゥファイル
 let &undodir=&backupdir . "/undofile"
 "set noundofile " アンドゥファイルを生成しない。
@@ -1177,6 +1364,8 @@ let &undodir=&backupdir . "/undofile"
 augroup quitcmd
 	autocmd!
 	autocmd VimLeave * call s:CleanupStuff()
+	" https://vim-jp.org/vimdoc-ja/autocmd.html#VimLeave
+	" VimLeavePre	のほうがいい？
 	" どのような終了方法を指す？
 augroup END
 function! s:CleanupStuff()
@@ -1192,10 +1381,15 @@ function! s:CleanupStuff()
 	let l:deleteUndoFile=&undodir . "/" . l:undo_fileName
 	echo "call delete(" . l:deleteUndoFile . ")"
 	call delete(l:deleteUndoFile)
+"	全バッファの取得はできないようだ。
+"		一応以下がある。
+"		num = Vim::Buffer.count         # バッファ数を取得する
+"		しかし、"Vim が +ruby 機能付きでコンパイルされている場合にのみ利用できる"
 endfunction
 "
 "	以下、何？
 set switchbuf=useopen
+"		分割ウィンドウが開いている場合分割しない。
 
 "	セッション管理用保存ディレクトリ。
 let s:sessionDir_dir = expand('~/.vim_backup/sessions')
@@ -1213,7 +1407,9 @@ endif
 "---------------------------------------------------------------------------
 
 "　日本語ヘルプが開くように設定する。
+"	https://vim-jp.slack.com/archives/CJMV3MSLR/p1678083227076859
 set helplang=ja,en
+	" この設定だけで日本語が優先される(ただし、引数は勝手に追加しているため、挙動は不明)。
 
 " .vimrcの編集中のみKキー押下することにより、Vimのマニュアルが開く。
 augroup vimrc
@@ -1226,8 +1422,9 @@ augroup END
 " 文字コードの設定
 "	ファイルの文字コードがlatin1の場合は、選別ミスする。
 "	CUI版のvimでutf8ファイルを開く場合、下記では文字化けする。上記のUTF-8が前面に設定されている必要がある。
-"set fileencodings=iso-2022-jp,iso-2022-jp-1,iso-2022-jp-2,iso-2022-jp-3,ISO-2022-JP-2004,cp932,sjis,utf-7,utf-8,euc-jp,ucs-bom,eucjp-ms,euc-jisx0213,utf-16,utf-16le
-set fileencodings=utf-8,iso-2022-jp,iso-2022-jp-1,iso-2022-jp-2,iso-2022-jp-3,ISO-2022-JP-2004,cp932,sjis,utf-7,euc-jp,ucs-bom,eucjp-ms,euc-jisx0213,utf-16,utf-16le
+"set fileencodings=utf-8,iso-2022-jp,iso-2022-jp-1,iso-2022-jp-2,iso-2022-jp-3,ISO-2022-JP-2004,cp932,sjis,utf-7,euc-jp,ucs-bom,eucjp-ms,euc-jisx0213,utf-16,utf-16le
+"	以下、Shougoさんの設定。
+set fileencodings=ucs-bom,utf-8,iso-2022-jp-3,euc-jp,cp932
 "	iso-2022-jp：日本語Jisのこと(しかし、適用されずにcp932で開かれる)。
 "	utf-7は適用されず、utf-8で開かれる。
 "	JIS・UTF7は開けず、文字化けする。
@@ -1239,6 +1436,7 @@ set fileencodings=utf-8,iso-2022-jp,iso-2022-jp-1,iso-2022-jp-2,iso-2022-jp-3,IS
 " 改行コードの自動認識
 "	改行コードを指定して開き直す場合
 "		:e ++ff=mac
+"set fileformats={"unix","dos","mac"}	←☆この書き方は間違っているようだ(macを認識しない)。
 set fileformats=unix,dos,mac
 
 
@@ -1287,9 +1485,9 @@ set ttymouse=xterm2
 "	エクスプローラー
 
 nnoremap <Leader>E :Explore<CR>
-	" ↓通常:Seで水平分割上で開くのを変更。
+	" ↓通常:Seで水平分割上で開く。
 nnoremap <Leader>S :Sexplore<CR>
-	" ↓通常:Vexで水平分割上で開くのを変更変更
+	" ↓通常:Vexで水平分割上で開く。
 nnoremap <Leader>V :Vexplore<CR>
 "	新規タブページで開く場合は:Teを使う必要がある.
 
@@ -1308,10 +1506,10 @@ autocmd BufRead * normal zR
 " MacVim-KaoriYa固有の設定
 
 " migemo：ローマ字のまま日本語をインクリメンタル検索
-"let $PATH = simplify($VIM . '/../../MacOS') . ':' . $PATH
+"let $PATH = simplify($VIM . '/../../MacOS') . ':' . $PATH	←☆これ何だっけ？
 "set migemodict=$VIMRUNTIME/dict/migemo-dict
 "set migemo
-"	インクリメンタルサーチをしない.
+"	インクリメンタルサーチをしない。
 set noincsearch
 "set incsearch
 
@@ -1326,12 +1524,16 @@ let $LUA_DLL = simplify($VIM . '/../../Frameworks/libluajit-5.1.2.dylib')
 
 if has('multi_byte_ime') || has('xim')
 	" IME ON時のカーソルの色を設定
+	" 　guibg：日本語入力がONの時のカーソルの色を表す.
+	" 　guifg：カーソルの下の字の色を表す.
 	highlight CursorIM guibg=Red guifg=LightRed
 		"カーソルを変更するのは、括弧などの自動補完プラグインと競合するのか、相性が悪いようで、ATOK変換の足を引っ張る。
 		"そのため、無効化する20220111
 		"この処理じゃなかったようだ。
 	" 挿入モード・検索モードでのデフォルトのIME状態設定
 "	set iminsert=0 imsearch=0
+	" 挿入モードでのIME状態を記憶させない場合、次行のコメントを解除
+"	inoremap <silent> <ESC> <ESC>:set iminsert=0<CR>
 endif
 
 " カーソルハイライト
@@ -1377,6 +1579,13 @@ endfunction
 "---------------------------------------------------------------------------
 
 " タブ操作
+"nnoremap <C-Tab> gt
+"nnoremap <S-C-Tab> gT
+	" 上記2つはCUI画面では無効化されるようだ。
+"nnoremap <command-Tab> :tabnew<CR>
+"nnoremap <D-Tab> :tabnew<CR>	Mac用には不要。
+"	Windows用はAutoHotKeyで対応することにした。
+"nnoremap <Win-Tab> :tabnew<CR>
 "	以下、新規タブページを右端に作成する。
 nnoremap <Leader>tn :$tabnew<CR>
 nnoremap <Leader>tc :tabclose<CR>
@@ -1408,14 +1617,33 @@ if ( has('win32') || has('win64') )
 	"		その場合は、"set encoding=UTF-8"にする必要がある。
 endif
 
+"---------------------------------------------------------------------------
+
+"	★メモ
+
+" ■vimコマンド
+"	バッファ削除
+"		:bw[ipeout][!] N1 N2 ...
+"			:bdeleteよりも強力で、マークやオプションも削除される。
+
 " ■コマンドの再マッピング
 "	:map：再帰的なマッピングに用いられる(他のカスタムマッピングと相互作用する)。
+"			そのとき、@記号がついている定義が優先されるようだ。
+"			:h :map-local
+"			:h map-listing	←定義済みのマップを一覧化。
 "	:noremap：非再帰的なマッピングに用いられる(デフォルトのマッピングのみに作用する)。
 "			　マッピング済みを調べる方法：:help index	←キーバイド一覧
 "			　:mapコマンドでプラグインやユーザ定義のマッピング閲覧
 "			　:map gは、gから始まるすべてのマッピングを表示する。
 "	※:map：プラグインの提供するカスタムマッピングに対して使うようだ。
 "	※:noremap：組み込みのマッピングに対して使う。
+"
+"	削除方法は、:unmapでユーザ定義またはプラグイン定義のマッピングを消せる。
+"				:mapclearを使う場合は、すべてのマッピングを削除できる。
+"	使用例：noremap <c-u> :w<cr> " Ctrl+uで保存
+"			<a-_>・<m-_>：Altキーとの組み合わせ(<m-b>はAlt+bになる)。
+"			<s-_>：Shiftキーの組み合わせ。
+"			※定義末は、<cr>で締めくくる必要がある(Enterキー押下で実行できるようにするため)。
 "
 "	特殊キー
 "		<space>	Spaceキー
@@ -1607,7 +1835,17 @@ endif
 "		echo animal_names
 "
 
+"	■Leaderキー
+"		leader+wでファイル保存
+"		noremap <leader>w :w<cr>
 
+" ■diff
+"	$ vimdiff hoge1.go hoge2.go
+"		]c	：差分移動前方
+"		[c	：差分移動後方
+"		do	：アクティブウィンドウにPullする(:diffget)。
+"		dp	：アクティブウィンドウからPushする(:diffput)。
+"	文字単位での diff をとりたい場合は --word-diff-regex オプションをつける。
 
 " ■vimgrep
 "	*記号と#記号
@@ -1626,6 +1864,23 @@ endif
 "
 "	カレントバッファを対象としたvimgrep方法。
 "		:vim {pattern} %
+"	使用例
+"		app/views以下で_で始まるerbファイルを対象にする
+"			:vim {pattern} app/views/**/_*.erb
+"		検索Pathの使い回し方法。
+"			:ar path/to/search/dir/**
+"			:vim foo ##
+"			※:ar[gs]コマンドにPathを指定することで、そのPathを使い回すことが出来る。
+"				##記号で、指定したPathを置き換える。
+"				標準出力を受け取る(Pathとして使う)場合
+"					:ar `find . -name \\*.rb`
+"		開いているバッファすべてを対象に検索する。
+"			:bufdo vimgrepa[dd] {pattern} %
+"			開いているウィンドウすべてを対象にする場合のコマンド
+"				:windo
+"			次の検索時は、上記の検索が継続するため、それらをリセットする必要がある。
+"				:cex ""
+
 " ■Quickfixとの組み合わせ
 "	上記のvimコマンド結果を一覧表示する場合の一括コマンド
 "		:vim {pattern} {file} | cw
@@ -1634,6 +1889,14 @@ endif
 "	gd：変数の宣言場所にジャンプできる(ローカル変数)。
 "	gD：変数の宣言場所にジャンプできる(グローバル変数)。
 
+" ■コンパイル環境構築
+"	以下、C言語用のコンパイル方法。
+"		:compiler gcc
+"		:make
+"	:compiler	：異なるコンパイラプラグインを指定でき、コンパイラからの出力フォーマットも同時に指定できる。
+"	:set errorformat	：認識されるエラーフォーマットを複数定義する。
+"	:set makeprg	：:makeを実行したときに実行されるプログラムを設定する。
+
 " ■レジスタ
 "	"記号を使い分けることで数回前の内容を使い回せる
 "		例えば、7回前の削除単語を貼り付ける場合、	"7p	でペーストできる(全部で10回分を保持している)。
@@ -1641,6 +1904,13 @@ endif
 "	"*yw：vimからパソコンのクリップボードにヤンクできる。
 "	レジスタ一覧
 "		:reg
+"		このレジスタには、マクロで記録した内容も含まれる。
+"			マクロの記録を変更する場合、単純にエディタに貼り付ければいい。
+"				例）レジスタ内に、"aがあった場合、"apで貼り付けられる。
+"					編集後に、"apでレジスタ内に貼り付ける(ヤンク済みであること)。
+"					そして、_"ay$でレジスタに戻す。
+"				^[	ESC
+"				^M	Enter
 
 
 " ■置換(substitute)
@@ -1722,14 +1992,14 @@ endif
 	" cvc：verboseモードでコミットする(git commit -v)
 	" cf：fixup!でコミットする(git commit --fixup=)これを実行して査後に<Tab><Enter>押下後HEADにfixupする。
 " <leader>ga		git add
-" <leader>gc		git commit
+" <leader>gc		git commit	←☆無効化しているはず。
 " <leader>gb		git blame	:Gblame	記録の遡り(行との変更確認や変更日時や変更者の確認)
 	" 行ごとに最終コミットされた時期・誰かを一覧にする。
 "alias logall='log --graph --pretty=format:\'%Cred%h %Cgreen(%>(15,trunc)%cr, %ci) %C(bold blue)<%an>%Creset -%C(yellow)%d%Creset %s\' --abbrev-commit --date=relative --all'
 " <leader>gl		git log
 " <leader>gh		変更履歴(架空コマンドgit history)
 "					abbrev for `git history`: create new quickfix tab for history
-" <leader>gp		git push
+" <leader>gp		git push	←☆無効化しているはず。
 " <leader>gll		git pull
 " <leader>gf		git fetch
 " <leader>gd	diff	<Leader>gsのdvと同じ

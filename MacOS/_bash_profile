@@ -57,18 +57,13 @@ COLOR_BLUE='\[\e[34m\]'
 
 # プロンプト表記変更
 # "[ユーザ名@ホスト名 現在のディレクトリ] $"	←☆末尾はrootの時に#記号を使い、それ以外に$記号を使う。
-#PS1="[${COLOR_YELLOW}\u${COLOR_DEFAULT}@\h ${COLOR_BLUE}\W${COLOR_DEFAULT}] \$ "
-#PS1="[\[\e[33m\]\u\[\e[0m\]@\h \[\e[34m\]\W\[\e[0m\]] \$ "
-#PS1="[\[\e[33m\]\u\[\e[0m\]\[\e[91m\]@\[\e[0m\]\h \[\e[94m\]\W\[\e[0m\]] \$ "
-#PS1="[\[\e[33m\]\u\[\e[0m\]\[\e[92m\]@\[\e[0m\]\h \[\e[94m\]\W\[\e[0m\]] \$ "
-#PS1="[\[\e[33m\]\u\[\e[0m\]\[\e[92m\]@\[\e[0m\]\[\e[34m\]\h\[\e[0m\] \W \$ "
 #PS1="\[\e[33m\]\u\[\e[0m\]\[\e[92m\]@\[\e[0m\]\[\e[34m\]\h\[\e[0m\] \W \[\e[31m\]\$\[\e[0m\] "	←☆表示が崩れることがある。
 PS1="${COLOR_YELLOW}\u${COLOR_DEFAULT}${COLOR_HIGREEN}@${COLOR_DEFAULT}${COLOR_BLUE}\h${COLOR_DEFAULT} \W ${COLOR_RED}\$${COLOR_DEFAULT} "
 	# 将来的に変更する必要がある(バグがある・表示がくずれる)。
 
 # コマンド実行時にターミナル画面の大きさに合わせた結果を出すようにする。
 #shopt -s checkwinsize
-#	既存で実行済み。
+#	既存で実行済み(どういう意味？)。
 
 # 優先順位が2番目の環境設定ファイルを読み込む.
 #. ~/.bash_login

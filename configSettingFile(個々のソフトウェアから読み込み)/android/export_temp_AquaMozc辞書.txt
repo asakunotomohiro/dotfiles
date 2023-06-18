@@ -8,11 +8,6 @@
 すりむ	Titan-Slim	名詞	
 きんどる	Kindle	名詞	
 ぱー	%	名詞	
-のーとかね	@money入出金money	名詞	
-かねのーと	@money入出金money	名詞	
-たぐれしーと	#レシート_Host	名詞	
-たぐめーる	#メール_Host	名詞	
-たぐめも	#pレビューメモ_HOST	名詞	
 あさくの	あさくの	名詞	
 あさくの	https://github.com/asakunotomohiro/dotfiles	名詞	
 ぎっと	git clone https://github.com/asakunotomohiro/asakunotomohiro.git	名詞	

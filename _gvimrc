@@ -1,3 +1,8 @@
+"	書籍：ViIMproved‐Vim完全バイブル [単行本]	P477	20160830
+"		　ISBN：978-4774120188
+"(上記に関しては:help modelineを参照)
+
+
 if ( has('win32') || has('win64') )
 " torteは、WindowsOS専用の色にすべきかもしれない。Macintoshでは薄い。
 "	Macでは、以下のカラースキームをvimrcで読み込めるが、windowsの場合はgvimrcでなければ反映されない。
@@ -21,7 +26,9 @@ endif
 
 "---------------------------------------------------------------------------
 if ( has('win32') || has('win64') )
+	" 縦の長さ
 	set lines=50
+	" 横の長さ
 	set columns=140
 endif
 
@@ -65,6 +72,7 @@ endif
 "---------------------------------------------------------------------------
 
 " タブ操作
+"	本来であれば、次のタブに切り替えるのはgt・gTでできる。
 nnoremap <C-Tab> gt
 nnoremap <S-C-Tab> gT
 nnoremap <silent> <S-t> :tabnew<CR>
@@ -132,6 +140,7 @@ endif
 
 "ESCでIMEを確実にOFF
 "　全然機能しない（CUI・GUI）
+"　https://vim-jp.org/vimdoc-ja/options.html#'iminsert'
 inoremap <silent> <ESC> <ESC>:set iminsert=0<CR>
 inoremap <silent> <C-[> <C-[>:set iminsert=0<CR>
 

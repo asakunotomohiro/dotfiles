@@ -2,9 +2,11 @@
 #		利用記載内容は、環境変数周りになる。
 
 # ■環境変数。
-VIM=/Applications/MacVim.app/Contents/MacOS/
-PATH=$PATH:${VIM}
+VIM="/Applications/MacVim.app/Contents/MacOS/"
+PATH="$PATH:${VIM}"
 
+#		GnuPGの鍵とSSHの鍵を紐付けるようだ。
+export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
 
 # pyenvさんに自動補完機能を提供してもらう
 #if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
@@ -23,10 +25,9 @@ export PYTHON_CONFIGURE_OPTS="--with-tcltk-includes='-I/usr/local/opt/tcl-tk/inc
 
 # Golang
 #	brew install go	←☆今後これで管理する。
-export GOPATH="/Users/asakunotomohiro/go"
-#export GOPATH="~/go"
-PATH=$PATH:${GOPATH}/bin
-export PATH
+#	今はこの設定は過去の資産扱い(最新版では設定せずに使える)。	export GOPATH="/Users/asakunotomohiro/go"
+#遺物	PATH=$PATH:${GOPATH}/bin
+#export PATH
 
 
 # Java(openJDK)
@@ -39,8 +40,9 @@ export CPPFLAGS="-I/usr/local/opt/openjdk/include"
 
 
 # Ruby
-#	Homebrewでのrbenvからの環境構築済み。
-eval "$(rbenv init -)"
+#	Homebrewでのrbenvからの環境構築済み(インストールしていない場合、シェル起動時にエラーが発生する)。
+#eval "$(rbenv init -)"	←☆bashnの場合だろう。
+#eval "$(rbenv init - zsh)"	←☆zshの場合。
 # 以下の作業により、eval処理ができているか確認できるそうだ。
 #	curl -fsSL https://github.com/rbenv/rbenv-installer/raw/master/bin/rbenv-doctor | bash
 
