@@ -6,6 +6,7 @@
 
 # ■エイリアス。
 #alias h='history 25 '
+#	以下の25は、Androidでは多い(15ぐらいが望ましいだろう)。
 alias gitll='git log -25 --graph --oneline --first-parent '
 alias tree='tree -N '
 alias ll='ls -GFlt '

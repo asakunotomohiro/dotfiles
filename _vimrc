@@ -50,7 +50,8 @@ set statusline=%<%f\ %m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}%=%l,%c%V
 
 
 "	ーーーパッケージ管理20190622ーーー
-"	git clone https://github.com/k-takata/minpac ~/.vim/pack/develop/opt/minpac
+"	botu20230529	git clone https://github.com/k-takata/minpac ~/.vim/pack/develop/opt/minpac
+"	git clone https://github.com/k-takata/minpac.git ~/.vim/pack/minpac/opt/minpac
 "	※ディレクトリは、あらかじめ作成しておくこと。
 "		~/.vim/pack/	←☆作成。
 "		~/.vim/pack/develop	←☆作成。
@@ -133,6 +134,7 @@ call minpac#add('prabirshrestha/vim-lsp')
 " 以下のプラグインではJava言語との相性が悪いようだ(Nvim向けのプラグインならば問題用だが、そのエディタを使うつもりはない)。
 call minpac#add('mattn/vim-lsp-settings')
 "	個々のインストール先：%LOCALAPPDATA%\vim-lsp-settings\servers
+"						：~/.local/share/vim-lsp-settings/servers
 "	以下のコマンドを打つことにより、プログラムファイルに応じたファイルがインストールされる。
 "	LspInstallServer
 "	・環境構築が整っていない場合に出るメッセージのようだ。
@@ -212,7 +214,7 @@ call minpac#add('ctrlpvim/ctrlp.vim')
 "		　　　々　(水平分割)：Ctrl+X
 "		CtrlPの終了　　　　 ：Esc
 
-" migemo：ローマ字のまま日本語をインクリメンタル検索
+" migemo：ローマ字(アルファベット)のまま日本語をインクリメンタル検索
 "call minpac#add('koron/cmigemo')
 
 " Perl言語用の正規表現での検索用プラグイン。
@@ -732,7 +734,9 @@ highlight GitGutterChangeDelete ctermfg=green "ctermbg=NONE
 " vim-GitGutter
 "	<Leader>hs：ハンク部分のステージング
 "				以下の定義で、ステージング方法を追加。
-noremap <leader>ha :GitGutterStageHunk<cr>
+"noremap <leader>ha :GitGutterStageHunk<cr>
+"	無効化(したつもりができておらず)。
+nnoremap <Nop>hs :GitGutterStageHunk<cr>
 
 " GitGutterの行ハイライト切り替え(トグル)
 "	以下のhは必要か？
@@ -834,7 +838,7 @@ endif
 if isdirectory(expand(minpackSTART . "vim-easymotion"))  || isdirectory(expand(minpackOPT . "vim-easymotion"))
 	"	http://haya14busa.com/mastering-vim-easymotion/
 	" 以下の設定は、移動選択肢が1つの場合に限り、移動選択肢をせずに、即座に移動する。
-	"	f移動・t移動。	←☆それぞれリーダーキーとの組み合わせになる(要は、利用は1タップ増加する)。
+	"	f移動・t移動。	←☆それぞれ<リーダーキーとの組み合わせ>になる(要は、利用は1タップ増加する)。
 	map <Leader>f <Plug>(easymotion-fl)
 	"map <Leader>f <Plug>(easymotion-bd-f)
 	"nmap <Leader>f <Plug>(easymotion-overwin-f)
@@ -849,7 +853,7 @@ if isdirectory(expand(minpackSTART . "vim-easymotion"))  || isdirectory(expand(m
 	"<Plug>(easymotion-prev)
 	"<Plug>(easymotion-repeat)
 
-	" 以下は、日本語文字も検索対象とする(ローマ字にした場合の先頭文字で移動する。
+	" 以下は、日本語文字も検索対象とする(ローマ字orアルファベットにした場合の先頭文字で移動する)。
 	"	例）検索を対象とする場合、kで移動対象にできる)。
 	let g:EasyMotion_use_migemo = 1
 endif
@@ -1419,8 +1423,9 @@ augroup END
 " 文字コードの設定
 "	ファイルの文字コードがlatin1の場合は、選別ミスする。
 "	CUI版のvimでutf8ファイルを開く場合、下記では文字化けする。上記のUTF-8が前面に設定されている必要がある。
-"set fileencodings=iso-2022-jp,iso-2022-jp-1,iso-2022-jp-2,iso-2022-jp-3,ISO-2022-JP-2004,cp932,sjis,utf-7,utf-8,euc-jp,ucs-bom,eucjp-ms,euc-jisx0213,utf-16,utf-16le
-set fileencodings=utf-8,iso-2022-jp,iso-2022-jp-1,iso-2022-jp-2,iso-2022-jp-3,ISO-2022-JP-2004,cp932,sjis,utf-7,euc-jp,ucs-bom,eucjp-ms,euc-jisx0213,utf-16,utf-16le
+"set fileencodings=utf-8,iso-2022-jp,iso-2022-jp-1,iso-2022-jp-2,iso-2022-jp-3,ISO-2022-JP-2004,cp932,sjis,utf-7,euc-jp,ucs-bom,eucjp-ms,euc-jisx0213,utf-16,utf-16le
+"	以下、Shougoさんの設定。
+set fileencodings=ucs-bom,utf-8,iso-2022-jp-3,euc-jp,cp932
 "	iso-2022-jp：日本語Jisのこと(しかし、適用されずにcp932で開かれる)。
 "	utf-7は適用されず、utf-8で開かれる。
 "	JIS・UTF7は開けず、文字化けする。

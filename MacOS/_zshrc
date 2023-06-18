@@ -3,7 +3,8 @@ COMMON_ENVIRONMENTFILE=$HOME/.config/shell/profile_common_EnvironmentVariable
 if [ -e "$COMMON_ALIAS_FILE" ]
 then
 	source "$COMMON_ALIAS_FILE"
-	#source "$COMMON_ENVIRONMENTFILE"	←☆これを読み込んではならない理由を忘れてしまった。
+#	source "$COMMON_ENVIRONMENTFILE"	←☆これを読み込んではならない理由を忘れてしまった。
+	source "$COMMON_ENVIRONMENTFILE"	# そのため、思い出すまで読み込むようにしておく。
 fi
 
 
@@ -58,7 +59,8 @@ zshaddhistory() {
 	local cmd=${line%% *}
 
 	[[ #	${#line} -ge 5 &&
-		${cmd} != (l[sl])
+#		${cmd} != (l[sl])
+		${cmd} != (l[s])
 		&& ${cmd} != (h)
 		&& ${cmd} != (fg)
 #		&& ${cmd} != (cd)
@@ -238,6 +240,10 @@ export PS1="[\$vcs_info_msg_0_%1~%f] $ "
 		# gitリポジトリの場合は、""で、それ以外はカレントディレクトリのみ表示する。
 #	末尾%#	root時表記：#	それ以外表記：%	←☆そもそもMacで切り替えることがないため、常時$記号を用いることにした。
 
+
+# Ruby言語環境	rbenvを読み込む。
+#	TODO: 環境がある場合に実行する仕組みを作ること。
+eval "$(rbenv init - zsh)"
 
 # Go言語環境	goenvを読み込むためのPATH設定
 export GOENV_ROOT="$HOME/.goenv"
