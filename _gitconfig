@@ -2,7 +2,7 @@
 [user]
 	user =
 	name =
-	email =
+	email = 
 
 [core]
 	autocrlf = false	# 改行コードの変更なし。
@@ -40,7 +40,7 @@
 
 [grep]
 	# https://git-scm.com/docs/git-grep
-	lineNumber = true	# 検索結果に行表示する設定。
+	lineNumber = true
 	column = true	# 先頭1文字目から何文字目に該当するかを表示する設定。
 	#patternType = perl	正規表現形式をPerlにする。
 	extendedRegexp = true	# 拡張正規表現を通常利用する設定。

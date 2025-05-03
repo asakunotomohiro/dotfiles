@@ -111,5 +111,9 @@ Remove-Item -Path '~/' -Recurse -Force
 Remove-Item -Path '~/' -Recurse -Force
 Remove-Item -Path '~/' -Recurse -Force
 
+# Windows11の右クリック内容を従来のWindows10と同様にすべて展開した状態を戻す(本来のWindows11の右クリックメニュー状況になる)。
+#$registryKey = "HKCU:\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}"
+#Remove-Item -Path $registryKey -Recurse -Force
+
 #	以上。
 # vim: set ts=4 sts=4 sw=4 tw=0 ff=dos fenc=utf-8 ft=powershell noexpandtab:

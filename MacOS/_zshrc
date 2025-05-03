@@ -1,10 +1,17 @@
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
 COMMON_ALIAS_FILE=$HOME/.config/shell/profile_common_Alias
 COMMON_ENVIRONMENTFILE=$HOME/.config/shell/profile_common_EnvironmentVariable
+COMMON_ENVIRONMENTSECRET=$HOME/.config/shell/secret
 if [ -e "$COMMON_ALIAS_FILE" ]
 then
 	source "$COMMON_ALIAS_FILE"
 #	source "$COMMON_ENVIRONMENTFILE"	←☆これを読み込んではならない理由を忘れてしまった。
 	source "$COMMON_ENVIRONMENTFILE"	# そのため、思い出すまで読み込むようにしておく。
+fi
+if [ -e "$COMMON_ENVIRONMENTSECRET" ]
+then
+	source "$COMMON_ENVIRONMENTSECRET"	# 完全ローカルファイルとして存在する。
 fi
 
 
@@ -108,6 +115,7 @@ path=(
 	/usr/local/bin(N-/)
 	/usr/local/sbin(N-/)
 	/Library/Apple/usr/bin
+	/opt/homebrew/opt/arm-none-eabi-gcc@9/bin:
 )
 
 
@@ -245,6 +253,10 @@ export PS1="[\$vcs_info_msg_0_%1~%f] $ "
 #	TODO: 環境がある場合に実行する仕組みを作ること。
 eval "$(rbenv init - zsh)"
 
+# Python言語環境
+#	Created by `pipx` on 2024-05-12 14:09:37
+export PATH="$HOME/.local/bin:$PATH"
+
 # Go言語環境	goenvを読み込むためのPATH設定
 export GOENV_ROOT="$HOME/.goenv"
 if [ -f "$GOENV_ROOT" ]
@@ -271,7 +283,6 @@ then
 	# Go言語用の環境変数は、基本これだけで十分(GOPATH設定は古い情報になるため、惑わされないこと)。
 	export PATH="$GOBINPATH:$PATH"
 fi
-
 
 # エイリアス
 alias h='history -i -25 '

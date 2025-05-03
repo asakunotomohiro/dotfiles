@@ -56,5 +56,12 @@ source ~/perl5/perlbrew/etc/bashrc
 # viエディタに関する設定（ターミナル用）
 export EDITOR=/Applications/MacVim.app/Contents/MacOS/Vim
 
+
+# C言語
+#	以下は、特殊(QMKで使用する)。また、本体は、homebrewでインストールする。
+export LDFLAGS="-L/opt/homebrew/opt/arm-none-eabi-gcc@9/lib"
+#export PATH="/opt/homebrew/opt/arm-none-eabi-gcc@9/bin:$PATH"	←☆zshrcで設定済み。
+
+
 # 以上。
 # vim: set ts=4 sts=4 sw=4 tw=0 ff=unix fenc=utf-8 ft=bash noexpandtab:

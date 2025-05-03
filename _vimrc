@@ -197,6 +197,7 @@ autocmd BufNewFile,BufRead *.sh setlocal commentstring=#\	%s
 "autocmd BufNewFile,BufRead *.sh setlocal commentstring=#\ %s
 autocmd BufNewFile,BufRead [._g]{,2}vimrc setlocal commentstring=\"\	%s
 "autocmd BufNewFile,BufRead [._g]{,2}vimrc setlocal commentstring=\"\ %s
+autocmd BufNewFile,BufRead *.js setlocal commentstring=//\	%s
 
 " 動かない。動いてはいるようだが、可視化してくれない。
 "call minpac#add('nathanaelkane/vim-indent-guides')	" インデントの可視化
@@ -500,8 +501,8 @@ endif
 " ■IDEのように補完してくれる
 "	https://mattn.kaoriya.net/software/vim/20191231213507.htm
 if isdirectory(expand(minpackSTART . "vim-lsp"))  || isdirectory(expand(minpackOPT . "vim-lsp"))
-" ファイルの変更に伴いリアルタイムにエラー表示する機能
-let g:lsp_diagnostics_enabled = 1
+" ファイルの変更に伴いリアルタイムにエラー表示する機能(無効化)
+let g:lsp_diagnostics_enabled = 0
 let g:lsp_diagnostics_echo_cursor = 1
 
 " LSP の仕様である textEdit を有効にする設定
@@ -749,7 +750,7 @@ endif
 " vim-fugitive
 if isdirectory(expand(minpackSTART . "vim-fugitive"))  || isdirectory(expand(minpackOPT . "vim-fugitive"))
 "	ステータス(git status)のこと。
-nnoremap <leader>gs :tab sp<CR>:Gstatus<CR>:only<CR>
+"nnoremap <leader>gs :tab sp<CR>:Gstatus<CR>:only<CR>	←☆動かなくなっている(ステータスコマンドが消されたようだ)。
 "	git add
 nnoremap <leader>ga :Gwrite<CR>
 "	git blame
@@ -1312,6 +1313,9 @@ set tabstop=4
 " 自動改行不可(日本語には関係なく改行するようだ？)
 set textwidth=0
 set formatoptions=q
+" 以下、ファイル末尾に改行を付けない(バイナリファイルに改行を付けなくなるため、注意が必要である)。
+:set nofixeol
+
 "set formatoptions=r
 " シフト量の幅（"<<" または ">>"）
 "	smartindentで増減する幅
